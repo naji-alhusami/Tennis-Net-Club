@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarckDown from "react-markdown";
 import PostHeader from "./post-header";
 
 import factsAboutTennis from "@/public/images/factsAboutTennis.jpg";
@@ -17,7 +18,7 @@ function PostContent() {
   return (
     <article className={classes.content}>
       <PostHeader title={data.title} image={data.image} />
-      Content
+      <ReactMarckDown>{data.content}</ReactMarckDown>
     </article>
   );
 }
