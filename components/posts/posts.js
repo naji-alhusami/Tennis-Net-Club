@@ -3,16 +3,16 @@ import PostItem from "./post-item.js";
 
 import classes from "./posts.module.css";
 
-function posts(props) {
+function Posts(props) {
   const { posts } = props;
 
   return (
-    <ul>
+    <ul className={classes.grid}>
       {posts.map((post) => (
-        <PostItem key={post.id} />
+        <PostItem key={post.id} post={post} />
       ))}
     </ul>
   );
 }
 
-export default posts;
+export default Posts;
