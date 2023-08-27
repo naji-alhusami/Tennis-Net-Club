@@ -5,7 +5,7 @@ import MainNavigation from "./main-navigation";
 function Layout(props) {
   return (
     <Fragment>
-      {/* <MainNavigation /> */}
+      <MainNavigation backgroundColor="rgb(0, 0, 0, 0.5)" />
       <main>{props.children}</main>
     </Fragment>
   );

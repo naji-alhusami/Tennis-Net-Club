@@ -3,9 +3,15 @@ import Logo from "./logo";
 
 import classes from "./main-navigation.module.css";
 
-function MainNavigation() {
+function MainNavigation(props) {
+  const { backgroundColor } = props;
+
+  const headerStyle = {
+    backgroundColor: backgroundColor, // Default transparent background if not provided
+  };
+
   return (
-    <header className={classes.header}>
+    <header className={classes.header} style={headerStyle}>
       <Link href="/">
         <Logo />
       </Link>
