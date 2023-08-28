@@ -5,6 +5,18 @@ image: "/images/factsAboutTennis.jpg"
 isBest: true
 ---
 
-# this is a title
+# Facts about history of Tennis
 
-This is some regular text with a [link](https://google.com)
+In this article, we'll dive into the core concepts and features NextJS has to offer:
+
+- File-based Routing
+- Built-in Page Pre-rendering
+- Rich Data Fetching Capabilities
+- Image Optimization
+- Much More
+
+## File-based Routing
+
+![Create routes via your file +  structure](factsAboutTennis.jpg)
+
+... More content ...
