@@ -1,6 +1,6 @@
 function handler(req, res) {
   if (req.method === "POST") {
-    const { email, name, message } = req.body;
+    const { email, name, message } = req.body; //we bring them from body: JSON.stringify
 
     if (
       !email ||
