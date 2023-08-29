@@ -1,5 +1,7 @@
 import AllPosts from "@/components/posts/all-posts";
 import { getAllPosts } from "@/lib/posts-util";
+import Head from "next/head";
+import { Fragment } from "react";
 
 // import factsAboutTennis from "@/public/images/factsAboutTennis.jpg";
 
@@ -28,7 +30,15 @@ function AllPostsPage(props) {
   //   },
   // ];
 
-  return <AllPosts posts={props.posts} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>All My Posts</title>
+        <meta name="description" content="all posts tennis" />
+      </Head>
+      <AllPosts posts={props.posts} />
+    </Fragment>
+  );
 }
 
 export function getStaticProps() {

@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import Starting from "@/components/home-page/starting";
 import FeaturedPosts from "@/components/home-page/featured-posts";
 import { getBestPosts } from "@/lib/posts-util";
+import Head from "next/head";
 
 function HomePage(props) {
   // const data = [
@@ -31,6 +32,10 @@ function HomePage(props) {
 
   return (
     <Fragment>
+      <Head>
+        <title>Tennis</title>
+        <meta name="description" content="I post about Tennis." />
+      </Head>
       <Starting />
       <FeaturedPosts posts={props.posts} />
     </Fragment>
