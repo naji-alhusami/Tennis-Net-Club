@@ -3,7 +3,7 @@
   font-size: var(--size-6);
   padding: 2%;
   background-color: transparent;
-  border: 2px solid white;
+  border: 2px solid rgb(255, 255, 255);
   color: white; /* Assuming you want the text to be white */
   text-align: center; /* To center the text within the button */
   text-decoration: none; /* To remove default link underline */
@@ -16,6 +16,6 @@
 
 .button:hover {
   background-color:white;
-  /* border-color:rgb(92, 189, 7) ; */
+  border-color:rgb(137, 227, 59) ;
   color: black;
 }
