@@ -1,9 +1,9 @@
 .logo {
   text-transform: uppercase;
   font-size: 3rem;
-  font-weight: bold;
-  font-family: "Oswald", sans-serif;
-  color: rgb(255,255,0);
+  font-weight: 700;
+  /* font-family: "Oswald", sans-serif; */
+  color: rgb(92, 189, 7);
   font-style: italic;
 }
 

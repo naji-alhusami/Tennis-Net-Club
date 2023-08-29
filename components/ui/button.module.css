@@ -1,0 +1,21 @@
+.button {
+  margin: 0 5rem 0 5rem;
+  font-size: var(--size-6);
+  padding: 2%;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white; /* Assuming you want the text to be white */
+  text-align: center; /* To center the text within the button */
+  text-decoration: none; /* To remove default link underline */
+  cursor: pointer; /* To indicate interactivity */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover {
+  background-color:white;
+  /* border-color:rgb(92, 189, 7) ; */
+  color: black;
+}

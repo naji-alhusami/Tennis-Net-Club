@@ -7,7 +7,7 @@ function MainNavigation(props) {
   const { backgroundColor } = props;
 
   const headerStyle = {
-    backgroundColor: backgroundColor, // Default transparent background if not provided
+    backgroundColor: backgroundColor, 
   };
 
   return (
@@ -18,7 +18,16 @@ function MainNavigation(props) {
       <nav>
         <ul>
           <li>
-            <Link href="/posts">Posts</Link>
+            <Link href="/posts">Book Court</Link>
+          </li>
+          <li>
+            <Link href="/contact">Trainings</Link>
+          </li>
+          <li>
+            <Link href="/contact">Blogs</Link>
+          </li>
+          <li>
+            <Link href="/contact">Find Partner</Link>
           </li>
           <li>
             <Link href="/contact">Contact</Link>
