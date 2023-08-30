@@ -4,7 +4,7 @@
 
 .image img {
   width: 100%;
-  height: min-content;
+  height: 42rem;
 }
 
 .form {
@@ -25,6 +25,10 @@
   width: 50%;
   height: 2rem;
   margin-left: 0.8rem;
+}
+
+.form h1 {
+  text-align:center;
 }
 
 .button {

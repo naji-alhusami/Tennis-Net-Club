@@ -32,7 +32,7 @@ function MainNavigation(props) {
           <li>
             <Link href="/contact">Contact</Link>
           </li>
-          <Link href="/login">
+          <Link href="/auth">
             <button>Login</button>
           </Link>
         </ul>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import classes from "./signup.module.css";
-import Link from "next/link";
+import classes from "../../pages/auth/auth.module.css";
 
-function SignupForm() {
+function Signup() {
   const [selectedDate, setSelectedDate] = useState(null);
 
   return (
@@ -13,32 +13,16 @@ function SignupForm() {
       <h1>Become One Of Our Members</h1>
       <form>
         <div>
-          <input
-            type="text"
-            placeholder="Your Name"
-            required
-          />
+          <input type="text" placeholder="Your Name" required />
         </div>
         <div>
-          <input
-            type="password"
-            placeholder="Your Password"
-            required
-          />
+          <input type="password" placeholder="Your Password" required />
         </div>
         <div>
-          <input
-            type="password"
-            placeholder="Password Confirmation"
-            required
-          />
+          <input type="password" placeholder="Password Confirmation" required />
         </div>
         <div>
-          <input
-            type="email"
-            placeholder="Your Email"
-            required
-          />
+          <input type="email" placeholder="Your Email" required />
         </div>
         <div>
           <DatePicker
@@ -59,8 +43,14 @@ function SignupForm() {
           </Link>
         </div>
       </form>
+      <h1>Already A Member?</h1>
+      <div>
+        <Link href="/" className={classes.button}>
+          Login
+        </Link>
+      </div>
     </div>
   );
 }
 
-export default SignupForm;
+export default Signup;
