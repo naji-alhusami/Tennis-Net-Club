@@ -7,7 +7,7 @@ function MainNavigation(props) {
   const { backgroundColor } = props;
 
   const headerStyle = {
-    backgroundColor: backgroundColor, 
+    backgroundColor: backgroundColor,
   };
 
   return (
@@ -32,6 +32,9 @@ function MainNavigation(props) {
           <li>
             <Link href="/contact">Contact</Link>
           </li>
+          <Link href="/login">
+            <button>Login</button>
+          </Link>
         </ul>
       </nav>
     </header>
