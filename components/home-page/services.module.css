@@ -1,0 +1,17 @@
+.services {
+  margin: 2rem 5rem 2rem 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.service {
+    margin-right: 2rem;
+}
+
+.service p {
+    border-left: 2px solid #268750;
+    padding-left: 1rem;
+    font-weight: lighter;
+}
