@@ -43,9 +43,9 @@ function Signup() {
           </Link>
         </div>
       </form>
-      <h1>Already A Member?</h1>
+      <h3>Already A Member?</h3>
       <div>
-        <Link href="/" className={classes.button}>
+        <Link href="/auth/login" className={classes.button}>
           Login
         </Link>
       </div>

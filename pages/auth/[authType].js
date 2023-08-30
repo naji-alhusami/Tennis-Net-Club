@@ -1,6 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import MainNavigation from "@/components/layout/main-navigation";
 
@@ -9,8 +10,9 @@ import classes from "./auth.module.css";
 import Signup from "@/components/signup/signup-form";
 import Login from "@/components/login/login-form";
 
-function Auth(props) {
-  const { isSignup } = props;
+function AuthType() {
+  const router = useRouter();
+  const authId = router.query.authType;
 
   return (
     <div className={classes.signup}>
@@ -18,9 +20,9 @@ function Auth(props) {
       <div className={classes.image}>
         <Image src={signup} alt="signup" />
       </div>
-      <div>{isSignup ? <Signup /> : <Login />}</div>
+      <div>{authId === "signup" ? <Signup /> : <Login />}</div>
     </div>
   );
 }
 
-export default Auth;
+export default AuthType;

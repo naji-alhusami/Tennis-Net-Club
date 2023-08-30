@@ -21,9 +21,9 @@ function Login() {
           </Link>
         </div>
       </form>
-      <h1>Not A Member?</h1>
+      <h3>Not A Member?</h3>
       <div>
-        <Link href="/" className={classes.button}>
+        <Link href="/auth/signup" className={classes.button}>
           Signup
         </Link>
       </div>
