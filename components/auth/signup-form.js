@@ -3,7 +3,7 @@ import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import classes from "../../pages/auth/auth.module.css";
+import classes from "./auth-form.module.css";
 
 function Signup() {
   const [selectedDate, setSelectedDate] = useState(null);

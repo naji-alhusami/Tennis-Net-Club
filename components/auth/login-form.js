@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "next/link";
 
-import classes from "../../pages/auth/auth.module.css";
+import classes from "./auth-form.module.css";
 
 function Login() {
   return (
