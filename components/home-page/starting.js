@@ -26,7 +26,7 @@ function starting() {
             journey. The court is set, the ball is in your court. come be a part
             of TENNIS NET Club.
           </p>
-          <Link href="/auth/signup">
+          <Link href="/auth">
             <Button>
               Become A Member
               <RightArrow />
