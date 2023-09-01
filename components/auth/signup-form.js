@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,16 +14,26 @@ function Signup() {
       <h1>Become One Of Our Members</h1>
       <form>
         <div>
-          <input type="text" placeholder="Your Name" required />
+          <input type="text" id="name" placeholder="Your Name" required />
         </div>
         <div>
-          <input type="password" placeholder="Your Password" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Your Password"
+            required
+          />
         </div>
         <div>
-          <input type="password" placeholder="Password Confirmation" required />
+          <input
+            type="password"
+            id="passwordConfirmation"
+            placeholder="Password Confirmation"
+            required
+          />
         </div>
         <div>
-          <input type="email" placeholder="Your Email" required />
+          <input type="email" id="email" placeholder="Your Email" required />
         </div>
         <div>
           <DatePicker
@@ -31,7 +42,7 @@ function Signup() {
             placeholderText="Select your birthday"
             required
           />
-          <select value="select" className={classes.select} required>
+          <select value="select"  className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>
             <option value="trainer">Trainer</option>

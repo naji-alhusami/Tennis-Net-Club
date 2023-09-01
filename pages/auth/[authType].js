@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import MainNavigation from "@/components/layout/main-navigation";
+import Signup from "@/components/auth/signup-form";
+import Login from "@/components/auth/login-form";
 
 import signup from "@/public/images/signup.jpg";
 import classes from "../../components/auth/auth-form.module.css";
-import Signup from "@/components/auth/signup-form";
-import Login from "@/components/auth/login-form";
 
 function AuthType() {
   const router = useRouter();
