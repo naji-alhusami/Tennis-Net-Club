@@ -1,8 +1,15 @@
+import { hashPassword } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 
 async function handler(req, res) {
+  console.log("naji");
+  if (req.method !== "POST") {
+    return;
+  }
   const data = req.body;
-  const { name, email, password, passwordConfirmation } = data;
+  const { email, password } = data;
+
+  console.log(data);
 
   if (
     !email ||
@@ -14,14 +21,18 @@ async function handler(req, res) {
     return;
   }
 
-  await connectToDatabase();
+  const client = await connectToDatabase();
 
   const db = client.db();
 
-  db.collection("users").insertOne({
+  const hashedPassword = await hashPassword(password);
+
+  const result = await db.collection("users").insertOne({
     email: email,
-    password: password,
+    password: hashedPassword,
   });
+
+  res.status(201).json({ message: "Created Member!" });
 }
 
 export default handler;
