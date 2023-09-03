@@ -7,17 +7,31 @@ async function handler(req, res) {
     return;
   }
   const data = req.body;
-  const { name, email, password, passwordConfirmation, birthDate } = data;
+  const { name, email, password, passwordConfirmation, role } = data;
 
   console.log(data);
 
-  if (
-    !email ||
-    !email.includes("@") ||
-    !password ||
-    password.trim().length < 7
-  ) {
-    res.status(422).json({ message: "Invalid Input" });
+  if (!name || name.trim().length > 10) {
+    res
+      .status(422)
+      .json({ message: "Name Should Not Be More than 10 Characters" });
+    return;
+  }
+
+  if (!email || !email.includes("@")) {
+    res.status(422).json({ message: "Invalid Email" });
+    return;
+  }
+
+  if (!password || password.trim().length < 6) {
+    res
+      .status(422)
+      .json({ message: "Password Should Be More than 6 Characters" });
+    return;
+  }
+
+  if (password !== passwordConfirmation) {
+    res.status(422).json({ message: "Passwords Should Be Matched" });
     return;
   }
 
@@ -39,7 +53,7 @@ async function handler(req, res) {
     name: name,
     email: email,
     password: hashedPassword,
-    birthDate: birthDate,
+    role: role,
   });
 
   res.status(201).json({ message: "Created Member!" });

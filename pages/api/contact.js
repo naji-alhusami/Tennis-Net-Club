@@ -1,3 +1,4 @@
+import { connectToDatabase } from "@/lib/db";
 import { MongoClient } from "mongodb";
 
 async function handler(req, res) {
@@ -23,16 +24,8 @@ async function handler(req, res) {
       message,
     };
 
-    let client;
 
-    try {
-      client = await MongoClient.connect(
-        "mongodb+srv://najihussami:3zcG4QfQ0pdRoUGq@cluster0.p5janj2.mongodb.net/tennis-club-site?retryWrites=true&w=majority"
-      );
-    } catch (error) {
-      res.status(500).json({ message: "Could connect to Database." });
-      return;
-    }
+    const client = await connectToDatabase();
 
     const db = client.db();
     try {

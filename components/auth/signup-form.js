@@ -1,18 +1,13 @@
 import React, { useState, useRef } from "react";
 
 import Link from "next/link";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 import classes from "./signup-form.module.css";
+import Notification from "../ui/notification";
 
-async function createUser(
-  name,
-  email,
-  password,
-  passwordConfirmation,
-  birthDate
-) {
+async function createUser(name, email, password, passwordConfirmation, role) {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     body: JSON.stringify({
@@ -20,7 +15,7 @@ async function createUser(
       email,
       password,
       passwordConfirmation,
-      birthDate,
+      role,
     }),
     headers: { "Content-Type": "application/json" },
   });
@@ -36,37 +31,65 @@ async function createUser(
 }
 
 function Signup() {
-  const [selectedDate, setSelectedDate] = useState(null);
-
+  // const [selectedDate, setSelectedDate] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const emailInputRef = useRef();
   const nameInputRef = useRef();
   const passwordInputRef = useRef();
   const passwordConfirmationInputRef = useRef();
-  const birthDateInputRef = useRef();
+  const roleInputRef = useRef();
 
   async function submitHandler(event) {
     event.preventDefault();
+
+    setErrorMessage(null);
 
     const enteredEmail = emailInputRef.current.value;
     const enteredName = nameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredPasswordConfirmation =
       passwordConfirmationInputRef.current.value;
-    const enteredBirthDate = birthDateInputRef.current.value;
+    const enteredRole = roleInputRef.current.value;
 
-    // validation
     try {
       const result = await createUser(
         enteredName,
         enteredEmail,
         enteredPassword,
         enteredPasswordConfirmation,
-        enteredBirthDate
+        enteredRole
       );
       console.log(result);
     } catch (error) {
       console.log(error.message);
+      setErrorMessage(error.message);
     }
+  }
+
+  let notification;
+
+  if (requestStatus === "Pending") {
+    notification = {
+      status: "Pending",
+      title: "Creating Your Member...",
+      message: "We Are Creating Your Member!",
+    };
+  }
+
+  if (requestStatus === "Success") {
+    notification = {
+      status: "Success",
+      title: "Success!",
+      message: "Your Member Created Successfully!",
+    };
+  }
+
+  if (requestStatus === "Error") {
+    notification = {
+      status: "Error",
+      title: "Error!",
+      message: requestError,
+    };
   }
 
   return (
@@ -115,7 +138,7 @@ function Signup() {
             placeholderText="Select your birthday"
             required
           /> */}
-          <select className={classes.select} required>
+          <select ref={roleInputRef} className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>
             <option value="trainer">Trainer</option>
@@ -123,11 +146,19 @@ function Signup() {
         </div>
         <div className={classes.notMember}>
           <button className={classes.button}>Signup</button>
+
           <h3>Already A Member?</h3>
           <Link href="/auth/login" className={classes.button}>
             Login
           </Link>
         </div>
+        {notification && (
+          <Notification
+            status={notification.status}
+            title={notification.title}
+            message={notification.message}
+          />
+        )}
       </form>
     </div>
   );

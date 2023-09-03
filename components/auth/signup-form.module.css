@@ -11,7 +11,7 @@
   width: 30rem;
   max-height: 40rem;
   position: absolute;
-  padding: 1% 3% 1% 3%;
+  padding: 1% 3% 1% 3.2%;
   background-color: rgb(255, 255, 255, 0.9);
   top: 25%;
   left: 6%;
@@ -31,10 +31,14 @@
   /* margin-left: 0.8rem; */
 }
 
-.signupForm h1,
-.signupForm h3 {
+.signupForm h1 {
   text-align: center;
-  margin:0 0.5rem 1rem 0.5rem;
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+
+.signupForm h3 {
+  margin: 0 1rem 0 1rem;
+  /* width: 100%; */
 }
 
 .button {
@@ -70,6 +74,6 @@
 
 @media screen and (max-width: 650px) {
   .signupForm {
-    width: 20rem;
+    width: 21rem;
   }
 }
