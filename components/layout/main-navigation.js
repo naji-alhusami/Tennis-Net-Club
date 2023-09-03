@@ -21,7 +21,7 @@ function MainNavigation(props) {
             <Link href="/posts">Book Court</Link>
           </li>
           <li>
-            <Link href="/contact">Trainings</Link>
+            <Link href="/">Trainings</Link>
           </li>
           <li>
             <Link href="/contact">Blogs</Link>
