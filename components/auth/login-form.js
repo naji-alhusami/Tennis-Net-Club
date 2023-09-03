@@ -2,12 +2,12 @@ import React from "react";
 
 import Link from "next/link";
 
-import classes from "./auth-form.module.css";
+import classes from "./login-form.module.css";
 
 function Login() {
   return (
-    <div className={classes.form}>
-      <h1>Login With Your Memebr Account</h1>
+    <div className={classes.loginForm}>
+      <h1>Login</h1>
       <form>
         <div>
           <input type="email" placeholder="Your Email" required />

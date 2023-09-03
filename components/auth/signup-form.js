@@ -4,7 +4,7 @@ import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import classes from "./auth-form.module.css";
+import classes from "./signup-form.module.css";
 
 async function createUser(
   name,
@@ -70,8 +70,8 @@ function Signup() {
   }
 
   return (
-    <div className={classes.form}>
-      <h1>Become One Of Our Members</h1>
+    <div className={classes.signupForm}>
+      <h1>Signup</h1>
       <form onSubmit={submitHandler}>
         <div>
           <input
@@ -108,29 +108,27 @@ function Signup() {
         </div>
 
         <div>
-          <DatePicker
+          {/* <DatePicker
             ref={birthDateInputRef}
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
             placeholderText="Select your birthday"
             required
-          />
+          /> */}
           <select className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>
             <option value="trainer">Trainer</option>
           </select>
         </div>
-        <div>
-          <button className={classes.button}>Sign Up</button>
+        <div className={classes.notMember}>
+          <button className={classes.button}>Signup</button>
+          <h3>Already A Member?</h3>
+          <Link href="/auth/login" className={classes.button}>
+            Login
+          </Link>
         </div>
       </form>
-      <h3>Already A Member?</h3>
-      <div>
-        <Link href="/auth/login" className={classes.button}>
-          Login
-        </Link>
-      </div>
     </div>
   );
 }
