@@ -1,23 +1,30 @@
-import React, {
-  // useState,
-  useRef,
-} from "react";
+import React, { useState, useRef } from "react";
 
 import Link from "next/link";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import classes from "./auth-form.module.css";
 
-async function createUser(email, password) {
+async function createUser(
+  name,
+  email,
+  password,
+  passwordConfirmation,
+  birthDate
+) {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      passwordConfirmation,
+      birthDate,
+    }),
     headers: { "Content-Type": "application/json" },
   });
-  console.log(response);
   const data = await response.json();
-  console.log("begining of createUser fun");
 
   console.log(data);
 
@@ -29,19 +36,33 @@ async function createUser(email, password) {
 }
 
 function Signup() {
-  // const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const emailInputRef = useRef();
+  const nameInputRef = useRef();
   const passwordInputRef = useRef();
+  const passwordConfirmationInputRef = useRef();
+  const birthDateInputRef = useRef();
 
   async function submitHandler(event) {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+    const enteredPasswordConfirmation =
+      passwordConfirmationInputRef.current.value;
+    const enteredBirthDate = birthDateInputRef.current.value;
 
     // validation
     try {
-      const result = await createUser(enteredEmail, enteredPassword);
+      const result = await createUser(
+        enteredName,
+        enteredEmail,
+        enteredPassword,
+        enteredPasswordConfirmation,
+        enteredBirthDate
+      );
       console.log(result);
     } catch (error) {
       console.log(error.message);
@@ -52,14 +73,19 @@ function Signup() {
     <div className={classes.form}>
       <h1>Become One Of Our Members</h1>
       <form onSubmit={submitHandler}>
-        {/* <div>
-          <input type="text" id="name" placeholder="Your Name" required />
-        </div> */}
+        <div>
+          <input
+            ref={nameInputRef}
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            required
+          />
+        </div>
         <div>
           <input
             ref={emailInputRef}
             type="email"
-            id="email"
             placeholder="Your Email"
             required
           />
@@ -68,15 +94,14 @@ function Signup() {
           <input
             ref={passwordInputRef}
             type="password"
-            id="password"
             placeholder="Your Password"
             required
           />
         </div>
-        {/* <div>
+        <div>
           <input
+            ref={passwordConfirmationInputRef}
             type="password"
-            id="passwordConfirmation"
             placeholder="Password Confirmation"
             required
           />
@@ -84,17 +109,18 @@ function Signup() {
 
         <div>
           <DatePicker
+            ref={birthDateInputRef}
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
             placeholderText="Select your birthday"
             required
           />
-          <select value="select" className={classes.select} required>
+          <select className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>
             <option value="trainer">Trainer</option>
           </select>
-        </div> */}
+        </div>
         <div>
           <button className={classes.button}>Sign Up</button>
         </div>

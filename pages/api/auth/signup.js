@@ -7,7 +7,7 @@ async function handler(req, res) {
     return;
   }
   const data = req.body;
-  const { email, password } = data;
+  const { name, email, password, passwordConfirmation, birthDate } = data;
 
   console.log(data);
 
@@ -25,14 +25,25 @@ async function handler(req, res) {
 
   const db = client.db();
 
+  const existingUser = await db.collection("users").findOne({ email: email });
+
+  if (existingUser) {
+    res.status(422).json({ message: "User Exists!" });
+    client.close();
+    return;
+  }
+
   const hashedPassword = await hashPassword(password);
 
   const result = await db.collection("users").insertOne({
+    name: name,
     email: email,
     password: hashedPassword,
+    birthDate: birthDate,
   });
 
   res.status(201).json({ message: "Created Member!" });
+  client.close();
 }
 
 export default handler;
