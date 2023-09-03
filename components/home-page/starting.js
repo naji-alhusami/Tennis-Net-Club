@@ -13,9 +13,9 @@ function starting() {
   return (
     <Fragment>
       <section className={classes.starting}>
-        <MainNavigation />
+        {/* <MainNavigation /> */}
         <div className={classes.image}>
-          <Image src={background} alt="website background" />
+          <Image src={background} alt="website background" priority={true} />
         </div>
         <div className={classes.startingText}>
           <h1>Hi</h1>

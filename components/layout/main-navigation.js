@@ -11,33 +11,35 @@ function MainNavigation(props) {
   };
 
   return (
-    <header className={classes.header} style={headerStyle}>
-      <Link href="/">
-        <Logo />
-      </Link>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/posts">Book Court</Link>
-          </li>
-          <li>
-            <Link href="/">Trainings</Link>
-          </li>
-          <li>
-            <Link href="/contact">Blogs</Link>
-          </li>
-          <li>
-            <Link href="/contact">Find Partner</Link>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
-          <Link href="/auth/login">
-            <button>Login</button>
-          </Link>
-        </ul>
-      </nav>
-    </header>
+    // <div className={classes.navbar}>
+      <header className={classes.header} style={headerStyle}>
+        <Link href="/">
+          <Logo />
+        </Link>
+        <nav>
+          <ul>
+            <li>
+              <Link href="/posts">Book Court</Link>
+            </li>
+            <li>
+              <Link href="/">Trainings</Link>
+            </li>
+            <li>
+              <Link href="/contact">Blogs</Link>
+            </li>
+            <li>
+              <Link href="/contact">Find Partner</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+            <Link href="/auth/login">
+              <button>Login</button>
+            </Link>
+          </ul>
+        </nav>
+      </header>
+    // </div>
   );
 }
 

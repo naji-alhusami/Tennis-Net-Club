@@ -1,4 +1,5 @@
 .starting {
+  /* height: auto; */
   position: relative;
   text-align: center;
   background-image: linear-gradient(
@@ -18,18 +19,15 @@
   padding: 20px;
 }
 
-.image img {
-  object-fit: cover;
-  object-position: top;
+.image {
+  position: relative;
   width: 100%;
-  height: 100%;
+  /* overflow: hidden; */
 }
 
-.image {
-  position: relative; /* Add this */
+.image img {
   width: 100%;
-  height: 42rem;
-  overflow: hidden;
+  height: 100%; 
 }
 
 .image::before {
@@ -41,13 +39,6 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   pointer-events: none;
-}
-
-.image img {
-  object-fit: cover;
-  object-position: top;
-  width: 100%;
-  height: 100%;
 }
 
 .starting h1 {

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarckDown from "react-markdown";
 import PostHeader from "./post-header";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 // import factsAboutTennis from "@/public/images/factsAboutTennis.jpg";
 import classes from "./post-content.module.css";

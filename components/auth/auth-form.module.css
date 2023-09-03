@@ -9,7 +9,7 @@
 
 .form {
   position: absolute;
-  padding: 3%;
+  padding: 1% 3% 3% 3%;
   background-color: rgb(255, 255, 255, 0.9);
   top: 25%;
   left: 6%;

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import icon1 from "@/public/images/icon1.png";
 import icon2 from "@/public/images/icon2.png";

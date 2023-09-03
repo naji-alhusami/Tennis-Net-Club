@@ -1,6 +1,6 @@
 import React from "react";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 
 import MainNavigation from "@/components/layout/main-navigation";
@@ -16,7 +16,7 @@ function AuthType() {
 
   return (
     <div className={classes.signup}>
-      <MainNavigation />
+      {/* <MainNavigation /> */}
       <div className={classes.image}>
         <Image src={signup} alt="signup" />
       </div>

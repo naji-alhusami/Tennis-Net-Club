@@ -6,7 +6,7 @@ function Layout(props) {
   return (
     <Fragment>
       {/* <MainNavigation backgroundColor="rgb(0, 0, 0, 0.5)" /> */}
-      {/* <MainNavigation /> */}
+      <MainNavigation />
       <main>{props.children}</main>
     </Fragment>
   );
