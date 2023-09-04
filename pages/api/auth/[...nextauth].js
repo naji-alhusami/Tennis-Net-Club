@@ -18,6 +18,8 @@ export default NextAuth({
           email: credentials.email,
         });
 
+        console.log(user);
+
         if (!user) {
           client.close();
           throw new Error("No User Found");
@@ -33,7 +35,7 @@ export default NextAuth({
         }
 
         client.close();
-        return { email: user.email };
+        return { email: user.email, name: user.name };
       },
     }),
   ],
