@@ -2,9 +2,15 @@
   position: relative;
 }
 
+.image {
+  min-height: 95vh;
+/* overflow: hidden; */
+}
+
 .image img {
   width: 100%;
-  min-height: 50rem;
+  min-height: 95vh;
+  object-fit: cover;
 }
 
 .signupForm {
@@ -73,6 +79,9 @@
 }
 
 @media screen and (max-width: 650px) {
+  .signup {
+    overflow: hidden;
+  }
   .signupForm {
     width: 21rem;
   }

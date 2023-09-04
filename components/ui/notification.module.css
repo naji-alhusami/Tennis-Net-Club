@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--color-grey-100);
-  background-color: var(--color-grey-800);
+  color: rgb(67, 159, 1);
+  background-color: white;
   padding: 0 var(--size-8);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   position: fixed;

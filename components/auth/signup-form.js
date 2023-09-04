@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Link from "next/link";
 // import DatePicker from "react-datepicker";
@@ -32,6 +32,7 @@ async function createUser(name, email, password, passwordConfirmation, role) {
 
 function Signup() {
   // const [selectedDate, setSelectedDate] = useState(null);
+  const [requestStatus, setRequestStatus] = useState(); 
   const [errorMessage, setErrorMessage] = useState(null);
   const emailInputRef = useRef();
   const nameInputRef = useRef();
@@ -39,9 +40,21 @@ function Signup() {
   const passwordConfirmationInputRef = useRef();
   const roleInputRef = useRef();
 
+  useEffect(() => {
+    if (requestStatus === "Success" || requestStatus === "Error") {
+      const timer = setTimeout(() => {
+        setRequestStatus(null);
+        setErrorMessage(null);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [requestStatus]);
+
   async function submitHandler(event) {
     event.preventDefault();
 
+    setRequestStatus("Pending");
     setErrorMessage(null);
 
     const enteredEmail = emailInputRef.current.value;
@@ -59,10 +72,12 @@ function Signup() {
         enteredPasswordConfirmation,
         enteredRole
       );
+      setRequestStatus("Success");
       console.log(result);
     } catch (error) {
       console.log(error.message);
       setErrorMessage(error.message);
+      setRequestStatus("Error");
     }
   }
 
@@ -88,7 +103,7 @@ function Signup() {
     notification = {
       status: "Error",
       title: "Error!",
-      message: requestError,
+      message: errorMessage,
     };
   }
 
