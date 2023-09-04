@@ -27,11 +27,13 @@ function MainNavigation(props) {
         <Logo />
       </Link>
       <nav>
-        <ul>
+        <ul className={classes.ul}>
           <li>
-            <Link href="/">Home</Link>
+            <Link className={classes.navbarList} href="/">
+              Home
+            </Link>
           </li>
-          {session && (
+          {/* {session && (
             <li>
               <Link href="/">Book Court</Link>
             </li>
@@ -45,27 +47,50 @@ function MainNavigation(props) {
             <li>
               <Link href="/">Find Partner</Link>
             </li>
-          )}
+          )} */}
           <li>
-            <Link href="/posts">Blogs</Link>
+            <Link className={classes.navbarList} href="/posts">
+              Blogs
+            </Link>
           </li>
           <li>
-            <Link href="/contact">Contact</Link>
+            <Link className={classes.navbarList} href="/contact">
+              Contact
+            </Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link className={classes.navbarList} href="/about">
+              About
+            </Link>
           </li>
           {!session && !loading && (
-            <Link href="/auth/login">
-              <button>Login</button>
-            </Link>
+            <li>
+              <Link className={classes.loginButton} href="/auth/login">
+                Login
+              </Link>
+            </li>
           )}
           {session && (
-            <div>
-              {/* <button> */}
-                {session?.user.name} <AiFillCaretDown />
-              {/* </button> */}
-            </div>
+            <li className={classes.user}>
+              <div className={classes.userName}>
+                {session?.user.name}{" "}
+                <AiFillCaretDown className={classes.icon} />
+              </div>
+              <div className={classes.userList}>
+                <Link className={classes.list} href="/bookCourt">
+                  Book Court
+                </Link>{" "}
+                <Link className={classes.list} href="/trainings">
+                  Trainings
+                </Link>{" "}
+                <Link className={classes.list} href="/findPartner">
+                  Find Partner
+                </Link>{" "}
+                <Link className={classes.list} href="/" onClick={logoutHandler}>
+                  Logout
+                </Link>
+              </div>
+            </li>
           )}
         </ul>
       </nav>
