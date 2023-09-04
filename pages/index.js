@@ -6,6 +6,7 @@ import { getBestPosts } from "@/lib/posts-util";
 import Head from "next/head";
 import Services from "@/components/home-page/services";
 import Numbers from "@/components/numbers/numbers";
+import Events from "@/components/home-page/events";
 
 function HomePage(props) {
   // const data = [
@@ -42,6 +43,7 @@ function HomePage(props) {
       <Services />
       <Numbers />
       <FeaturedPosts posts={props.posts} />
+      <Events />
     </Fragment>
   );
 }
