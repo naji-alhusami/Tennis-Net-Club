@@ -32,18 +32,32 @@
 }
 
 .loginButton {
-  background-color: rgb(137, 227, 59);
-  border: 10px solid rgb(137, 227, 59);
-  color: black;
+  background-color: #efad32;
+  padding: 0.6rem 1.3rem;
+  /* border: 10px solid rgb(137, 227, 59); */
+  color: white;
+  margin-left: 2rem;
+  font-size: var(--size-5);
+  box-shadow: 5px 5px 0px 1px #db981b;
+}
+
+.loginButton::before {
+  background-color: #f2a922;
+  padding: 0.6rem 1.3rem;
+  color: white;
   margin-left: 2rem;
   font-size: var(--size-5);
 }
 
-.loginButton:hover {
+/* .loginButtonBack {
+position: absolute;
+} */
+
+/* .loginButton:hover {
   background-color: rgb(100, 165, 43);
   border-color: rgb(100, 165, 43);
   color: white;
-}
+} */
 
 .user {
   position: relative;
@@ -62,7 +76,6 @@
   font-size: var(--size-5);
   cursor: pointer;
 }
-
 
 .userName:hover {
   background-color: rgb(100, 165, 43);

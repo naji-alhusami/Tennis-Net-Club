@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { AiFillCaretDown } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 import Logo from "./logo";
 
@@ -64,11 +65,13 @@ function MainNavigation(props) {
             </Link>
           </li>
           {!session && !loading && (
-            <li>
-              <Link className={classes.loginButton} href="/auth/login">
-                Login
-              </Link>
-            </li>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <li>
+                <Link className={classes.loginButton} href="/auth/login">
+                  Login
+                </Link>
+              </li>
+            </motion.div>
           )}
           {session && (
             <li className={classes.user}>

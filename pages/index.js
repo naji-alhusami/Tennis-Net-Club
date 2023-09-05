@@ -42,8 +42,8 @@ function HomePage(props) {
       <Starting />
       <Services />
       <Courses />
-      <FeaturedPosts posts={props.posts} />
       <Events />
+      <FeaturedPosts posts={props.posts} />
     </Fragment>
   );
 }
