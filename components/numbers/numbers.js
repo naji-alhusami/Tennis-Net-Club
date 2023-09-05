@@ -28,20 +28,35 @@ function Numbers() {
       </div>
       <div className={classes.text}>
         <h3>Never Too Late</h3>
-        <h1>TENNIS</h1>
+        <h1>TRAINING</h1>
         <h2>Certified Coaches</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet
-          condimentum lacus id cursus. Praesent eu iaculis dui, nec rutrum
-          massa. Maecenas ac tristique mi, quis laoreet turpis. Aenean in erat
-          est.{" "}
+          Welcome to TENNIS NET club, home to certified coaches
+          dedicated to enhancing your tennis skills. We offer beginner,
+          intermediate, and advanced courses, providing tailored instruction for
+          players at every level. Join us to elevate your game and enjoy the
+          sport of tennis to the fullest!
         </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquet
-          condimentum lacus id cursus. Praesent eu iaculis dui, nec rutrum
-          massa. Maecenas ac tristique mi, quis laoreet turpis. Aenean in erat
-          est.{" "}
-        </p>
+        <div className={classes.rectangular}>
+          <div className={classes.greenRectangular}>
+            <p>BEGINNER COURSES</p>
+            <span>80%</span>
+          </div>
+        </div>
+
+        <div className={classes.rectangular}>
+          <div className={classes.yellowFilled}>
+            <p>INTERMEDIATE COURSES</p>
+            <span>50%</span>
+          </div>
+        </div>
+
+        <div className={classes.rectangular}>
+          <div className={classes.greenRectangular2}>
+            <p>ADVANCED COURSES</p>
+            <span>(60%)</span>
+          </div>
+        </div>
       </div>
     </div>
     // <div className={classes.numbersContainer}>

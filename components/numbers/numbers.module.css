@@ -137,7 +137,6 @@
   position: absolute;
   top: 2%;
   color: #858585;
-
 }
 
 .text h1 {
@@ -154,4 +153,64 @@
 .text p {
   font-size: 1rem;
   color: #858585;
+  margin-bottom: 3.5rem;
+}
+
+.rectangular {
+  width: 100%;
+  height: 30px;
+  background-color: gray;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.greenRectangular {
+  width: 80%;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  background-color: #268750;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3%;
+}
+
+.yellowFilled {
+  width: 50%;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f2a922;
+  padding: 0 3%;
+}
+
+.greenRectangular2 {
+  width: 60%;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  background-color: #268750;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3%;
+}
+
+.rectangular p {
+  position: absolute;
+  top: -40%;
+  color: white;
+  margin-right: 5rem;
+}
+
+.rectangular span {
+  color: white;
+  margin-left: auto;
 }
