@@ -5,7 +5,7 @@ import FeaturedPosts from "@/components/home-page/featured-posts";
 import { getBestPosts } from "@/lib/posts-util";
 import Head from "next/head";
 import Services from "@/components/home-page/services";
-import Numbers from "@/components/numbers/numbers";
+import Courses from "@/components/home-page/courses";
 import Events from "@/components/home-page/events";
 
 function HomePage(props) {
@@ -41,7 +41,7 @@ function HomePage(props) {
       </Head>
       <Starting />
       <Services />
-      <Numbers />
+      <Courses />
       <FeaturedPosts posts={props.posts} />
       <Events />
     </Fragment>
