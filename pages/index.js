@@ -7,6 +7,9 @@ import Head from "next/head";
 import Services from "@/components/home-page/services";
 import Courses from "@/components/home-page/courses";
 import Events from "@/components/home-page/events";
+import { coursesData } from "@/components/home-page/coursesData";
+import { servicesData } from "@/components/home-page/servicesData";
+import Booking from "@/components/home-page/booking";
 
 function HomePage(props) {
   // const data = [
@@ -40,8 +43,9 @@ function HomePage(props) {
         <meta name="description" content="I post about Tennis." />
       </Head>
       <Starting />
-      <Services />
-      <Courses />
+      <Services services={props.servicesData} />
+      <Courses courses={props.coursesData} />
+      <Booking />
       <Events />
       <FeaturedPosts posts={props.posts} />
     </Fragment>
@@ -53,6 +57,8 @@ export function getStaticProps() {
 
   return {
     props: {
+      servicesData: servicesData,
+      coursesData: coursesData,
       posts: bestPosts,
     },
   };

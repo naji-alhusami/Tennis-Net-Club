@@ -2,12 +2,11 @@ import React from "react";
 import Image from "next/image";
 
 import classes from "./courses.module.css";
-import { coursesData } from "./coursesData";
 import player1 from "@/public/images/player1.jpg";
 import player2 from "@/public/images/player2.jpg";
 
-function Courses() {
-  console.log(coursesData[0].style);
+function Courses({courses}) {
+  console.log(courses);
   return (
     <div className={classes.container}>
       <div className={classes.imagesContainer}>
@@ -37,7 +36,7 @@ function Courses() {
           level. Join us to elevate your game and enjoy the sport of tennis to
           the fullest!
         </p>
-        {coursesData.map((course) => (
+        {courses.map((course) => (
           <div key={course.id} className={classes.rectangular}>
             <div className={classes[course.style]}>
               <p>{course.courseType}</p>
@@ -49,5 +48,7 @@ function Courses() {
     </div>
   );
 }
+
+
 
 export default Courses;

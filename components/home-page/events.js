@@ -36,9 +36,9 @@ function Events() {
                   New Couches Presentation
                 </td>
                 <td>
-                  Come and discover our experienced coaches, and explore our
-                  planned courses tailored for all skill levels. From beginner
-                  fundamentals to advanced techniques.
+                  Come and discover our new experienced coaches, and explore
+                  their planned courses tailored for all skill levels. From
+                  beginner fundamentals to advanced techniques.
                 </td>
                 <td>25/Sep/2023</td>
               </tr>
@@ -48,9 +48,8 @@ function Events() {
                   New Court Presentation
                 </td>
                 <td>
-                  Come and discover our experienced coaches, and explore our
-                  planned courses tailored for all skill levels. From beginner
-                  fundamentals to advanced techniques.
+                  Come and discover our new court, and explore our new court
+                  prices.
                 </td>
                 <td>01/Oct/2023</td>
               </tr>
@@ -60,9 +59,8 @@ function Events() {
                   New Players Presentation
                 </td>
                 <td>
-                  Come and discover our experienced coaches, and explore our
-                  planned courses tailored for all skill levels. From beginner
-                  fundamentals to advanced techniques.
+                  Come and discover our new players, and explore their level in
+                  Tennis to build your new community.
                 </td>
                 <td>05/Oct/2023</td>
               </tr>
