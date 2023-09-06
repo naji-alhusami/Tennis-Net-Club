@@ -33,6 +33,73 @@
 .textContainer {
   position: absolute;
   top: 10%;
-  margin-left: 5rem;
   color: white;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.textContainer h1 {
+  font-size: 3rem;
+}
+
+.text {
+  margin-left: 5rem;
+}
+
+.bookingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  color: black;
+  /* margin: 4rem 2rem 0 5rem; */
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+
+.reserveButton {
+  background-color: #efad32;
+  padding: 0.3rem 1rem;
+  /* border: 10px solid rgb(137, 227, 59); */
+  color: white;
+  margin-left: 2rem;
+  font-size: var(--size-5);
+  box-shadow: 5px 5px 0px 1px #db981b;
+}
+
+.reserveButton::before {
+  background-color: #f2a922;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  margin-left: 2rem;
+  font-size: var(--size-5);
+}
+
+.playersContainer button {
+  background-color: rgb(226, 223, 223);
+  color: black;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 0.4rem;
+}
+
+.playersContainer button:hover {
+  background-color: #db981b;
+}
+
+.bookingContainer h3 {
+  margin: 0.2rem 0;
+}
+
+.playersContainer span {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.reactDatePicker input {
+  display: none;
 }
