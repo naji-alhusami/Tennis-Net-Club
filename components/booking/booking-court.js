@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 import classes from "./booking-court.module.css";
 import reserve from "@/public/images/reserve.jpg";
 import clay from "@/public/images/clay.jpg";
-import calendarBackground from "@/public/images/calendarBackground.jpg";
+import BookingCourtDate from "./booking-court-date";
+// import calendarBackground from "@/public/images/calendarBackground.jpg";
 
 function BookingCourt() {
+  //   const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
     <div className={classes.bookingContainer}>
       <div className={classes.imageContainer}>
@@ -36,9 +41,16 @@ function BookingCourt() {
         <div className={classes.bookingPlayers}>
           <Image src={clay} alt="clay-courts" />
         </div>
-        <div className={classes.bookingDate}>
-          <Image src={calendarBackground} alt="calender-bg" />
-        </div>
+        <BookingCourtDate />
+        
+        {/* <div className={classes.customDatePicker}> */}
+        {/* <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            minDate={new Date()}
+            inline
+          /> */}
+        {/* </div> */}
       </div>
     </div>
   );
