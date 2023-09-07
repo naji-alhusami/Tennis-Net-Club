@@ -41,11 +41,10 @@ function BookingDate() {
           <DatePicker
             selected={new Date(selectedDate)}
             onChange={handleDateChange}
-            placeholderText=""
             ref={datePickerRef}
-            calendarClassName={
-              calendarIsOpen ? "show-calendar" : "hide-calendar"
-            }
+            // calendarClassName={
+            //   calendarIsOpen ? "show-calendar" : "hide-calendar"
+            // }
             showPopperArrow={false}
           />
         </div>

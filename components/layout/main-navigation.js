@@ -9,10 +9,8 @@ import classes from "./main-navigation.module.css";
 
 function MainNavigation(props) {
   const { backgroundColor } = props;
-  // const [session, loading] = useSession();
   const { data: session, loading } = useSession();
-  console.log(loading);
-  console.log(session?.user.name);
+
 
   function logoutHandler() {
     signOut();

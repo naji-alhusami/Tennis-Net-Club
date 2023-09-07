@@ -53,7 +53,7 @@
   justify-content: space-between;
   background-color: white;
   color: black;
-  /* margin: 4rem 2rem 0 5rem; */
+  margin: 4rem 2rem 0 5rem;
   padding: 1rem 2rem;
   border-radius: 10px;
 }
@@ -89,6 +89,8 @@
 
 .playersContainer button:hover {
   background-color: #db981b;
+  color: white;
+
 }
 
 .bookingContainer h3 {
@@ -102,4 +104,24 @@
 
 .reactDatePicker input {
   display: none;
+}
+
+.dateContainer {
+    margin-top:1.5rem ;
+}
+
+.dateDisplay button {
+  background-color: rgb(226, 223, 223);
+  color: black;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 0.4rem;
+}
+
+.dateDisplay button:hover {
+  background-color: #db981b;
+  color: white;
 }

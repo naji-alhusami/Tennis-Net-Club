@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-
 import Image from "next/image";
 
 import classes from "./booking.module.css";
 import bookCourt from "@/public/images/bookCourt.jpg";
 import bg from "@/public/images/background1.jpg";
 import BookingDate from "./bookingDate";
+import { useSession } from "next-auth/react";
 
 function Booking() {
-    const [numberOfPlayers, setNumberOfPlayers] = useState(0);
-  
+  const { data: session, loading } = useSession();
+  const [numberOfPlayers, setNumberOfPlayers] = useState(0);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
@@ -43,21 +43,6 @@ function Booking() {
           </div>
           <div className={classes.bookingContainer}>
             <BookingDate />
-            {/* <div className={classes.dateContainer}>
-              <h3>Date:</h3>
-              <DatePicker
-                selected={selectedDate}
-                value={selectedDate}
-                onChange={handleDateChange}
-                placeholderText="Select a date"
-              />
-              <button
-                className={classes.calendarButton}
-                onClick={toggleCalendar}
-              >
-                A
-              </button>
-            </div> */}
             <div className={classes.playersContainer}>
               <h3>Players:</h3>
               <button onClick={decreasePlayers}>-</button>
@@ -65,7 +50,7 @@ function Booking() {
               <button onClick={increasePlayers}>+</button>
             </div>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.reserveButton} href="/auth/login">
+              <Link className={classes.reserveButton} href="/booking">
                 Reserve Court
               </Link>
             </motion.div>
