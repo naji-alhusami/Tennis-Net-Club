@@ -74,7 +74,7 @@ function BookingCourtDate() {
         </h2>
         <button onClick={handleNextMonth}>Next</button>
       </div>
-      <table>
+      <table className={classes.calendarTable}>
         <thead>
           <tr>
             <th>Sun</th>
