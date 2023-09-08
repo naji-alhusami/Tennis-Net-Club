@@ -30,7 +30,9 @@ function Booking() {
     <div className={classes.container}>
       <div className={classes.imageContainer}>
         <div className={classes.leftSideContainer}>
-          <Image src={bg} alt="cover-image" layout="fill" objectFit="cover" />
+          <Image src={bg} alt="cover-image" width={700} height={560} priority={true} />
+          {/* <Image src={bg} alt="cover-image" layout="fill" objectFit="cover" priority={true} /> */}
+
         </div>
         <div className={classes.textContainer}>
           <div className={classes.text}>
@@ -62,8 +64,9 @@ function Booking() {
           <Image
             src={bookCourt}
             alt="book-court"
-            layout="fill"
-            objectFit="cover"
+
+            // layout="fill"
+            // objectFit="cover"
           />
         </div>
       </div>

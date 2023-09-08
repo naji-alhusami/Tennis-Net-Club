@@ -5,8 +5,7 @@ import classes from "./courses.module.css";
 import player1 from "@/public/images/player1.jpg";
 import player2 from "@/public/images/player2.jpg";
 
-function Courses({courses}) {
-  console.log(courses);
+function Courses({ courses }) {
   return (
     <div className={classes.container}>
       <div className={classes.imagesContainer}>
@@ -48,7 +47,5 @@ function Courses({courses}) {
     </div>
   );
 }
-
-
 
 export default Courses;

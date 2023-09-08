@@ -22,6 +22,11 @@
   height: 100%;
 }
 
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+}
+
 .leftSideContainer {
   position: relative;
   width: 100%;
@@ -90,7 +95,6 @@
 .playersContainer button:hover {
   background-color: #db981b;
   color: white;
-
 }
 
 .bookingContainer h3 {
@@ -107,7 +111,7 @@
 }
 
 .dateContainer {
-    margin-top:1.5rem ;
+  margin-top: 1.5rem;
 }
 
 .dateDisplay button {
