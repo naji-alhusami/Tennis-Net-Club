@@ -1,0 +1,63 @@
+.bookingDate {
+  background-image: url("../../public/images/calendarBackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 500px;
+  height: 400px;
+  margin: 1rem 0 0 1rem;
+  color: white;
+}
+
+.monthYear {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.monthYear h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.bookingDate button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.calendarTable {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.calendarTable th {
+  padding: 0.9rem;
+}
+
+.calendarTable tbody {
+  cursor: pointer;
+}
+
+.currentDay {
+  background-color: #efad32; /* Background color for the current day */
+  color: #fff; /* Text color for the current day */
+}
+
+.previousDay {
+  color: #808080; /* Gray text color for previous days */
+}
+
+/* .selectedDay {
+  background-color: #efad32;
+  color: #fff;
+} */

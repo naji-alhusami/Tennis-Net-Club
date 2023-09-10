@@ -20,6 +20,7 @@ function BookingCourt() {
           src={reserve}
           alt="reserve-court"
           style={{ filter: "brightness(0.8)" }}
+          priority={true}
         />
         <h1>Reserve Court</h1>
       </div>
@@ -39,18 +40,9 @@ function BookingCourt() {
       </div>
       <div className={classes.bookingForm}>
         <div className={classes.bookingPlayers}>
-          <Image src={clay} alt="clay-courts" />
+          <Image src={clay} alt="clay-courts" priority={true} />
         </div>
         <BookingCourtDate />
-        
-        {/* <div className={classes.customDatePicker}> */}
-        {/* <DatePicker
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            minDate={new Date()}
-            inline
-          /> */}
-        {/* </div> */}
       </div>
     </div>
   );

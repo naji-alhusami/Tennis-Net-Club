@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
-import classes from "./booking-court.module.css";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
+import classes from "./booking-court-date.module.css";
 
 function BookingCourtDate() {
   const months = [
@@ -26,6 +27,7 @@ function BookingCourtDate() {
   const thisYear = currentDay.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
+  const [selectedDay, setSelectedDay] = useState(null);
 
   console.log("currentYear:", currentYear);
   console.log("currentMonth:", currentMonth);
@@ -39,8 +41,15 @@ function BookingCourtDate() {
 
   function handlePrevMonth() {
     const prevMonth = new Date(currentYear, currentMonth - 1, 1);
-    setCurrentMonth(prevMonth.getMonth());
-    setCurrentYear(prevMonth.getFullYear());
+    // Check if the previous month is not earlier than the current month and not one month ahead
+    if (
+      prevMonth.getFullYear() > thisYear ||
+      (prevMonth.getFullYear() === thisYear &&
+        prevMonth.getMonth() >= thisMonth)
+    ) {
+      setCurrentMonth(prevMonth.getMonth());
+      setCurrentYear(prevMonth.getFullYear());
+    }
   }
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
@@ -53,7 +62,7 @@ function BookingCourtDate() {
   // Create an array to represent the calendar grid, including empty cells for preceding days
   const calendarGrid = [];
 
-  //   // Fill in empty cells for preceding days
+  // Fill in empty cells for preceding days
   for (let i = 0; i < startDay; i++) {
     calendarGrid.push(null);
   }
@@ -65,14 +74,40 @@ function BookingCourtDate() {
 
   console.log(calendarGrid);
 
+  function handleDayClick(day) {
+    if (day > currentDay.getDate()) {
+      setSelectedDay(day);
+    }
+  }
+
+  function getClassForDay(day) {
+    if (day === currentDay.getDate()) {
+      // Current day
+      return classes.currentDay;
+    } else if (day < currentDay.getDate()) {
+      // Previous days
+      return classes.previousDay;
+    }
+    // } else if (day === selectedDay) {
+    //   // Selected future day
+    //   return classes.selectedDay;
+    // } else {
+    //   // Future days after the current day
+    //   return classes.futureDay;
+    // }
+  }
   return (
     <div className={classes.bookingDate}>
       <div className={classes.monthYear}>
-        <button onClick={handlePrevMonth}>Prev</button>{" "}
+        <button onClick={handlePrevMonth}>
+          <AiOutlineArrowLeft />
+        </button>{" "}
         <h2>
           {months[currentMonth]} {currentYear}
         </h2>
-        <button onClick={handleNextMonth}>Next</button>
+        <button onClick={handleNextMonth}>
+          <AiOutlineArrowRight />
+        </button>
       </div>
       <table className={classes.calendarTable}>
         <thead>
@@ -95,7 +130,13 @@ function BookingCourtDate() {
                   {calendarGrid
                     .slice(index, index + 7)
                     .map((item, subIndex) => (
-                      <td key={subIndex}>{item}</td>
+                      <td
+                        key={subIndex}
+                        className={getClassForDay(item)}
+                        onClick={() => handleDayClick(item)}
+                      >
+                        {item}
+                      </td>
                     ))}
                 </tr>
               );
