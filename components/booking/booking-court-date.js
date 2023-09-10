@@ -59,6 +59,14 @@ function BookingCourtDate() {
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   console.log("daysInMonth:", daysInMonth);
 
+  const previousDays = [];
+
+  for (let day = 1; day < currentDay.getDate(); day++) {
+    previousDays.push(day);
+  }
+
+  console.log("previousDays:", previousDays);
+
   // Create an array to represent the calendar grid, including empty cells for preceding days
   const calendarGrid = [];
 
@@ -74,28 +82,22 @@ function BookingCourtDate() {
 
   console.log(calendarGrid);
 
-  function handleDayClick(day) {
-    if (day > currentDay.getDate()) {
-      setSelectedDay(day);
-    }
-  }
+  //   function handleDayClick(day) {
+  //     if (day > currentDay.getDate()) {
+  //       setSelectedDay(day);
+  //     }
+  //   }
 
   function getClassForDay(day) {
-    if (day === currentDay.getDate()) {
+    if (day === currentDay.getDate() && currentMonth === thisMonth) {
       // Current day
       return classes.currentDay;
-    } else if (day < currentDay.getDate()) {
+    } else if (day < currentDay.getDate() && currentMonth === thisMonth) {
       // Previous days
       return classes.previousDay;
     }
-    // } else if (day === selectedDay) {
-    //   // Selected future day
-    //   return classes.selectedDay;
-    // } else {
-    //   // Future days after the current day
-    //   return classes.futureDay;
-    // }
   }
+
   return (
     <div className={classes.bookingDate}>
       <div className={classes.monthYear}>
@@ -133,7 +135,7 @@ function BookingCourtDate() {
                       <td
                         key={subIndex}
                         className={getClassForDay(item)}
-                        onClick={() => handleDayClick(item)}
+                        // onClick={() => handleDayClick(item)}
                       >
                         {item}
                       </td>
