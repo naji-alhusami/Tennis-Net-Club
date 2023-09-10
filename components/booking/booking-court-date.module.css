@@ -48,7 +48,7 @@
   cursor: pointer;
 }
 
-.currentDay {
+.activeDay {
   background-color: #efad32; /* Background color for the current day */
   color: #fff; /* Text color for the current day */
 }

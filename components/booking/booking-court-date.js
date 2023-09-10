@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, use } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -6,6 +6,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-court-date.module.css";
 
 function BookingCourtDate() {
+  useEffect(() => {}, []);
+
   const months = [
     "January",
     "February",
@@ -27,10 +29,12 @@ function BookingCourtDate() {
   const thisYear = currentDay.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
-  const [selectedDay, setSelectedDay] = useState(null);
+  //   const [selectedDay, setSelectedDay] = useState(null);
+  const [activeDay, setActiveDay] = useState(currentDay);
 
   console.log("currentYear:", currentYear);
   console.log("currentMonth:", currentMonth);
+  console.log("thisMonth:", thisMonth);
 
   function handleNextMonth() {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
@@ -82,18 +86,30 @@ function BookingCourtDate() {
 
   console.log(calendarGrid);
 
-  //   function handleDayClick(day) {
-  //     if (day > currentDay.getDate()) {
-  //       setSelectedDay(day);
-  //     }
-  //   }
+  function handleDayClick(day) {
+    const currentDate = new Date(currentYear, currentMonth, day);
+    console.log(currentDate);
+    //     const currentDate = new Date();
+    if (
+      currentDate.getFullYear() === currentYear &&
+      currentDate.getMonth() === currentMonth &&
+      day < currentDate.getDate()
+    ) {
+      // Prevent selecting days in the current month before the current day
+      return;
+    }
+    //     // setSelectedDay(day);
+    setActiveDay(currentDate);
+}
+console.log(activeDay);
 
   function getClassForDay(day) {
-    if (day === currentDay.getDate() && currentMonth === thisMonth) {
-      // Current day
-      return classes.currentDay;
+    const currentDate = new Date(currentYear, currentMonth, day);
+    // console.log(currentDate);
+    console.log(activeDay);
+    if (currentDate.getDate() === activeDay.getDate() && currentMonth === thisMonth) {
+      return classes.activeDay;
     } else if (day < currentDay.getDate() && currentMonth === thisMonth) {
-      // Previous days
       return classes.previousDay;
     }
   }
@@ -135,7 +151,7 @@ function BookingCourtDate() {
                       <td
                         key={subIndex}
                         className={getClassForDay(item)}
-                        // onClick={() => handleDayClick(item)}
+                        onClick={() => handleDayClick(item)}
                       >
                         {item}
                       </td>
