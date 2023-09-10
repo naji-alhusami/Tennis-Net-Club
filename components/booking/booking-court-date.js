@@ -104,14 +104,14 @@ function BookingCourtDate() {
 
   function getClassForDay(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
-    // console.log(currentDate);
     console.log(activeDay);
+    console.log(currentDate);
     if (
       currentDate.getDate() === activeDay.getDate() &&
       currentMonth === activeDay.getMonth()
     ) {
       return classes.activeDay;
-    } else if (day < currentDay.getDate() && currentMonth === thisMonth) {
+    } else if (currentDate.getDate() < currentDay.getDate() && currentMonth === thisMonth) {
       return classes.previousDay;
     }
   }
