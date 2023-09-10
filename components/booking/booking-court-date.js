@@ -88,26 +88,28 @@ function BookingCourtDate() {
 
   function handleDayClick(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
-    console.log(currentDate);
-    //     const currentDate = new Date();
-    if (
-      currentDate.getFullYear() === currentYear &&
-      currentDate.getMonth() === currentMonth &&
-      day < currentDate.getDate()
-    ) {
-      // Prevent selecting days in the current month before the current day
+    currentDate.setHours(0, 0, 0, 0); // Set time to midnight
+
+    const currentDayCopy = new Date(currentDay);
+    currentDayCopy.setHours(0, 0, 0, 0); // Set time to midnight for currentDay
+
+    if (currentDate.getTime() < currentDayCopy.getTime()) {
+      // Prevent selecting dates before the current day
       return;
     }
-    //     // setSelectedDay(day);
+
     setActiveDay(currentDate);
-}
-console.log(activeDay);
+  }
+  console.log(activeDay);
 
   function getClassForDay(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
     // console.log(currentDate);
     console.log(activeDay);
-    if (currentDate.getDate() === activeDay.getDate() && currentMonth === thisMonth) {
+    if (
+      currentDate.getDate() === activeDay.getDate() &&
+      currentMonth === activeDay.getMonth()
+    ) {
       return classes.activeDay;
     } else if (day < currentDay.getDate() && currentMonth === thisMonth) {
       return classes.previousDay;
