@@ -54,10 +54,10 @@
 }
 
 .activeDay {
-  background-color: #efad32; /* Background color for the current day */
-  color: #fff; /* Text color for the current day */
+  background-color: #efad32; 
+  color: #fff; 
 }
 
 .previousDay {
-  color: #808080; /* Gray text color for previous days */
+  color: #808080; 
 }

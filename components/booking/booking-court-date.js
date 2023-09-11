@@ -23,7 +23,7 @@ function BookingCourtDate() {
     "December",
   ];
   const currentDay = new Date();
-  console.log(currentDay);
+  // console.log(currentDay);
   const thisMonth = currentDay.getMonth(); //To get the month as number.
   //   const thisMonth = currentDay.toLocaleString("en-US", { month: "long" }); //To get the month as String.
   const thisYear = currentDay.getFullYear();
@@ -32,13 +32,13 @@ function BookingCourtDate() {
   //   const [selectedDay, setSelectedDay] = useState(null);
   const [activeDay, setActiveDay] = useState(currentDay);
 
-  console.log("currentYear:", currentYear);
-  console.log("currentMonth:", currentMonth);
-  console.log("thisMonth:", thisMonth);
+  // console.log("currentYear:", currentYear);
+  // console.log("currentMonth:", currentMonth);
+  // console.log("thisMonth:", thisMonth);
 
   function handleNextMonth() {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
-    console.log(nextMonth.getMonth());
+    // console.log(nextMonth.getMonth());
     setCurrentMonth(nextMonth.getMonth());
     setCurrentYear(nextMonth.getFullYear());
   }
@@ -58,10 +58,10 @@ function BookingCourtDate() {
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
   const startDay = firstDayOfMonth.getDay();
-  console.log("startDay", startDay);
+  // console.log("startDay", startDay);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  console.log("daysInMonth:", daysInMonth);
+  // console.log("daysInMonth:", daysInMonth);
 
   const previousDays = [];
 
@@ -69,7 +69,7 @@ function BookingCourtDate() {
     previousDays.push(day);
   }
 
-  console.log("previousDays:", previousDays);
+  // console.log("previousDays:", previousDays);
 
   // Create an array to represent the calendar grid, including empty cells for preceding days
   const calendarGrid = [];
@@ -84,7 +84,7 @@ function BookingCourtDate() {
     calendarGrid.push(day);
   }
 
-  console.log(calendarGrid);
+  // console.log(calendarGrid);
 
   function handleDayClick(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
@@ -100,12 +100,12 @@ function BookingCourtDate() {
 
     setActiveDay(currentDate);
   }
-  console.log(activeDay);
+  // console.log(activeDay);
 
   function getClassForDay(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
-    console.log(activeDay);
-    console.log(currentDate);
+    // console.log(activeDay);
+    // console.log(currentDate);
     if (
       currentDate.getDate() === activeDay.getDate() &&
       currentMonth === activeDay.getMonth()
