@@ -3,13 +3,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-
+import { AiFillCaretDown } from "react-icons/ai";
 import classes from "./booking-court.module.css";
 import reserve from "@/public/images/reserve.jpg";
-import clay from "@/public/images/clay.jpg";
+// import clay from "@/public/images/clay.jpg";
+// import bookCourt from "@/public/images/hard.jpg";
 import BookingCourtDate from "./booking-court-date";
 
 function BookingCourt() {
@@ -30,9 +28,41 @@ function BookingCourt() {
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [numberOfPlayers, setNumberOfPlayers] = useState(0);
+  const [isShowCourts, setIsShowCourts] = useState(false);
+  const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
+
+  const decreasePlayers = () => {
+    if (numberOfPlayers > 1) {
+      setNumberOfPlayers(numberOfPlayers - 1);
+    }
+  };
+
+  const increasePlayers = () => {
+    if (numberOfPlayers < 4) {
+      setNumberOfPlayers(numberOfPlayers + 1);
+    }
+  };
 
   const changeStep = () => {
-    setCurrentStep(currentStep + 1); // Increment currentStep by 1
+    setCurrentStep(currentStep + 1);
+  };
+
+  const handleShowCourts = () => {
+    setIsShowCourts(!isShowCourts);
+  };
+
+  const courtTypeImages = {
+    "Clay Courts": "/images/clay.jpg", // Replace with your image URL for Clay Courts
+    "Hard Courts": "/images/hard.jpg", // Replace with your image URL for Hard Courts
+  };
+
+  const handleChangeCourts = () => {
+    setSelectedCourtType((prevCourtType) =>
+      prevCourtType === "Clay Courts" ? "Hard Courts" : "Clay Courts"
+    );
+
+    setIsShowCourts(false);
   };
 
   return (
@@ -78,12 +108,41 @@ function BookingCourt() {
           <h3>CONFIRM</h3>
         </div>
       </div>
+
       <div className={classes.bookingForm}>
         <div className={classes.bookingPlayers}>
-          <Image src={clay} alt="clay-courts" priority={true} />
+          <Image
+            src={courtTypeImages[selectedCourtType]}
+            alt={selectedCourtType}
+            style={{ filter: "brightness(0.7)" }}
+            width={400}
+            height={300}
+          />
+          <div className={classes.courtsContainer}>
+            <h3>Courts:</h3>
+            <AiFillCaretDown
+              onClick={handleShowCourts}
+              style={{ "margin-top": "1rem" }}
+            />
+            <div>
+              {isShowCourts && (
+                <ul>
+                  <li onClick={handleChangeCourts}>Clay Courts</li>
+                  <li onClick={handleChangeCourts}>Hard Courts</li>
+                </ul>
+              )}
+            </div>
+          </div>
+          <div className={classes.playersContainer}>
+            <h3>Players:</h3>
+            <span>{numberOfPlayers}</span>
+            <button onClick={increasePlayers}>+</button>
+            <button onClick={decreasePlayers}>-</button>
+          </div>
         </div>
         <BookingCourtDate />
       </div>
+
       <div className={classes.timeContainer}>
         <h1>Time:</h1>
         <div className={classes.time}>
