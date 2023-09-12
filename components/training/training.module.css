@@ -86,7 +86,6 @@
 
 .textContainer2 h2 {
   margin: 3rem 0 0 0;
-
 }
 
 .textContainer2 h1 {
@@ -129,4 +128,27 @@
   padding: 0.6rem 1.3rem;
   color: white;
   font-size: var(--size-5);
+}
+
+.equipmentsContainer {
+  position: absolute;
+  top: 130%;
+  display: flex;
+  flex-direction: row;
+}
+
+.equipmentContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 0 4rem;
+}
+
+.equipmentContainer img {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1rem;
+}
+
+.equipmentContainer h1 {
+ margin: 0;
 }
