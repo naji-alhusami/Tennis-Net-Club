@@ -37,7 +37,6 @@ function Booking() {
             height={560}
             priority={true}
           />
-          {/* <Image src={bg} alt="cover-image" layout="fill" objectFit="cover" priority={true} /> */}
         </div>
         <div className={classes.textContainer}>
           <div className={classes.text}>
