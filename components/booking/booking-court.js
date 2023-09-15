@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,8 +9,12 @@ import reserve from "@/public/images/reserve.jpg";
 // import clay from "@/public/images/clay.jpg";
 // import bookCourt from "@/public/images/hard.jpg";
 import BookingCourtDate from "./booking-court-date";
+import AuthContext from "@/store/auth-context";
 
 function BookingCourt() {
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  console.log(isLoggedIn);
+
   const times = [
     { id: "1", time: "09:00 am" },
     { id: "2", time: "10:00 am" },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -6,7 +6,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-court-date.module.css";
 
 function BookingCourtDate() {
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   const months = [
     "January",
@@ -99,8 +99,8 @@ function BookingCourtDate() {
     }
 
     setActiveDay(currentDate);
+    console.log(activeDay);
   }
-  // console.log(activeDay);
 
   function getClassForDay(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
@@ -111,7 +111,10 @@ function BookingCourtDate() {
       currentMonth === activeDay.getMonth()
     ) {
       return classes.activeDay;
-    } else if (currentDate.getDate() < currentDay.getDate() && currentMonth === thisMonth) {
+    } else if (
+      currentDate.getDate() < currentDay.getDate() &&
+      currentMonth === thisMonth
+    ) {
       return classes.previousDay;
     }
   }
