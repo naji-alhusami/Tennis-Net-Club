@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import AuthContext from "./auth-context";
 
 const MyProvider = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const currentDay = new Date();
+  const [activeDay, setActiveDay] = useState(currentDay);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{ activeDay, setActiveDay }}>
       {props.children}
     </AuthContext.Provider>
   );

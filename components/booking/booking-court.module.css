@@ -100,11 +100,16 @@
 }
 
 .bookButton {
+  cursor: pointer;
   background-color: #efad32;
-  padding: 0.6rem 1.3rem;
+  padding: 0.1rem 1.3rem;
   color: white;
-  font-size: var(--size-5);
+  font-size: 1.5rem;
   box-shadow: 5px 5px 0px 1px #db981b;
+}
+
+.bookButton p {
+  margin: 0.5rem;
 }
 
 .step-heading {
@@ -182,7 +187,7 @@
 
 .courtsContainer h3 {
   font-size: 2rem;
-  margin: 0 0.8rem 0 0 ;
+  margin: 0 0.8rem 0 0;
 }
 
 .courtsContainer ul {
@@ -205,4 +210,3 @@
   color: white;
   padding: 0.5rem;
 }
-

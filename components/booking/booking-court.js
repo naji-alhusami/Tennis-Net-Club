@@ -12,8 +12,7 @@ import BookingCourtDate from "./booking-court-date";
 import AuthContext from "@/store/auth-context";
 
 function BookingCourt() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  console.log(isLoggedIn);
+  const { activeDay } = useContext(AuthContext);
 
   const times = [
     { id: "1", time: "09:00 am" },
@@ -35,6 +34,13 @@ function BookingCourt() {
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
   const [isShowCourts, setIsShowCourts] = useState(false);
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
+  const [isTime, setIsTime] = useState("");
+  const thisMonth = activeDay.toLocaleString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  console.log("Info:", thisMonth, numberOfPlayers, isTime, selectedCourtType);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
@@ -57,8 +63,8 @@ function BookingCourt() {
   };
 
   const courtTypeImages = {
-    "Clay Courts": "/images/clay.jpg", // Replace with your image URL for Clay Courts
-    "Hard Courts": "/images/hard.jpg", // Replace with your image URL for Hard Courts
+    "Clay Courts": "/images/clay.jpg",
+    "Hard Courts": "/images/hard.jpg",
   };
 
   const handleChangeCourts = () => {
@@ -151,7 +157,9 @@ function BookingCourt() {
         <h1>Time:</h1>
         <div className={classes.time}>
           {times.map((time) => (
-            <button key={time.id}>{time.time}</button>
+            <button key={time.id} onClick={() => setIsTime(time.time)}>
+              {time.time}
+            </button>
           ))}
         </div>
         <motion.div
@@ -161,7 +169,7 @@ function BookingCourt() {
         >
           {/* <Link className={classes.bookButton} href="/auth/login"> */}
 
-          <button onClick={changeStep}>Book Now</button>
+          <p onClick={changeStep}>Next</p>
           {/* </Link> */}
         </motion.div>
       </div>

@@ -28,13 +28,12 @@
 }
 
 .navbarList:hover {
-  color: rgb(137, 227, 59);
+  color: #1c7f47;
 }
 
 .loginButton {
   background-color: #efad32;
   padding: 0.6rem 1.3rem;
-  /* border: 10px solid rgb(137, 227, 59); */
   color: white;
   margin-left: 2rem;
   font-size: var(--size-5);

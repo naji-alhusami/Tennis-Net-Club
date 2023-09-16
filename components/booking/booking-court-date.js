@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "@/store/auth-context";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -6,6 +7,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-court-date.module.css";
 
 function BookingCourtDate() {
+  const { activeDay, setActiveDay } = useContext(AuthContext);
+
   // useEffect(() => {}, []);
 
   const months = [
@@ -30,7 +33,7 @@ function BookingCourtDate() {
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
   //   const [selectedDay, setSelectedDay] = useState(null);
-  const [activeDay, setActiveDay] = useState(currentDay);
+  // const [activeDay, setActiveDay] = useState(currentDay);
 
   // console.log("currentYear:", currentYear);
   // console.log("currentMonth:", currentMonth);
