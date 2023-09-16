@@ -35,6 +35,9 @@ function BookingCourt() {
   const [isShowCourts, setIsShowCourts] = useState(false);
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [isTime, setIsTime] = useState("");
+  const [secondStep, setSecondStep] = useState(true);
+  const [thirdStep, setThirdStep] = useState(true);
+
   const thisMonth = activeDay.toLocaleString("en-US", {
     day: "numeric",
     month: "long",
@@ -55,7 +58,13 @@ function BookingCourt() {
   };
 
   const changeStep = () => {
+    console.log("clicked");
     setCurrentStep(currentStep + 1);
+    if (currentStep === 1) {
+      setSecondStep(!secondStep);
+    } else {
+      setThirdStep(!thirdStep);
+    }
   };
 
   const handleShowCourts = () => {
@@ -69,7 +78,7 @@ function BookingCourt() {
 
   const handleChangeCourts = () => {
     setSelectedCourtType((prevCourtType) =>
-      prevCourtType === "Clay Courts" ? "Hard Courts" : "Clay Courts"
+      prevCourtType === "Clay Courts" ? "Clay Courts" : "Hard Courts"
     );
 
     setIsShowCourts(false);
@@ -119,60 +128,86 @@ function BookingCourt() {
         </div>
       </div>
 
-      <div className={classes.bookingForm}>
-        <div className={classes.bookingPlayers}>
-          <Image
-            src={courtTypeImages[selectedCourtType]}
-            alt={selectedCourtType}
-            style={{ filter: "brightness(0.7)" }}
-            width={400}
-            height={300}
-          />
-          <div className={classes.courtsContainer}>
-            <h3>Courts:</h3>
-            <AiFillCaretDown
-              onClick={handleShowCourts}
-              style={{ "margin-top": "1rem" }}
-            />
-            <div>
-              {isShowCourts && (
-                <ul>
-                  <li onClick={handleChangeCourts}>Clay Courts</li>
-                  <li onClick={handleChangeCourts}>Hard Courts</li>
-                </ul>
-              )}
+      {/* Booking Form (Players and Calendar) */}
+      {currentStep === 1 && secondStep ? (
+        <div>
+          <div className={classes.bookingForm}>
+            <div className={classes.bookingPlayers}>
+              <Image
+                src={courtTypeImages[selectedCourtType]}
+                alt={selectedCourtType}
+                style={{ filter: "brightness(0.7)" }}
+                width={400}
+                height={300}
+              />
+              <div className={classes.courtsContainer}>
+                <h3>Courts:</h3>
+                <AiFillCaretDown
+                  onClick={handleShowCourts}
+                  style={{ "margin-top": "1rem" }}
+                />
+                <div>
+                  {isShowCourts && (
+                    <ul>
+                      <li onClick={handleChangeCourts}>Clay Courts</li>
+                      <li onClick={handleChangeCourts}>Hard Courts</li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+              <div className={classes.playersContainer}>
+                <h3>Players:</h3>
+                <span>{numberOfPlayers}</span>
+                <button onClick={increasePlayers}>+</button>
+                <button onClick={decreasePlayers}>-</button>
+              </div>
+            </div>
+            <BookingCourtDate />
+          </div>
+
+          <div className={classes.timeContainer}>
+            <h1>Time:</h1>
+            <div className={classes.time}>
+              {times.map((time) => (
+                <button key={time.id} onClick={() => setIsTime(time.time)}>
+                  {time.time}
+                </button>
+              ))}
             </div>
           </div>
-          <div className={classes.playersContainer}>
-            <h3>Players:</h3>
-            <span>{numberOfPlayers}</span>
-            <button onClick={increasePlayers}>+</button>
-            <button onClick={decreasePlayers}>-</button>
+        </div>
+      ) : currentStep === 2 ? (
+        <div className={classes.bookingForm}>
+          <div className={classes.bookingPlayers}>
+            <Image
+              src={courtTypeImages[selectedCourtType]}
+              alt={selectedCourtType}
+              style={{ filter: "brightness(0.7)" }}
+              width={400}
+              height={300}
+            />
+          </div>
+          <div className={classes.bookingDate}>
+            <h1>Name: Naji</h1>
+            <h1>Players: 1</h1>
+            <h1>Date: 20/09/2023</h1>
+            <h1>Time: 14:00</h1>
+            <h1>Court: Clay Court</h1>
           </div>
         </div>
-        <BookingCourtDate />
-      </div>
-
-      <div className={classes.timeContainer}>
-        <h1>Time:</h1>
-        <div className={classes.time}>
-          {times.map((time) => (
-            <button key={time.id} onClick={() => setIsTime(time.time)}>
-              {time.time}
-            </button>
-          ))}
+      ) : (
+        <div>
+          <h1>rama</h1>
         </div>
-        <motion.div
-          className={classes.bookButton}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {/* <Link className={classes.bookButton} href="/auth/login"> */}
-
-          <p onClick={changeStep}>Next</p>
-          {/* </Link> */}
-        </motion.div>
-      </div>
+      )}
+      <motion.div
+        className={classes.bookButton}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={changeStep}
+      >
+        <p>Next</p>
+      </motion.div>
     </div>
   );
 }
