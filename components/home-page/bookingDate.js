@@ -1,17 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./booking.module.css";
+import AuthContext from "@/store/auth-context";
 
 function BookingDate() {
-  const [calendarIsOpen, setCalendarIsOpen] = useState(false);
-  const formattedDate = new Date().toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const currentDate = new Date();
+  const { selectedDate, setSelectedDate } = useContext(AuthContext);
+  // const [calendarIsOpen, setCalendarIsOpen] = useState(false);
 
-  const [selectedDate, setSelectedDate] = useState(formattedDate);
   const datePickerRef = useRef(null);
 
   const handleDateChange = (date) => {
@@ -22,7 +19,7 @@ function BookingDate() {
         year: "numeric",
       })
     );
-    setCalendarIsOpen(false);
+    // setCalendarIsOpen(false);
   };
 
   const toggleCalendar = () => {
@@ -42,6 +39,7 @@ function BookingDate() {
             selected={new Date(selectedDate)}
             onChange={handleDateChange}
             ref={datePickerRef}
+            minDate={currentDate}
             // calendarClassName={
             //   calendarIsOpen ? "show-calendar" : "hide-calendar"
             // }

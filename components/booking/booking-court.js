@@ -12,7 +12,7 @@ import BookingCourtDate from "./booking-court-date";
 import AuthContext from "@/store/auth-context";
 
 function BookingCourt() {
-  const { activeDay } = useContext(AuthContext);
+  const { activeDay, numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
 
   const times = [
     { id: "1", time: "09:00 am" },
@@ -31,7 +31,6 @@ function BookingCourt() {
   ];
 
   const [currentStep, setCurrentStep] = useState(1);
-  const [numberOfPlayers, setNumberOfPlayers] = useState(0);
   const [isShowCourts, setIsShowCourts] = useState(false);
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [isTime, setIsTime] = useState("");

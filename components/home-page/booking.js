@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -9,10 +9,14 @@ import bookCourt from "@/public/images/bookCourt.jpg";
 import bg from "@/public/images/background1.jpg";
 import BookingDate from "./bookingDate";
 import { useSession } from "next-auth/react";
+import AuthContext from "@/store/auth-context";
 
 function Booking() {
+  const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
   const { data: session, loading } = useSession();
-  const [numberOfPlayers, setNumberOfPlayers] = useState(0);
+
+  console.log("session", session);
+  console.log("loading", loading);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
@@ -55,11 +59,15 @@ function Booking() {
               <span>{numberOfPlayers}</span>
               <button onClick={increasePlayers}>+</button>
             </div>
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.reserveButton} href="/booking">
-                Reserve Court
-              </Link>
-            </motion.div>
+            {session ? (
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <Link className={classes.reserveButton} href="/booking">
+                  Reserve Court
+                </Link>
+              </motion.div>
+            ) : (
+              <div className={classes.reserveButtonDisabled}>Reserve Court</div>
+            )}
           </div>
         </div>
       </div>

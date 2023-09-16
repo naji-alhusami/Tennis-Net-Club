@@ -73,13 +73,31 @@
   box-shadow: 5px 5px 0px 1px #db981b;
 }
 
-.reserveButton::before {
+/* .reserveButton::before {
   background-color: #f2a922;
   padding: 0.6rem 1.3rem;
   color: white;
   margin-left: 2rem;
   font-size: var(--size-5);
+} */
+
+.reserveButtonDisabled {
+  background-color: #ababab;
+  padding: 0.3rem 1rem;
+  /* border: 10px solid rgb(137, 227, 59); */
+  color: white;
+  margin-left: 2rem;
+  font-size: var(--size-5);
+  box-shadow: 5px 5px 0px 1px #888888;
 }
+
+/* .reserveButtonDisabled::before {
+  background-color: #f2a922;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  margin-left: 2rem;
+  font-size: var(--size-5);
+} */
 
 .playersContainer button {
   background-color: rgb(226, 223, 223);

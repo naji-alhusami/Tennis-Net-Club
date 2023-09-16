@@ -7,8 +7,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-court-date.module.css";
 
 function BookingCourtDate() {
-  const { activeDay, setActiveDay } = useContext(AuthContext);
-
+  const { activeDay, setActiveDay, selectedDate } = useContext(AuthContext);
+  console.log(selectedDate);
   // useEffect(() => {}, []);
 
   const months = [
