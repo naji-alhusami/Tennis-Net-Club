@@ -63,7 +63,7 @@ function BookingCourt() {
     setCurrentStep(currentStep + 1);
     if (currentStep === 1) {
       setSecondStep(!secondStep);
-    } else {
+    } else if (currentStep === 2) {
       setThirdStep(!thirdStep);
     }
   };
@@ -180,49 +180,70 @@ function BookingCourt() {
               ))}
             </div>
           </div>
+          <motion.div
+            className={classes.bookButton}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={changeStep}
+          >
+            <p>Next</p>
+          </motion.div>
         </div>
       ) : currentStep === 2 && loading === "authenticated" ? (
-        <div className={classes.bookingForm}>
-          <div className={classes.bookingPlayers}>
-            <Image
-              src={courtTypeImages[selectedCourtType]}
-              alt={selectedCourtType}
-              style={{ filter: "brightness(0.7)" }}
-              width={400}
-              height={300}
-            />
+        <>
+          <div className={classes.bookingForm}>
+            <div className={classes.bookingPlayers}>
+              <Image
+                src={courtTypeImages[selectedCourtType]}
+                alt={selectedCourtType}
+                style={{ filter: "brightness(0.7)" }}
+                width={400}
+                height={300}
+              />
+            </div>
+            <div className={classes.bookingDate}>
+              <p>
+                <b>Name:</b> {session.user.name}
+              </p>
+              <p>
+                <b>Players:</b> {numberOfPlayers}
+              </p>
+              <p>
+                <b>Date:</b> {choosenDate}
+              </p>
+              <p>
+                <b>Time:</b> {isTime}
+              </p>
+              <p>
+                <b>Court:</b> {selectedCourtType}
+              </p>
+            </div>
           </div>
-          <div className={classes.bookingDate}>
-            <p>
-              <b>Name:</b> {session.user.name}
-            </p>
-            <p>
-              <b>Players:</b> {numberOfPlayers}
-            </p>
-            <p>
-              <b>Date:</b> {choosenDate}
-            </p>
-            <p>
-              <b>Time:</b> {isTime}
-            </p>
-            <p>
-              <b>Court:</b> {selectedCourtType}
-            </p>
-          </div>
-        </div>
+          <motion.div
+            className={classes.bookButton}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={changeStep}
+          >
+            <p>Next</p>
+          </motion.div>
+        </>
       ) : (
-        <div>
-          <h1>rama</h1>
-        </div>
+        <>
+          {" "}
+          <div>
+            <h1>rama</h1>
+          </div>
+          <motion.div
+            className={classes.bookButton}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={changeStep}
+          >
+            <p>Confirm</p>
+          </motion.div>
+        </>
       )}
-      <motion.div
-        className={classes.bookButton}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={changeStep}
-      >
-        <p>Next</p>
-      </motion.div>
     </div>
   );
 }

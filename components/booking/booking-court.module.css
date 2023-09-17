@@ -218,6 +218,6 @@
 }
 
 .bookingDate p {
-  font-size: 2rem;
+  font-size: var(--size-8);
   margin: 1rem 0;
 }
