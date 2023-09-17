@@ -13,10 +13,12 @@ import AuthContext from "@/store/auth-context";
 
 function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
-  const { data: session, loading } = useSession();
+  // const { data: session, loading } = useSession();
+  const sessionNaji = useSession();
+
 
   // console.log("session", session);
-  // console.log("loading", loading);
+  console.log(sessionNaji);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {

@@ -82,7 +82,6 @@ function BookingCourtDate() {
     }
 
     setActiveDay(currentDate);
-    console.log(activeDay);
   }
 
   function getClassForDay(day) {

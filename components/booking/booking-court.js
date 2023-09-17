@@ -10,10 +10,20 @@ import reserve from "@/public/images/reserve.jpg";
 // import bookCourt from "@/public/images/hard.jpg";
 import BookingCourtDate from "./booking-court-date";
 import AuthContext from "@/store/auth-context";
+import { useSession } from "next-auth/react";
 
 function BookingCourt() {
-  const { activeDay, numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
+  const { data: session, status: loading } = useSession();
 
+  const { activeDay, numberOfPlayers, setNumberOfPlayers } =
+    useContext(AuthContext);
+
+  const choosenDate = activeDay.toLocaleString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  
   const times = [
     { id: "1", time: "09:00 am" },
     { id: "2", time: "10:00 am" },
@@ -37,13 +47,6 @@ function BookingCourt() {
   const [secondStep, setSecondStep] = useState(true);
   const [thirdStep, setThirdStep] = useState(true);
 
-  const thisMonth = activeDay.toLocaleString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-  console.log("Info:", thisMonth, numberOfPlayers, isTime, selectedCourtType);
-
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
       setNumberOfPlayers(numberOfPlayers - 1);
@@ -57,7 +60,6 @@ function BookingCourt() {
   };
 
   const changeStep = () => {
-    console.log("clicked");
     setCurrentStep(currentStep + 1);
     if (currentStep === 1) {
       setSecondStep(!secondStep);
@@ -82,6 +84,10 @@ function BookingCourt() {
 
     setIsShowCourts(false);
   };
+
+  if (loading === "loading" && session) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className={classes.bookingContainer}>
@@ -143,7 +149,7 @@ function BookingCourt() {
                 <h3>Courts:</h3>
                 <AiFillCaretDown
                   onClick={handleShowCourts}
-                  style={{ "marginTop": "1rem" }}
+                  style={{ marginTop: "1rem" }}
                 />
                 <div>
                   {isShowCourts && (
@@ -175,7 +181,7 @@ function BookingCourt() {
             </div>
           </div>
         </div>
-      ) : currentStep === 2 ? (
+      ) : currentStep === 2 && loading === "authenticated" ? (
         <div className={classes.bookingForm}>
           <div className={classes.bookingPlayers}>
             <Image
@@ -187,11 +193,11 @@ function BookingCourt() {
             />
           </div>
           <div className={classes.bookingDate}>
-            <h1>Name: Naji</h1>
-            <h1>Players: 1</h1>
-            <h1>Date: 20/09/2023</h1>
-            <h1>Time: 14:00</h1>
-            <h1>Court: Clay Court</h1>
+            <h1>Name: {session.user.name}</h1>
+            <h1>Players: {numberOfPlayers}</h1>
+            <h1>Date: {choosenDate}</h1>
+            <h1>Time: {isTime}</h1>
+            <h1>Court: {selectedCourtType}</h1>
           </div>
         </div>
       ) : (

@@ -11,7 +11,6 @@ function MainNavigation(props) {
   const { backgroundColor } = props;
   const { data: session, loading } = useSession();
 
-
   function logoutHandler() {
     signOut();
   }
