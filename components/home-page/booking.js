@@ -15,8 +15,8 @@ function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
   const { data: session, loading } = useSession();
 
-  console.log("session", session);
-  console.log("loading", loading);
+  // console.log("session", session);
+  // console.log("loading", loading);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {

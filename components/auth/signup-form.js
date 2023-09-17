@@ -32,7 +32,7 @@ async function createUser(name, email, password, passwordConfirmation, role) {
 
 function Signup() {
   // const [selectedDate, setSelectedDate] = useState(null);
-  const [requestStatus, setRequestStatus] = useState(); 
+  const [requestStatus, setRequestStatus] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
   const emailInputRef = useRef();
   const nameInputRef = useRef();
@@ -146,13 +146,6 @@ function Signup() {
         </div>
 
         <div>
-          {/* <DatePicker
-            ref={birthDateInputRef}
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            placeholderText="Select your birthday"
-            required
-          /> */}
           <select ref={roleInputRef} className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>

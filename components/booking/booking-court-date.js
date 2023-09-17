@@ -7,9 +7,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-court-date.module.css";
 
 function BookingCourtDate() {
-  const { activeDay, setActiveDay, selectedDate } = useContext(AuthContext);
-  console.log(selectedDate);
-  // useEffect(() => {}, []);
+  const { activeDay, setActiveDay } = useContext(AuthContext);
 
   const months = [
     "January",
@@ -26,22 +24,13 @@ function BookingCourtDate() {
     "December",
   ];
   const currentDay = new Date();
-  // console.log(currentDay);
-  const thisMonth = currentDay.getMonth(); //To get the month as number.
-  //   const thisMonth = currentDay.toLocaleString("en-US", { month: "long" }); //To get the month as String.
+  const thisMonth = currentDay.getMonth();
   const thisYear = currentDay.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
-  //   const [selectedDay, setSelectedDay] = useState(null);
-  // const [activeDay, setActiveDay] = useState(currentDay);
-
-  // console.log("currentYear:", currentYear);
-  // console.log("currentMonth:", currentMonth);
-  // console.log("thisMonth:", thisMonth);
 
   function handleNextMonth() {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
-    // console.log(nextMonth.getMonth());
     setCurrentMonth(nextMonth.getMonth());
     setCurrentYear(nextMonth.getFullYear());
   }
@@ -61,10 +50,8 @@ function BookingCourtDate() {
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
   const startDay = firstDayOfMonth.getDay();
-  // console.log("startDay", startDay);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  // console.log("daysInMonth:", daysInMonth);
 
   const previousDays = [];
 
@@ -72,22 +59,15 @@ function BookingCourtDate() {
     previousDays.push(day);
   }
 
-  // console.log("previousDays:", previousDays);
-
-  // Create an array to represent the calendar grid, including empty cells for preceding days
   const calendarGrid = [];
 
-  // Fill in empty cells for preceding days
   for (let i = 0; i < startDay; i++) {
     calendarGrid.push(null);
   }
 
-  // Fill in day numbers for the current month
   for (let day = 1; day <= daysInMonth; day++) {
     calendarGrid.push(day);
   }
-
-  // console.log(calendarGrid);
 
   function handleDayClick(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
@@ -107,8 +87,6 @@ function BookingCourtDate() {
 
   function getClassForDay(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
-    // console.log(activeDay);
-    // console.log(currentDate);
     if (
       currentDate.getDate() === activeDay.getDate() &&
       currentMonth === activeDay.getMonth()

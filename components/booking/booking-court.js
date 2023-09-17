@@ -143,7 +143,7 @@ function BookingCourt() {
                 <h3>Courts:</h3>
                 <AiFillCaretDown
                   onClick={handleShowCourts}
-                  style={{ "margin-top": "1rem" }}
+                  style={{ "marginTop": "1rem" }}
                 />
                 <div>
                   {isShowCourts && (
