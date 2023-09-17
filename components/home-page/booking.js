@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -13,12 +13,7 @@ import AuthContext from "@/store/auth-context";
 
 function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
-  // const { data: session, loading } = useSession();
-  const sessionNaji = useSession();
-
-
-  // console.log("session", session);
-  console.log(sessionNaji);
+  const { data: session } = useSession();
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {

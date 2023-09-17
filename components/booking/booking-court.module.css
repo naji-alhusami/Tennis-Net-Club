@@ -39,20 +39,6 @@
   margin: 3rem 0 1.5rem 0;
 }
 
-/* .stepsCircle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #268750;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 20px;
-  margin-right: 2rem;
-} */
-
 .bookingForm {
   display: flex;
   flex-direction: row;
@@ -231,6 +217,7 @@
   color: white;
 }
 
-.bookingDate h1 {
-  font-weight: bolder;
+.bookingDate p {
+  font-size: 2rem;
+  margin: 1rem 0;
 }

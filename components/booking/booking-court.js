@@ -23,7 +23,7 @@ function BookingCourt() {
     month: "long",
     year: "numeric",
   });
-  
+
   const times = [
     { id: "1", time: "09:00 am" },
     { id: "2", time: "10:00 am" },
@@ -193,11 +193,21 @@ function BookingCourt() {
             />
           </div>
           <div className={classes.bookingDate}>
-            <h1>Name: {session.user.name}</h1>
-            <h1>Players: {numberOfPlayers}</h1>
-            <h1>Date: {choosenDate}</h1>
-            <h1>Time: {isTime}</h1>
-            <h1>Court: {selectedCourtType}</h1>
+            <p>
+              <b>Name:</b> {session.user.name}
+            </p>
+            <p>
+              <b>Players:</b> {numberOfPlayers}
+            </p>
+            <p>
+              <b>Date:</b> {choosenDate}
+            </p>
+            <p>
+              <b>Time:</b> {isTime}
+            </p>
+            <p>
+              <b>Court:</b> {selectedCourtType}
+            </p>
           </div>
         </div>
       ) : (
