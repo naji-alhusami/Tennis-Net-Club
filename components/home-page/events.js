@@ -33,7 +33,7 @@ function Events() {
               <tr>
                 <td className={classes.events}>
                   <Image src={newCoaches} alt="new-coaches" />
-                  New Couches Presentation
+                  <h4>New Couches Presentation</h4>
                 </td>
                 <td>
                   Come and discover our new experienced coaches, and explore

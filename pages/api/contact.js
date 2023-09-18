@@ -1,5 +1,4 @@
 import { connectToDatabase } from "@/lib/db";
-import { MongoClient } from "mongodb";
 
 async function handler(req, res) {
   if (req.method === "POST") {
