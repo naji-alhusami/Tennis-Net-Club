@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -30,105 +30,99 @@ async function sendTimeSlots(timeSlots) {
 // End of send Times to Mongo
 
 function BookingCourt() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isShowCourts, setIsShowCourts] = useState(false);
+  const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
+  const [isTime, setIsTime] = useState("");
+  const [secondStep, setSecondStep] = useState(true);
+  const [thirdStep, setThirdStep] = useState(true);
   const { data: session, status: loading } = useSession();
 
   const { activeDay, numberOfPlayers, setNumberOfPlayers } =
     useContext(AuthContext);
-  console.log(activeDay);
 
-  function generateTimeSlots(day) {
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  console.log(timeSlots);
+
+  useEffect(() => {
+    async function fetchTimeSlots() {
+      try {
+        // Get time slots for the current day and the next 3 days
+        const currentDate = new Date(activeDay);
+        const futureDates = [currentDate];
+
+        for (let i = 1; i <= 3; i++) {
+          const nextDate = new Date(currentDate);
+          nextDate.setDate(currentDate.getDate() + i);
+          nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
+          futureDates.push(nextDate);
+        }
+
+        const timeSlotsData = [];
+
+        for (const date of futureDates) {
+          const timeSlotsForDate = generateTime(date);
+          timeSlotsData.push(...timeSlotsForDate);
+        }
+
+        // Update state with the fetched time slots
+        setTimeSlots(timeSlotsData);
+      } catch (error) {
+        console.error("Error fetching time slots:", error);
+      }
+    }
+
+    fetchTimeSlots();
+  }, [activeDay]);
+
+  function generateTime(date) {
     const timeSlots = [];
-    const startTime = new Date(day);
-    startTime.setHours(9, 0, 0, 0); // Set the start time to 09:00:00
 
-    const endTime = new Date(day);
-    endTime.setHours(21, 0, 0, 0); // Set the end time to 21:00:00
+    // Get the current time
+    const now = new Date();
+
+    // Set the start time to 9:00 AM on the selected date
+    const startTime = new Date(date);
+    startTime.setHours(9, 0, 0, 0);
+
+    // Set the end time to 9:00 PM on the same date
+    const endTime = new Date(date);
+    endTime.setHours(21, 0, 0, 0);
 
     const intervalMinutes = 60; // You can adjust this to your desired time slot interval
 
     let currentTime = new Date(startTime);
-    let idCounter = 1;
 
     while (currentTime <= endTime) {
       // Format the time as a string with date and time information
-      const formattedTime = new Date(currentTime).toString();
+      const formattedTime = new Date(currentTime).toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      });
+      const formattedDate = currentTime.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 
-      timeSlots.push({ id: idCounter, time: formattedTime });
+      // Set the status based on whether the current time is before or after now
+      const status = currentTime > now;
+      console.log(currentTime);
+
+      timeSlots.push({
+        date: formattedDate,
+        time: formattedTime,
+        status: status,
+      });
+
       currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
-      idCounter++;
     }
 
+    console.log(timeSlots);
     return timeSlots;
   }
-
-  const times = generateTimeSlots(activeDay);
-
-  // console.log(times);
-
-  const newTimesFormatted = times.map((time) => {
-    const match = time.time.match(/(\d{2}):(\d{2})/);
-    // console.log(match);
-    return match[0];
-  });
-
-  // console.log(newTimesFormatted);
-
-  function generateTime(date) {
-    // console.log(date);
-    // const timeSlots = [];
-    // const startTime = date.clone().hour(9).minute(0);
-    // const endTime = date.clone().hour(21).minute(0);
-    // const intervalMinutes = 60; // Adjust as needed
-
-    // while (startTime.isBefore(endTime)) {
-    //   timeSlots.push({
-    //     dateTime: startTime.clone().toISOString(),
-    //     status: "available",
-    //   });
-
-    //   startTime.add(intervalMinutes, "minutes");
-    // }
-
-    // return timeSlots;
-  }
-  const newTimes = generateTime(activeDay);
-  // console.log(newTimes);
-
-  // function generateTimeSlots(day) {
-  //   console.log(day);
-  //   const times = [];
-  //   const startTime = new Date(day);
-  //   startTime.setHours(9, 0, 0, 0); // Set the time to 00:00:00
-  //   console.log(startTime);
-  //   const endTime = new Date(day);
-  //   endTime.setHours(21, 0, 0, 0); // Set the time to 23:59:59.999
-
-  //   const intervalMinutes = 60; // You can adjust this to your desired time slot interval
-
-  //   let currentTime = startTime;
-  //   let idCounter = 1;
-
-  //   while (currentTime <= endTime) {
-  //     const hours = currentTime.getHours();
-  //     const minutes = currentTime.getMinutes();
-
-  //     // Format the time as "hh:mm am/pm"
-  //     const formattedTime =
-  //       (hours % 12 || 12) +
-  //       ":" +
-  //       (minutes < 10 ? "0" : "") +
-  //       minutes +
-  //       " " +
-  //       (hours < 12 ? "am" : "pm");
-
-  //     times.push({ id: idCounter, time: formattedTime });
-
-  //     currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
-  //     idCounter++;
-  //   }
-
-  //   return times;
-  // }
 
   function timeHandler(time) {
     // console.log(time);
@@ -140,13 +134,6 @@ function BookingCourt() {
     month: "long",
     year: "numeric",
   });
-
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isShowCourts, setIsShowCourts] = useState(false);
-  const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
-  const [isTime, setIsTime] = useState("");
-  const [secondStep, setSecondStep] = useState(true);
-  const [thirdStep, setThirdStep] = useState(true);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
@@ -279,11 +266,11 @@ function BookingCourt() {
           <div className={classes.timeContainer}>
             <h1>Time:</h1>
             <div className={classes.time}>
-              {newTimesFormatted.map((time) => (
+              {/* {newTimesFormatted.map((time) => (
                 <button key={time.id} onClick={() => timeHandler(time)}>
                   {time}
                 </button>
-              ))}
+              ))} */}
             </div>
           </div>
           <motion.div
