@@ -7,26 +7,26 @@ import { AiFillCaretDown } from "react-icons/ai";
 
 import AuthContext from "@/store/auth-context";
 import BookingCourtDate from "./booking-court-date";
-
+import { fetchTimeSlots, generateTime } from "./generate-times";
 import classes from "./booking-court.module.css";
 import reserve from "@/public/images/reserve.jpg";
 
 // Start of send Times to Mongo
-async function sendTimeSlots(timeSlots) {
-  const response = await fetch("/api/timsSlots/insertTimeSlots", {
-    method: "POST",
-    body: JSON.stringify(timeSlots),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+// async function sendTimeSlots(timeSlots) {
+//   const response = await fetch("/api/timsSlots/insertTimeSlots", {
+//     method: "POST",
+//     body: JSON.stringify(timeSlots),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
 
-  const data = response.json();
+//   const data = response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-}
+//   if (!response.ok) {
+//     throw new Error(data.message || "Something went wrong!");
+//   }
+// }
 // End of send Times to Mongo
 
 function BookingCourt() {
@@ -36,95 +36,18 @@ function BookingCourt() {
   const [isTime, setIsTime] = useState("");
   const [secondStep, setSecondStep] = useState(true);
   const [thirdStep, setThirdStep] = useState(true);
+  const [timeSlots, setTimeSlots] = useState([]);
+  
   const { data: session, status: loading } = useSession();
-
+  
   const { activeDay, numberOfPlayers, setNumberOfPlayers } =
     useContext(AuthContext);
-
-  const [timeSlots, setTimeSlots] = useState([]);
 
   console.log(timeSlots);
 
   useEffect(() => {
-    async function fetchTimeSlots() {
-      try {
-        // Get time slots for the current day and the next 3 days
-        const currentDate = new Date(activeDay);
-        const futureDates = [currentDate];
-
-        for (let i = 1; i <= 3; i++) {
-          const nextDate = new Date(currentDate);
-          nextDate.setDate(currentDate.getDate() + i);
-          nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
-          futureDates.push(nextDate);
-        }
-
-        const timeSlotsData = [];
-
-        for (const date of futureDates) {
-          const timeSlotsForDate = generateTime(date);
-          timeSlotsData.push(...timeSlotsForDate);
-        }
-
-        // Update state with the fetched time slots
-        setTimeSlots(timeSlotsData);
-      } catch (error) {
-        console.error("Error fetching time slots:", error);
-      }
-    }
-
-    fetchTimeSlots();
+    fetchTimeSlots(activeDay, setTimeSlots);
   }, [activeDay]);
-
-  function generateTime(date) {
-    const timeSlots = [];
-
-    // Get the current time
-    const now = new Date();
-
-    // Set the start time to 9:00 AM on the selected date
-    const startTime = new Date(date);
-    startTime.setHours(9, 0, 0, 0);
-
-    // Set the end time to 9:00 PM on the same date
-    const endTime = new Date(date);
-    endTime.setHours(21, 0, 0, 0);
-
-    const intervalMinutes = 60; // You can adjust this to your desired time slot interval
-
-    let currentTime = new Date(startTime);
-
-    while (currentTime <= endTime) {
-      const formattedTime = new Date(currentTime).toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-      });
-      const formattedDate = currentTime.toLocaleDateString("en-US", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
-
-      // Set the status based on whether the current time is before or after now
-      const afterCurrentTimeInThirdDay =
-        date.getDate() === now.getDate() + 3 &&
-        now.getHours() < new Date(currentTime).getHours();
-        
-      const status =
-        afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
-
-      timeSlots.push({
-        date: formattedDate,
-        time: formattedTime,
-        status: status,
-      });
-
-      currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
-    }
-
-    return timeSlots;
-  }
 
   function timeHandler(time) {
     // console.log(time);
@@ -180,6 +103,7 @@ function BookingCourt() {
   };
 
   if (loading === "loading" && session) {
+    console.log("Loading");
     return <p>Loading...</p>;
   }
 
@@ -268,11 +192,12 @@ function BookingCourt() {
           <div className={classes.timeContainer}>
             <h1>Time:</h1>
             <div className={classes.time}>
-              {/* {newTimesFormatted.map((time) => (
-                <button key={time.id} onClick={() => timeHandler(time)}>
-                  {time}
+              {/* {timeSlots} */}
+              {timeSlots.map((timeSlot) => (
+                <button key={timeSlot.id} onClick={() => timeHandler(timeSlot)}>
+                  {timeSlot.time}
                 </button>
-              ))} */}
+              ))}
             </div>
           </div>
           <motion.div
