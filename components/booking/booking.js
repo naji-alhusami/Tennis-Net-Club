@@ -4,29 +4,13 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import classes from "./booking-court.module.css";
 import reserve from "@/public/images/reserve.jpg";
 import BookingSteps from "./booking-steps";
 import SelectionStep from "./booking-first-step";
 import DetailsStep from "./booking-second-step";
+import classes from "./booking.module.css";
 
-// Start of send Times to Mongo
-// async function sendTimeSlots(timeSlots) {
-//   const response = await fetch("/api/timsSlots/insertTimeSlots", {
-//     method: "POST",
-//     body: JSON.stringify(timeSlots),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
 
-//   const data = response.json();
-
-//   if (!response.ok) {
-//     throw new Error(data.message || "Something went wrong!");
-//   }
-// }
-// End of send Times to Mongo
 
 function BookingCourt() {
   const [currentStep, setCurrentStep] = useState(1);

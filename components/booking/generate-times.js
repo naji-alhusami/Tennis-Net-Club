@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 export async function fetchTimeSlots(activeDay, setTimeSlots) {
   try {
     // Get time slots for the current day and the next 3 days
@@ -63,7 +65,10 @@ export function generateTime(date) {
     const status =
       afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
 
+    const id = uuidv4();
+
     timeSlots.push({
+      id,
       date: formattedDate,
       time: formattedTime,
       status: status,

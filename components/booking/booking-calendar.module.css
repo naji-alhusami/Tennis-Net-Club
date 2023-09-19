@@ -55,9 +55,9 @@
 
 .activeDay {
   background-color: #efad32; 
-  color: #fff; 
+  color: white; 
 }
 
 .previousDay {
-  color: #808080; 
+  color: #9e9e9e; 
 }

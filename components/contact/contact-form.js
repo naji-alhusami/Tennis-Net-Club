@@ -24,7 +24,7 @@ function ContactForm() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [enteredMessage, setEnteredMessage] = useState("");
-  const [requestStatus, setRequestStatus] = useState(); 
+  const [requestStatus, setRequestStatus] = useState();
   const [requestError, setRequestError] = useState();
 
   useEffect(() => {

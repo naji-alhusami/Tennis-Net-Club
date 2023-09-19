@@ -1,6 +1,6 @@
 import React from "react";
 
-import BookingCourt from "@/components/booking/booking-court";
+import BookingCourt from "@/components/booking/booking";
 
 function Booking() {
   return (

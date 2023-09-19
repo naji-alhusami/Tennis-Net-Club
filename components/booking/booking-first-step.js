@@ -26,6 +26,43 @@ function SelectionStep({
     fetchTimeSlots(activeDay, setTimeSlots);
   }, [activeDay]);
 
+  useEffect(() => {
+    // This effect runs whenever 'timeSlots' changes
+    console.log(timeSlots);
+
+    // Send timeSlots to MongoDB
+    sendTimeSlotsToMongo(timeSlots);
+  }, [timeSlots]);
+
+  // Start of send Times to Mongo
+  async function sendTimeSlotsToMongo(timeSlots) {
+    try {
+      const response = await fetch("/api/timeSlots/insertTimeSlots", {
+        method: "POST",
+        body: JSON.stringify(timeSlots),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Time slots sent to MongoDB successfully:", data);
+      } else {
+        console.error(
+          "Error sending time slots to MongoDB:",
+          data.message || "Something went wrong!"
+        );
+      }
+    } catch (error) {
+      console.error("Error sending time slots to MongoDB:", error);
+    }
+  }
+  // End of send Times to Mongo
+
+  // const times = await sendTimeSlots(timeSlots);
+
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",
     "Hard Courts": "/images/hard.jpg",
@@ -58,6 +95,7 @@ function SelectionStep({
               style={{ filter: "brightness(0.7)" }}
               width={400}
               height={300}
+              priority={true}
             />
             <div className={classes.courtsContainer}>
               <h3>Courts:</h3>
