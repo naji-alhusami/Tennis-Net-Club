@@ -4,9 +4,9 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
-import classes from "./booking-court-date.module.css";
+import classes from "./booking-calendar.module.css";
 
-function BookingCourtDate() {
+function BookingCalendar() {
   const { activeDay, setActiveDay } = useContext(AuthContext);
 
   const months = [
@@ -152,4 +152,4 @@ function BookingCourtDate() {
   );
 }
 
-export default BookingCourtDate;
+export default BookingCalendar;

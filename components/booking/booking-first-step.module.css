@@ -1,0 +1,128 @@
+.bookingForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 2rem 0;
+}
+
+.bookingPlayers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookingPlayers img {
+  width: 500px;
+  height: 400px;
+  margin: 0.6rem 1rem 0 0;
+}
+
+.courtsContainer {
+  position: absolute;
+  top: 45%;
+  left: 27%;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  color: white;
+}
+
+.courtsContainer h3 {
+  font-size: 2rem;
+  margin: 0 0.8rem 0 0;
+}
+
+.courtsContainer ul {
+  list-style: none;
+  background-color: white;
+  padding: 0;
+}
+
+.courtsContainer li {
+  list-style: none;
+  color: black;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.courtsContainer li:hover {
+  background-color: #268750;
+  list-style: none;
+  color: white;
+  padding: 0.5rem;
+}
+
+.playersContainer {
+  position: absolute;
+  top: 65%;
+  left: 27%;
+  color: white;
+}
+
+.playersContainer button {
+  background: none;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 0.4rem;
+}
+
+.playersContainer h3 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.playersContainer span {
+  font-size: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.timeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 9rem 3rem 9rem;
+}
+
+.time {
+  margin-bottom: 1.5rem;
+}
+
+.time button {
+  margin: 1rem 1rem;
+  padding: 0.2rem 0.7rem;
+  background-color: #efad32;
+  color: #fff;
+  border: none;
+}
+
+.time button:focus {
+  outline: none;
+  background-color: #268750;
+}
+
+.bookButton {
+  cursor: pointer;
+  background-color: #efad32;
+  padding: 0.1rem 1.3rem;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 0px 1px #db981b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 38rem 3rem 38rem;
+}
+
+.bookButton p {
+  margin: 0.5rem;
+}
