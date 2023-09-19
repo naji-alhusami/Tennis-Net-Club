@@ -95,7 +95,6 @@ function BookingCourt() {
     let currentTime = new Date(startTime);
 
     while (currentTime <= endTime) {
-      // Format the time as a string with date and time information
       const formattedTime = new Date(currentTime).toLocaleTimeString("en-US", {
         hour: "numeric",
         minute: "numeric",
@@ -108,8 +107,12 @@ function BookingCourt() {
       });
 
       // Set the status based on whether the current time is before or after now
-      const status = currentTime > now;
-      console.log(currentTime);
+      const afterCurrentTimeInThirdDay =
+        date.getDate() === now.getDate() + 3 &&
+        now.getHours() < new Date(currentTime).getHours();
+        
+      const status =
+        afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
 
       timeSlots.push({
         date: formattedDate,
@@ -120,7 +123,6 @@ function BookingCourt() {
       currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
     }
 
-    console.log(timeSlots);
     return timeSlots;
   }
 
