@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// import { fetchTimeSlots } from "@/components/booking/generate-times";
+
 import AuthContext from "./auth-context";
 
 const MyProvider = (props) => {
-  const currentDay = new Date();
-  const [activeDay, setActiveDay] = useState(currentDay);
+  const [activeDay, setActiveDay] = useState(new Date());
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  // useEffect(() => {
+  //   fetchTimeSlots(activeDay, setTimeSlots);
+  // }, [activeDay]);
 
   return (
     <AuthContext.Provider
@@ -13,6 +19,8 @@ const MyProvider = (props) => {
         setActiveDay,
         numberOfPlayers,
         setNumberOfPlayers,
+        timeSlots,
+        setTimeSlots,
       }}
     >
       {props.children}

@@ -17,51 +17,15 @@ function SelectionStep({
   isShowCourts,
   setIsShowCourts,
 }) {
-  const [timeSlots, setTimeSlots] = useState([]);
-  console.log(timeSlots);
-  const { activeDay, numberOfPlayers, setNumberOfPlayers } =
+  // const [timeSlots, setTimeSlots] = useState([]);
+  // console.log(timeSlots);
+  const { activeDay, numberOfPlayers, setNumberOfPlayers, timeSlots } =
     useContext(AuthContext);
-
-  useEffect(() => {
-    fetchTimeSlots(activeDay, setTimeSlots);
-  }, [activeDay]);
-
-  useEffect(() => {
-    // This effect runs whenever 'timeSlots' changes
-    console.log(timeSlots);
-
-    // Send timeSlots to MongoDB
-    sendTimeSlotsToMongo(timeSlots);
-  }, [timeSlots]);
-
-  // Start of send Times to Mongo
-  async function sendTimeSlotsToMongo(timeSlots) {
-    try {
-      const response = await fetch("/api/timeSlots/insertTimeSlots", {
-        method: "POST",
-        body: JSON.stringify(timeSlots),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Time slots sent to MongoDB successfully:", data);
-      } else {
-        console.error(
-          "Error sending time slots to MongoDB:",
-          data.message || "Something went wrong!"
-        );
-      }
-    } catch (error) {
-      console.error("Error sending time slots to MongoDB:", error);
-    }
-  }
-  // End of send Times to Mongo
-
-  // const times = await sendTimeSlots(timeSlots);
+  // console.log(timeSlots);
+  // useEffect(() => {
+  //   // console.log("Effect is running with activeDay:", activeDay);
+  //   fetchTimeSlots(activeDay, setTimeSlots);
+  // }, [activeDay, setTimeSlots]);
 
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",
@@ -83,6 +47,8 @@ function SelectionStep({
       setNumberOfPlayers(numberOfPlayers + 1);
     }
   };
+
+  console.log(timeSlots);
 
   return (
     <Fragment>
@@ -119,24 +85,31 @@ function SelectionStep({
               <button onClick={decreasePlayers}>-</button>
             </div>
           </div>
-          <BookingCourtDate />
+          <BookingCourtDate timeSlots={timeSlots} />
         </div>
 
         <div className={classes.timeContainer}>
           <h1>Time:</h1>
           <div className={classes.time}>
-            {/* {timeSlots} */}
-            {timeSlots.map((timeSlot) => (
-              <button
-                key={timeSlot.id}
-                onClick={() => console.log("clicked")}
-                // onClick={() => timeHandler(timeSlot)}
-              >
-                {timeSlot.time}
-              </button>
-            ))}
+            {timeSlots.map((timeSlot) => {
+              console.log(timeSlot);
+              if (timeSlot.status === true) {
+                return (
+                  <button
+                    key={timeSlot.id}
+                    onClick={() => console.log("clicked")}
+                    // onClick={() => timeHandler(timeSlot)}
+                  >
+                    {timeSlot.time}
+                  </button>
+                );
+              } else {
+                return null;
+              }
+            })}
           </div>
         </div>
+
         <motion.div
           className={classes.bookButton}
           whileHover={{ scale: 1.1 }}

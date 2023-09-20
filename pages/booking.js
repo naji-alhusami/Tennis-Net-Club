@@ -7,9 +7,8 @@ import BookingCourt from "@/components/booking/booking";
 function Booking() {
   const { data: session, status: loading } = useSession();
 
-  console.log(loading);
   if (loading === "loading") {
-    console.log("Loading...");
+    // console.log("Loading...");
     return <p>Loading...</p>;
   }
 

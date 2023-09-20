@@ -1,5 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "@/store/auth-context";
+import { fetchTimeSlots } from "./generate-times";
+
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -7,8 +9,6 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-calendar.module.css";
 
 function BookingCalendar() {
-  const { activeDay, setActiveDay } = useContext(AuthContext);
-
   const months = [
     "January",
     "February",
@@ -23,11 +23,29 @@ function BookingCalendar() {
     "November",
     "December",
   ];
+
+  const { activeDay, setActiveDay, timeSlots, setTimeSlots } =
+    useContext(AuthContext);
+
+  // console.log(activeDay, timeSlots);
+
   const currentDay = new Date();
   const thisMonth = currentDay.getMonth();
   const thisYear = currentDay.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function newfunc() {
+      const timess = await fetchTimeSlots(activeDay);
+      // console.log(timess);
+      setTimeSlots(timess);
+      setLoading(false);
+    }
+
+    newfunc();
+  }, [activeDay, setTimeSlots]);
 
   function handleNextMonth() {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
@@ -69,9 +87,10 @@ function BookingCalendar() {
     calendarGrid.push(day);
   }
 
-  function handleDayClick(day) {
-    console.log("clicked");
+  // Start of send Times to Mongo
+  async function showTimeSlotsHandler(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
+    // console.log(currentDate);
     currentDate.setHours(0, 0, 0, 0); // Set time to midnight
 
     const currentDayCopy = new Date(currentDay);
@@ -83,6 +102,32 @@ function BookingCalendar() {
     }
 
     setActiveDay(currentDate);
+    setLoading(false);
+    try {
+      await sendDataToMongo();
+    } catch (error) {
+      console.log(error.message || "Error heeere!");
+    }
+  }
+
+  async function sendDataToMongo() {
+    // console.log(timeSlots);
+    const response = await fetch("/api/timeSlots/insertTimeSlots", {
+      method: "POST",
+      body: JSON.stringify(timeSlots),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("inside sending data function");
+    const data = await response.json();
+    // console.log(data);
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong!");
+    } else {
+      console.log(data);
+    }
   }
 
   function getClassForDay(day) {
@@ -99,6 +144,12 @@ function BookingCalendar() {
       return classes.previousDay;
     }
   }
+
+  if (loading) {
+    return <p>Loading time slots...</p>;
+  }
+
+  // console.log(timeSlots);
 
   return (
     <div className={classes.bookingDate}>
@@ -137,7 +188,7 @@ function BookingCalendar() {
                       <td
                         key={subIndex}
                         className={getClassForDay(item)}
-                        onClick={() => handleDayClick(item)}
+                        onClick={() => showTimeSlotsHandler(item)}
                       >
                         {item}
                       </td>
