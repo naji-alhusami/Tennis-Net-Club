@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -10,16 +9,12 @@ import SelectionStep from "./booking-first-step";
 import DetailsStep from "./booking-second-step";
 import classes from "./booking.module.css";
 
-
-
-function BookingCourt() {
+function BookingCourt({ session }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [secondStep, setSecondStep] = useState(true);
   const [thirdStep, setThirdStep] = useState(true);
   const [isShowCourts, setIsShowCourts] = useState(false);
-
-  const { data: session, status: loading } = useSession();
 
   // function timeHandler(time) {
   //   // console.log(time);
@@ -52,11 +47,6 @@ function BookingCourt() {
     setIsShowCourts(false);
   };
 
-  if (loading === "loading" && session) {
-    console.log("Loading");
-    return <p>Loading...</p>;
-  }
-
   return (
     <div className={classes.bookingContainer}>
       <div className={classes.imageContainer}>
@@ -81,7 +71,7 @@ function BookingCourt() {
           isShowCourts={isShowCourts}
           setIsShowCourts={setIsShowCourts}
         />
-      ) : currentStep === 2 && loading === "authenticated" ? (
+      ) : currentStep === 2 ? (
         <DetailsStep
           session={session}
           selectedCourtType={selectedCourtType}

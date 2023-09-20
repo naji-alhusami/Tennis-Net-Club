@@ -8,6 +8,12 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
+  // const { data: sessionData, status: loading } = useSession();
+
+  // if (loading && !sessionData) {
+  //   return <p>Loading...</p>;
+  // }
+
   return (
     <MyProvider>
       <SessionProvider session={session}>

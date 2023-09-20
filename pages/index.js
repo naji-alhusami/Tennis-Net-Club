@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 import Head from "next/head";
-import { useSession } from "next-auth/react";
 
 import Starting from "@/components/home-page/starting";
 import FeaturedPosts from "@/components/home-page/featured-posts";
@@ -14,11 +13,6 @@ import { servicesData } from "@/lib/servicesData";
 import { getBestPosts } from "@/lib/posts-util";
 
 function HomePage(props) {
-  const { data: session, status: loading } = useSession();
-
-  if (loading === "loading" && session) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <Fragment>

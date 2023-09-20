@@ -70,6 +70,7 @@ function BookingCalendar() {
   }
 
   function handleDayClick(day) {
+    console.log("clicked");
     const currentDate = new Date(currentYear, currentMonth, day);
     currentDate.setHours(0, 0, 0, 0); // Set time to midnight
 
