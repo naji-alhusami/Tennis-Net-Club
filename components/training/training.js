@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -12,6 +12,48 @@ import eq3 from "@/public/images/req3.png";
 import eq4 from "@/public/images/req4.png";
 
 function Training() {
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  useEffect(() => {
+    async function fetchTimeSlotsAndSendToMongo() {
+      try {
+        const dataFromMongo = await fetchDataFromMongo();
+        setTimeSlots(dataFromMongo);
+      } catch (error) {
+        console.error(error.message || "Error here!");
+      }
+    }
+
+    fetchTimeSlotsAndSendToMongo();
+
+    async function fetchDataFromMongo() {
+      try {
+        const response = await fetch("/api/timeSlots/getTimeSlots", {
+          method: "GET",
+          body: JSON.stringify(),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          console.log("naji");
+          throw new Error("Failed to fetch data from the server");
+        }
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+      }
+    }
+    console.log(timeSlots);
+  }, [timeSlots]);
+
+  useEffect(() => {
+    console.log(timeSlots);
+  }, [timeSlots]);
+
   return (
     <Fragment>
       <div className={classes.trainingContainer}>

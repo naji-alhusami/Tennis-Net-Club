@@ -2,7 +2,6 @@ import { connectToDatabase } from "@/lib/db";
 
 async function insertTimesSlotsHandler(req, res) {
   if (req.method === "POST") {
-    console.log(req.body);
 
     const client = await connectToDatabase();
     const db = client.db();
@@ -15,7 +14,6 @@ async function insertTimesSlotsHandler(req, res) {
       if (existingTimes > 0) {
         await db.collection("times").deleteMany({});
       }
-      // Convert date and time strings to JavaScript Date objects
       const timeSlots = req.body.map((slot) => ({
         date: slot.date,
         time: slot.time,
@@ -26,14 +24,14 @@ async function insertTimesSlotsHandler(req, res) {
       timeSlots.id = result.insertedIds;
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Storing message failed." });
+      res.status(500).json({ message: "Storing times failed." });
     } finally {
       client.close();
     }
 
     res
       .status(201)
-      .json({ message: "Successfully stored message!", times: timeSlots });
+      .json({ message: "Successfully stored times!", times: timeSlots });
   }
 }
 
