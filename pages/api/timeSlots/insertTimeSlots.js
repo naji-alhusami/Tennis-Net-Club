@@ -11,7 +11,6 @@ async function insertTimesSlotsHandler(req, res) {
 
     try {
       const existingTimes = await db.collection("times").countDocuments();
-      console.log(existingTimes);
 
       if (existingTimes > 0) {
         await db.collection("times").deleteMany({});

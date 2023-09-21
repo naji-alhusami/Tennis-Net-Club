@@ -24,25 +24,47 @@ function BookingCalendar() {
     "December",
   ];
 
-  const { activeDay, setActiveDay, timeSlots, setTimeSlots } =
-    useContext(AuthContext);
+  const { activeDay, setActiveDay } = useContext(AuthContext);
 
   const currentDay = new Date();
   const thisMonth = currentDay.getMonth();
   const thisYear = currentDay.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function newfunc() {
-      const timess = await fetchTimeSlots(activeDay);
-      setTimeSlots(timess);
-      setLoading(false);
+    async function fetchTimeSlotsAndSendToMongo() {
+      try {
+        const timess = await fetchTimeSlots(activeDay);
+        console.log("Updated time slots:", timess);
+        await sendDataToMongo(timess);
+      } catch (error) {
+        console.error(error.message || "Error here!");
+      }
     }
 
-    newfunc();
-  }, [activeDay, setTimeSlots]);
+    fetchTimeSlotsAndSendToMongo();
+
+    async function sendDataToMongo(timess) {
+      console.log(timess);
+      const response = await fetch("/api/timeSlots/insertTimeSlots", {
+        method: "POST",
+        body: JSON.stringify(timess),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("inside sending data function");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong!");
+      } else {
+        console.log(data);
+      }
+    }
+  }, [activeDay]);
 
   function handleNextMonth() {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
@@ -84,8 +106,7 @@ function BookingCalendar() {
     calendarGrid.push(day);
   }
 
-  // Start of send Times to Mongo
-  async function showTimeSlotsHandler(day) {
+  function showTimeSlotsHandler(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
     currentDate.setHours(0, 0, 0, 0); // Set time to midnight
 
@@ -98,33 +119,6 @@ function BookingCalendar() {
     }
 
     setActiveDay(currentDate);
-    setLoading(false);
-    try {
-      await sendDataToMongo();
-    } catch (error) {
-      console.log(error.message || "Error heeere!");
-    }
-  }
-
-  async function sendDataToMongo() {
-    console.log(timeSlots);
-    const response = await fetch("/api/timeSlots/insertTimeSlots", {
-      method: "POST",
-      body: JSON.stringify(timeSlots),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    console.log("inside sending data function");
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || "Something went wrong!");
-    } else {
-      console.log(data);
-    }
-    // }
   }
 
   function getClassForDay(day) {
@@ -141,12 +135,6 @@ function BookingCalendar() {
       return classes.previousDay;
     }
   }
-
-  if (loading) {
-    return <p>Loading time slots...</p>;
-  }
-
-  // console.log(timeSlots);
 
   return (
     <div className={classes.bookingDate}>

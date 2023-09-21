@@ -49,7 +49,7 @@ function Booking() {
             </p>
           </div>
           <div className={classes.bookingContainer}>
-            <BookingDate />
+            {/* <BookingDate /> */}
             <div className={classes.playersContainer}>
               <h3>Players:</h3>
               <button onClick={decreasePlayers}>-</button>

@@ -3,7 +3,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import BookingCourtDate from "./booking-calendar";
-import { fetchTimeSlots } from "./generate-times";
 import AuthContext from "@/store/auth-context";
 import { AiFillCaretDown } from "react-icons/ai";
 
@@ -19,10 +18,6 @@ function SelectionStep({
 
   const { activeDay, numberOfPlayers, setNumberOfPlayers, timeSlots } =
     useContext(AuthContext);
-  // useEffect(() => {
-  //   // console.log("Effect is running with activeDay:", activeDay);
-  //   fetchTimeSlots(activeDay, setTimeSlots);
-  // }, [activeDay, setTimeSlots]);
 
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",
@@ -45,7 +40,6 @@ function SelectionStep({
     }
   };
 
-  // console.log(timeSlots);
 
   return (
     <Fragment>
@@ -82,12 +76,12 @@ function SelectionStep({
               <button onClick={decreasePlayers}>-</button>
             </div>
           </div>
-          <BookingCourtDate timeSlots={timeSlots} />
+          <BookingCourtDate />
         </div>
 
         <div className={classes.timeContainer}>
           <h1>Time:</h1>
-          <div className={classes.time}>
+          {/* <div className={classes.time}>
             {timeSlots.map((timeSlot) => {
               // console.log(timeSlot);
               if (timeSlot.status === true) {
@@ -104,7 +98,7 @@ function SelectionStep({
                 return null;
               }
             })}
-          </div>
+          </div> */}
         </div>
 
         <motion.div

@@ -1,29 +1,26 @@
-// import { v4 as uuidv4 } from "uuid";
-
 export async function fetchTimeSlots(activeDay) {
-  // try {
-  // Get time slots for the current day and the next 3 days
-  const currentDate = new Date(activeDay);
-  const futureDates = [currentDate];
+  try {
+    // Get time slots for the current day and the next 3 days
+    const currentDate = new Date(activeDay);
+    const futureDates = [currentDate];
 
-  for (let i = 1; i <= 2; i++) {
-    const nextDate = new Date(currentDate);
-    nextDate.setDate(currentDate.getDate() + i);
-    nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
-    futureDates.push(nextDate);
-  }
+    for (let i = 1; i <= 2; i++) {
+      const nextDate = new Date(currentDate);
+      nextDate.setDate(currentDate.getDate() + i);
+      nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
+      futureDates.push(nextDate);
+    }
 
-  const timeSlotsData = [];
-  for (const date of futureDates) {
-    const timeSlotsForDate = generateTime(date);
-    timeSlotsData.push(...timeSlotsForDate);
+    const timeSlotsData = [];
+    for (const date of futureDates) {
+      const timeSlotsForDate = generateTime(date);
+      timeSlotsData.push(...timeSlotsForDate);
+    }
+
+    return timeSlotsData;
+  } catch (error) {
+    console.error("Error fetching time slots:", error);
   }
-  // Update state with the fetched time slots
-  return timeSlotsData;
-  // setTimeSlots(timeSlotsData);
-  // } catch (error) {
-  //   console.error("Error fetching time slots:", error);
-  // }
 }
 
 export function generateTime(date) {
@@ -64,10 +61,7 @@ export function generateTime(date) {
     const status =
       afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
 
-    // const id = uuidv4();
-
     timeSlots.push({
-      // id,
       date: formattedDate,
       time: formattedTime,
       status: status,
