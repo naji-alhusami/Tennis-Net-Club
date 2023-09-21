@@ -27,8 +27,6 @@ function BookingCalendar() {
   const { activeDay, setActiveDay, timeSlots, setTimeSlots } =
     useContext(AuthContext);
 
-  // console.log(activeDay, timeSlots);
-
   const currentDay = new Date();
   const thisMonth = currentDay.getMonth();
   const thisYear = currentDay.getFullYear();
@@ -39,7 +37,6 @@ function BookingCalendar() {
   useEffect(() => {
     async function newfunc() {
       const timess = await fetchTimeSlots(activeDay);
-      // console.log(timess);
       setTimeSlots(timess);
       setLoading(false);
     }
@@ -90,7 +87,6 @@ function BookingCalendar() {
   // Start of send Times to Mongo
   async function showTimeSlotsHandler(day) {
     const currentDate = new Date(currentYear, currentMonth, day);
-    // console.log(currentDate);
     currentDate.setHours(0, 0, 0, 0); // Set time to midnight
 
     const currentDayCopy = new Date(currentDay);
@@ -111,7 +107,7 @@ function BookingCalendar() {
   }
 
   async function sendDataToMongo() {
-    // console.log(timeSlots);
+    console.log(timeSlots);
     const response = await fetch("/api/timeSlots/insertTimeSlots", {
       method: "POST",
       body: JSON.stringify(timeSlots),
@@ -122,12 +118,13 @@ function BookingCalendar() {
 
     console.log("inside sending data function");
     const data = await response.json();
-    // console.log(data);
+
     if (!response.ok) {
       throw new Error(data.message || "Something went wrong!");
     } else {
       console.log(data);
     }
+    // }
   }
 
   function getClassForDay(day) {

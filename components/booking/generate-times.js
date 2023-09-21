@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 export async function fetchTimeSlots(activeDay) {
   // try {
@@ -6,7 +6,7 @@ export async function fetchTimeSlots(activeDay) {
   const currentDate = new Date(activeDay);
   const futureDates = [currentDate];
 
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 2; i++) {
     const nextDate = new Date(currentDate);
     nextDate.setDate(currentDate.getDate() + i);
     nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
@@ -64,10 +64,10 @@ export function generateTime(date) {
     const status =
       afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
 
-    const id = uuidv4();
+    // const id = uuidv4();
 
     timeSlots.push({
-      id,
+      // id,
       date: formattedDate,
       time: formattedTime,
       status: status,

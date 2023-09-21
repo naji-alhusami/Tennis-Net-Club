@@ -12,16 +12,13 @@ import classes from "./booking-first-step.module.css";
 function SelectionStep({
   handleChangeCourts,
   selectedCourtType,
-  // courtTypeImages,
   changeStep,
   isShowCourts,
   setIsShowCourts,
 }) {
-  // const [timeSlots, setTimeSlots] = useState([]);
-  // console.log(timeSlots);
+
   const { activeDay, numberOfPlayers, setNumberOfPlayers, timeSlots } =
     useContext(AuthContext);
-  // console.log(timeSlots);
   // useEffect(() => {
   //   // console.log("Effect is running with activeDay:", activeDay);
   //   fetchTimeSlots(activeDay, setTimeSlots);
@@ -48,7 +45,7 @@ function SelectionStep({
     }
   };
 
-  console.log(timeSlots);
+  // console.log(timeSlots);
 
   return (
     <Fragment>
@@ -92,7 +89,7 @@ function SelectionStep({
           <h1>Time:</h1>
           <div className={classes.time}>
             {timeSlots.map((timeSlot) => {
-              console.log(timeSlot);
+              // console.log(timeSlot);
               if (timeSlot.status === true) {
                 return (
                   <button
