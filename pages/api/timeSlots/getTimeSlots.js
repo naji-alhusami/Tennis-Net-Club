@@ -6,6 +6,7 @@ async function getTimeSlotsHandler(req, res) {
     const db = client.db();
     const collection = db.collection("times");
     console.log(collection);
+    
     const timeSlots = await collection.find({}).toArray();
     res.status(200).json({ data: timeSlots });
 

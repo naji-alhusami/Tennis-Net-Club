@@ -3,26 +3,37 @@ import React from "react";
 import { useSession } from "next-auth/react";
 
 import BookingCourt from "@/components/booking/booking";
+import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
 
-function Booking() {
+function BookingPage(props) {
   const { data: session, status: loading } = useSession();
 
   if (loading === "loading") {
-    // console.log("Loading...");
     return <p>Loading...</p>;
   }
 
   if (!session) {
     console.log("User not authenticated");
-    // Handle cases where the user is not authenticated, e.g., show a login button.
     return <p>Please log in to access this feature.</p>;
   }
 
   return (
     <section>
-      <BookingCourt session={session} />
+      <BookingCourt session={session} timeSlots={props.timeSlots} />
     </section>
   );
 }
 
-export default Booking;
+export async function getStaticProps() {
+  const dataFromMongo = await fetchDataFromMongo();
+  console.log(dataFromMongo);
+
+  return {
+    props: {
+      timeSlots: dataFromMongo.data,
+    },
+    revalidate: 5,
+  };
+}
+
+export default BookingPage;
