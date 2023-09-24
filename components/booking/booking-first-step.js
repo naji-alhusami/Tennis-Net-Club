@@ -1,14 +1,15 @@
-import React, { Fragment, useEffect, useContext } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { sendDataToMongo } from "@/lib/sendTimeSlots";
 import BookingCourtDate from "./booking-calendar";
-import { fetchTimeSlots } from "./generate-times";
+import { generateTimeSlots } from "./generate-times";
 import AuthContext from "@/store/auth-context";
 import { AiFillCaretDown } from "react-icons/ai";
 
 import classes from "./booking-first-step.module.css";
+import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
 
 function SelectionStep({
   handleChangeCourts,
@@ -16,11 +17,12 @@ function SelectionStep({
   changeStep,
   isShowCourts,
   setIsShowCourts,
-  timeSlots,
 }) {
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { activeDay, numberOfPlayers, setNumberOfPlayers } =
     useContext(AuthContext);
-  console.log(timeSlots);
+
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",
     "Hard Courts": "/images/hard.jpg",
@@ -44,16 +46,29 @@ function SelectionStep({
 
   // useEffect of sending data to MongoDB
   useEffect(() => {
-    async function fetchTimeSlotsAndSendToMongo() {
+    async function fetchData() {
       try {
-        const timess = await fetchTimeSlots(activeDay);
-        await sendDataToMongo(timess);
+        setIsLoading(true);
+
+        // Fetch and send data to MongoDB
+        const timeSlots = await generateTimeSlots(activeDay);
+        await sendDataToMongo(timeSlots);
+
+        // Fetch data from MongoDB
+        const dataFromMongo = await fetchDataFromMongo();
+        setTimeSlots(dataFromMongo);
+
+        setIsLoading(false);
       } catch (error) {
         console.error(error.message || "Error here!");
+        setIsLoading(false);
       }
     }
 
-    fetchTimeSlotsAndSendToMongo();
+    fetchData();
+    if (isLoading === false) {
+      console.log(timeSlots);
+    }
   }, [activeDay]);
 
   return (
@@ -96,24 +111,28 @@ function SelectionStep({
 
         <div className={classes.timeContainer}>
           <h1>Time:</h1>
-          {/* <div className={classes.time}>
-            {timeSlots.map((timeSlot) => {
-              // console.log(timeSlot);
-              if (timeSlot.status === true) {
-                return (
-                  <button
-                    key={timeSlot.id}
-                    onClick={() => console.log("clicked")}
-                    // onClick={() => timeHandler(timeSlot)}
-                  >
-                    {timeSlot.time}
-                  </button>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </div> */}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <div className={classes.time}>
+              {timeSlots.data.map((timeSlot) => {
+                // console.log(timeSlot);
+                if (timeSlot.status === true) {
+                  return (
+                    <button
+                      key={timeSlot._id}
+                      onClick={() => console.log("clicked")}
+                      // onClick={() => timeHandler(timeSlot)}
+                    >
+                      {timeSlot.time}
+                    </button>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+          )}
         </div>
 
         <motion.div

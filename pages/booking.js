@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 
 import BookingCourt from "@/components/booking/booking";
 import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
 
-function BookingPage(props) {
+function BookingPage() {
   const { data: session, status: loading } = useSession();
+
+  // useEffect(() => {
+  //   async function fetchTimeSlotsAndSendToMongo() {
+  //     try {
+  //       const dataFromMongo = await fetchDataFromMongo();
+  //       setTimeSlots(dataFromMongo);
+  //     } catch (error) {
+  //       console.error(error.message || "Error here!");
+  //     }
+  //   }
+
+  //   fetchTimeSlotsAndSendToMongo();
+
+  //   console.log(timeSlots);
+  // }, [timeSlots]);
 
   if (loading === "loading") {
     return <p>Loading...</p>;
@@ -19,21 +34,9 @@ function BookingPage(props) {
 
   return (
     <section>
-      <BookingCourt session={session} timeSlots={props.timeSlots} />
+      <BookingCourt session={session} />
     </section>
   );
-}
-
-export async function getStaticProps() {
-  const dataFromMongo = await fetchDataFromMongo();
-  console.log(dataFromMongo);
-
-  return {
-    props: {
-      timeSlots: dataFromMongo.data,
-    },
-    revalidate: 5,
-  };
 }
 
 export default BookingPage;

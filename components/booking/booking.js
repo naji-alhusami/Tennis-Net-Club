@@ -9,7 +9,7 @@ import SelectionStep from "./booking-first-step";
 import DetailsStep from "./booking-second-step";
 import classes from "./booking.module.css";
 
-function BookingCourt({ session, timeSlots }) {
+function BookingCourt({ session }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [secondStep, setSecondStep] = useState(true);
@@ -70,7 +70,6 @@ function BookingCourt({ session, timeSlots }) {
           changeStep={changeStep}
           isShowCourts={isShowCourts}
           setIsShowCourts={setIsShowCourts}
-          timeSlots={timeSlots}
         />
       ) : currentStep === 2 ? (
         <DetailsStep

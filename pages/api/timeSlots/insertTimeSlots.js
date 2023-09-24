@@ -1,8 +1,7 @@
 import { connectToDatabase } from "@/lib/db";
 
-async function insertTimesSlotsHandler(req, res) {
+async function insertTimeSlotsHandler(req, res) {
   if (req.method === "POST") {
-
     const client = await connectToDatabase();
     const db = client.db();
 
@@ -23,16 +22,14 @@ async function insertTimesSlotsHandler(req, res) {
       const result = await db.collection("times").insertMany(timeSlots);
       timeSlots.id = result.insertedIds;
     } catch (error) {
-      console.error(error);
       res.status(500).json({ message: "Storing times failed." });
     } finally {
       client.close();
     }
-
     res
       .status(201)
       .json({ message: "Successfully stored times!", times: timeSlots });
   }
 }
 
-export default insertTimesSlotsHandler;
+export default insertTimeSlotsHandler;

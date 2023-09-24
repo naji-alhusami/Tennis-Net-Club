@@ -43,7 +43,7 @@ async function handler(req, res) {
 
   if (existingUser) {
     res.status(422).json({ message: "Member Exists!" });
-    client.close();
+    // client.close();
     return;
   }
 
@@ -56,8 +56,8 @@ async function handler(req, res) {
     role: role,
   });
 
+  // client.close();
   res.status(201).json({ message: "Created Member!" });
-  client.close();
 }
 
 export default handler;
