@@ -19,6 +19,7 @@ function SelectionStep({
   setIsShowCourts,
 }) {
   const [timeSlots, setTimeSlots] = useState([]);
+  const [isDaySelected, setIsDaySelected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { activeDay, numberOfPlayers, setNumberOfPlayers } =
     useContext(AuthContext);
@@ -49,16 +50,18 @@ function SelectionStep({
     async function fetchData() {
       try {
         setIsLoading(true);
+        if (activeDay) {
+          console.log(activeDay);
+          // Fetch and send data to MongoDB
+          const timeSlots = await generateTimeSlots(activeDay);
+          await sendDataToMongo(timeSlots);
 
-        // Fetch and send data to MongoDB
-        const timeSlots = await generateTimeSlots(activeDay);
-        await sendDataToMongo(timeSlots);
+          // Fetch data from MongoDB
+          const dataFromMongo = await fetchDataFromMongo();
+          setTimeSlots(dataFromMongo);
 
-        // Fetch data from MongoDB
-        const dataFromMongo = await fetchDataFromMongo();
-        setTimeSlots(dataFromMongo);
-
-        setIsLoading(false);
+          setIsLoading(false);
+        }
       } catch (error) {
         console.error(error.message || "Error here!");
         setIsLoading(false);
@@ -70,7 +73,7 @@ function SelectionStep({
       console.log(timeSlots);
     }
   }, [activeDay]);
-
+  console.log(isDaySelected);
   return (
     <Fragment>
       <div>
@@ -106,33 +109,61 @@ function SelectionStep({
               <button onClick={decreasePlayers}>-</button>
             </div>
           </div>
-          <BookingCourtDate />
+          <BookingCourtDate setIsDaySelected={setIsDaySelected} />
         </div>
 
         <div className={classes.timeContainer}>
           <h1>Time:</h1>
-          {isLoading ? (
+          {!isDaySelected ? (
+            <p>Select a day to view available times.</p>
+          ) : (
+            <div className={classes.time}>
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                timeSlots.data.map((timeSlot) => {
+                  if (timeSlot.status === true) {
+                    return (
+                      <button
+                        key={timeSlot._id}
+                        onClick={() => console.log("clicked")}
+                        // onClick={() => timeHandler(timeSlot)}
+                      >
+                        {timeSlot.time}
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })
+              )}
+            </div>
+          )}
+          {/* {isLoading ? (
             <p>Loading...</p>
           ) : (
             <div className={classes.time}>
-              {timeSlots.data.map((timeSlot) => {
-                // console.log(timeSlot);
-                if (timeSlot.status === true) {
-                  return (
-                    <button
-                      key={timeSlot._id}
-                      onClick={() => console.log("clicked")}
-                      // onClick={() => timeHandler(timeSlot)}
-                    >
-                      {timeSlot.time}
-                    </button>
-                  );
-                } else {
-                  return null;
-                }
-              })}
+              {isDaySelected ? (
+                timeSlots.data.map((timeSlot) => {
+                  if (timeSlot.status === true) {
+                    return (
+                      <button
+                        key={timeSlot._id}
+                        onClick={() => console.log("clicked")}
+                        // onClick={() => timeHandler(timeSlot)}
+                      >
+                        {timeSlot.time}
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })
+              ) : (
+                <p>Select a day to view time slots.</p>
+              )}
             </div>
-          )}
+          )} */}
         </div>
 
         <motion.div

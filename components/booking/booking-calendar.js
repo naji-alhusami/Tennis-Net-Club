@@ -7,7 +7,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import classes from "./booking-calendar.module.css";
 
-function BookingCalendar() {
+function BookingCalendar({ setIsDaySelected }) {
   const months = [
     "January",
     "February",
@@ -54,35 +54,47 @@ function BookingCalendar() {
   }
   // Finish handle clicking on prev month
 
-  // function showTimeSlotsHandler(day) {
-  //   const currentDate = new Date(currentYear, currentMonth, day);
-  //   currentDate.setHours(0, 0, 0, 0); // Set time to midnight
+  function showTimeSlotsHandler(day) {
+    const selectedDate = new Date(currentYear, currentMonth, day);
+    selectedDate.setHours(0, 0, 0, 0); // Set time to midnight
 
-  //   const currentDayCopy = new Date(currentDay);
-  //   currentDayCopy.setHours(0, 0, 0, 0); // Set time to midnight for currentDay
+    currentDate.setHours(0, 0, 0, 0); // Set time to midnight for currentDate
 
-  //   if (currentDate.getTime() < currentDayCopy.getTime()) {
-  //     // Prevent selecting dates before the current day
-  //     return;
-  //   }
+    if (selectedDate.getTime() < currentDate.getTime()) {
+      console.log("inside prev days");
+      // Prevent selecting dates before the current day
+      return;
+    }
 
-  //   setActiveDay(currentDate);
-  // }
+    setIsDaySelected(true);
+    setActiveDay(selectedDate);
+  }
 
-  // console.log(currentDate);
-  // it is giving the date of today
   function getClassForDay(day) {
     const allMonthDates = new Date(currentYear, currentMonth, day);
-    // console.log(currentDate.getDate());
-    // if (
-    //   currentDate.getDate() === activeDay.getDate() &&
-    //   currentMonth === activeDay.getMonth()
-    // ) {
-    //   return classes.activeDay;
-    // } else
+
+    if (activeDay) {
+      if (
+        allMonthDates.getDate() === activeDay.getDate() &&
+        currentMonth === activeDay.getMonth() &&
+        currentYear === activeDay.getFullYear()
+      ) {
+        return classes.activeDay;
+      }
+    }
+
+    if (
+      allMonthDates.getDate() === currentDate.getDate() &&
+      currentMonth === thisMonth &&
+      currentYear === thisYear
+    ) {
+      return classes.currentDate;
+    }
+
     if (
       allMonthDates.getDate() < currentDate.getDate() &&
-      currentMonth === thisMonth
+      currentMonth === thisMonth &&
+      currentYear === thisYear
     ) {
       return classes.previousDay;
     }
@@ -148,7 +160,7 @@ function BookingCalendar() {
                       <td
                         key={subIndex}
                         className={getClassForDay(item)}
-                        // onClick={() => showTimeSlotsHandler(item)}
+                        onClick={() => showTimeSlotsHandler(item)}
                       >
                         {item}
                       </td>

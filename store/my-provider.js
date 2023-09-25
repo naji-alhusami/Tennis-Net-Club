@@ -4,7 +4,7 @@ import AuthContext from "./auth-context";
 
 const MyProvider = (props) => {
   const currentDay = new Date();
-  const [activeDay, setActiveDay] = useState(new Date());
+  const [activeDay, setActiveDay] = useState();
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
 
   return (
