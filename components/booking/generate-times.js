@@ -1,30 +1,30 @@
-// export async function generateTimeSlots(activeDay) {
-//   try {
-//     // Get time slots for the current day and the next 3 days
-//     const currentDate = new Date(activeDay);
-//     const futureDates = [currentDate];
+export async function generateTimeSlots(activeDay) {
+  try {
+    // Get time slots for the current day and the next 3 days
+    const currentDate = new Date(activeDay);
+    const futureDates = [currentDate];
 
-//     // for (let i = 1; i <= 1; i++) {
-//     const nextDate = new Date(currentDate);
-//     nextDate.setDate(currentDate.getDate());
-//     nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
-//     futureDates.push(nextDate);
-//     console.log(futureDates);
-//     // }
+    for (let i = 1; i <= 3; i++) {
+      const nextDate = new Date(currentDate);
+      nextDate.setDate(currentDate.getDate() + i);
+      nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
+      futureDates.push(nextDate);
+    }
 
-//     const timeSlotsData = [];
-//     for (const date of futureDates) {
-//       const timeSlotsForDate = fetchTimeSlots(date);
-//       timeSlotsData.push(...timeSlotsForDate);
-//     }
+    const timeSlotsData = [];
+    for (const date of futureDates) {
+      const timeSlotsForDate = fetchTimeSlots(date);
+      timeSlotsData.push(...timeSlotsForDate);
+    }
 
-//     return timeSlotsData;
-//   } catch (error) {
-//     console.error("Error fetching time slots:", error);
-//   }
-// }
+    console.log(timeSlotsData);
+    return timeSlotsData;
+  } catch (error) {
+    console.error("Error fetching time slots:", error);
+  }
+}
 
-export function generateTimeSlots(date) {
+export function fetchTimeSlots(date) {
   const timeSlots = [];
 
   // Get the current time
@@ -38,7 +38,7 @@ export function generateTimeSlots(date) {
   const endTime = new Date(date);
   endTime.setHours(21, 0, 0, 0);
 
-  const intervalMinutes = 60;
+  const intervalMinutes = 60; // You can adjust this to your desired time slot interval
 
   let currentTime = new Date(startTime);
 
@@ -55,13 +55,12 @@ export function generateTimeSlots(date) {
     });
 
     // Set the status based on whether the current time is before or after now
-    // const afterCurrentTimeInThirdDay =
-    //   date.getDate() === now.getDate() + 3 &&
-    //   now.getHours() < new Date(currentTime).getHours();
+    const afterCurrentTimeInThirdDay =
+      date.getDate() === now.getDate() + 3 &&
+      now.getHours() < new Date(currentTime).getHours();
 
-    // const status =
-    //   afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
-    const status = currentTime <= now ? false : true;
+    const status =
+      afterCurrentTimeInThirdDay || currentTime <= now ? false : true;
 
     timeSlots.push({
       date: formattedDate,
@@ -71,6 +70,7 @@ export function generateTimeSlots(date) {
 
     currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
   }
+
   console.log(timeSlots);
   return timeSlots;
 }

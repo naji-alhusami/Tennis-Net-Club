@@ -92,11 +92,11 @@
   margin: 0 9rem 3rem 9rem;
 }
 
-.time {
+/* .time {
   margin-bottom: 1.5rem;
-}
+} */
 
-.time button {
+.availableTime {
   margin: 1rem 1rem;
   padding: 0.2rem 0.7rem;
   background-color: #efad32;
@@ -104,9 +104,17 @@
   border: none;
 }
 
-.time button:focus {
+.availableTime:focus {
   outline: none;
   background-color: #268750;
+}
+
+.notAvailableTime {
+  margin: 1rem 1rem;
+  padding: 0.2rem 0.7rem;
+  background-color: #9a9798;
+  color: #fff;
+  border: none;
 }
 
 .bookButton {

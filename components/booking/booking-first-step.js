@@ -116,7 +116,7 @@ function SelectionStep({
           {!isDaySelected ? (
             <p>Select a day to view available times.</p>
           ) : (
-            <div className={classes.time}>
+            <div>
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
@@ -124,6 +124,7 @@ function SelectionStep({
                   if (timeSlot.status === true) {
                     return (
                       <button
+                        className={classes.availableTime}
                         key={timeSlot._id}
                         onClick={() => console.log("clicked")}
                         // onClick={() => timeHandler(timeSlot)}
@@ -132,7 +133,14 @@ function SelectionStep({
                       </button>
                     );
                   } else {
-                    return null;
+                    return (
+                      <button
+                        className={classes.notAvailableTime}
+                        key={timeSlot._id}
+                      >
+                        {timeSlot.time}
+                      </button>
+                    );
                   }
                 })
               )}
