@@ -51,7 +51,6 @@ function SelectionStep({
       try {
         setIsLoading(true);
         if (activeDay) {
-          console.log(activeDay);
           // Fetch and send data to MongoDB
           const timeSlots = await generateTimeSlots(activeDay);
           await sendDataToMongo(timeSlots);
@@ -69,11 +68,11 @@ function SelectionStep({
     }
 
     fetchData();
-    if (isLoading === false) {
-      console.log(timeSlots);
-    }
+    // if (isLoading === false) {
+    //   console.log(timeSlots);
+    // }
   }, [activeDay]);
-  console.log(isDaySelected);
+
   return (
     <Fragment>
       <div>
@@ -139,31 +138,6 @@ function SelectionStep({
               )}
             </div>
           )}
-          {/* {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <div className={classes.time}>
-              {isDaySelected ? (
-                timeSlots.data.map((timeSlot) => {
-                  if (timeSlot.status === true) {
-                    return (
-                      <button
-                        key={timeSlot._id}
-                        onClick={() => console.log("clicked")}
-                        // onClick={() => timeHandler(timeSlot)}
-                      >
-                        {timeSlot.time}
-                      </button>
-                    );
-                  } else {
-                    return null;
-                  }
-                })
-              ) : (
-                <p>Select a day to view time slots.</p>
-              )}
-            </div>
-          )} */}
         </div>
 
         <motion.div
