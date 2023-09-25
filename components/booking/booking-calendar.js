@@ -25,19 +25,22 @@ function BookingCalendar() {
 
   const { activeDay, setActiveDay } = useContext(AuthContext);
 
-  const currentDay = new Date();
-  const thisMonth = currentDay.getMonth();
-  const thisYear = currentDay.getFullYear();
+  const currentDate = new Date();
+  const thisMonth = currentDate.getMonth();
+  const thisYear = currentDate.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
 
-  function handleNextMonth() {
+  // Start handle clicking on next month
+  function nextMonthHandler() {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
     setCurrentMonth(nextMonth.getMonth());
     setCurrentYear(nextMonth.getFullYear());
   }
+  // Finish handle clicking on next month
 
-  function handlePrevMonth() {
+  // Start handle clicking on prev month
+  function prevMonthHandler() {
     const prevMonth = new Date(currentYear, currentMonth - 1, 1);
     // Check if the previous month is not earlier than the current month and not one month ahead
     if (
@@ -49,7 +52,43 @@ function BookingCalendar() {
       setCurrentYear(prevMonth.getFullYear());
     }
   }
+  // Finish handle clicking on prev month
 
+  // function showTimeSlotsHandler(day) {
+  //   const currentDate = new Date(currentYear, currentMonth, day);
+  //   currentDate.setHours(0, 0, 0, 0); // Set time to midnight
+
+  //   const currentDayCopy = new Date(currentDay);
+  //   currentDayCopy.setHours(0, 0, 0, 0); // Set time to midnight for currentDay
+
+  //   if (currentDate.getTime() < currentDayCopy.getTime()) {
+  //     // Prevent selecting dates before the current day
+  //     return;
+  //   }
+
+  //   setActiveDay(currentDate);
+  // }
+
+  // console.log(currentDate);
+  // it is giving the date of today
+  function getClassForDay(day) {
+    const allMonthDates = new Date(currentYear, currentMonth, day);
+    // console.log(currentDate.getDate());
+    // if (
+    //   currentDate.getDate() === activeDay.getDate() &&
+    //   currentMonth === activeDay.getMonth()
+    // ) {
+    //   return classes.activeDay;
+    // } else
+    if (
+      allMonthDates.getDate() < currentDate.getDate() &&
+      currentMonth === thisMonth
+    ) {
+      return classes.previousDay;
+    }
+  }
+
+  // Start generating days in each month
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
   const startDay = firstDayOfMonth.getDay();
 
@@ -57,7 +96,7 @@ function BookingCalendar() {
 
   const previousDays = [];
 
-  for (let day = 1; day < currentDay.getDate(); day++) {
+  for (let day = 1; day < currentDate.getDate(); day++) {
     previousDays.push(day);
   }
 
@@ -70,47 +109,18 @@ function BookingCalendar() {
   for (let day = 1; day <= daysInMonth; day++) {
     calendarGrid.push(day);
   }
-
-  function showTimeSlotsHandler(day) {
-    const currentDate = new Date(currentYear, currentMonth, day);
-    currentDate.setHours(0, 0, 0, 0); // Set time to midnight
-
-    const currentDayCopy = new Date(currentDay);
-    currentDayCopy.setHours(0, 0, 0, 0); // Set time to midnight for currentDay
-
-    if (currentDate.getTime() < currentDayCopy.getTime()) {
-      // Prevent selecting dates before the current day
-      return;
-    }
-
-    setActiveDay(currentDate);
-  }
-
-  function getClassForDay(day) {
-    const currentDate = new Date(currentYear, currentMonth, day);
-    if (
-      currentDate.getDate() === activeDay.getDate() &&
-      currentMonth === activeDay.getMonth()
-    ) {
-      return classes.activeDay;
-    } else if (
-      currentDate.getDate() < currentDay.getDate() &&
-      currentMonth === thisMonth
-    ) {
-      return classes.previousDay;
-    }
-  }
+  // End generating days in each month
 
   return (
     <div className={classes.bookingDate}>
       <div className={classes.monthYear}>
-        <button onClick={handlePrevMonth}>
+        <button onClick={prevMonthHandler}>
           <AiOutlineArrowLeft />
         </button>{" "}
         <h2>
           {months[currentMonth]} {currentYear}
         </h2>
-        <button onClick={handleNextMonth}>
+        <button onClick={nextMonthHandler}>
           <AiOutlineArrowRight />
         </button>
       </div>
@@ -138,7 +148,7 @@ function BookingCalendar() {
                       <td
                         key={subIndex}
                         className={getClassForDay(item)}
-                        onClick={() => showTimeSlotsHandler(item)}
+                        // onClick={() => showTimeSlotsHandler(item)}
                       >
                         {item}
                       </td>

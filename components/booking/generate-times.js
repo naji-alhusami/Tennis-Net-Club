@@ -4,12 +4,12 @@ export async function generateTimeSlots(activeDay) {
     const currentDate = new Date(activeDay);
     const futureDates = [currentDate];
 
-    // for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 1; i++) {
     const nextDate = new Date(currentDate);
     nextDate.setDate(currentDate.getDate());
     nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
     futureDates.push(nextDate);
-    // }
+    }
 
     const timeSlotsData = [];
     for (const date of futureDates) {
