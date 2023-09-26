@@ -13,10 +13,9 @@ import AuthContext from "@/store/auth-context";
 
 function BookingCourt({ session }) {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [secondStep, setSecondStep] = useState(true);
   const [thirdStep, setThirdStep] = useState(true);
-  const [isShowCourts, setIsShowCourts] = useState(false);
+  const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const { timeInfo } = useContext(AuthContext);
 
   console.log(timeInfo);
@@ -74,16 +73,9 @@ function BookingCourt({ session }) {
             selectedCourtType={selectedCourtType}
             courtTypeImages={courtTypeImages}
             changeStep={changeStep}
-            isShowCourts={isShowCourts}
-            setIsShowCourts={setIsShowCourts}
           />
         ) : currentStep === 2 ? (
-          <TimeSelectionStep
-            session={session}
-            selectedCourtType={selectedCourtType}
-            courtTypeImages={courtTypeImages}
-            changeStep={changeStep}
-          />
+          <TimeSelectionStep changeStep={changeStep} />
         ) : (
           <div>
             <ConfirmationStep

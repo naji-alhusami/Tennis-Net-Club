@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import Image from "next/image";
 
@@ -11,11 +11,9 @@ function DateSelectionStep({
   handleChangeCourts,
   selectedCourtType,
   changeStep,
-  isShowCourts,
-  setIsShowCourts,
 }) {
-  const { activeDay, numberOfPlayers, setNumberOfPlayers, setTimeInfo } =
-    useContext(AuthContext);
+  const [isShowCourts, setIsShowCourts] = useState(false);
+  const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
 
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",

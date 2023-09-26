@@ -6,20 +6,15 @@ import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-confirm-step.module.css";
 
-function ConfirmationStep({
-  session,
-  selectedCourtType,
-  courtTypeImages,
-}) {
+function ConfirmationStep(props) {
   const { numberOfPlayers, timeInfo } = useContext(AuthContext);
-  console.log(timeInfo);
 
   return (
     <div className={classes.bookingForm}>
       <div className={classes.bookingPlayers}>
         <Image
-          src={courtTypeImages[selectedCourtType]}
-          alt={selectedCourtType}
+          src={props.courtTypeImages[props.selectedCourtType]}
+          alt={props.selectedCourtType}
           style={{ filter: "brightness(0.7)" }}
           width={400}
           height={300}
@@ -27,7 +22,7 @@ function ConfirmationStep({
       </div>
       <div className={classes.bookingDate}>
         <p>
-          <b>Name:</b> {session.user.name}
+          <b>Name:</b> {props.session.user.name}
         </p>
         <p>
           <b>Players:</b> {numberOfPlayers}
@@ -39,7 +34,7 @@ function ConfirmationStep({
           <b>Time:</b> {timeInfo.time}
         </p>
         <p>
-          <b>Court:</b> {selectedCourtType}
+          <b>Court:</b> {props.selectedCourtType}
         </p>
       </div>
     </div>
