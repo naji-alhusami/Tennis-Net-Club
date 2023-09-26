@@ -7,7 +7,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import classes from "./booking-calendar.module.css";
 
-function BookingCalendar({ changeStep }) {
+function BookingCalendar({ nextStepHandler }) {
   const months = [
     "January",
     "February",
@@ -68,7 +68,7 @@ function BookingCalendar({ changeStep }) {
 
     setIsDaySelected(true);
     setActiveDay(selectedDate);
-    changeStep();
+    nextStepHandler();
   }
 
   function getClassForDay(day) {

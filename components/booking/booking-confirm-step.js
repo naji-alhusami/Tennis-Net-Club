@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-confirm-step.module.css";
+import Link from "next/link";
 
 function ConfirmationStep(props) {
   const { numberOfPlayers, timeInfo } = useContext(AuthContext);
@@ -37,6 +38,7 @@ function ConfirmationStep(props) {
           <b>Court:</b> {props.selectedCourtType}
         </p>
       </div>
+      <p onClick={props.prevStepHandler}>Back</p>
     </div>
   );
 }

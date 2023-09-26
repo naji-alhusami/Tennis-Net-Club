@@ -8,21 +8,6 @@ import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
 function BookingPage() {
   const { data: session, status: loading } = useSession();
 
-  // useEffect(() => {
-  //   async function fetchTimeSlotsAndSendToMongo() {
-  //     try {
-  //       const dataFromMongo = await fetchDataFromMongo();
-  //       setTimeSlots(dataFromMongo);
-  //     } catch (error) {
-  //       console.error(error.message || "Error here!");
-  //     }
-  //   }
-
-  //   fetchTimeSlotsAndSendToMongo();
-
-  //   console.log(timeSlots);
-  // }, [timeSlots]);
-
   if (loading === "loading") {
     return <p>Loading...</p>;
   }

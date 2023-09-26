@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -15,7 +15,9 @@ function BookingCourt({ session }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [secondStep, setSecondStep] = useState(true);
   const [thirdStep, setThirdStep] = useState(true);
+
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
+  const [isShowCourts, setIsShowCourts] = useState(false);
   const { timeInfo } = useContext(AuthContext);
 
   console.log(timeInfo);
@@ -24,13 +26,17 @@ function BookingCourt({ session }) {
   // setIsTime(time);
   // }
 
-  const changeStep = () => {
+  const nextStepHandler = () => {
     setCurrentStep(currentStep + 1);
     if (currentStep === 1) {
       setSecondStep(!secondStep);
     } else if (currentStep === 2) {
       setThirdStep(!thirdStep);
     }
+  };
+
+  const prevStepHandler = () => {
+    setCurrentStep(currentStep - 1);
   };
 
   const reserveHandler = (event) => {
@@ -46,7 +52,7 @@ function BookingCourt({ session }) {
 
   const handleChangeCourts = () => {
     setSelectedCourtType((prevCourtType) =>
-      prevCourtType === "Clay Courts" ? "Clay Courts" : "Hard Courts"
+      prevCourtType === "Clay Courts" ? "Hard Courts" : "Clay Courts"
     );
 
     setIsShowCourts(false);
@@ -67,22 +73,27 @@ function BookingCourt({ session }) {
 
       {/* Booking Form (Players and Calendar) */}
       <form onSubmit={reserveHandler}>
-        {currentStep === 1 && secondStep ? (
+        {currentStep === 1 ? (
           <DateSelectionStep
             handleChangeCourts={handleChangeCourts}
             selectedCourtType={selectedCourtType}
             courtTypeImages={courtTypeImages}
-            changeStep={changeStep}
+            nextStepHandler={nextStepHandler}
+            isShowCourts={isShowCourts}
+            setIsShowCourts={setIsShowCourts}
           />
         ) : currentStep === 2 ? (
-          <TimeSelectionStep changeStep={changeStep} />
-        ) : (
+          <TimeSelectionStep
+            nextStepHandler={nextStepHandler}
+            prevStepHandler={prevStepHandler}
+          />
+        ) : currentStep === 3 ? (
           <div>
             <ConfirmationStep
               session={session}
               selectedCourtType={selectedCourtType}
               courtTypeImages={courtTypeImages}
-              changeStep={changeStep}
+              prevStepHandler={prevStepHandler}
             />
             <motion.div
               className={classes.bookButton}
@@ -92,7 +103,7 @@ function BookingCourt({ session }) {
               <button>Confirm</button>
             </motion.div>
           </div>
-        )}
+        ) : null}
       </form>
     </div>
   );

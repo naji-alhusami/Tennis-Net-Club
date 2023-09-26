@@ -10,9 +10,10 @@ import classes from "./booking-date-step.js.module.css";
 function DateSelectionStep({
   handleChangeCourts,
   selectedCourtType,
-  changeStep,
+  nextStepHandler,
+  isShowCourts,
+  setIsShowCourts,
 }) {
-  const [isShowCourts, setIsShowCourts] = useState(false);
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
 
   const courtTypeImages = {
@@ -45,7 +46,6 @@ function DateSelectionStep({
 
   return (
     <Fragment>
-      {/* <div> */}
       <div className={classes.bookingForm}>
         <div className={classes.bookingPlayers}>
           <Image
@@ -78,7 +78,7 @@ function DateSelectionStep({
             <button onClick={decreasePlayers}>-</button>
           </div>
         </div>
-        <BookingCalendar changeStep={changeStep} />
+        <BookingCalendar nextStepHandler={nextStepHandler} />
       </div>
 
       {/* <motion.div
