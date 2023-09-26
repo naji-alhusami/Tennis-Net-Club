@@ -3,10 +3,11 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import DateSelectionStep from "./booking-date-step";
+import TimeSelectionStep from "./booking-times-step";
+import ConfirmationStep from "./booking-confirm-step";
 import reserve from "@/public/images/reserve.jpg";
 import BookingSteps from "./booking-steps";
-import SelectionStep from "./booking-first-step";
-import DetailsStep from "./booking-second-step";
 import classes from "./booking.module.css";
 import AuthContext from "@/store/auth-context";
 
@@ -68,7 +69,7 @@ function BookingCourt({ session }) {
       {/* Booking Form (Players and Calendar) */}
       <form onSubmit={reserveHandler}>
         {currentStep === 1 && secondStep ? (
-          <SelectionStep
+          <DateSelectionStep
             handleChangeCourts={handleChangeCourts}
             selectedCourtType={selectedCourtType}
             courtTypeImages={courtTypeImages}
@@ -77,7 +78,7 @@ function BookingCourt({ session }) {
             setIsShowCourts={setIsShowCourts}
           />
         ) : currentStep === 2 ? (
-          <DetailsStep
+          <TimeSelectionStep
             session={session}
             selectedCourtType={selectedCourtType}
             courtTypeImages={courtTypeImages}
@@ -85,9 +86,12 @@ function BookingCourt({ session }) {
           />
         ) : (
           <div>
-            <div>
-              <h1>rama</h1>
-            </div>
+            <ConfirmationStep
+              session={session}
+              selectedCourtType={selectedCourtType}
+              courtTypeImages={courtTypeImages}
+              changeStep={changeStep}
+            />
             <motion.div
               className={classes.bookButton}
               whileHover={{ scale: 1.1 }}

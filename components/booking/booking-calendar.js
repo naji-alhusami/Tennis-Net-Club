@@ -7,7 +7,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import classes from "./booking-calendar.module.css";
 
-function BookingCalendar({ setIsDaySelected }) {
+function BookingCalendar({ changeStep }) {
   const months = [
     "January",
     "February",
@@ -23,7 +23,7 @@ function BookingCalendar({ setIsDaySelected }) {
     "December",
   ];
 
-  const { activeDay, setActiveDay } = useContext(AuthContext);
+  const { activeDay, setActiveDay, setIsDaySelected } = useContext(AuthContext);
 
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
@@ -68,6 +68,7 @@ function BookingCalendar({ setIsDaySelected }) {
 
     setIsDaySelected(true);
     setActiveDay(selectedDate);
+    changeStep();
   }
 
   function getClassForDay(day) {

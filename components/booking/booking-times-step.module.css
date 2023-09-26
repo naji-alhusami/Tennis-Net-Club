@@ -1,0 +1,93 @@
+/* .bookingForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 2rem 0;
+}
+
+.bookingPlayers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookingPlayers img {
+  width: 500px;
+  height: 400px;
+  margin: 0.6rem 1rem 0 0;
+}
+
+.bookingDate {
+  background-image: url("../../public/images/calendarBackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 500px;
+  height: 400px;
+  margin: 0.6rem 0 0 1rem;
+  color: white;
+}
+
+.bookingDate p {
+  font-size: var(--size-8);
+  margin: 1rem 0;
+}
+
+.bookButton {
+  cursor: pointer;
+  background-color: #efad32;
+  padding: 0.1rem 1.3rem;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 0px 1px #db981b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 38rem 3rem 38rem;
+}
+
+.bookButton p {
+  margin: 0.5rem;
+} */
+
+.timeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 9rem 3rem 9rem;
+}
+
+/* .time {
+  margin-bottom: 1.5rem;
+} */
+
+.availableTime {
+  margin: 1rem 1rem;
+  padding: 0.2rem 0.7rem;
+  background-color: #efad32;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* .availableTime:focus {
+  outline: none;
+  background-color: #268750;
+  cursor: pointer;
+} */
+
+.notAvailableTime {
+  margin: 1rem 1rem;
+  padding: 0.2rem 0.7rem;
+  background-color: #9a9798;
+  color: #fff;
+  border: none;
+}

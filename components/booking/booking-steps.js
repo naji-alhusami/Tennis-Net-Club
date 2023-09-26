@@ -13,7 +13,7 @@ function BookingSteps({ currentStep }) {
         >
           1
         </div>
-        <h3>SELECT</h3>
+        <h3>SELECT DATE</h3>
       </div>
       <div className={classes.stepContainer}>
         <div
@@ -23,7 +23,7 @@ function BookingSteps({ currentStep }) {
         >
           2
         </div>
-        <h3>DETAILS</h3>
+        <h3>SELECT TIME</h3>
       </div>
       <div className={classes.stepContainer}>
         <div
@@ -33,7 +33,7 @@ function BookingSteps({ currentStep }) {
         >
           3
         </div>
-        <h3>CONFIRM</h3>
+        <h3>CONFIRM DETAILS</h3>
       </div>
     </div>
   );
