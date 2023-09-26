@@ -13,9 +13,8 @@ function DetailsStep({
   changeStep,
 }) {
   const [isTime, setIsTime] = useState("");
-  const { activeDay, numberOfPlayers, setNumberOfPlayers } =
-    useContext(AuthContext);
-
+  const { activeDay, numberOfPlayers, timeInfo } = useContext(AuthContext);
+  console.log(timeInfo);
   const choosenDate = activeDay.toLocaleString("en-US", {
     day: "numeric",
     month: "long",
@@ -42,10 +41,10 @@ function DetailsStep({
             <b>Players:</b> {numberOfPlayers}
           </p>
           <p>
-            <b>Date:</b> {choosenDate}
+            <b>Date:</b> {timeInfo.date}
           </p>
           <p>
-            <b>Time:</b> {isTime}
+            <b>Time:</b> {timeInfo.time}
           </p>
           <p>
             <b>Court:</b> {selectedCourtType}

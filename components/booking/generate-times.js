@@ -28,7 +28,7 @@ export function generateTimeSlots(date) {
   const timeSlots = [];
 
   // Get the current time
-  const now = new Date();
+  const currentDate = new Date();
 
   // Set the start time to 9:00 AM on the selected date
   const startTime = new Date(date);
@@ -53,20 +53,23 @@ export function generateTimeSlots(date) {
       month: "long",
       year: "numeric",
     });
-    // Set the status based on whether the current time is before or after now
+
+    // Set the status to false in third day for the times after the current time
     const afterCurrentTimeInThirdDay =
-      date.getDate() === now.getDate() + 3 &&
-      now.getHours() < new Date(currentTime).getHours();
+      date.getDate() === currentDate.getDate() + 3 &&
+      currentDate.getHours() < new Date(currentTime).getHours();
+
+    // Set the status to false for all the times after the third day
     const daysDifference = Math.floor(
-      (date - now) / (1000 * 60 * 60 * 24) // Convert milliseconds to days
+      (date - currentDate) / (1000 * 60 * 60 * 24) // Convert milliseconds to days
     );
 
     const status =
-      afterCurrentTimeInThirdDay || currentTime <= now || daysDifference >= 3
+      afterCurrentTimeInThirdDay ||
+      currentTime <= currentDate ||
+      daysDifference >= 3
         ? false
         : true;
-    console.log(now);
-    console.log(date);
     timeSlots.push({
       date: formattedDate,
       time: formattedTime,

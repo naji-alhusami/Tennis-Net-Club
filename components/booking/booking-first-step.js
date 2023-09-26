@@ -21,7 +21,7 @@ function SelectionStep({
   const [timeSlots, setTimeSlots] = useState([]);
   const [isDaySelected, setIsDaySelected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { activeDay, numberOfPlayers, setNumberOfPlayers } =
+  const { activeDay, numberOfPlayers, setNumberOfPlayers, setTimeInfo } =
     useContext(AuthContext);
 
   const courtTypeImages = {
@@ -68,10 +68,15 @@ function SelectionStep({
     }
 
     fetchData();
-    // if (isLoading === false) {
-    //   console.log(timeSlots);
-    // }
   }, [activeDay]);
+
+  // console.log(timeSlots);
+  function timeHandler(time) {
+    console.log(time);
+    setTimeInfo(time);
+    // console.log(activeDay);
+    // setIsTime(time);
+  }
 
   return (
     <Fragment>
@@ -123,23 +128,23 @@ function SelectionStep({
                 timeSlots.data.map((timeSlot) => {
                   if (timeSlot.status === true) {
                     return (
-                      <button
+                      <p
                         className={classes.availableTime}
                         key={timeSlot._id}
-                        onClick={() => console.log("clicked")}
+                        onClick={() => timeHandler(timeSlot)}
                         // onClick={() => timeHandler(timeSlot)}
                       >
                         {timeSlot.time}
-                      </button>
+                      </p>
                     );
                   } else {
                     return (
-                      <button
+                      <p
                         className={classes.notAvailableTime}
                         key={timeSlot._id}
                       >
                         {timeSlot.time}
-                      </button>
+                      </p>
                     );
                   }
                 })

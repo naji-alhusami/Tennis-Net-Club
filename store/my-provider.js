@@ -6,6 +6,7 @@ const MyProvider = (props) => {
   const currentDay = new Date();
   const [activeDay, setActiveDay] = useState();
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
+  const [timeInfo, setTimeInfo] = useState();
 
   return (
     <AuthContext.Provider
@@ -15,6 +16,8 @@ const MyProvider = (props) => {
         setActiveDay,
         numberOfPlayers,
         setNumberOfPlayers,
+        timeInfo,
+        setTimeInfo,
       }}
     >
       {props.children}
