@@ -28,10 +28,9 @@ function BookingCalendar({ nextStepHandler }) {
   const {
     activeDay,
     setActiveDay,
-    setIsDaySelected,
     timeSlots,
     setTimeSlots,
-    setIsLoading,
+    setIsLoadingTimes,
   } = useContext(AuthContext);
 
   const currentDate = new Date();
@@ -39,7 +38,6 @@ function BookingCalendar({ nextStepHandler }) {
   const thisYear = currentDate.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
-  // const [isLoading, setIsLoading] = useState(true);
 
   // Start handle clicking on next month
   function nextMonthHandler() {
@@ -64,6 +62,7 @@ function BookingCalendar({ nextStepHandler }) {
   }
   // Finish handle clicking on prev month
 
+  // handle show time slots for the selectedDate
   async function showTimeSlotsHandler(day) {
     const selectedDate = new Date(currentYear, currentMonth, day);
     selectedDate.setHours(0, 0, 0, 0); // Set time to midnight
@@ -76,14 +75,12 @@ function BookingCalendar({ nextStepHandler }) {
       return;
     }
 
-    setIsDaySelected(true);
     setActiveDay(selectedDate);
     nextStepHandler();
     console.log(activeDay);
     try {
-      setIsLoading(true);
-      // Send & Fetch data to MongoDB
-      // if (isLoading) {
+      setIsLoadingTimes(true);
+      // Send data to MongoDB
       const generatedTimes = await generateTimeSlots(selectedDate);
       await sendDataToMongo(generatedTimes);
 
@@ -91,11 +88,10 @@ function BookingCalendar({ nextStepHandler }) {
       const dataFromMongo = await fetchDataFromMongo();
       setTimeSlots(dataFromMongo);
 
-      setIsLoading(false);
-      // }
+      setIsLoadingTimes(false);
     } catch (error) {
       console.error(error.message || "Error here!");
-      setIsLoading(false);
+      setIsLoadingTimes(false);
     }
   }
 
@@ -152,15 +148,6 @@ function BookingCalendar({ nextStepHandler }) {
   }
   // End generating days in each month
 
-  // async function chooseDate() {
-
-  // }
-  // }
-  // useEffect(() => {
-  //   async function fetchData() {
-
-  //   fetchData();
-  // }, [activeDay]);
   console.log(timeSlots);
 
   return (

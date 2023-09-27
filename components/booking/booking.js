@@ -18,9 +18,9 @@ function BookingCourt({ session }) {
 
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [isShowCourts, setIsShowCourts] = useState(false);
-  const { timeInfo } = useContext(AuthContext);
+  const { setActiveDay, timeInfo } = useContext(AuthContext);
 
-  // console.log(timeInfo);
+  console.log(timeInfo);
   // function timeHandler(time) {
   //   console.log(time);
   // setIsTime(time);
@@ -37,6 +37,7 @@ function BookingCourt({ session }) {
 
   const prevStepHandler = () => {
     setCurrentStep(currentStep - 1);
+    setActiveDay();
   };
 
   const reserveHandler = (event) => {
@@ -100,7 +101,7 @@ function BookingCourt({ session }) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <button>Confirm</button>
+              <button type="submit">Confirm</button>
             </motion.div>
           </div>
         ) : null}
