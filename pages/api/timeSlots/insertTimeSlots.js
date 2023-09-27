@@ -13,13 +13,13 @@ async function insertTimeSlotsHandler(req, res) {
       if (existingTimes > 0) {
         await db.collection("times").deleteMany({});
       }
+      
       timeSlots = req.body.map((slot) => ({
         date: slot.date,
         time: slot.time,
         status: slot.status,
       }));
       const result = await db.collection("times").insertMany(timeSlots);
-      console.log(result);
       timeSlots.id = result.insertedIds;
     } catch (error) {
       res.status(500).json({ message: "Storing times failed." });

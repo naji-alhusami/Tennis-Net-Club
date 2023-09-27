@@ -12,8 +12,7 @@ function TimeSelectionStep(props) {
   const { activeDay, isDaySelected, setTimeInfo } = useContext(AuthContext);
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // console.log(props);
+  console.log(timeSlots);
 
   useEffect(() => {
     async function fetchData() {
@@ -40,7 +39,7 @@ function TimeSelectionStep(props) {
 
     fetchData();
   }, [activeDay]);
-  // console.log(timeSlot);
+  console.log(timeSlots);
 
   function timeHandler(time) {
     console.log(time);
@@ -55,35 +54,35 @@ function TimeSelectionStep(props) {
     <Fragment>
       <div className={classes.timeContainer}>
         <h1>Time:</h1>
-        {!isDaySelected ? (
+        {/* {!isDaySelected ? (
           <p>Select a day to view available times.</p>
-        ) : (
-          <div>
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              timeSlots.data.map((timeSlot) => {
-                if (timeSlot.status === true) {
-                  return (
-                    <p
-                      className={classes.availableTime}
-                      key={timeSlot._id}
-                      onClick={() => timeHandler(timeSlot)}
-                    >
-                      {timeSlot.time}
-                    </p>
-                  );
-                } else {
-                  return (
-                    <p className={classes.notAvailableTime} key={timeSlot._id}>
-                      {timeSlot.time}
-                    </p>
-                  );
-                }
-              })
-            )}
-          </div>
-        )}
+        ) : ( */}
+        <div>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            timeSlots.data.map((timeSlot) => {
+              if (timeSlot.status === true) {
+                return (
+                  <p
+                    className={classes.availableTime}
+                    key={timeSlot._id}
+                    onClick={() => timeHandler(timeSlot)}
+                  >
+                    {timeSlot.time}
+                  </p>
+                );
+              } else {
+                return (
+                  <p className={classes.notAvailableTime} key={timeSlot._id}>
+                    {timeSlot.time}
+                  </p>
+                );
+              }
+            })
+          )}
+        </div>
+        {/* )} */}
       </div>
       <p
         className={classes.bookButton}

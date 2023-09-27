@@ -21,8 +21,6 @@ async function createUser(name, email, password, passwordConfirmation, role) {
   });
   const data = await response.json();
 
-  console.log(data);
-
   if (!response.ok) {
     throw new Error(data.message || "Something Went Wrong!");
   }
@@ -73,9 +71,7 @@ function Signup() {
         enteredRole
       );
       setRequestStatus("Success");
-      console.log(result);
     } catch (error) {
-      console.log(error.message);
       setErrorMessage(error.message);
       setRequestStatus("Error");
     }

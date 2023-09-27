@@ -12,7 +12,6 @@ function Login() {
   async function loginHandler(event) {
     event.preventDefault();
 
-    console.log("naji");
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
@@ -21,8 +20,6 @@ function Login() {
       email: enteredEmail,
       password: enteredPassword,
     });
-
-    console.log(result);
   }
 
   return (
@@ -46,9 +43,7 @@ function Login() {
           />
         </div>
         <div>
-          <button className={classes.button}>
-            Login
-          </button>
+          <button className={classes.button}>Login</button>
         </div>
       </form>
       <h3>Not A Member?</h3>

@@ -38,9 +38,7 @@ function DateSelectionStep({
   };
 
   // function timeHandler(time) {
-  //   console.log(time);
   //   setTimeInfo(time);
-  //   console.log(activeDay);
   //   setIsTime(time);
   // }
 
