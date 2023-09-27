@@ -4,6 +4,7 @@ async function insertTimeSlotsHandler(req, res) {
   if (req.method === "POST") {
     const client = await connectToDatabase();
     const db = client.db();
+    // console.log(req.body);
 
     let timeSlots;
 
@@ -13,7 +14,6 @@ async function insertTimeSlotsHandler(req, res) {
       if (existingTimes > 0) {
         await db.collection("times").deleteMany({});
       }
-      
       timeSlots = req.body.map((slot) => ({
         date: slot.date,
         time: slot.time,

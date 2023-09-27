@@ -2,14 +2,30 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 import { motion } from "framer-motion";
 
 import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
-import { sendDataToMongo } from "@/lib/sendTimeSlots";
+// import { sendDataToMongo } from "@/lib/sendTimeSlots";
 import { generateTimeSlots } from "./generate-times";
 import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-times-step.module.css";
 
+async function sendDataToMongo(generatedTimes) {
+  console.log(generatedTimes);
+  const response = await fetch("/api/timeSlots/insertTimeSlots", {
+    method: "POST",
+    body: JSON.stringify(generatedTimes),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const timeSlotsData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(timeSlotsData.message || "Something went wrong!");
+  }
+}
+
 function TimeSelectionStep(props) {
-  const { activeDay, isDaySelected, setTimeInfo } = useContext(AuthContext);
+  const { activeDay, setTimeInfo, isDaySelected } = useContext(AuthContext);
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   console.log(timeSlots);
@@ -18,19 +34,17 @@ function TimeSelectionStep(props) {
     async function fetchData() {
       try {
         setIsLoading(true);
-        if (activeDay) {
-          // Send & Fetch data to MongoDB
-          const timeSlots = await generateTimeSlots(activeDay);
-          console.log(timeSlots);
-          await sendDataToMongo(timeSlots);
+        // Send & Fetch data to MongoDB
+        // if (isLoading) {
+        const generatedTimes = await generateTimeSlots(activeDay);
+        await sendDataToMongo(generatedTimes);
 
-          // Fetch data from MongoDB
-          const dataFromMongo = await fetchDataFromMongo();
-          console.log(dataFromMongo);
-          setTimeSlots(dataFromMongo);
+        // Fetch data from MongoDB
+        const dataFromMongo = await fetchDataFromMongo();
+        setTimeSlots(dataFromMongo);
 
-          setIsLoading(false);
-        }
+        setIsLoading(false);
+        // }
       } catch (error) {
         console.error(error.message || "Error here!");
         setIsLoading(false);
@@ -54,35 +68,35 @@ function TimeSelectionStep(props) {
     <Fragment>
       <div className={classes.timeContainer}>
         <h1>Time:</h1>
-        {/* {!isDaySelected ? (
+        {!isDaySelected ? (
           <p>Select a day to view available times.</p>
-        ) : ( */}
-        <div>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            timeSlots.data.map((timeSlot) => {
-              if (timeSlot.status === true) {
-                return (
-                  <p
-                    className={classes.availableTime}
-                    key={timeSlot._id}
-                    onClick={() => timeHandler(timeSlot)}
-                  >
-                    {timeSlot.time}
-                  </p>
-                );
-              } else {
-                return (
-                  <p className={classes.notAvailableTime} key={timeSlot._id}>
-                    {timeSlot.time}
-                  </p>
-                );
-              }
-            })
-          )}
-        </div>
-        {/* )} */}
+        ) : (
+          <div>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              timeSlots.data.map((timeSlot) => {
+                if (timeSlot.status === true) {
+                  return (
+                    <p
+                      className={classes.availableTime}
+                      key={timeSlot._id}
+                      onClick={() => timeHandler(timeSlot)}
+                    >
+                      {timeSlot.time}
+                    </p>
+                  );
+                } else {
+                  return (
+                    <p className={classes.notAvailableTime} key={timeSlot._id}>
+                      {timeSlot.time}
+                    </p>
+                  );
+                }
+              })
+            )}
+          </div>
+        )}
       </div>
       <p
         className={classes.bookButton}
