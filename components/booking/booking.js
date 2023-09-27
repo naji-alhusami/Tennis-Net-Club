@@ -20,7 +20,7 @@ function BookingCourt({ session }) {
   const [isShowCourts, setIsShowCourts] = useState(false);
   const { timeInfo } = useContext(AuthContext);
 
-  console.log(timeInfo);
+  // console.log(timeInfo);
   // function timeHandler(time) {
   //   console.log(time);
   // setIsTime(time);

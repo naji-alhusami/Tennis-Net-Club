@@ -1,11 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "@/store/auth-context";
-
+import { sendDataToMongo } from "@/lib/sendTimeSlots";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import classes from "./booking-calendar.module.css";
+import { generateTimeSlots } from "./generate-times";
+import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
 
 function BookingCalendar({ nextStepHandler }) {
   const months = [
@@ -23,13 +25,21 @@ function BookingCalendar({ nextStepHandler }) {
     "December",
   ];
 
-  const { activeDay, setActiveDay, setIsDaySelected } = useContext(AuthContext);
+  const {
+    activeDay,
+    setActiveDay,
+    setIsDaySelected,
+    timeSlots,
+    setTimeSlots,
+    setIsLoading,
+  } = useContext(AuthContext);
 
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
+  // const [isLoading, setIsLoading] = useState(true);
 
   // Start handle clicking on next month
   function nextMonthHandler() {
@@ -54,7 +64,7 @@ function BookingCalendar({ nextStepHandler }) {
   }
   // Finish handle clicking on prev month
 
-  function showTimeSlotsHandler(day) {
+  async function showTimeSlotsHandler(day) {
     const selectedDate = new Date(currentYear, currentMonth, day);
     selectedDate.setHours(0, 0, 0, 0); // Set time to midnight
 
@@ -69,6 +79,24 @@ function BookingCalendar({ nextStepHandler }) {
     setIsDaySelected(true);
     setActiveDay(selectedDate);
     nextStepHandler();
+    console.log(activeDay);
+    try {
+      setIsLoading(true);
+      // Send & Fetch data to MongoDB
+      // if (isLoading) {
+      const generatedTimes = await generateTimeSlots(selectedDate);
+      await sendDataToMongo(generatedTimes);
+
+      // Fetch data from MongoDB
+      const dataFromMongo = await fetchDataFromMongo();
+      setTimeSlots(dataFromMongo);
+
+      setIsLoading(false);
+      // }
+    } catch (error) {
+      console.error(error.message || "Error here!");
+      setIsLoading(false);
+    }
   }
 
   function getClassForDay(day) {
@@ -123,6 +151,17 @@ function BookingCalendar({ nextStepHandler }) {
     calendarGrid.push(day);
   }
   // End generating days in each month
+
+  // async function chooseDate() {
+
+  // }
+  // }
+  // useEffect(() => {
+  //   async function fetchData() {
+
+  //   fetchData();
+  // }, [activeDay]);
+  console.log(timeSlots);
 
   return (
     <div className={classes.bookingDate}>

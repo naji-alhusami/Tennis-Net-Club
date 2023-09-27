@@ -8,52 +8,52 @@ import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-times-step.module.css";
 
-async function sendDataToMongo(generatedTimes) {
-  console.log(generatedTimes);
-  const response = await fetch("/api/timeSlots/insertTimeSlots", {
-    method: "POST",
-    body: JSON.stringify(generatedTimes),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const timeSlotsData = await response.json();
+// async function sendDataToMongo(generatedTimes) {
+//   console.log(generatedTimes);
+//   const response = await fetch("/api/timeSlots/insertTimeSlots", {
+//     method: "POST",
+//     body: JSON.stringify(generatedTimes),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   const timeSlotsData = await response.json();
 
-  if (!response.ok) {
-    throw new Error(timeSlotsData.message || "Something went wrong!");
-  }
-}
+//   if (!response.ok) {
+//     throw new Error(timeSlotsData.message || "Something went wrong!");
+//   }
+// }
 
 function TimeSelectionStep(props) {
-  const { activeDay, setTimeInfo, isDaySelected } = useContext(AuthContext);
-  const [timeSlots, setTimeSlots] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { activeDay, setTimeInfo, isDaySelected, timeSlots, isLoading } = useContext(AuthContext);
+  // const [timeSlots, setTimeSlots] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   console.log(timeSlots);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        // Send & Fetch data to MongoDB
-        // if (isLoading) {
-        const generatedTimes = await generateTimeSlots(activeDay);
-        await sendDataToMongo(generatedTimes);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       setIsLoading(true);
+  //       // Send & Fetch data to MongoDB
+  //       // if (isLoading) {
+  //       const generatedTimes = await generateTimeSlots(activeDay);
+  //       await sendDataToMongo(generatedTimes);
 
-        // Fetch data from MongoDB
-        const dataFromMongo = await fetchDataFromMongo();
-        setTimeSlots(dataFromMongo);
+  //       // Fetch data from MongoDB
+  //       const dataFromMongo = await fetchDataFromMongo();
+  //       setTimeSlots(dataFromMongo);
 
-        setIsLoading(false);
-        // }
-      } catch (error) {
-        console.error(error.message || "Error here!");
-        setIsLoading(false);
-      }
-    }
+  //       setIsLoading(false);
+  //       // }
+  //     } catch (error) {
+  //       console.error(error.message || "Error here!");
+  //       setIsLoading(false);
+  //     }
+  //   }
 
-    fetchData();
-  }, [activeDay]);
-  console.log(timeSlots);
+  //   fetchData();
+  // }, [activeDay]);
+  // console.log(timeSlots);
 
   function timeHandler(time) {
     console.log(time);
