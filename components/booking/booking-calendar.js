@@ -31,8 +31,8 @@ function BookingCalendar({ nextStepHandler }) {
     timeSlots,
     setTimeSlots,
     setIsLoadingTimes,
+    takenTimes,
   } = useContext(AuthContext);
-
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();
@@ -78,12 +78,31 @@ function BookingCalendar({ nextStepHandler }) {
     setActiveDay(selectedDate);
     nextStepHandler();
     console.log(activeDay);
+
     try {
       setIsLoadingTimes(true);
       // Send data to MongoDB
+      console.log(takenTimes);
       const generatedTimes = await generateTimeSlots(selectedDate);
-      await sendDataToMongo(generatedTimes);
+      console.log(generatedTimes);
 
+      const updatedGeneratedTimes = generatedTimes.map((generatedTime) => {
+        const matchingTakenTime = takenTimes.find(
+          (takenTime) =>
+            takenTime.date === generatedTime.date &&
+            takenTime.time === generatedTime.time
+        );
+
+        if (matchingTakenTime) {
+          return { ...generatedTime, status: false };
+        }
+
+        return generatedTime;
+      });
+
+      console.log(updatedGeneratedTimes);
+
+      await sendDataToMongo(updatedGeneratedTimes);
       // Fetch data from MongoDB
       const dataFromMongo = await fetchDataFromMongo();
       setTimeSlots(dataFromMongo);

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -10,6 +10,7 @@ import reserve from "@/public/images/reserve.jpg";
 import BookingSteps from "./booking-steps";
 import classes from "./booking.module.css";
 import AuthContext from "@/store/auth-context";
+import { editDataInMongo } from "@/lib/editTimeSlots";
 
 function BookingCourt({ session }) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -18,9 +19,16 @@ function BookingCourt({ session }) {
 
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [isShowCourts, setIsShowCourts] = useState(false);
-  const { setActiveDay, timeInfo } = useContext(AuthContext);
+  const { setActiveDay, timeInfo, setTakenTimes, takenTimes } = useContext(AuthContext);
 
-  console.log(timeInfo);
+  useEffect(() => {
+    const storedTakenTimes = JSON.parse(localStorage.getItem("takenTimes"));
+    if (storedTakenTimes) {
+      setTakenTimes(storedTakenTimes);
+    }
+  }, []);
+
+  // console.log(timeInfo);
   // function timeHandler(time) {
   //   console.log(time);
   // setIsTime(time);
@@ -40,11 +48,22 @@ function BookingCourt({ session }) {
     setActiveDay();
   };
 
-  const reserveHandler = (event) => {
+  function reserveHandler(event) {
     event.preventDefault();
     console.log("click on confirm");
     console.log(timeInfo);
-  };
+    console.log(timeInfo);
+    // Update takenTimes using the current state and timeInfo
+    setTakenTimes((prevTakenTimes) => [...prevTakenTimes, timeInfo]);
+
+    // Store updated takenTimes in local storage
+    localStorage.setItem(
+      "takenTimes",
+      JSON.stringify([...takenTimes, timeInfo])
+    );
+
+    // await editDataInMongo(timeInfo);
+  }
 
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",

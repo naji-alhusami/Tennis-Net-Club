@@ -1,30 +1,5 @@
-// export async function generateTimeSlots(activeDay) {
-//   try {
-//     // Get time slots for the current day and the next 3 days
-//     const currentDate = new Date(activeDay);
-//     const futureDates = [currentDate];
-
-//     for (let i = 1; i <= 3; i++) {
-//       const nextDate = new Date(currentDate);
-//       nextDate.setDate(currentDate.getDate() + i);
-//       nextDate.setHours(8, 0, 0, 0); // Set the start time to 09:00:00
-//       futureDates.push(nextDate);
-//     }
-
-//     const timeSlotsData = [];
-//     for (const date of futureDates) {
-//       const timeSlotsForDate = fetchTimeSlots(date);
-//       timeSlotsData.push(...timeSlotsForDate);
-//     }
-
-//     console.log(timeSlotsData);
-//     return timeSlotsData;
-//   } catch (error) {
-//     console.error("Error fetching time slots:", error);
-//   }
-// }
-
 export function generateTimeSlots(date) {
+  // console.log(date, takenTimes);
   const timeSlots = [];
 
   // Get the current time
@@ -63,6 +38,11 @@ export function generateTimeSlots(date) {
     const daysDifference = Math.floor(
       (date - currentDate) / (1000 * 60 * 60 * 24) // Convert milliseconds to days
     );
+
+      // const isTaken = takenTimes.map((takenTime)=>{
+      //   if(takenTime.date === )
+      // })
+      // console.log(timeSlots);
 
     const status =
       afterCurrentTimeInThirdDay ||

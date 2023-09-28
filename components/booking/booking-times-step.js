@@ -6,13 +6,14 @@ import AuthContext from "@/store/auth-context";
 import classes from "./booking-times-step.module.css";
 
 function TimeSelectionStep(props) {
-  const { activeDay, setTimeInfo, timeSlots, isLoadingTimes } =
+  const { setTimeInfo, timeSlots, isLoadingTimes } =
     useContext(AuthContext);
 
   function timeHandler(time) {
     console.log(time);
     setTimeInfo(time);
-    console.log(activeDay);
+    // setTakenTimes(time);
+    // console.log(activeDay);
     // setIsTime(time);
     props.nextStepHandler();
   }
