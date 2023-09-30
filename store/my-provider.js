@@ -9,7 +9,8 @@ const MyProvider = (props) => {
   const [timeInfo, setTimeInfo] = useState();
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoadingTimes, setIsLoadingTimes] = useState(true);
-  const [takenTimes, setTakenTimes] = useState([]);
+  const [takenTimes, setTakenTimes
+  ] = useState([]);
 
   return (
     <AuthContext.Provider

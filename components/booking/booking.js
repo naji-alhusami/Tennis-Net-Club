@@ -21,12 +21,12 @@ function BookingCourt({ session }) {
   const [isShowCourts, setIsShowCourts] = useState(false);
   const { setActiveDay, timeInfo, setTakenTimes, takenTimes } = useContext(AuthContext);
 
-  useEffect(() => {
-    const storedTakenTimes = JSON.parse(localStorage.getItem("takenTimes"));
-    if (storedTakenTimes) {
-      setTakenTimes(storedTakenTimes);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedTakenTimes = JSON.parse(localStorage.getItem("takenTimes"));
+  //   if (storedTakenTimes) {
+  //     setTakenTimes(storedTakenTimes);
+  //   }
+  // }, []);
 
   // console.log(timeInfo);
   // function timeHandler(time) {
@@ -52,15 +52,15 @@ function BookingCourt({ session }) {
     event.preventDefault();
     console.log("click on confirm");
     console.log(timeInfo);
-    console.log(timeInfo);
+    // console.log(timeInfo);
     // Update takenTimes using the current state and timeInfo
-    setTakenTimes((prevTakenTimes) => [...prevTakenTimes, timeInfo]);
+    // setTakenTimes((prevTakenTimes) => [...prevTakenTimes, timeInfo]);
 
     // Store updated takenTimes in local storage
-    localStorage.setItem(
-      "takenTimes",
-      JSON.stringify([...takenTimes, timeInfo])
-    );
+    // localStorage.setItem(
+    //   "takenTimes",
+    //   JSON.stringify([...takenTimes, timeInfo])
+    // );
 
     // await editDataInMongo(timeInfo);
   }

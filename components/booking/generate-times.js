@@ -59,6 +59,6 @@ export function generateTimeSlots(date) {
     currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
   }
 
-  console.log(timeSlots);
+  // console.log(timeSlots);
   return timeSlots;
 }
