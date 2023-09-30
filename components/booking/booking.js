@@ -10,7 +10,7 @@ import reserve from "@/public/images/reserve.jpg";
 import BookingSteps from "./booking-steps";
 import classes from "./booking.module.css";
 import AuthContext from "@/store/auth-context";
-import { editDataInMongo } from "@/lib/editTimeSlots";
+import { editDataInMongo, sendTakenTimesToMongo } from "@/lib/sendTakenTimes";
 
 function BookingCourt({ session }) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -19,7 +19,8 @@ function BookingCourt({ session }) {
 
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [isShowCourts, setIsShowCourts] = useState(false);
-  const { setActiveDay, timeInfo, setTakenTimes, takenTimes } = useContext(AuthContext);
+  const { setActiveDay, timeInfo, setTakenTimes, takenTimes } =
+    useContext(AuthContext);
 
   // useEffect(() => {
   //   const storedTakenTimes = JSON.parse(localStorage.getItem("takenTimes"));
@@ -48,10 +49,11 @@ function BookingCourt({ session }) {
     setActiveDay();
   };
 
-  function reserveHandler(event) {
+  async function reserveHandler(event) {
     event.preventDefault();
     console.log("click on confirm");
     console.log(timeInfo);
+    await sendTakenTimesToMongo(timeInfo);
     // console.log(timeInfo);
     // Update takenTimes using the current state and timeInfo
     // setTakenTimes((prevTakenTimes) => [...prevTakenTimes, timeInfo]);

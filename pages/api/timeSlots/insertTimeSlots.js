@@ -4,7 +4,6 @@ async function insertTimeSlotsHandler(req, res) {
   if (req.method === "POST") {
     const client = await connectToDatabase();
     const db = client.db();
-    // console.log(req.body);
 
     let timeSlots;
 
