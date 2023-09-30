@@ -8,6 +8,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import classes from "./booking-calendar.module.css";
 import { generateTimeSlots } from "./generate-times";
 import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
+import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 
 function BookingCalendar({ nextStepHandler }) {
   const months = [
@@ -81,28 +82,29 @@ function BookingCalendar({ nextStepHandler }) {
 
     try {
       setIsLoadingTimes(true);
-      // Send data to MongoDB
       const generatedTimes = await generateTimeSlots(selectedDate);
-      const takenTimes = await 
-      // console.log(generatedTimes);
+      const takenTimes = await fetchTakenTimesFromMongo();
+      console.log(takenTimes);
 
-      //   const updatedGeneratedTimes = generatedTimes.map((generatedTime) => {
-      //     const matchingTakenTime = takenTimes.find(
-      //       (takenTime) =>
-      //         takenTime.date === generatedTime.date &&
-      //         takenTime.time === generatedTime.time
-      //     );
+      if (takenTimes || takenTimes.length > 0) {
+        const updatedGeneratedTimes = generatedTimes.map((timeSlot) => {
+          const isTaken = takenTimes.data.some(
+            (takenTime) =>
+              takenTime.date === timeSlot.date &&
+              takenTime.time === timeSlot.time
+          );
+          return {
+            ...timeSlot,
+            status: isTaken ? false : timeSlot.status, // Set status to false if taken, true otherwise
+          };
+        });
 
-      //     if (matchingTakenTime) {
-      //       return { ...generatedTime, status: false };
-      //     }
+        console.log(updatedGeneratedTimes);
+        await sendDataToMongo(updatedGeneratedTimes);
+      } else {
+        await sendDataToMongo(generateTimeSlots);
+      }
 
-      //     return generatedTime;
-      //   });
-
-      //   console.log(updatedGeneratedTimes);
-
-      await sendDataToMongo(generatedTimes);
       // Fetch data from MongoDB
       const dataFromMongo = await fetchDataFromMongo();
       setTimeSlots(dataFromMongo);
