@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "@/store/auth-context";
-import { sendDataToMongo } from "@/lib/sendTimeSlots";
+import { sendTimeSlotsToMongo } from "@/lib/sendTimeSlots";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import classes from "./booking-calendar.module.css";
 import { generateTimeSlots } from "./generate-times";
-import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
+import { fetchTimeSlotsFromMongo } from "@/lib/fetchTimeSlots";
 import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 
 function BookingCalendar({ nextStepHandler }) {
@@ -78,14 +78,16 @@ function BookingCalendar({ nextStepHandler }) {
 
     setActiveDay(selectedDate);
     nextStepHandler();
-    // console.log(activeDay);
 
     try {
       setIsLoadingTimes(true);
+      // generate all the times
       const generatedTimes = await generateTimeSlots(selectedDate);
+      // fetch the taken times
       const takenTimes = await fetchTakenTimesFromMongo();
       console.log(takenTimes);
 
+      // check if there are taken times and give them false status
       if (takenTimes || takenTimes.length > 0) {
         const updatedGeneratedTimes = generatedTimes.map((timeSlot) => {
           const isTaken = takenTimes.data.some(
@@ -100,13 +102,15 @@ function BookingCalendar({ nextStepHandler }) {
         });
 
         console.log(updatedGeneratedTimes);
-        await sendDataToMongo(updatedGeneratedTimes);
+        // send the times to Mongo (with a false status of the taken times)
+        await sendTimeSlotsToMongo(updatedGeneratedTimes);
       } else {
-        await sendDataToMongo(generateTimeSlots);
+        // send the times to Mongo 
+        await sendTimeSlotsToMongo(generateTimeSlots);
       }
 
-      // Fetch data from MongoDB
-      const dataFromMongo = await fetchDataFromMongo();
+      // Fetch time slots from MongoDB
+      const dataFromMongo = await fetchTimeSlotsFromMongo();
       setTimeSlots(dataFromMongo);
 
       setIsLoadingTimes(false);

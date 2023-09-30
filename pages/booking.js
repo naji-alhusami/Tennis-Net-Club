@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useSession } from "next-auth/react";
 
 import BookingCourt from "@/components/booking/booking";
-import { fetchDataFromMongo } from "@/lib/fetchTimeSlots";
 
 function BookingPage() {
   const { data: session, status: loading } = useSession();
