@@ -1,11 +1,10 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-confirm-step.module.css";
-import Link from "next/link";
 
 function ConfirmationStep(props) {
   const { numberOfPlayers, timeInfo } = useContext(AuthContext);

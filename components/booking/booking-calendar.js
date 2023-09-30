@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import AuthContext from "@/store/auth-context";
 import { sendDataToMongo } from "@/lib/sendTimeSlots";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -31,42 +31,13 @@ function BookingCalendar({ nextStepHandler }) {
     timeSlots,
     setTimeSlots,
     setIsLoadingTimes,
-    takenTimes,
-    setTakenTimes,
   } = useContext(AuthContext);
+
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();
   const [currentMonth, setCurrentMonth] = useState(thisMonth);
   const [currentYear, setCurrentYear] = useState(thisYear);
-
-  // Be sure to clear the interval when the component unmounts to prevent memory leaks
-  useEffect(() => {
-    function cleanUpTakenTimes() {
-      const currentTime = new Date();
-
-      // Filter out items that have not expired
-      const updatedTakenTimes = takenTimes.filter((takenTime) => {
-        const endTime = new Date(takenTime.endTime); // Convert endTime to a Date object
-
-        // Compare the endTime with the current time
-        return endTime < currentTime;
-      });
-
-      // Update takenTimes with the cleaned-up array
-      setTakenTimes(updatedTakenTimes);
-
-      // Store the cleaned-up takenTimes in local storage
-      localStorage.setItem("takenTimes", JSON.stringify(updatedTakenTimes));
-    }
-
-    // Schedule the cleanUpTakenTimes function to run every, for example, 5 minutes
-    const cleanupInterval = setInterval(cleanUpTakenTimes, 5 * 60 * 1000); // 5 minutes in milliseconds
-
-    return () => {
-      clearInterval(cleanupInterval);
-    };
-  }, []);
 
   // Start handle clicking on next month
   function nextMonthHandler() {
@@ -110,10 +81,10 @@ function BookingCalendar({ nextStepHandler }) {
 
     try {
       setIsLoadingTimes(true);
-      //   // Send data to MongoDB
-      //   console.log(takenTimes);
+      // Send data to MongoDB
       const generatedTimes = await generateTimeSlots(selectedDate);
-      //   console.log(generatedTimes);
+      const takenTimes = await 
+      // console.log(generatedTimes);
 
       //   const updatedGeneratedTimes = generatedTimes.map((generatedTime) => {
       //     const matchingTakenTime = takenTimes.find(

@@ -54,17 +54,6 @@ function BookingCourt({ session }) {
     console.log("click on confirm");
     console.log(timeInfo);
     await sendTakenTimesToMongo(timeInfo);
-    // console.log(timeInfo);
-    // Update takenTimes using the current state and timeInfo
-    // setTakenTimes((prevTakenTimes) => [...prevTakenTimes, timeInfo]);
-
-    // Store updated takenTimes in local storage
-    // localStorage.setItem(
-    //   "takenTimes",
-    //   JSON.stringify([...takenTimes, timeInfo])
-    // );
-
-    // await editDataInMongo(timeInfo);
   }
 
   const courtTypeImages = {

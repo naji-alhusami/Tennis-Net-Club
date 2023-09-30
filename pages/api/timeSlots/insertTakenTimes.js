@@ -25,7 +25,7 @@ async function insertTakenTimesHandler(req, res) {
     }
     res
       .status(201)
-      .json({ message: "Successfully stored times!", takenTimes: takenTime });
+      .json({ message: "Successfully stored taken times!", takenTimes: takenTime });
   }
 }
 
