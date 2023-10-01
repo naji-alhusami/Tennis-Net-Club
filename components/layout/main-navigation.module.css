@@ -49,37 +49,26 @@
   font-size: var(--size-5);
 }
 
-/* .loginButtonBack {
-position: absolute;
-} */
-
-/* .loginButton:hover {
-  background-color: rgb(100, 165, 43);
-  border-color: rgb(100, 165, 43);
-  color: white;
-} */
-
 .user {
   position: relative;
 }
 
 .userName {
-  width: 6rem;
+  width: fit-content;
+  padding: 0.5rem 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: rgb(137, 227, 59);
-  border: 10px solid rgb(137, 227, 59);
-  color: black;
+  background-color: #1c7f47;
+  color: white;
   margin-left: 2rem;
-  font-size: var(--size-5);
+  font-size: 1.4rem;
   cursor: pointer;
 }
 
 .userName:hover {
-  background-color: rgb(100, 165, 43);
-  border-color: rgb(100, 165, 43);
+  background-color: #146135;
   color: white;
 }
 
@@ -88,21 +77,20 @@ position: absolute;
 }
 
 .userList {
+  text-align: center;
   display: none;
   position: absolute;
-  left: 26%;
-  width: 7rem;
-  height: 8rem;
   list-style-type: none;
-  padding: 2%;
   background-color: rgb(255, 255, 255);
-  flex-direction: column;
   font-size: 1.3rem;
+  margin-left: 2rem;
+  top: 102%;
+  right: 0.5%;
+  width: 6.3rem;
 }
 
 .userList:hover {
-  display: flex;
-  flex-direction: column;
+  background-color: white;
 }
 
 .user:hover .userList {
@@ -111,11 +99,11 @@ position: absolute;
 
 .list {
   color: black;
-  width: 1rem;
+  /* width: 1rem; */
 }
 
 .list:hover {
-  color: rgb(137, 227, 59);
+  color: #1c7f47;
 }
 
 /* @media (min-width: 768px) {

@@ -3,7 +3,6 @@ import { connectToDatabase } from "@/lib/db";
 async function handler(req, res) {
   if (req.method === "POST") {
     const { email, name, message } = req.body; //we bring them from body: JSON.stringify
-    console.log(email);
 
     if (
       !email ||

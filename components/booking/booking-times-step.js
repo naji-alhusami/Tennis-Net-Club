@@ -24,12 +24,9 @@ function TimeSelectionStep(props) {
       try {
         setIsLoadingTimes(true);
         // generate all the times
-        console.log(activeDay);
         const generatedTimes = await generateTimeSlots(activeDay);
-        console.log(generatedTimes);
         // fetch the taken times
         const takenTimes = await fetchTakenTimesFromMongo();
-        console.log(takenTimes);
 
         // check if there are taken times and give them false status
         if (takenTimes && takenTimes.data.length > 0) {
@@ -46,7 +43,6 @@ function TimeSelectionStep(props) {
             };
           });
 
-          console.log(updatedGeneratedTimes);
           // send the times to Mongo (with a false status of the taken times)
           await sendTimeSlotsToMongo(updatedGeneratedTimes);
         } else {
@@ -70,7 +66,6 @@ function TimeSelectionStep(props) {
   }, [activeDay]);
 
   function timeHandler(time) {
-    console.log(time);
     setTimeInfo(time);
     props.nextStepHandler();
   }

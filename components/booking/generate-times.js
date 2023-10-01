@@ -14,21 +14,11 @@ export function generateTimeSlots(activeDay) {
 
   const threeDaysLater = new Date(currentDate);
   threeDaysLater.setDate(currentDate.getDate() + 3);
-  // const thirdDayStartTime = new Date(threeDaysLater);
-  // thirdDayStartTime.setHours(9, 0, 0, 0);
-
-  // const thirdDayEndTime = new Date(threeDaysLater);
-  // thirdDayEndTime.setHours(21, 0, 0, 0);
-
-  
-  // const startingTime = new Date(threeDaysLater);
-  // startingTime.setHours(threeDaysLater.getHours());
 
   const intervalMinutes = 60; // You can adjust this to your desired time slot interval
 
   let currentTime = new Date(todayStartTime);
-  // let thirdDayTime = new Date(thirdDayStartTime);
-  // console.log(thirdDayTime);
+
   while (currentTime <= todayEndTime) {
     const formattedTime = new Date(currentTime).toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -41,10 +31,6 @@ export function generateTimeSlots(activeDay) {
       year: "numeric",
     });
 
-
-    // console.log(threeDaysLater);
-    // console.log(startingTime);
-  
     const afterThirdDay = activeDay > threeDaysLater;
     const timesBeforeCurrentTime =
       activeDay.getDate() === currentDate.getDate() &&
@@ -52,8 +38,7 @@ export function generateTimeSlots(activeDay) {
     const timesInThirdDay = currentTime > threeDaysLater;
     const status =
       timesBeforeCurrentTime || timesInThirdDay || afterThirdDay // false for all the days after third day
-        ? // daysDifference >= 3
-          false
+        ? false
         : true;
 
     timeSlots.push({
@@ -65,6 +50,5 @@ export function generateTimeSlots(activeDay) {
     currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
   }
 
-  console.log(timeSlots);
   return timeSlots;
 }

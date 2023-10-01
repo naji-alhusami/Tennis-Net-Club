@@ -31,21 +31,27 @@ function MainNavigation(props) {
               Home
             </Link>
           </li>
-          {/* {session && (
+          {session && (
             <li>
-              <Link href="/">Book Court</Link>
+              <Link className={classes.navbarList} href="/">
+                Book Court
+              </Link>
             </li>
           )}
           {session && (
             <li>
-              <Link href="/">Trainings</Link>
+              <Link className={classes.navbarList} href="/">
+                Trainings
+              </Link>
             </li>
           )}
           {session && (
             <li>
-              <Link href="/">Find Partner</Link>
+              <Link className={classes.navbarList} href="/">
+                Find Partner
+              </Link>
             </li>
-          )} */}
+          )}
           <li>
             <Link className={classes.navbarList} href="/posts">
               Blogs
@@ -71,26 +77,23 @@ function MainNavigation(props) {
             </motion.div>
           )}
           {session && (
-            <li className={classes.user}>
-              <div className={classes.userName}>
-                {session?.user.name}{" "}
-                <AiFillCaretDown className={classes.icon} />
-              </div>
-              <div className={classes.userList}>
-                <Link className={classes.list} href="/bookCourt">
-                  Book Court
-                </Link>{" "}
-                <Link className={classes.list} href="/trainings">
-                  Trainings
-                </Link>{" "}
-                <Link className={classes.list} href="/findPartner">
-                  Find Partner
-                </Link>{" "}
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className={classes.user}
+            >
+              <li className={classes.userName}>
+                {/* <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className={classes.userName}
+                > */}
+                  {session?.user.name}{" "}
+                  <AiFillCaretDown className={classes.icon} />
+                {/* </motion.div> */}
                 <Link className={classes.list} href="/" onClick={logoutHandler}>
-                  Logout
+                  <div className={classes.userList}>Logout</div>
                 </Link>
-              </div>
-            </li>
+              </li>
+            </motion.div>
           )}
         </ul>
       </nav>

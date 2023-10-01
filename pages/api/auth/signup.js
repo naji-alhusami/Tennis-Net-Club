@@ -2,14 +2,12 @@ import { hashPassword } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 
 async function handler(req, res) {
-  console.log("naji");
   if (req.method !== "POST") {
     return;
   }
   const data = req.body;
   const { name, email, password, passwordConfirmation, role } = data;
 
-  console.log(data);
 
   if (!name || name.trim().length > 10) {
     res

@@ -19,21 +19,7 @@ function BookingCourt({ session }) {
 
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   const [isShowCourts, setIsShowCourts] = useState(false);
-  const { setActiveDay, timeInfo, setTakenTimes, takenTimes } =
-    useContext(AuthContext);
-
-  // useEffect(() => {
-  //   const storedTakenTimes = JSON.parse(localStorage.getItem("takenTimes"));
-  //   if (storedTakenTimes) {
-  //     setTakenTimes(storedTakenTimes);
-  //   }
-  // }, []);
-
-  // console.log(timeInfo);
-  // function timeHandler(time) {
-  //   console.log(time);
-  // setIsTime(time);
-  // }
+  const { setActiveDay, timeInfo } = useContext(AuthContext);
 
   const nextStepHandler = () => {
     setCurrentStep(currentStep + 1);

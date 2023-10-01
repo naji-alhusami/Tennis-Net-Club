@@ -61,7 +61,6 @@ function BookingCalendar({ nextStepHandler }) {
     currentDate.setHours(0, 0, 0, 0); // Set time to midnight for currentDate
 
     if (selectedDate.getTime() < currentDate.getTime()) {
-      console.log("inside prev days");
       // Prevent selecting dates before the current day
       return;
     }
@@ -123,7 +122,6 @@ function BookingCalendar({ nextStepHandler }) {
   }
   // End generating days in each month
 
-  console.log(timeSlots);
 
   return (
     <div className={classes.bookingDate}>
