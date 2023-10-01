@@ -32,7 +32,7 @@ function TimeSelectionStep(props) {
         console.log(takenTimes);
 
         // check if there are taken times and give them false status
-        if (takenTimes && takenTimes.length > 0) {
+        if (takenTimes && takenTimes.data.length > 0) {
           console.log("inside taken times");
           const updatedGeneratedTimes = generatedTimes.map((timeSlot) => {
             const isTaken = takenTimes.data.some(
