@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, use } from "react";
 import AuthContext from "@/store/auth-context";
 import { sendTimeSlotsToMongo } from "@/lib/sendTimeSlots";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -79,45 +79,46 @@ function BookingCalendar({ nextStepHandler }) {
     setActiveDay(selectedDate);
     nextStepHandler();
 
-    try {
-      setIsLoadingTimes(true);
-      // generate all the times
-      const generatedTimes = await generateTimeSlots(selectedDate);
-      // fetch the taken times
-      const takenTimes = await fetchTakenTimesFromMongo();
-      console.log(takenTimes);
+    // try {
+    //   setIsLoadingTimes(true);
+    //   // generate all the times
+    //   const generatedTimes = await generateTimeSlots(selectedDate);
+    //   console.log(activeDay);
+    //   // fetch the taken times
+    //   const takenTimes = await fetchTakenTimesFromMongo();
+    //   console.log(takenTimes);
 
-      // check if there are taken times and give them false status
-      if (takenTimes || takenTimes.length > 0) {
-        const updatedGeneratedTimes = generatedTimes.map((timeSlot) => {
-          const isTaken = takenTimes.data.some(
-            (takenTime) =>
-              takenTime.date === timeSlot.date &&
-              takenTime.time === timeSlot.time
-          );
-          return {
-            ...timeSlot,
-            status: isTaken ? false : timeSlot.status, // Set status to false if taken, true otherwise
-          };
-        });
+    //   // check if there are taken times and give them false status
+    //   if (takenTimes || takenTimes.length > 0) {
+    //     const updatedGeneratedTimes = generatedTimes.map((timeSlot) => {
+    //       const isTaken = takenTimes.data.some(
+    //         (takenTime) =>
+    //           takenTime.date === timeSlot.date &&
+    //           takenTime.time === timeSlot.time
+    //       );
+    //       return {
+    //         ...timeSlot,
+    //         status: isTaken ? false : timeSlot.status, // Set status to false if taken, true otherwise
+    //       };
+    //     });
 
-        console.log(updatedGeneratedTimes);
-        // send the times to Mongo (with a false status of the taken times)
-        await sendTimeSlotsToMongo(updatedGeneratedTimes);
-      } else {
-        // send the times to Mongo 
-        await sendTimeSlotsToMongo(generateTimeSlots);
-      }
+    //     console.log(updatedGeneratedTimes);
+    //     // send the times to Mongo (with a false status of the taken times)
+    //     await sendTimeSlotsToMongo(updatedGeneratedTimes);
+    //   } else {
+    //     // send the times to Mongo
+    //     await sendTimeSlotsToMongo(generateTimeSlots);
+    //   }
 
-      // Fetch time slots from MongoDB
-      const dataFromMongo = await fetchTimeSlotsFromMongo();
-      setTimeSlots(dataFromMongo);
+    //   // Fetch time slots from MongoDB
+    //   const dataFromMongo = await fetchTimeSlotsFromMongo();
+    //   setTimeSlots(dataFromMongo);
 
-      setIsLoadingTimes(false);
-    } catch (error) {
-      console.error(error.message || "Error here!");
-      setIsLoadingTimes(false);
-    }
+    //   setIsLoadingTimes(false);
+    // } catch (error) {
+    //   console.error(error.message || "Error here!");
+    //   setIsLoadingTimes(false);
+    // }
   }
 
   function getClassForDay(day) {

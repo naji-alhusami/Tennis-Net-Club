@@ -52,8 +52,10 @@ function BookingCourt({ session }) {
   async function reserveHandler(event) {
     event.preventDefault();
     console.log("click on confirm");
-    console.log(timeInfo);
-    await sendTakenTimesToMongo(timeInfo);
+    if (timeInfo) {
+      console.log(timeInfo);
+      await sendTakenTimesToMongo(timeInfo);
+    }
   }
 
   const courtTypeImages = {
