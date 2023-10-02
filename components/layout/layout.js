@@ -8,7 +8,7 @@ function Layout(props) {
     <Fragment>
       <MainNavigation />
       <main>{props.children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 }

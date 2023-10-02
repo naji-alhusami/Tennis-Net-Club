@@ -3,13 +3,14 @@
   height: 15%;
   position: absolute;
   top: 4%;
+  /* background-color: rgba(247, 0, 0, 0.8); */
   background-color: rgb(255, 255, 255, 0.8);
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   padding: 0 3%;
-  margin-left: 2rem;
+  transform: translateX(3%);
   z-index: 10;
 }
 
@@ -21,15 +22,34 @@
   padding: 0;
 }
 
-.navbarList {
+.navbarListHome,
+.navbarListBook,
+.navbarListPartner,
+.navbarListTraining,
+.navbarListBlogs,
+.navbarListContact,
+.navbarListAbout {
   margin: 0 var(--size-4);
   color: rgb(0, 0, 0);
   font-size: var(--size-5);
   font-weight: bolder;
 }
 
-.navbarList:hover {
+.navbarListHome:hover,
+.navbarListBook:hover,
+.navbarListPartner:hover,
+.navbarListTraining:hover,
+.navbarListBlogs:hover,
+.navbarListContact:hover,
+.navbarListAbout:hover {
   color: #1c7f47;
+}
+
+.navbarListHomeMed,
+.navbarListBlogsMed,
+.navbarListContactMed,
+.navbarListAboutMed {
+  display: none;
 }
 
 .loginButton {
@@ -84,7 +104,7 @@
   background-color: rgb(255, 255, 255);
   font-size: 1.3rem;
   margin-left: 2rem;
-  top: 102%;
+  top: 100%;
   right: 0.5%;
   width: 6.3rem;
 }
@@ -106,12 +126,84 @@
   color: #1c7f47;
 }
 
-/* @media (min-width: 768px) {
-  .header ul {
-    gap: 0.5rem;
+.navbarSmallScreen {
+  display: none;
+}
+
+@media (min-width: 810px) and (max-width: 1110px) {
+  .navbarListHome,
+  .navbarListBlogs,
+  .navbarListContact,
+  .navbarListAbout {
+    display: none;
   }
 
-  .header a {
+  .navbarListHomeMed,
+  .navbarListBlogsMed,
+  .navbarListContactMed,
+  .navbarListAboutMed {
+    display: flex;
+    margin: 0 var(--size-4);
+    color: rgb(0, 0, 0);
     font-size: var(--size-5);
+    font-weight: bolder;
   }
-} */
+
+  .navbarListHomeMed:hover,
+  .navbarListBlogsMed:hover,
+  .navbarListContactMed:hover,
+  .navbarListAboutMed:hover {
+    color: #1c7f47;
+  }
+}
+
+@media (max-width: 809px) {
+  .navbarListHome,
+  .navbarListBook,
+  .navbarListPartner,
+  .navbarListTraining,
+  .navbarListBlogs,
+  .navbarListContact,
+  .navbarListAbout {
+    display: none;
+  }
+
+  .user {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  /* .navbarSmallScreenContainer {
+    background-color: #146135;
+    border-radius: 50%;
+    width: 120%;
+    height: 80%;
+  } */
+
+  .navbarSmallScreen {
+    cursor: pointer;
+    color: #1c7f47;
+    display: flex;
+  }
+
+  .navbarCancelSmallScreen {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+  }
+
+  .navbarCancelSmallScreen img {
+    margin: 0;
+    width: 20%;
+    height: 20%;
+  }
+
+  .header {
+    display: none;
+  }
+}

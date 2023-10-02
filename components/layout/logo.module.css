@@ -5,3 +5,9 @@
   color: #1c7f47;
   font-style: italic;
 }
+
+/* @media (max-width: 809px) {
+  .logo{
+    font-size: 2rem;
+  }
+} */
