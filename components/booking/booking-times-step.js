@@ -25,6 +25,7 @@ function TimeSelectionStep(props) {
         setIsLoadingTimes(true);
         // generate all the times
         const generatedTimes = await generateTimeSlots(activeDay);
+        console.log(generatedTimes)
         // fetch the taken times
         const takenTimes = await fetchTakenTimesFromMongo();
 

@@ -17,7 +17,7 @@
 .ul {
   list-style: none;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
@@ -126,7 +126,7 @@
   color: #1c7f47;
 }
 
-.navbarSmallScreen {
+.navbarToggleContainer {
   display: none;
 }
 
@@ -168,42 +168,71 @@
     display: none;
   }
 
-  .user {
-    display: none;
-  }
-
-  .login {
-    display: none;
-  }
-
-  /* .navbarSmallScreenContainer {
-    background-color: #146135;
-    border-radius: 50%;
-    width: 120%;
-    height: 80%;
-  } */
-
-  .navbarSmallScreen {
-    cursor: pointer;
-    color: #1c7f47;
-    display: flex;
-  }
-
-  .navbarCancelSmallScreen {
-    cursor: pointer;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0;
-  }
-
-  .navbarCancelSmallScreen img {
-    margin: 0;
-    width: 20%;
-    height: 20%;
-  }
-
   .header {
-    display: none;
+    height: 10%;
+  }
+
+  .loginButton {
+    padding: 0.4rem 1rem;
+    font-size: var(--size-4);
+    box-shadow: 5px 5px 0px 1px #db981b;
+    margin-right: 0.5rem;
+  }
+
+  .userName {
+    width: fit-content;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+  }
+
+  .userList {
+    font-size: 0.8rem;
+    width: 5rem;
+  }
+
+  .navbarToggleContainer {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 1rem;
+    padding: 10px;
+    background-color: #1c7f47;
+    border-radius: 100%;
+  }
+
+  .line1 {
+    border-radius: 10px;
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    margin-bottom: 6px;
+    transition: 0.4s;
+  }
+  .line2 {
+    border-radius: 10px;
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    margin-bottom: 6px;
+    transition: 0.4s;
+  }
+  .line3 {
+    border-radius: 10px;
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    margin-top: 6px;
+    transition: 0.4s;
+  }
+
+  .change .line1 {
+    transform: translate(0, 10px) rotate(-45deg);
+  }
+
+  .change .line2 {
+    opacity: 0;
+  }
+
+  .change .line3 {
+    transform: translate(0, -10px) rotate(45deg);
   }
 }

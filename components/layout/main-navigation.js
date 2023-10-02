@@ -12,7 +12,7 @@ import navbar from "../../components/icons/navbar.svg";
 import cancelNavbar from "../../components/icons/cancelNavbar.svg";
 
 function MainNavigation(props) {
-  const [changeIcon, setChangeIcon] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
   const { backgroundColor } = props;
   const { data: session, loading } = useSession();
 
@@ -20,8 +20,9 @@ function MainNavigation(props) {
     signOut();
   }
 
-  function navbarHanlder() {
-    setChangeIcon(!changeIcon);
+  function toggleButtonHandler() {
+    setIsToggled(!isToggled);
+    console.log("clicked");
   }
 
   const headerStyle = {
@@ -29,11 +30,11 @@ function MainNavigation(props) {
   };
 
   return (
-    <header style={headerStyle}>
-      <nav className={classes.header}>
-        <Link href="/">
-          <Logo />
-        </Link>
+    <header className={classes.header} style={headerStyle}>
+      <Link href="/">
+        <Logo />
+      </Link>
+      <nav>
         <ul className={classes.ul}>
           {/* Large Screens */}
           <li>
@@ -107,48 +108,49 @@ function MainNavigation(props) {
               </Link>
             </li>
           )}
-          {!session && !loading && (
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className={classes.login}
-            >
-              <li>
+          <li>
+            {!session && !loading && (
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={classes.login}
+              >
                 <Link className={classes.loginButton} href="/auth/login">
                   Login
                 </Link>
-              </li>
-            </motion.div>
-          )}
-          {session && (
-            <motion.div whileHover={{ scale: 1.1 }} className={classes.user}>
-              <li className={classes.userName}>
-                {session?.user.name}{" "}
-                <AiFillCaretDown className={classes.icon} />
-                <Link className={classes.list} href="/" onClick={logoutHandler}>
-                  <div className={classes.userList}>Logout</div>
-                </Link>
-              </li>
-            </motion.div>
-          )}
-        </ul>
-        {/* <div className={classes.navbarSmallScreenContainer}> */}
-          {/* <div className={classes.navbarCancelSmallScreen}>
-            {!changeIcon && (
-              <Image
-                src={cancelNavbar}
-                alt="cancelNavbar"
-                onClick={navbarHanlder}
-              />
+              </motion.div>
             )}
-          </div> */}
-
-          {/* {!changeIcon && (
-            <div>
-              <p>naji</p>
+          </li>
+          <li>
+            {session && (
+              <motion.div whileHover={{ scale: 1.1 }} className={classes.user}>
+                <div className={classes.userName}>
+                  {session?.user.name}{" "}
+                  <AiFillCaretDown className={classes.icon} />
+                  <Link
+                    className={classes.list}
+                    href="/"
+                    onClick={logoutHandler}
+                  >
+                    <div className={classes.userList}>Logout</div>
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </li>
+          <li>
+            <div
+              className={`${classes.navbarToggleContainer} ${
+                isToggled ? `${classes.change}` : ""
+              }`}
+              onClick={toggleButtonHandler}
+            >
+              <div className={classes.line1}></div>
+              <div className={classes.line2}></div>
+              <div className={classes.line3}></div>
             </div>
-          )} */}
-        {/* </div> */}
+          </li>
+        </ul>
       </nav>
     </header>
   );

@@ -6,8 +6,8 @@
   font-style: italic;
 }
 
-/* @media (max-width: 809px) {
+@media (max-width: 809px) {
   .logo{
     font-size: 2rem;
   }
-} */
+}
