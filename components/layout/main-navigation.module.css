@@ -1,3 +1,7 @@
+.container {
+  width: 100%;
+}
+
 .header {
   width: 95%;
   height: 15%;
@@ -130,6 +134,27 @@
   display: none;
 }
 
+/* .sideNavbarContainer{
+  display: none;
+} */
+
+.sideNavbarContainer {
+  height: 100%; /* 100% Full-height */
+  width: 250px; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: white; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  color: rgb(118, 118, 118);
+}
+
+.show .sideNavbarContainer {
+  width: 250px;
+}
+
 @media (min-width: 810px) and (max-width: 1110px) {
   .navbarListHome,
   .navbarListBlogs,
@@ -191,12 +216,14 @@
   }
 
   .navbarToggleContainer {
+    position: relative;
     display: inline-block;
     cursor: pointer;
     margin-left: 1rem;
-    padding: 10px;
+    padding: 8px;
     background-color: #1c7f47;
     border-radius: 100%;
+    z-index: 2;
   }
 
   .line1 {

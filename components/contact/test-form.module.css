@@ -1,0 +1,20 @@
+.sideNavbarContainer {
+  height: 100%; /* 100% Full-height */
+  width: 30%; /* Start with 0 width */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  color: white;
+  display: flex;
+  transition: width 0.5s, transform 0.5s; /* Add transition to width and transform properties */
+  transform: translateX(0);
+}
+
+.show .sideNavbarContainer {
+  width: 25%; /* Show the sidebar with a width of 250px */
+  transform: translateX(); /* Reset the transform */
+}
