@@ -4,17 +4,17 @@
 
 .header {
   width: 95%;
-  height: 15%;
+  height: 13%;
   position: absolute;
   top: 4%;
-  /* background-color: rgba(247, 0, 0, 0.8); */
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgba(247, 0, 0, 0.8);
+  /* background-color: rgb(255, 255, 255, 0.8); */
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   padding: 0 3%;
-  transform: translateX(3%);
+  transform: translateX(2.5%);
   z-index: 10;
 }
 
@@ -22,38 +22,32 @@
   list-style: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
 }
 
-.navbarListHome,
-.navbarListBook,
-.navbarListPartner,
-.navbarListTraining,
-.navbarListBlogs,
-.navbarListContact,
-.navbarListAbout {
+.navbarListHome a,
+.navbarListBook a,
+.navbarListPartner a,
+.navbarListTraining a,
+.navbarListBlogs a,
+.navbarListContact a,
+.navbarListAbout a {
   margin: 0 var(--size-4);
   color: rgb(0, 0, 0);
   font-size: var(--size-5);
   font-weight: bolder;
 }
 
-.navbarListHome:hover,
-.navbarListBook:hover,
-.navbarListPartner:hover,
-.navbarListTraining:hover,
-.navbarListBlogs:hover,
-.navbarListContact:hover,
-.navbarListAbout:hover {
+.navbarListHome a:hover,
+.navbarListBook a:hover,
+.navbarListPartner a:hover,
+.navbarListTraining a:hover,
+.navbarListBlogs a:hover,
+.navbarListContact a:hover,
+.navbarListAbout a:hover {
   color: #1c7f47;
-}
-
-.navbarListHomeMed,
-.navbarListBlogsMed,
-.navbarListContactMed,
-.navbarListAboutMed {
-  display: none;
 }
 
 .loginButton {
@@ -102,7 +96,7 @@
 
 .userList {
   text-align: center;
-  display: none;
+  /* display: none; */
   position: absolute;
   list-style-type: none;
   background-color: rgb(255, 255, 255);
@@ -134,25 +128,8 @@
   display: none;
 }
 
-/* .sideNavbarContainer{
-  display: none;
-} */
-
 .sideNavbarContainer {
-  height: 100%; /* 100% Full-height */
-  width: 250px; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  right: 0;
-  background-color: white; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  color: rgb(118, 118, 118);
-}
-
-.show .sideNavbarContainer {
-  width: 250px;
+  display: none;
 }
 
 @media (min-width: 810px) and (max-width: 1110px) {
@@ -161,24 +138,6 @@
   .navbarListContact,
   .navbarListAbout {
     display: none;
-  }
-
-  .navbarListHomeMed,
-  .navbarListBlogsMed,
-  .navbarListContactMed,
-  .navbarListAboutMed {
-    display: flex;
-    margin: 0 var(--size-4);
-    color: rgb(0, 0, 0);
-    font-size: var(--size-5);
-    font-weight: bolder;
-  }
-
-  .navbarListHomeMed:hover,
-  .navbarListBlogsMed:hover,
-  .navbarListContactMed:hover,
-  .navbarListAboutMed:hover {
-    color: #1c7f47;
   }
 }
 
@@ -211,7 +170,7 @@
   }
 
   .userList {
-    font-size: 0.8rem;
+    font-size: 1.25rem;
     width: 5rem;
   }
 
@@ -219,7 +178,7 @@
     position: relative;
     display: inline-block;
     cursor: pointer;
-    margin-left: 1rem;
+    margin: 0.3rem 0 0 1rem;
     padding: 8px;
     background-color: #1c7f47;
     border-radius: 100%;
@@ -261,5 +220,105 @@
 
   .change .line3 {
     transform: translate(0, -10px) rotate(45deg);
+  }
+
+  .sideNavbarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 90px;
+    font-size: 1.2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .show .sideNavbarContainer {
+    width: 250px;
+  }
+
+  .ulSmallScreen {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ulSmallScreen li {
+    margin: var(--size-2) 0 var(--size-3) 0.8rem;
+    font-size: var(--size-5);
+    font-weight: bolder;
+  }
+
+  .ulSmallScreen a {
+    color: rgb(0, 0, 0);
+  }
+
+  .ulSmallScreen a:hover {
+    color: #1c7f47;
+  }
+}
+
+@media (max-width: 500px) {
+  .header {
+    top: 1%;
+    height: 6%;
+  }
+
+  .login {
+    margin-bottom: 0.4rem;
+  }
+
+  .loginButton {
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+    box-shadow: 3px 3px 0px 1px #db981b;
+  }
+
+  .userName {
+    width: fit-content;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .icon {
+    margin-left: 0.6rem;
+  }
+
+  .navbarToggleContainer {
+    padding: 5px;
+    margin-top: 0.3rem;
+  }
+
+  .line1 {
+    margin-bottom: 4px;
+    width: 16px;
+    height: 2px;
+  }
+  .line2 {
+    margin-bottom: 4px;
+    width: 16px;
+    height: 2px;
+  }
+  .line3 {
+    margin-top: 4px;
+    width: 16px;
+    height: 2px;
+  }
+
+  .change .line1 {
+    transform: translate(0, 6px) rotate(-45deg);
+  }
+
+  .change .line2 {
+    opacity: 0;
+  }
+
+  .change .line3 {
+    transform: translate(0, -6px) rotate(45deg);
   }
 }

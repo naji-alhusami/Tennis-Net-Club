@@ -11,11 +11,17 @@ import classes from "./main-navigation.module.css";
 function MainNavigation(props) {
   const [isToggled, setIsToggled] = useState(false);
   const [showSideNavbar, setShowSideNavbar] = useState(false);
+  const [showUserLogout, setShowUserLogout] = useState(false);
   const { backgroundColor } = props;
   const { data: session, loading } = useSession();
 
+  function showUserLogoutHandler() {
+    setShowUserLogout(!showUserLogout);
+  }
+
   function logoutHandler() {
     signOut();
+    setShowUserLogout(false);
   }
 
   function toggleButtonHandler() {
@@ -36,107 +42,65 @@ function MainNavigation(props) {
         <nav>
           <ul className={classes.ul}>
             {/* Large Screens */}
-            <li>
-              <Link className={classes.navbarListHome} href="/">
-                Home
-              </Link>
+            <li className={classes.navbarListHome}>
+              <Link href="/">Home</Link>
             </li>
             {session && (
-              <li>
-                <Link className={classes.navbarListBook} href="/">
-                  Book Court
-                </Link>
+              <li className={classes.navbarListBook}>
+                <Link href="/">Book Court</Link>
               </li>
             )}
             {session && (
-              <li>
-                <Link className={classes.navbarListPartner} href="/">
-                  Find Partner
-                </Link>
+              <li className={classes.navbarListPartner}>
+                <Link href="/">Find Partner</Link>
               </li>
             )}
             {session && (
-              <li>
-                <Link className={classes.navbarListTraining} href="/">
-                  Trainings
-                </Link>
+              <li className={classes.navbarListTraining}>
+                <Link href="/">Trainings</Link>
               </li>
             )}
-            <li>
-              <Link className={classes.navbarListBlogs} href="/posts">
-                Blogs
-              </Link>
+            <li className={classes.navbarListBlogs}>
+              <Link href="/posts">Blogs</Link>
+            </li>
+            <li className={classes.navbarListContact}>
+              <Link href="/contact">Contact</Link>
+            </li>
+            <li className={classes.navbarListAbout}>
+              <Link href="/about">About</Link>
             </li>
             <li>
-              <Link className={classes.navbarListContact} href="/contact">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link className={classes.navbarListAbout} href="/about">
-                About
-              </Link>
-            </li>
-
-            {/* Med Screens */}
-            {!session && (
-              <li>
-                <Link className={classes.navbarListHomeMed} href="/">
-                  Home
-                </Link>
-              </li>
-            )}
-            {!session && (
-              <li>
-                <Link className={classes.navbarListBlogsMed} href="/">
-                  Blogs
-                </Link>
-              </li>
-            )}
-            {!session && (
-              <li>
-                <Link className={classes.navbarListContactMed} href="/">
-                  Contact
-                </Link>
-              </li>
-            )}
-            {!session && (
-              <li>
-                <Link className={classes.navbarListAboutMed} href="/">
-                  About
-                </Link>
-              </li>
-            )}
-            <li>
-              {!session && !loading && (
+              {session ? (
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className={classes.user}
+                  onClick={showUserLogoutHandler}
+                >
+                  <div className={classes.userName}>
+                    {session?.user.name}{" "}
+                    <AiFillCaretDown className={classes.icon} />
+                    {showUserLogout && (
+                      <Link
+                        className={classes.list}
+                        href="/"
+                        onClick={logoutHandler}
+                      >
+                        <div className={classes.userList}>Logout</div>
+                      </Link>
+                    )}
+                  </div>
+                </motion.div>
+              ) : (
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className={classes.login}
                 >
-                  <Link className={classes.loginButton} href="/auth/login">
-                    Login
-                  </Link>
-                </motion.div>
-              )}
-            </li>
-            <li>
-              {session && (
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className={classes.user}
-                >
-                  <div className={classes.userName}>
-                    {session?.user.name}{" "}
-                    <AiFillCaretDown className={classes.icon} />
-                    <Link
-                      className={classes.list}
-                      href="/"
-                      onClick={logoutHandler}
-                    >
-                      <div className={classes.userList}>Logout</div>
+                  {!session && !loading && (
+                    <Link className={classes.loginButton} href="/auth/login">
+                      Login
                     </Link>
-                  </div>
+                  )}
                 </motion.div>
               )}
             </li>
@@ -166,10 +130,57 @@ function MainNavigation(props) {
             animate={{ x: showSideNavbar ? "0%" : "100%" }}
             exit={{ x: "100%" }}
           >
-            <p>home</p>
-            <p>home</p>
-            <p>home</p>
-            <p>home</p>
+            <ul className={classes.ulSmallScreen}>
+              {/* Small Screens */}
+              <li
+                className={classes.navbarListHomeSmall}
+                onClick={toggleButtonHandler}
+              >
+                <Link href="/">Home</Link>
+              </li>
+              {session && (
+                <li
+                  className={classes.navbarListBookSmall}
+                  onClick={toggleButtonHandler}
+                >
+                  <Link href="/booking">Book Court</Link>
+                </li>
+              )}
+              {session && (
+                <li
+                  className={classes.navbarListPartnerSmall}
+                  onClick={toggleButtonHandler}
+                >
+                  <Link href="/">Find Partner</Link>
+                </li>
+              )}
+              {session && (
+                <li
+                  className={classes.navbarListTrainingSmall}
+                  onClick={toggleButtonHandler}
+                >
+                  <Link href="/">Trainings</Link>
+                </li>
+              )}
+              <li
+                className={classes.navbarListBlogsSmall}
+                onClick={toggleButtonHandler}
+              >
+                <Link href="/posts">Blogs</Link>
+              </li>
+              <li
+                className={classes.navbarListContactSmall}
+                onClick={toggleButtonHandler}
+              >
+                <Link href="/contact">Contact</Link>
+              </li>
+              <li
+                className={classes.navbarListAboutSmall}
+                onClick={toggleButtonHandler}
+              >
+                <Link href="/about">About</Link>
+              </li>
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>
