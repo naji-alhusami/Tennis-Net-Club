@@ -1,13 +1,10 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import { motion } from "framer-motion";
 
 import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-times-step.module.css";
 import { generateTimeSlots } from "./generate-times";
 import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
-// import { sendTimeSlotsToMongo } from "@/lib/sendTimeSlots";
-// import { fetchTimeSlotsFromMongo } from "@/lib/fetchTimeSlots";
 
 function TimeSelectionStep(props) {
   const {
@@ -38,22 +35,14 @@ function TimeSelectionStep(props) {
             );
             return {
               ...timeSlot,
-              status: isTaken ? false : timeSlot.status, // Set status to false if taken, true otherwise
+              status: isTaken ? "RESERVED" : timeSlot.status, // Set status to false if taken, true otherwise
             };
           });
           setTimeSlots(updatedGeneratedTimes);
-
-          // send the times to Mongo (with a false status of the taken times)
-          // await sendTimeSlotsToMongo(updatedGeneratedTimes);
         } else {
           console.log("without takentimes");
-          // send the times to Mongo
-          // await sendTimeSlotsToMongo(generatedTimes);
-          setTimeSlots(generateTimeSlots);
+          setTimeSlots(generatedTimes);
         }
-
-        // Fetch time slots from MongoDB
-        // const dataFromMongo = await fetchTimeSlotsFromMongo();
 
         setIsLoadingTimes(false);
       } catch (error) {
@@ -64,38 +53,61 @@ function TimeSelectionStep(props) {
 
     fetchData();
   }, [activeDay]);
-  
+
   function timeHandler(time) {
     setTimeInfo(time);
     props.nextStepHandler();
   }
-
+  console.log(timeSlots);
   return (
     <Fragment>
       <div className={classes.timeContainer}>
-        <h1>Time:</h1>
+        <h1>Choose Your Preferred Time:</h1>
+        <hr />
         {isLoadingTimes ? (
           <p>Loading Times...</p>
         ) : (
-          timeSlots.map((timeSlot) => {
-            if (timeSlot.status === true) {
+          <div className={classes.timeSlotsContainer}>
+            {timeSlots.map((timeSlot) => {
               return (
-                <p
-                  className={classes.availableTime}
-                  key={timeSlot.id}
-                  onClick={() => timeHandler(timeSlot)}
-                >
-                  {timeSlot.time}
-                </p>
+                <div key={timeSlot.id} className={classes.timeSlot}>
+                  <p className={classes.time}>{timeSlot.time}</p>
+                  {timeSlot.status === "PASSED TIME" ? (
+                    <p
+                      className={classes.booked}
+                      onClick={() => timeHandler(timeSlot)}
+                    >
+                      PASSED TIME
+                    </p>
+                  ) : timeSlot.status === "RESERVED" ? (
+                    <p className={classes.booked}>RESERVED</p>
+                  ) : timeSlot.status === "NOT OPENED" ? (
+                    <p className={classes.booked}>NOT OPENED</p>
+                  ) : (
+                    <p className={classes.book}>BOOK COURT</p>
+                  )}
+                </div>
               );
-            } else {
-              return (
-                <p className={classes.notAvailableTime} key={timeSlot.id}>
-                  {timeSlot.time}
-                </p>
-              );
-            }
-          })
+
+              // if (timeSlot.status === true) {
+              //   return (
+              //     <p
+              //       className={classes.availableTime}
+              //       key={timeSlot.id}
+              //       onClick={() => timeHandler(timeSlot)}
+              //     >
+              //       {timeSlot.time}
+              //     </p>
+              //   );
+              // } else {
+              //   return (
+              //     <p className={classes.notAvailableTime} key={timeSlot.id}>
+              //       {timeSlot.time}
+              //     </p>
+              //   );
+              // }
+            })}
+          </div>
         )}
       </div>
       <p

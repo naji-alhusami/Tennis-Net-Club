@@ -6,7 +6,7 @@ export function generateTimeSlots(activeDay) {
 
   // Set the start time to 9:00 AM on the selected date
   const todayStartTime = new Date(activeDay);
-  todayStartTime.setHours(9, 0, 0, 0);
+  todayStartTime.setHours(8, 0, 0, 0);
 
   // Set the end time to 9:00 PM on the same date
   const todayEndTime = new Date(activeDay);
@@ -32,15 +32,28 @@ export function generateTimeSlots(activeDay) {
       year: "numeric",
     });
 
-    const afterThirdDay = activeDay > threeDaysLater;
-    const timesBeforeCurrentTime =
+    // const afterThirdDay = activeDay > threeDaysLater;
+    // const timesBeforeCurrentTime =
+    //   activeDay.getDate() === currentDate.getDate() &&
+    //   currentDate.getHours() >= new Date(currentTime).getHours();
+    // const timesInThirdDay = currentTime > threeDaysLater;
+    // const status =
+    //   timesBeforeCurrentTime || timesInThirdDay || afterThirdDay // false for all the days after third day
+    //     ? false
+    //     : true;
+
+    let status = ""; // Initialize status as an empty string
+
+    if (activeDay > threeDaysLater || currentTime > threeDaysLater) {
+      status = "NOT OPENED";
+    } else if (
       activeDay.getDate() === currentDate.getDate() &&
-      currentDate.getHours() >= new Date(currentTime).getHours();
-    const timesInThirdDay = currentTime > threeDaysLater;
-    const status =
-      timesBeforeCurrentTime || timesInThirdDay || afterThirdDay // false for all the days after third day
-        ? false
-        : true;
+      currentDate.getHours() >= new Date(currentTime).getHours()
+    ) {
+      status = "PASSED TIME";
+    } else {
+      status = "BOOK COURT"; // Default status for open slots
+    }
 
     timeSlots.push({
       id: id,
