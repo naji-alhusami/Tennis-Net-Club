@@ -47,7 +47,7 @@ function MainNavigation(props) {
             </li>
             {session && (
               <li className={classes.navbarListBook}>
-                <Link href="/">Book Court</Link>
+                <Link href="/booking">Book Court</Link>
               </li>
             )}
             {session && (
@@ -71,8 +71,8 @@ function MainNavigation(props) {
             </li>
             <li>
               {session ? (
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
+                <div
+                  // whileHover={{ scale: 1.1 }}
                   className={classes.user}
                   onClick={showUserLogoutHandler}
                 >
@@ -89,7 +89,7 @@ function MainNavigation(props) {
                       </Link>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ) : (
                 <motion.div
                   whileHover={{ scale: 1.1 }}

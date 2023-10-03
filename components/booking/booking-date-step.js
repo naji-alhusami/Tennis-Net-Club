@@ -37,11 +37,6 @@ function DateSelectionStep({
     }
   };
 
-  // function timeHandler(time) {
-  //   setTimeInfo(time);
-  //   setIsTime(time);
-  // }
-
   return (
     <Fragment>
       <div className={classes.bookingForm}>

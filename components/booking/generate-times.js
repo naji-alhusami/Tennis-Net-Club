@@ -18,6 +18,7 @@ export function generateTimeSlots(activeDay) {
   const intervalMinutes = 60; // You can adjust this to your desired time slot interval
 
   let currentTime = new Date(todayStartTime);
+  let id = 0;
 
   while (currentTime <= todayEndTime) {
     const formattedTime = new Date(currentTime).toLocaleTimeString("en-US", {
@@ -42,10 +43,13 @@ export function generateTimeSlots(activeDay) {
         : true;
 
     timeSlots.push({
+      id: id,
       date: formattedDate,
       time: formattedTime,
       status: status,
     });
+
+    id++;
 
     currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
   }
