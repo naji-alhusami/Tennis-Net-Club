@@ -5,6 +5,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import classes from "./booking-calendar.module.css";
+import Link from "next/link";
 
 function BookingCalendar({ nextStepHandler }) {
   const months = [
@@ -121,7 +122,6 @@ function BookingCalendar({ nextStepHandler }) {
     calendarGrid.push(day);
   }
   // End generating days in each month
-
 
   return (
     <div className={classes.bookingDate}>
