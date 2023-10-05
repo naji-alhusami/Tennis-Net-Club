@@ -23,8 +23,7 @@ function BookingCalendar({ nextStepHandler }) {
     "December",
   ];
 
-  const { activeDay, setActiveDay, timeSlots } = useContext(AuthContext);
-
+  const { activeDay, setActiveDay, timeSlots, setNextButton } = useContext(AuthContext);
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();
@@ -67,7 +66,8 @@ function BookingCalendar({ nextStepHandler }) {
     }
 
     setActiveDay(selectedDate);
-    nextStepHandler();
+    setNextButton(true);
+    // nextStepHandler();
   }
 
   function getClassForDay(day) {

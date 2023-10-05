@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { useSession } from "next-auth/react";
 
 import BookingCourt from "@/components/booking/booking";
+// import { generateTimeSlots } from "@/components/booking/generate-times";
+import AuthContext from "@/store/auth-context";
 
 function BookingPage() {
+  const { currentStep } = useContext(AuthContext);
   const { data: session, status: loading } = useSession();
-
+  console.log(currentStep);
   if (loading === "loading") {
     return <p>Loading...</p>;
   }
@@ -17,9 +20,9 @@ function BookingPage() {
   }
 
   return (
-    <section>
+    <div>
       <BookingCourt session={session} />
-    </section>
+    </div>
   );
 }
 

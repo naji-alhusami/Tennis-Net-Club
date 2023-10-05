@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import classes from "./booking-steps.module.css";
+import AuthContext from "@/store/auth-context";
 
-function BookingSteps({ currentStep }) {
+function BookingSteps() {
+  const { setActiveDay, timeInfo, currentStep } = useContext(AuthContext);
+  console.log(currentStep);
   return (
     <div className={classes.stepsContainer}>
       <div className={classes.stepContainer}>

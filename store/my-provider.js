@@ -10,6 +10,24 @@ const MyProvider = (props) => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoadingTimes, setIsLoadingTimes] = useState(true);
   const [takenTimes, setTakenTimes] = useState([]);
+  const [nextButton, setNextButton] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [secondStep, setSecondStep] = useState(true);
+  const [thirdStep, setThirdStep] = useState(true);
+
+  const nextStepHandler = () => {
+    setCurrentStep(currentStep + 1);
+    if (currentStep === 1) {
+      setSecondStep(!secondStep);
+    } else if (currentStep === 2) {
+      setThirdStep(!thirdStep);
+    }
+  };
+
+  const prevStepHandler = () => {
+    setCurrentStep(currentStep - 1);
+    setActiveDay();
+  };
 
   return (
     <AuthContext.Provider
@@ -27,6 +45,16 @@ const MyProvider = (props) => {
         setIsLoadingTimes,
         takenTimes,
         setTakenTimes,
+        nextButton,
+        setNextButton,
+        currentStep,
+        setCurrentStep,
+        nextStepHandler,
+        prevStepHandler,
+        secondStep,
+        setSecondStep,
+        thirdStep,
+        setThirdStep,
       }}
     >
       {props.children}

@@ -1,4 +1,5 @@
 import React, { Fragment, useContext, useState } from "react";
+import { useRouter } from "next/router";
 import { AiFillCaretDown } from "react-icons/ai";
 import Image from "next/image";
 
@@ -6,15 +7,36 @@ import BookingCalendar from "./booking-calendar";
 import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-date-step.js.module.css";
+import Link from "next/link";
 
 function DateSelectionStep({
   handleChangeCourts,
   selectedCourtType,
-  nextStepHandler,
+
   isShowCourts,
   setIsShowCourts,
 }) {
-  const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
+  const router = useRouter();
+  const {
+    activeDay,
+    numberOfPlayers,
+    setNumberOfPlayers,
+    nextButton,
+    nextStepHandler,
+  } = useContext(AuthContext);
+  console.log(activeDay);
+
+  console.log(nextButton);
+  let formattedDate = null;
+  if (activeDay) {
+    const month = activeDay.toLocaleString("en-US", { month: "short" });
+    const day = activeDay.getDate();
+    const year = activeDay.getFullYear();
+
+    formattedDate = `${month}-${day}-${year}`;
+
+    console.log(formattedDate); // Output: "Oct-05-2023"
+  }
 
   const courtTypeImages = {
     "Clay Courts": "/images/clay.jpg",
@@ -37,10 +59,19 @@ function DateSelectionStep({
     }
   };
 
+  function dateSelectionHandler() {
+    console.log("clicked");
+    console.log(activeDay);
+    console.log(router.route);
+    // const encodedDay = encodeURIComponent(activeDay);
+    router.push(`/booking/${formattedDate}`);
+    nextStepHandler();
+  }
+
   return (
     <Fragment>
       <div className={classes.bookingForm}>
-        <div className={classes.bookingPlayers}>
+        {/* <div className={classes.bookingPlayers}>
           <Image
             src={courtTypeImages[selectedCourtType]}
             alt={selectedCourtType}
@@ -70,21 +101,20 @@ function DateSelectionStep({
             <button onClick={increasePlayers}>+</button>
             <button onClick={decreasePlayers}>-</button>
           </div>
-        </div>
+        </div> */}
         <BookingCalendar nextStepHandler={nextStepHandler} />
       </div>
 
-      {/* <motion.div
-          className={classes.bookButton}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={changeStep}
+      {formattedDate && (
+        <button
+          // href={{ pathname: "/booking/[date]", query: { date: formattedDate } }}
+          // onClick={() => nextStepHandler()}
+          onClick={dateSelectionHandler}
         >
-          <p>Next</p>
-        </motion.div> */}
-      {/* </div> */}
+          Next
+        </button>
+      )}
     </Fragment>
   );
 }
-
 export default DateSelectionStep;

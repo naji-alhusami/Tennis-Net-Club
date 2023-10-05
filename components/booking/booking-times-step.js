@@ -5,16 +5,20 @@ import AuthContext from "@/store/auth-context";
 import classes from "./booking-times-step.module.css";
 import { generateTimeSlots } from "./generate-times";
 import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
+import BookingContainer from "./booking-container";
+import BookingSteps from "./booking-steps";
 
 function TimeSelectionStep(props) {
   const {
     setTimeInfo,
-    timeSlots,
     isLoadingTimes,
     setIsLoadingTimes,
     activeDay,
+    timeSlots,
     setTimeSlots,
+    cuurrentStep,
   } = useContext(AuthContext);
+  console.log(activeDay);
 
   useEffect(() => {
     async function fetchData() {
@@ -22,6 +26,7 @@ function TimeSelectionStep(props) {
         setIsLoadingTimes(true);
         // generate all the times
         const generatedTimes = await generateTimeSlots(activeDay);
+        console.log(generatedTimes);
         // fetch the taken times
         const takenTimes = await fetchTakenTimesFromMongo();
         // check if there are taken times and give them false status
@@ -38,6 +43,7 @@ function TimeSelectionStep(props) {
               status: isTaken ? "RESERVED" : timeSlot.status, // Set status to false if taken, true otherwise
             };
           });
+          console.log(updatedGeneratedTimes);
           setTimeSlots(updatedGeneratedTimes);
         } else {
           console.log("without takentimes");
@@ -61,55 +67,42 @@ function TimeSelectionStep(props) {
   console.log(timeSlots);
   return (
     <Fragment>
-      <div className={classes.timeContainer}>
-        <h1>Choose Your Preferred Time:</h1>
-        <hr />
-        {isLoadingTimes ? (
-          <p>Loading Times...</p>
-        ) : (
-          <div className={classes.timeSlotsContainer}>
-            {timeSlots.map((timeSlot) => {
-              return (
-                <div key={timeSlot.id} className={classes.timeSlot}>
-                  <p className={classes.time}>{timeSlot.time}</p>
-                  {timeSlot.status === "PASSED TIME" ? (
-                    <p
-                      className={classes.booked}
-                      onClick={() => timeHandler(timeSlot)}
-                    >
-                      PASSED TIME
-                    </p>
-                  ) : timeSlot.status === "RESERVED" ? (
-                    <p className={classes.booked}>RESERVED</p>
-                  ) : timeSlot.status === "NOT OPENED" ? (
-                    <p className={classes.booked}>NOT OPENED</p>
-                  ) : (
-                    <p className={classes.book}>BOOK COURT</p>
-                  )}
-                </div>
-              );
+      <BookingContainer />
+      <BookingSteps />
 
-              // if (timeSlot.status === true) {
-              //   return (
-              //     <p
-              //       className={classes.availableTime}
-              //       key={timeSlot.id}
-              //       onClick={() => timeHandler(timeSlot)}
-              //     >
-              //       {timeSlot.time}
-              //     </p>
-              //   );
-              // } else {
-              //   return (
-              //     <p className={classes.notAvailableTime} key={timeSlot.id}>
-              //       {timeSlot.time}
-              //     </p>
-              //   );
-              // }
-            })}
-          </div>
-        )}
-      </div>
+      {/* {cuurrentStep === 2 && ( */}
+        <div className={classes.timeContainer}>
+          <h1>Choose Your Preferred Time:</h1>
+          <hr />
+          {isLoadingTimes ? (
+            <p>Loading Times...</p>
+          ) : (
+            <div className={classes.timeSlotsContainer}>
+              {timeSlots.map((timeSlot) => {
+                return (
+                  <div key={timeSlot.id} className={classes.timeSlot}>
+                    <p className={classes.time}>{timeSlot.time}</p>
+                    {timeSlot.status === "PASSED TIME" ? (
+                      <p className={classes.booked}>PASSED TIME</p>
+                    ) : timeSlot.status === "RESERVED" ? (
+                      <p className={classes.booked}>RESERVED</p>
+                    ) : timeSlot.status === "NOT OPENED" ? (
+                      <p className={classes.booked}>NOT OPENED</p>
+                    ) : (
+                      <p
+                        className={classes.book}
+                        onClick={() => timeHandler(timeSlot)}
+                      >
+                        BOOK COURT
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      {/* )} */}
       <p
         className={classes.bookButton}
         // whileHover={{ scale: 1.1 }}
