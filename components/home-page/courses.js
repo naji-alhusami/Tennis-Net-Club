@@ -5,20 +5,12 @@ import classes from "./courses.module.css";
 import player1 from "@/public/images/player1.jpg";
 import player2 from "@/public/images/player2.jpg";
 
-function Courses({ courses }) {
+function Courses() {
   return (
     <div className={classes.container}>
       <div className={classes.imagesContainer}>
         <div className={classes.image}>
           <Image src={player1} alt="player1" />
-        </div>
-        <div className={classes.numbers}>
-          <h1>20</h1>
-          <p>Courts</p>
-          <h1>30</h1>
-          <p>Couches</p>
-          <h1>90</h1>
-          <p>Players</p>
         </div>
         <div className={classes.image}>
           <Image src={player2} alt="player1" />

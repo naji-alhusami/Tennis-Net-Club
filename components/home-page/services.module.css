@@ -1,5 +1,5 @@
 .container {
-  margin: 6rem 0 ;
+  margin: 6rem 0 3rem 0 ;
 }
 
 .text {
@@ -74,7 +74,7 @@
   }
 
   .services {
-    margin: 3rem 0;
+    margin: 3rem 0 1rem 0;
     display: flex;
     flex-direction: row;
     align-items: center;
