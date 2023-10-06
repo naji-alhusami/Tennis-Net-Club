@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <main>
       <Starting />
-      <Services />
+      {/* <Services /> */}
     </main>
   );
 }
