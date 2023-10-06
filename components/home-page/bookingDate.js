@@ -26,11 +26,13 @@ function BookingDate() {
     <div className={classes.dateContainer}>
       <h3>Date:</h3>
       <div className={classes.dateDisplay}>
-        {activeDay.toLocaleDateString("en-US", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })}
+        {activeDay
+          ? activeDay.toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          : null}
         <button onClick={toggleCalendar}>Choose</button>
         <div className={classes.reactDatePicker}>
           <DatePicker

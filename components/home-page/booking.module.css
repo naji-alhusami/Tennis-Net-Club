@@ -3,15 +3,123 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 8rem 0;
+  margin: 8rem 5rem;
   height: 100%;
-  background-color: #268750;
+}
+
+.text {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.texth3 {
+  position: absolute;
+  top: 2%;
+  color: #858585;
+}
+
+.text h1 {
+  color: #ececec;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.text h2 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.text p {
+  font-size: 1rem;
+  color: #858585;
+  margin-bottom: 3.5rem;
+}
+
+.bookingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  color: black;
+  /* margin: 4rem 2rem 0 5rem; */
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  border: solid 2px #268750;
+}
+
+.reserveButton {
+  background-color: #efad32;
+  padding: 0.3rem 1rem;
+  color: white;
+  /* margin-left: 1rem; */
+  font-size: var(--size-5);
+  box-shadow: 5px 5px 0px 1px #db981b;
+}
+
+.reserveButton::before {
+  background-color: #f2a922;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  margin-left: 2rem;
+  font-size: var(--size-5);
+}
+
+.playersContainer button {
+  background-color: rgb(226, 223, 223);
+  color: black;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  /* margin-right: 0.4rem; */
+}
+
+.playersContainer button:hover {
+  background-color: #db981b;
+  color: white;
+}
+
+.bookingContainer h3 {
+  margin: 0.2rem 0;
+}
+
+.playersContainer span {
+  font-size: 1.5rem;
+  margin: 0 0.4rem;
+}
+
+.reactDatePicker input {
+  display: none;
+}
+
+.dateContainer {
+  margin-top: 2rem;
+}
+
+.dateDisplay button {
+  background-color: rgb(226, 223, 223);
+  color: black;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0.4rem 0;
+}
+
+.dateDisplay button:hover {
+  background-color: #db981b;
+  color: white;
 }
 
 .imageContainer {
   position: relative;
   width: 100%;
   height: 35rem;
+  background-color: #268750;
 }
 
 .imageWrapper {
@@ -27,6 +135,8 @@
   height: 100%;
 }
 
+/* 
+
 .leftSideContainer {
   position: relative;
   width: 100%;
@@ -41,7 +151,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 .textContainer h1 {
@@ -52,44 +162,19 @@
   margin-left: 5rem;
 }
 
-.bookingContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  color: black;
-  margin: 4rem 2rem 0 5rem;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-}
 
-.reserveButton {
-  background-color: #efad32;
-  padding: 0.3rem 1rem;
-  /* border: 10px solid rgb(137, 227, 59); */
-  color: white;
-  margin-left: 2rem;
-  font-size: var(--size-5);
-  box-shadow: 5px 5px 0px 1px #db981b;
-}
 
-/* .reserveButton::before {
-  background-color: #f2a922;
-  padding: 0.6rem 1.3rem;
-  color: white;
-  margin-left: 2rem;
-  font-size: var(--size-5);
-} */
+ */
 
-.reserveButtonDisabled {
+/* .reserveButtonDisabled {
   background-color: #ababab;
   padding: 0.3rem 1rem;
-  /* border: 10px solid rgb(137, 227, 59); */
+  border: 10px solid rgb(137, 227, 59);
   color: white;
   margin-left: 2rem;
   font-size: var(--size-5);
   box-shadow: 5px 5px 0px 1px #888888;
-}
+} */
 
 /* .reserveButtonDisabled::before {
   background-color: #f2a922;
@@ -98,52 +183,3 @@
   margin-left: 2rem;
   font-size: var(--size-5);
 } */
-
-.playersContainer button {
-  background-color: rgb(226, 223, 223);
-  color: black;
-  border: none;
-  padding: 0.2rem 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-right: 0.4rem;
-}
-
-.playersContainer button:hover {
-  background-color: #db981b;
-  color: white;
-}
-
-.bookingContainer h3 {
-  margin: 0.2rem 0;
-}
-
-.playersContainer span {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-.reactDatePicker input {
-  display: none;
-}
-
-.dateContainer {
-  margin-top: 1.5rem;
-}
-
-.dateDisplay button {
-  background-color: rgb(226, 223, 223);
-  color: black;
-  border: none;
-  padding: 0.2rem 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 0 0.4rem;
-}
-
-.dateDisplay button:hover {
-  background-color: #db981b;
-  color: white;
-}

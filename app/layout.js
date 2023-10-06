@@ -2,6 +2,7 @@ import MainNavigation from "@/components/layout/main-navigation";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/layout/footer";
+import MyProvider from "@/store/my-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,11 +14,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <MainNavigation />
-        {children}
-        {/* <Footer /> */}
-      </body>
+      <MyProvider>
+        <body>
+          <MainNavigation />
+          {children}
+          {/* <Footer /> */}
+        </body>
+      </MyProvider>
     </html>
   );
 }
