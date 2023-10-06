@@ -1,5 +1,40 @@
+.container {
+  margin: 6rem 0 ;
+}
+
+.text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textClub {
+  position: absolute;
+  top: 2%;
+  color: #858585;
+}
+
+.textHeader {
+  color: #ececec;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.textHeader2 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.textp {
+  font-size: 1rem;
+  color: #858585;
+  margin-bottom: 3.5rem;
+}
+
 .services {
-  margin: 6rem 5rem 8rem 5rem;
+  margin: 1rem 5rem 8rem 5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -7,12 +42,47 @@
 }
 
 .service {
-    margin-right: 2rem;
+  margin-right: 2rem;
 }
 
 .service p {
-    border-left: 2px solid #268750;
-    padding-left: 1rem;
-    font-weight: lighter;
+  border-left: 2px solid #268750;
+  padding-left: 1rem;
+  font-weight: lighter;
   color: #5d5d5d;
+}
+
+@media screen and (max-width: 910px) {
+  .container {
+    margin: 6rem 2rem ;
+  }
+  
+  .textClub {
+    position: absolute;
+    top: 1%;
+  }
+
+  .textHeader2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .textp {
+    font-size: 1rem;
+    color: #858585;
+    margin-bottom: 1rem;
+  }
+
+  .services {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .service {
+    margin: 1rem 0;
+  }
 }

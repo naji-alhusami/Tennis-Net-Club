@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import { coursesData } from "@/lib/coursesData";
 import classes from "./courses.module.css";
 import player1 from "@/public/images/player1.jpg";
 import player2 from "@/public/images/player2.jpg";
@@ -35,7 +35,7 @@ function Courses({ courses }) {
           level. Join us to elevate your game and enjoy the sport of tennis to
           the fullest!
         </p>
-        {courses.map((course) => (
+        {coursesData.map((course) => (
           <div key={course.id} className={classes.rectangular}>
             <div className={classes[course.style]}>
               <p>{course.courseType}</p>
