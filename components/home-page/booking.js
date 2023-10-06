@@ -35,15 +35,12 @@ function Booking() {
         <h2>Best Courts</h2>
         <p>
           Welcome to TENNIS NET club, home to certified coaches dedicated to
-          enhancing your tennis skills. We offer beginner, intermediate, and
-          advanced courses, providing tailored instruction for players at every
-          level. Join us to elevate your game and enjoy the sport of tennis to
-          the fullest!
+          enhancing your tennis skills. 
         </p>
         {/* <div className={classes.textContainer}> */}
         <div className={classes.bookingContainer}>
-          <BookingDate />
           <div className={classes.playersContainer}>
+            <BookingDate />
             <h3>Players:</h3>
             <button onClick={decreasePlayers}>-</button>
             <span>{numberOfPlayers}</span>
@@ -61,17 +58,19 @@ function Booking() {
           {/* </div> */}
         </div>
       </div>
-      <div className={classes.imageContainer}>
-        <div className={classes.leftSideContainer}>
-          <Image
-            src={bg}
-            alt="cover-image"
-            width={700}
-            height={560}
-            priority={true}
-          />
+      {/* <div className={classes.imageContainer}> */}
+      <div className={classes.imageWrapper}>
+        <div className={classes.imageContainer}>
+          {/* <Image
+              src={bg}
+              alt="cover-image"
+              width={700}
+              height={560}
+              priority={true}
+            /> */}
         </div>
       </div>
+      {/* </div> */}
     </div>
     // <div className={classes.container}>
     //  <div className={classes.imageContainer}>

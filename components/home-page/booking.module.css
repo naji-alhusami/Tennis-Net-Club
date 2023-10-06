@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -8,13 +9,14 @@
 }
 
 .text {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   margin-right: 1rem;
 }
 
 .texth3 {
   position: absolute;
-  top: 2%;
+  top: 7%;
   color: #858585;
 }
 
@@ -32,7 +34,7 @@
 .text p {
   font-size: 1rem;
   color: #858585;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .bookingContainer {
@@ -119,22 +121,132 @@
   position: relative;
   width: 100%;
   height: 35rem;
-  background-color: #268750;
+  /* background-color: #268750; */
 }
 
 .imageWrapper {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   height: 100%;
+  background-color: rgb(26, 87, 50);
+  z-index: 10;
 }
 
 .imageWrapper img {
-  width: 100%;
+  width: 70%;
   height: 100%;
 }
 
+.imageContainer {
+  background-image: url("../../public/images/background1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 35rem;
+  opacity: 25%;
+}
+
+@media screen and (max-width: 1116px) {
+  .text {
+    color: white;
+    position: absolute;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 5rem;
+    z-index: 20;
+  }
+
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    height: 35rem;
+    background-color: #268750;
+  }
+  .leftSideContainer {
+    position: relative;
+    width: 100%;
+    height: 35rem;
+    opacity: 25%;
+    background-color: rgb(26, 87, 50);
+  }
+
+  .texth3 {
+    display: none;
+  }
+
+  .text h2 {
+    display: none;
+  }
+
+  .text p {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .bookingContainer {
+    padding: 0 2rem 1rem 2rem;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .container {
+    margin: 10rem 2rem;
+  }
+
+  .texth3 {
+    display: none;
+  }
+
+  .text h2 {
+    display: none;
+  }
+
+  .text p {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 3rem;
+  }
+
+  .bookingContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .dateContainer {
+    margin-top: 0;
+  }
+
+  .reserveButton {
+    padding: 0.3rem 1rem;
+    font-size: var(--size-4);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .bookingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .playersContainer {
+    margin-bottom: 2rem;
+  }
+
+  .reserveButton {
+    padding: 0.3rem 1rem;
+    font-size: var(--size-3);
+  }
+}
 /* 
 
 .leftSideContainer {
