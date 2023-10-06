@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from "react";
+'use client'
+import React, { useState } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { AiFillCaretDown } from "react-icons/ai";
@@ -13,7 +14,7 @@ function MainNavigation(props) {
   const [showSideNavbar, setShowSideNavbar] = useState(false);
   const [showUserLogout, setShowUserLogout] = useState(false);
   const { backgroundColor } = props;
-  const { data: session, loading } = useSession();
+  // const { data: session, loading } = useSession();
 
   function showUserLogoutHandler() {
     setShowUserLogout(!showUserLogout);
@@ -45,7 +46,7 @@ function MainNavigation(props) {
             <li className={classes.navbarListHome}>
               <Link href="/">Home</Link>
             </li>
-            {session && (
+            {/* {session && (
               <li className={classes.navbarListBook}>
                 <Link href="/booking">Book Court</Link>
               </li>
@@ -59,7 +60,7 @@ function MainNavigation(props) {
               <li className={classes.navbarListTraining}>
                 <Link href="/">Trainings</Link>
               </li>
-            )}
+            )} */}
             <li className={classes.navbarListBlogs}>
               <Link href="/posts">Blogs</Link>
             </li>
@@ -70,7 +71,7 @@ function MainNavigation(props) {
               <Link href="/about">About</Link>
             </li>
             <li>
-              {session ? (
+              {/* {session ? (
                 <div
                   // whileHover={{ scale: 1.1 }}
                   className={classes.user}
@@ -90,19 +91,19 @@ function MainNavigation(props) {
                     )}
                   </div>
                 </div>
-              ) : (
+              ) : ( */}
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className={classes.login}
                 >
-                  {!session && !loading && (
+                  {/* {!session && !loading && ( */}
                     <Link className={classes.loginButton} href="/auth/login">
                       Login
                     </Link>
-                  )}
+                  {/* )} */}
                 </motion.div>
-              )}
+              {/* )} */}
             </li>
             <li>
               <div
@@ -138,7 +139,7 @@ function MainNavigation(props) {
               >
                 <Link href="/">Home</Link>
               </li>
-              {session && (
+              {/* {session && (
                 <li
                   className={classes.navbarListBookSmall}
                   onClick={toggleButtonHandler}
@@ -161,7 +162,7 @@ function MainNavigation(props) {
                 >
                   <Link href="/">Trainings</Link>
                 </li>
-              )}
+              )} */}
               <li
                 className={classes.navbarListBlogsSmall}
                 onClick={toggleButtonHandler}

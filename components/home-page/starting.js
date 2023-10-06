@@ -6,7 +6,7 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./starting.module.css";
 
-function starting() {
+function Starting() {
   return (
     <Fragment>
       <section className={classes.starting}>
@@ -34,4 +34,4 @@ function starting() {
   );
 }
 
-export default starting;
+export default Starting;

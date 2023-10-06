@@ -2,14 +2,13 @@ import React from "react";
 
 import Image from "next/legacy/image";
 
-
+import { servicesData } from "@/lib/servicesData";
 import classes from "./services.module.css";
 
-function Services({services}) {
-
+function Services() {
   return (
     <div className={classes.services}>
-      {services.map((service) => (
+      {servicesData.map((service) => (
         <div key={service.id} className={classes.service}>
           <div>
             <Image src={service.image} alt="hi" />
