@@ -9,9 +9,20 @@ import classes from "./starting.module.css";
 function Starting() {
   return (
     <Fragment>
-      <section className={classes.starting}>
-        <div className={classes.imageContainer} style={{ filter: 'brightness(0.9)' }}>
-          <Image src={background} alt="website background" priority={true}  />
+      <div className={classes.starting}>
+        <div
+          className={classes.imageContainer}
+          style={{ filter: "brightness(0.9)" }}
+        >
+          <Image
+            src={background}
+            alt="website background"
+            // height={500}
+            // width={1500}
+            // layout="fill"
+            objectFit="cover"
+            priority={true}
+          />
         </div>
         <div className={classes.startingText}>
           <h1>Hi</h1>
@@ -29,7 +40,7 @@ function Starting() {
             </Button>
           </Link>
         </div>
-      </section>
+      </div>
     </Fragment>
   );
 }

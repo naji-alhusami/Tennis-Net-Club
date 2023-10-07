@@ -13,7 +13,15 @@ function AuthType({ params }) {
   return (
     <div className={classes.signup}>
       <div className={classes.image}>
-        <Image src={signup} alt="signup" priority={true} />
+        <Image
+          src={signup}
+          alt="signup"
+          // height={500}
+          // width={500}
+          layout="fill"
+          objectFit="cover"
+          priority={true}
+        />
       </div>
       <div>{params.authType === "signup" ? <Signup /> : <Login />}</div>
     </div>

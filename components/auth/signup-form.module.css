@@ -4,13 +4,8 @@
 
 .image {
   min-height: 95vh;
-/* overflow: hidden; */
-}
-
-.image img {
-  width: 100%;
-  min-height: 95vh;
-  object-fit: cover;
+  overflow: hidden;
+  position: relative;
 }
 
 .signupForm {
