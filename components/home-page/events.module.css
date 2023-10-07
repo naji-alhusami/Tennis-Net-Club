@@ -58,3 +58,9 @@
 .events img {
   padding: 0.5rem;
 }
+
+@media screen and (max-width: 720px) {
+  .events img {
+    display: none;
+  }
+}

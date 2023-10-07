@@ -45,7 +45,7 @@ function Events() {
               <tr>
                 <td className={classes.events}>
                   <Image src={newCourt} alt="new-court" />
-                  New Court Presentation
+                  <h4> New Court Presentation</h4>
                 </td>
                 <td>
                   Come and discover our new court, and explore our new court
@@ -56,7 +56,7 @@ function Events() {
               <tr>
                 <td className={classes.events}>
                   <Image src={newPlayers} alt="new-players" />
-                  New Players Presentation
+                  <h4>New Players Presentation</h4>
                 </td>
                 <td>
                   Come and discover our new players, and explore their level in
