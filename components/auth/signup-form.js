@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import Link from "next/link";
 // import DatePicker from "react-datepicker";
@@ -7,29 +7,6 @@ import Link from "next/link";
 
 import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
-
-async function createUser(name, email, password, passwordConfirmation, role) {
-  console.log(email);
-
-  const response = await fetch("/api/signup", {
-    method: "POST",
-    body: JSON.stringify({
-      name,
-      email,
-      password,
-      passwordConfirmation,
-      role,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Something Went Wrong!");
-  }
-
-  return data;
-}
 
 function Signup() {
   const [name, setName] = useState("");
@@ -41,11 +18,6 @@ function Signup() {
   // const [selectedDate, setSelectedDate] = useState(null);
   // const [requestStatus, setRequestStatus] = useState();
   // const [errorMessage, setErrorMessage] = useState(null);
-  const emailInputRef = useRef();
-  const nameInputRef = useRef();
-  const passwordInputRef = useRef();
-  const passwordConfirmationInputRef = useRef();
-  const roleInputRef = useRef();
 
   // useEffect(() => {
   //   if (requestStatus === "Success" || requestStatus === "Error") {
@@ -61,7 +33,7 @@ function Signup() {
   async function submitHandler(event) {
     event.preventDefault();
     try {
-      const res = await fetch("/api/signup", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         body: JSON.stringify({
           name,
@@ -73,40 +45,42 @@ function Signup() {
         headers: { "Content-Type": "application/json" },
       });
 
-      if (res.ok) {
+      const data = await response.json();
+      if (!response.ok) {
+        console.log("Validation Error:", data);
+      } else {
         const form = event.target;
         form.reset();
-      } else {
-        console.log("Member Registration Failed");
       }
+      return data;
     } catch (error) {
-      console.log("Error", error);
+      console.log("Error", error.message);
     }
-
-    // setRequestStatus("Pending");
-    // setErrorMessage(null);
-
-    // const enteredEmail = emailInputRef.current.value;
-    // const enteredName = nameInputRef.current.value;
-    // const enteredPassword = passwordInputRef.current.value;
-    // const enteredPasswordConfirmation =
-    //   passwordConfirmationInputRef.current.value;
-    // const enteredRole = roleInputRef.current.value;
-    // try {
-    //   const result = await createUser(
-    //     enteredName,
-    //     enteredEmail,
-    //     enteredPassword,
-    //     enteredPasswordConfirmation,
-    //     enteredRole
-    //   );
-      // setRequestStatus("Success");
-    // } catch (error) {
-      // setErrorMessage(error.message);
-      // setRequestStatus("Error");
-    //   console.log(error.message);
-    // }
   }
+
+  // setRequestStatus("Pending");
+  // setErrorMessage(null);
+
+  // const enteredEmail = emailInputRef.current.value;
+  // const enteredName = nameInputRef.current.value;
+  // const enteredPassword = passwordInputRef.current.value;
+  // const enteredPasswordConfirmation =
+  //   passwordConfirmationInputRef.current.value;
+  // const enteredRole = roleInputRef.current.value;
+  // try {
+  //   const result = await createUser(
+  //     enteredName,
+  //     enteredEmail,
+  //     enteredPassword,
+  //     enteredPasswordConfirmation,
+  //     enteredRole
+  //   );
+  // setRequestStatus("Success");
+  // } catch (error) {
+  // setErrorMessage(error.message);
+  // setRequestStatus("Error");
+  //   console.log(error.message);
+  // }
 
   // let notification;
 
@@ -141,7 +115,6 @@ function Signup() {
         <div>
           <input
             onChange={(e) => setName(e.target.value)}
-            // ref={nameInputRef}
             type="text"
             id="name"
             placeholder="Your Name"
@@ -151,7 +124,6 @@ function Signup() {
         <div>
           <input
             onChange={(e) => setEmail(e.target.value)}
-            // ref={emailInputRef}
             type="email"
             placeholder="Your Email"
             required
@@ -160,7 +132,6 @@ function Signup() {
         <div>
           <input
             onChange={(e) => setPassword(e.target.value)}
-            // ref={passwordInputRef}
             type="password"
             placeholder="Your Password"
             required
@@ -169,7 +140,6 @@ function Signup() {
         <div>
           <input
             onChange={(e) => setPasswordConfirmation(e.target.value)}
-            // ref={passwordConfirmationInputRef}
             type="password"
             placeholder="Password Confirmation"
             required
@@ -179,7 +149,6 @@ function Signup() {
         <div>
           <select
             onChange={(e) => setRole(e.target.value)}
-            // ref={roleInputRef}
             className={classes.select}
             required
           >
