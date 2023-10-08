@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 import classes from "./login-form.module.css";
@@ -9,6 +10,7 @@ import classes from "./login-form.module.css";
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const router = useRouter();
 
   async function loginHandler(event) {
     event.preventDefault();
@@ -19,6 +21,8 @@ function Login() {
         email: email,
         password: password,
       });
+
+      router.replace("/");
     } catch (error) {
       console.log(error);
     }

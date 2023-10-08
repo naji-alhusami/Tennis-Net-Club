@@ -15,7 +15,8 @@
 } */
 
 .imageContainer {
-  min-height: 95vh;
+  /* min-height: 95vh; */
+  width: 100%;
   overflow: hidden;
   position: relative;
 }

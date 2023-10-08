@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -14,6 +14,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [role, setRole] = useState("");
+  const router = useRouter();
 
   // const [selectedDate, setSelectedDate] = useState(null);
   // const [requestStatus, setRequestStatus] = useState();
@@ -52,6 +53,7 @@ function Signup() {
         const form = event.target;
         form.reset();
       }
+      router.replace("/auth/login");
       return data;
     } catch (error) {
       console.log("Error", error.message);
