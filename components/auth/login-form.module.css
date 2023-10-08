@@ -11,7 +11,7 @@
   width: 30rem;
   max-height: 40rem;
   position: absolute;
-  padding:0 3% 3% 3.2%;
+  padding: 0 3% 3% 3.2%;
   background-color: rgb(255, 255, 255, 0.9);
   top: 25%;
   left: 6%;
@@ -39,9 +39,9 @@
   /* margin: 0 5rem 0 5rem; */
   font-size: var(--size-6);
   padding: 2%;
-  background-color: rgb(137, 227, 59);
-  border: 2px solid rgb(137, 227, 59);
-  color: black; /* Assuming you want the text to be white */
+  background-color: #1c7f47;
+  border: 2px solid #1c7f47;
+  color: white; /* Assuming you want the text to be white */
   text-align: center; /* To center the text within the button */
   text-decoration: none; /* To remove default link underline */
   cursor: pointer; /* To indicate interactivity */
@@ -52,15 +52,14 @@
 }
 
 .button:hover {
-  background-color: rgb(100, 165, 43);
-  border-color: rgb(100, 165, 43);
-  color: white;
+  background-color: #146135;
+  border-color: #146135;
 }
 
 @media screen and (max-width: 650px) {
   .loginForm {
     width: 20rem;
     position: absolute;
-    top:30%;
+    top: 30%;
   }
 }

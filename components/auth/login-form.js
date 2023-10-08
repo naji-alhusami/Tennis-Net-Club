@@ -1,5 +1,5 @@
-'use client'
-import React, { useRef } from "react";
+"use client";
+import React, { useState } from "react";
 
 import Link from "next/link";
 import { signIn } from "next-auth/react";
@@ -7,20 +7,21 @@ import { signIn } from "next-auth/react";
 import classes from "./login-form.module.css";
 
 function Login() {
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   async function loginHandler(event) {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
-    const result = await signIn("credentials", {
-      redirect: false,
-      email: enteredEmail,
-      password: enteredPassword,
-    });
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: email,
+        password: password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -29,7 +30,7 @@ function Login() {
       <form onSubmit={loginHandler}>
         <div>
           <input
-            ref={emailInputRef}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Your Email"
             required
@@ -37,7 +38,7 @@ function Login() {
         </div>
         <div>
           <input
-            ref={passwordInputRef}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Your Password"
             required

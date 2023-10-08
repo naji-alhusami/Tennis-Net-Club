@@ -3,14 +3,11 @@ import { connectToDatabase } from "@/lib/db";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
 
-export default NextAuth({
-  session: {
-    jwt: true,
-  },
+const authOptions = {
   providers: [
     Credentials({
-      // name:"credentials",
-      // credentials
+      name: "credentials",
+      credentials: {},
       async authorize(credentials) {
         const client = await connectToDatabase();
         const usersCollection = client.db().collection("users");
@@ -37,4 +34,15 @@ export default NextAuth({
       },
     }),
   ],
-});
+  session: {
+    jwt: true,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/auth/login",
+  },
+};
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
