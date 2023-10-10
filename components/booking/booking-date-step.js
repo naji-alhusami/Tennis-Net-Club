@@ -1,5 +1,6 @@
+'use client'
 import React, { Fragment, useContext, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { AiFillCaretDown } from "react-icons/ai";
 import Image from "next/image";
 

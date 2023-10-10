@@ -4,7 +4,7 @@ import classes from "./booking-steps.module.css";
 import AuthContext from "@/store/auth-context";
 
 function BookingSteps() {
-  const { setActiveDay, timeInfo, currentStep } = useContext(AuthContext);
+  const { currentStep } = useContext(AuthContext);
   console.log(currentStep);
   return (
     <div className={classes.stepsContainer}>

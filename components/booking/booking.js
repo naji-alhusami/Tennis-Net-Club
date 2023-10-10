@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 // import { useRouter } from "next/router";
 
 // import { motion } from "framer-motion";
@@ -15,9 +15,9 @@ import AuthContext from "@/store/auth-context";
 
 function BookingCourt({ session }) {
   //   const router = useRouter();
-  const { timeInfo, currentStep } = useContext(AuthContext);
-    console.log(currentStep);
-  
+  const { currentStep } = useContext(AuthContext);
+  console.log(currentStep);
+
   //   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   //   const [isShowCourts, setIsShowCourts] = useState(false);
 
@@ -46,10 +46,11 @@ function BookingCourt({ session }) {
   return (
     <div className={classes.bookingContainer}>
       <BookingContainer />
-      <BookingSteps />
+      {/* <BookingSteps /> */}
 
       {/* <form onSubmit={reserveHandler}></form> */}
-      {currentStep === 1 && <DateSelectionStep />}
+      {/* {currentStep === 1 &&  */}
+      <DateSelectionStep />
     </div>
   );
 }

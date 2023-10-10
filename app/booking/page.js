@@ -8,20 +8,20 @@ import AuthContext from "@/store/auth-context";
 
 function BookingPage() {
   const { currentStep } = useContext(AuthContext);
-  const { data: session, status: loading } = useSession();
+//   const { data: session, status: loading } = useSession();
   console.log(currentStep);
-  if (loading === "loading") {
-    return <p>Loading...</p>;
-  }
+//   if (loading === "loading") {
+//     return <p>Loading...</p>;
+//   }
 
-  if (!session) {
-    console.log("User not authenticated");
-    return <p>Please log in to access this feature.</p>;
-  }
+//   if (!session) {
+//     console.log("User not authenticated");
+//     return <p>Please log in to access this feature.</p>;
+//   }
 
   return (
     <div>
-      <BookingCourt session={session} />
+      <BookingCourt />
     </div>
   );
 }
