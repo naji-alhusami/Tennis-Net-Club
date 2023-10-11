@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
-// import { useRouter } from "next/router";
-
+"use client";
+import React, { useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 // import { motion } from "framer-motion";
 
 // import DateSelectionStep from "./booking-date-step";
@@ -14,9 +15,12 @@ import AuthContext from "@/store/auth-context";
 // import { sendTakenTimesToMongo } from "@/lib/sendTakenTimes";
 
 function BookingCourt({ session }) {
-  //   const router = useRouter();
+  const router = usePathname();
+  console.log(router);
   const { currentStep } = useContext(AuthContext);
-  console.log(currentStep);
+  // useEffect(() => {
+  //   console.log(currentStep);
+  // }, []);
 
   //   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
   //   const [isShowCourts, setIsShowCourts] = useState(false);
@@ -46,11 +50,10 @@ function BookingCourt({ session }) {
   return (
     <div className={classes.bookingContainer}>
       <BookingContainer />
-      {/* <BookingSteps /> */}
+      <BookingSteps />
 
       {/* <form onSubmit={reserveHandler}></form> */}
-      {/* {currentStep === 1 &&  */}
-      <DateSelectionStep />
+      {currentStep === 1 && router === "/booking" && <DateSelectionStep />}
     </div>
   );
 }

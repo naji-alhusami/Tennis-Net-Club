@@ -15,15 +15,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <MyProvider>
-        <body>
+      <body>
+        <MyProvider>
           <AuthProvider>
             <MainNavigation />
             {children}
             {/* <Footer /> */}
           </AuthProvider>
-        </body>
-      </MyProvider>
+        </MyProvider>
+      </body>
     </html>
   );
 }

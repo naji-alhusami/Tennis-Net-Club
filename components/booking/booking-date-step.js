@@ -63,7 +63,7 @@ function DateSelectionStep({
   function dateSelectionHandler() {
     console.log("clicked");
     console.log(activeDay);
-    console.log(router.route);
+    // console.log(router.route);
     // const encodedDay = encodeURIComponent(activeDay);
     router.push(`/booking/${formattedDate}`);
     nextStepHandler();

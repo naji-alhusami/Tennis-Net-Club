@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from "react";
 
 import AuthContext from "./auth-context";
@@ -30,7 +29,7 @@ const MyProvider = (props) => {
     setCurrentStep(currentStep - 1);
     setActiveDay();
   };
-
+  console.log(currentStep);
   return (
     <AuthContext.Provider
       value={{

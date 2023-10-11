@@ -1,11 +1,11 @@
 import React from "react";
 
-import DateSelectionStep from "@/components/booking/booking-date-step";
+import TimeSelectionStep from "@/components/booking/booking-times-step";
 
 function BookingPage() {
   return (
     <div>
-      <DateSelectionStep />
+      <TimeSelectionStep />
     </div>
   );
 }
