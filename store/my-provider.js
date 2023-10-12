@@ -10,9 +10,9 @@ const MyProvider = (props) => {
   // console.log(router.getAll("booking"));
   // console.log(results);
   const searchParams = useSearchParams();
-  const path = searchParams.has("date");
-  console.log(path);
-  const initialStep = path ? 2 : 1;
+  const datePath = searchParams.has("date");
+  console.log(datePath);
+  const initialStep = datePath ? 2 : 1;
 
   const currentDay = new Date();
   const [activeDay, setActiveDay] = useState();
