@@ -22,7 +22,7 @@ function Login() {
         password: password,
       });
 
-      router.replace("/");
+      // router.replace("/");
     } catch (error) {
       console.log(error);
     }

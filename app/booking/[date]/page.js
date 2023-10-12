@@ -1,13 +1,13 @@
-import React from "react";
+// import React from "react";
 
-import TimeSelectionStep from "@/components/booking/booking-times-step";
+// import TimeSelectionStep from "@/components/booking/booking-times-step";
 
-function BookingPage() {
-  return (
-    <div>
-      <TimeSelectionStep />
-    </div>
-  );
-}
+// function BookingPage() {
+//   return (
+//     <div>
+//       <TimeSelectionStep />
+//     </div>
+//   );
+// }
 
-export default BookingPage;
+// export default BookingPage;

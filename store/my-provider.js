@@ -1,9 +1,19 @@
-'use client'
+"use client";
 import React, { useState } from "react";
-
+import { useSearchParams } from "next/navigation";
 import AuthContext from "./auth-context";
 
 const MyProvider = (props) => {
+  // const router = useParams();
+  // const date = router.get("date");
+  // const results = JSON.parse(date);
+  // console.log(router.getAll("booking"));
+  // console.log(results);
+  const searchParams = useSearchParams();
+  const path = searchParams.has("date");
+  console.log(path);
+  const initialStep = path ? 2 : 1;
+
   const currentDay = new Date();
   const [activeDay, setActiveDay] = useState();
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
@@ -12,7 +22,7 @@ const MyProvider = (props) => {
   const [isLoadingTimes, setIsLoadingTimes] = useState(true);
   const [takenTimes, setTakenTimes] = useState([]);
   const [nextButton, setNextButton] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(initialStep);
   const [secondStep, setSecondStep] = useState(true);
   const [thirdStep, setThirdStep] = useState(true);
 

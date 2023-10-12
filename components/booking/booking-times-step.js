@@ -65,15 +65,15 @@ function TimeSelectionStep(props) {
     setTimeInfo(time);
     props.nextStepHandler();
   }
-  console.log(timeSlots);
   return (
     <Fragment>
+      <h1>times</h1>
       {cuurrentStep === 2 && (
         <>
           <BookingContainer />
           <BookingSteps />
 
-          <div className={classes.timeContainer}>
+          {/* <div className={classes.timeContainer}>
             <h1>Choose Your Preferred Time:</h1>
             <hr />
             {isLoadingTimes ? (
@@ -103,7 +103,7 @@ function TimeSelectionStep(props) {
                 })}
               </div>
             )}
-          </div>
+          </div> */}
         </>
       )}
       <p

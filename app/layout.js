@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/layout/footer";
 import MyProvider from "@/store/my-provider";
 import { AuthProvider } from "./Providers";
+import { useSession } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +14,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body>

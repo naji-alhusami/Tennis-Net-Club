@@ -1,11 +1,11 @@
 import React from "react";
 
-import DateSelectionStep from "@/components/booking/booking-date-step";
+import BookingCourt from "@/components/booking/booking";
 
 function BookingPage() {
   return (
     <div>
-      <DateSelectionStep />
+      <BookingCourt />
     </div>
   );
 }

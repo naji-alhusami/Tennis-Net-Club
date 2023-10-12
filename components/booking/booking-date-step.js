@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import React, { Fragment, useContext, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { AiFillCaretDown } from "react-icons/ai";
 import Image from "next/image";
 
@@ -9,6 +9,8 @@ import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-date-step.js.module.css";
 import Link from "next/link";
+import BookingContainer from "./booking-container";
+import BookingSteps from "./booking-steps";
 
 function DateSelectionStep({
   handleChangeCourts,
@@ -18,16 +20,25 @@ function DateSelectionStep({
   setIsShowCourts,
 }) {
   const router = useRouter();
+  // const path = usePathname();
+  const searchParams = useSearchParams();
+  const path = searchParams.has("date");
+  // for (const value of searchParams.values()) {
+  //   console.log(value);
+  // }
+  // console.log(search.forEach());
   const {
     activeDay,
     numberOfPlayers,
     setNumberOfPlayers,
     nextButton,
     nextStepHandler,
+    currentStep,
   } = useContext(AuthContext);
-  console.log(activeDay);
+  // console.log(activeDay);
+  console.log(path, currentStep);
+  // console.log(path);
 
-  console.log(nextButton);
   let formattedDate = null;
   if (activeDay) {
     const month = activeDay.toLocaleString("en-US", { month: "short" });
@@ -61,17 +72,17 @@ function DateSelectionStep({
   };
 
   function dateSelectionHandler() {
-    console.log("clicked");
-    console.log(activeDay);
+    // console.log("clicked");
+    // console.log(activeDay);
     // console.log(router.route);
     // const encodedDay = encodeURIComponent(activeDay);
-    router.push(`/booking/${formattedDate}`);
     nextStepHandler();
+    // router.push(`/booking/?date=${formattedDate}`);
   }
 
   return (
     <Fragment>
-      <div className={classes.bookingForm}>
+      <div>
         {/* <div className={classes.bookingPlayers}>
           <Image
             src={courtTypeImages[selectedCourtType]}
@@ -106,15 +117,21 @@ function DateSelectionStep({
         <BookingCalendar nextStepHandler={nextStepHandler} />
       </div>
 
-      {formattedDate && (
-        <button
-          // href={{ pathname: "/booking/[date]", query: { date: formattedDate } }}
-          // onClick={() => nextStepHandler()}
-          onClick={dateSelectionHandler}
+      <div>
+        <Link
+          href={`/booking/?date=${formattedDate}`}
+          onClick={() => nextStepHandler()}
         >
-          Next
-        </button>
-      )}
+          NEXT
+        </Link>
+        {/* <button
+              // href={{ pathname: "/booking/[date]", query: { date: formattedDate } }}
+              // onClick={() => nextStepHandler()}
+              onClick={dateSelectionHandler}
+            >
+              Next
+            </button> */}
+      </div>
     </Fragment>
   );
 }

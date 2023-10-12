@@ -5,7 +5,9 @@ import AuthContext from "@/store/auth-context";
 
 function BookingSteps() {
   const { currentStep } = useContext(AuthContext);
-  console.log(currentStep);
+  const searchParams = useSearchParams();
+  const path = searchParams.has("date");
+  console.log(path);
   // const pathname = usePathname();
   // const searchParams = useSearchParams();
 

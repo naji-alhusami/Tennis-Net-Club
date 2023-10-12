@@ -1,7 +1,7 @@
 .stepsContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 20px; /* Adjust the margin as needed */
 }
 
