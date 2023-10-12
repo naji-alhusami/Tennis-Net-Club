@@ -8,6 +8,7 @@ import { generateTimeSlots } from "./generate-times";
 import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 import BookingContainer from "./booking-container";
 import BookingSteps from "./booking-steps";
+import Link from "next/link";
 
 function TimeSelectionStep(props) {
   const {
@@ -18,12 +19,16 @@ function TimeSelectionStep(props) {
     timeSlots,
     setTimeSlots,
     cuurrentStep,
+    timeInfo,
+    nextStepHandler,
   } = useContext(AuthContext);
+
   console.log(activeDay);
   const router = useSearchParams();
   console.log(router.get("date"));
   const date = new Date(router.get("date"));
   console.log(date);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -67,11 +72,13 @@ function TimeSelectionStep(props) {
 
     fetchData();
   }, [activeDay]);
-
+  console.log(timeInfo);
   function timeHandler(time) {
+    console.log(time);
     setTimeInfo(time);
-    props.nextStepHandler();
+    // props.nextStepHandler();
   }
+
   return (
     <Fragment>
       <div className={classes.timeContainer}>
@@ -105,14 +112,18 @@ function TimeSelectionStep(props) {
           </div>
         )}
       </div>
-      <p
-        className={classes.bookButton}
-        // whileHover={{ scale: 1.1 }}
-        // whileTap={{ scale: 0.9 }}
-        onClick={props.prevStepHandler}
-      >
-        Back
-      </p>
+      {timeInfo && (
+        <Link
+          href={`/booking/?date=${router.get("date")}&time=${timeInfo.time}`}
+          onClick={() => nextStepHandler()}
+          className={classes.bookButton}
+          // whileHover={{ scale: 1.1 }}
+          // whileTap={{ scale: 0.9 }}
+          // onClick={props.prevStepHandler}
+        >
+          Next
+        </Link>
+      )}
     </Fragment>
   );
 }

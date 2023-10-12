@@ -24,7 +24,7 @@ export function generateTimeSlots(activeDay) {
     const formattedTime = new Date(currentTime).toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "numeric",
-      hour12: true,
+      hour12: false,
     });
     const formattedDate = currentTime.toLocaleDateString("en-US", {
       day: "numeric",

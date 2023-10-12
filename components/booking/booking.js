@@ -12,11 +12,13 @@ import DateSelectionStep from "./booking-date-step";
 import BookingContainer from "./booking-container";
 import AuthContext from "@/store/auth-context";
 import TimeSelectionStep from "./booking-times-step";
+import ConfirmationStep from "./booking-confirm-step";
 // import { sendTakenTimesToMongo } from "@/lib/sendTakenTimes";
 
 function BookingCourt({ session }) {
   const router = useSearchParams();
   console.log(router.has("date"));
+  console.log(router.has("time"));
   const { currentStep } = useContext(AuthContext);
   // useEffect(() => {
   //   console.log(currentStep);
@@ -55,7 +57,10 @@ function BookingCourt({ session }) {
       {/* <form onSubmit={reserveHandler}></form> */}
       {/* {currentStep === 1 && router === "/booking" && <DateSelectionStep />} */}
       {currentStep === 1 && <DateSelectionStep />}
-      {currentStep === 2 && router.has("date") && <TimeSelectionStep />}
+      {currentStep === 2 && router.has("date") && !router.has("time") && (
+        <TimeSelectionStep />
+      )}
+      {currentStep === 3 && router.has("time") && <ConfirmationStep />}
     </div>
   );
 }
