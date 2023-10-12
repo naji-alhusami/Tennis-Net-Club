@@ -1,8 +1,25 @@
-.bookingContainer {
+.firstStepContainer {
+  margin: 1rem 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 1114px) {
+  .firstStepContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* .bookingContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   margin: 0 0 2rem 0;
 }
@@ -18,20 +35,20 @@
   width: 500px;
   height: 400px;
   margin: 0.6rem 1rem 0 0;
-}
+} */
 
-.courtsContainer {
+/* .courtsContainer {
   position: absolute;
   top: 45%;
   left: 27%;
   display: flex;
   flex-direction: row;
-  /* justify-content: flex-start; */
-  /* align-items: center; */
+  justify-content: flex-start;
+  align-items: center;
   color: white;
-}
+} */
 
-.courtsContainer h3 {
+/* .courtsContainer h3 {
   font-size: 2rem;
   margin: 0 0.8rem 0 0;
 }
@@ -83,7 +100,7 @@
 .playersContainer span {
   font-size: 2.5rem;
   margin-right: 0.5rem;
-}
+} */
 
 /* .timeContainer {
   display: flex;
@@ -97,14 +114,14 @@
   margin-bottom: 1.5rem;
 } */
 
-.availableTime {
+/* .availableTime {
   margin: 1rem 1rem;
   padding: 0.2rem 0.7rem;
   background-color: #efad32;
   color: #fff;
   border: none;
   cursor: pointer;
-}
+} */
 
 /* .availableTime:focus {
   outline: none;
@@ -120,7 +137,7 @@
   border: none;
 }  */
 
-.bookButton {
+/* .bookButton {
   cursor: pointer;
   background-color: #efad32;
   padding: 0.1rem 1.3rem;
@@ -136,4 +153,4 @@
 
 .bookButton button {
   margin: 0.5rem;
-}
+} */

@@ -8,15 +8,6 @@ function BookingSteps() {
   const searchParams = useSearchParams();
   const path = searchParams.has("date");
   console.log(path);
-  // const pathname = usePathname();
-  // const searchParams = useSearchParams();
-
-  // useEffect(() => {
-  //   const url = `${pathname}?${searchParams}`;
-  //   console.log(url);
-  //   console.log(pathname);
-  //   console.log(searchParams);
-  // }, [pathname, searchParams]);
 
   return (
     <div className={classes.stepsContainer}>

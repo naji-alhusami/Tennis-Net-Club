@@ -1,6 +1,6 @@
 "use client";
-import React, { Fragment, useContext, useState } from "react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import React, { Fragment, useContext } from "react";
+import { useSearchParams } from "next/navigation";
 import { AiFillCaretDown } from "react-icons/ai";
 import Image from "next/image";
 
@@ -9,8 +9,6 @@ import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-date-step.js.module.css";
 import Link from "next/link";
-import BookingContainer from "./booking-container";
-import BookingSteps from "./booking-steps";
 
 function DateSelectionStep({
   handleChangeCourts,
@@ -19,14 +17,9 @@ function DateSelectionStep({
   isShowCourts,
   setIsShowCourts,
 }) {
-  const router = useRouter();
-  // const path = usePathname();
   const searchParams = useSearchParams();
   const path = searchParams.has("date");
-  // for (const value of searchParams.values()) {
-  //   console.log(value);
-  // }
-  // console.log(search.forEach());
+
   const {
     activeDay,
     numberOfPlayers,
@@ -35,9 +28,7 @@ function DateSelectionStep({
     nextStepHandler,
     currentStep,
   } = useContext(AuthContext);
-  // console.log(activeDay);
   console.log(path, currentStep);
-  // console.log(path);
 
   let formattedDate = null;
   if (activeDay) {
@@ -80,40 +71,55 @@ function DateSelectionStep({
     // router.push(`/booking/?date=${formattedDate}`);
   }
 
+  const playersAndCourtSelectionStyle = {
+    backgroundImage: `url(${courtTypeImages[selectedCourtType]})`,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    width: "500px",
+    height: "400px",
+  };
+
   return (
     <Fragment>
-      <div>
-        {/* <div className={classes.bookingPlayers}>
-          <Image
-            src={courtTypeImages[selectedCourtType]}
-            alt={selectedCourtType}
-            style={{ filter: "brightness(0.7)" }}
-            width={400}
-            height={300}
-            priority={true}
+      <div className={classes.firstStepContainer}>
+        <div style={playersAndCourtSelectionStyle}>
+          <h1>naji</h1>
+        </div>
+        <div>
+          <BookingCalendar nextStepHandler={nextStepHandler} />
+        </div>
+      </div>
+      {/* <div  className={classes.bookingPlayers}> */}
+      {/* <Image
+          src={courtTypeImages[selectedCourtType]}
+          alt={selectedCourtType}
+          style={{ filter: "brightness(0.7)" }}
+          width={400}
+          height={300}
+          priority={true}
+        /> */}
+      {/* <div className={classes.courtsContainer} style={imageStyle}>
+          <h3>Courts:</h3>
+          <AiFillCaretDown
+            onClick={handleShowCourts}
+            style={{ marginTop: "1rem" }}
           />
-          <div className={classes.courtsContainer}>
-            <h3>Courts:</h3>
-            <AiFillCaretDown
-              onClick={handleShowCourts}
-              style={{ marginTop: "1rem" }}
-            />
-            <div>
-              {isShowCourts && (
-                <ul>
-                  <li onClick={handleChangeCourts}>Clay Courts</li>
-                  <li onClick={handleChangeCourts}>Hard Courts</li>
-                </ul>
-              )}
-            </div>
+          <div>
+            {isShowCourts && (
+              <ul>
+                <li onClick={handleChangeCourts}>Clay Courts</li>
+                <li onClick={handleChangeCourts}>Hard Courts</li>
+              </ul>
+            )}
           </div>
-          <div className={classes.playersContainer}>
-            <h3>Players:</h3>
-            <span>{numberOfPlayers}</span>
-            <button onClick={increasePlayers}>+</button>
-            <button onClick={decreasePlayers}>-</button>
-          </div>
-        </div> */}
+        </div>
+        <div className={classes.playersContainer}>
+          <h3>Players:</h3>
+          <span>{numberOfPlayers}</span>
+          <button onClick={increasePlayers}>+</button>
+          <button onClick={decreasePlayers}>-</button>
+        </div>
         <BookingCalendar nextStepHandler={nextStepHandler} />
       </div>
 
@@ -124,14 +130,7 @@ function DateSelectionStep({
         >
           NEXT
         </Link>
-        {/* <button
-              // href={{ pathname: "/booking/[date]", query: { date: formattedDate } }}
-              // onClick={() => nextStepHandler()}
-              onClick={dateSelectionHandler}
-            >
-              Next
-            </button> */}
-      </div>
+      </div> */}
     </Fragment>
   );
 }

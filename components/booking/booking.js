@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useSearchParams } from "next/navigation";
 // import { motion } from "framer-motion";
 
@@ -20,12 +20,9 @@ function BookingCourt({ session }) {
   console.log(router.has("date"));
   console.log(router.has("time"));
   const { currentStep } = useContext(AuthContext);
-  // useEffect(() => {
-  //   console.log(currentStep);
-  // }, []);
 
-  //   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
-  //   const [isShowCourts, setIsShowCourts] = useState(false);
+  const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
+  const [isShowCourts, setIsShowCourts] = useState(false);
 
   //   async function reserveHandler(event) {
   //     event.preventDefault();
@@ -36,18 +33,18 @@ function BookingCourt({ session }) {
   //     }
   //   }
 
-  //   const courtTypeImages = {
-  //     "Clay Courts": "/images/clay.jpg",
-  //     "Hard Courts": "/images/hard.jpg",
-  //   };
+  const courtTypeImages = {
+    "Clay Courts": "/images/clay.jpg",
+    "Hard Courts": "/images/hard.jpg",
+  };
 
-  //   const handleChangeCourts = () => {
-  //     setSelectedCourtType((prevCourtType) =>
-  //       prevCourtType === "Clay Courts" ? "Hard Courts" : "Clay Courts"
-  //     );
+  const handleChangeCourts = () => {
+    setSelectedCourtType((prevCourtType) =>
+      prevCourtType === "Clay Courts" ?  "Hard Courts" : "Clay Courts"
+    );
 
-  //     setIsShowCourts(false);
-  //   };
+    setIsShowCourts(false);
+  };
 
   return (
     <div className={classes.bookingContainer}>
@@ -56,7 +53,14 @@ function BookingCourt({ session }) {
 
       {/* <form onSubmit={reserveHandler}></form> */}
       {/* {currentStep === 1 && router === "/booking" && <DateSelectionStep />} */}
-      {currentStep === 1 && <DateSelectionStep />}
+      {currentStep === 1 && (
+        <DateSelectionStep
+          selectedCourtType={selectedCourtType}
+          handleChangeCourts={handleChangeCourts}
+          isShowCourts={isShowCourts}
+          setIsShowCourts={setIsShowCourts}
+        />
+      )}
       {currentStep === 2 && router.has("date") && !router.has("time") && (
         <TimeSelectionStep />
       )}

@@ -5,11 +5,9 @@
   background-size: cover;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: flex-start;
   width: 500px;
   height: 400px;
-  margin: 0.6rem 0 0 1rem;
   color: white;
 }
 
@@ -42,7 +40,6 @@
 .calendarTable th {
   padding: 0 0.9rem;
   font-size: 1.5rem;
-
 }
 
 .calendarTable td {
@@ -54,14 +51,14 @@
 }
 
 .activeDay {
-  background-color: #efad32; 
-  color: white; 
+  background-color: #efad32;
+  color: white;
 }
 
 .previousDay {
-  color: #9e9e9e; 
+  color: #9e9e9e;
 }
 
 .currentDate {
-  background-color: #163322; 
+  background-color: #163322;
 }
