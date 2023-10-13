@@ -61,15 +61,9 @@ function DateSelectionStep() {
             </select>
           </div>
         </div>
-        {/* <div className={classes.playersDateContainer}>
+        <div className={classes.dateContainer}>
           {selectedCourtType === "Clay Court" ? (
-            <Image
-              src={clay}
-              alt={selectedCourtType}
-              width={500}
-              height={400}
-              priority={true}
-            />
+            <Image src={clay} alt={selectedCourtType} priority={true} />
           ) : (
             <Image
               src={hard}
@@ -83,7 +77,7 @@ function DateSelectionStep() {
           <div>
             <BookingCalendar nextStepHandler={nextStepHandler} />
           </div>
-        </div> */}
+        </div>
         <div className={classes.buttonContainer}>
           {activeDay ? (
             <Link

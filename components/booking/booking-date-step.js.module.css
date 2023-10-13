@@ -32,7 +32,7 @@
   flex-direction: row;
 }
 
-.playersDateContainer {
+.dateContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -40,17 +40,9 @@
   margin: 0 3rem 2.5rem 3rem;
 }
 
-.courtsContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  color: white;
-}
-
-.courtsContainer h3 {
-  font-size: 2rem;
-  margin: 0 0.8rem 0 0;
+.dateContainer img {
+  width: 500px;
+  height: 400px;
 }
 
 .buttonContainer {
@@ -87,10 +79,23 @@
   align-items: center;
 }
 
+@media screen and (max-width: 1114px) {
+  .dateContainer {
+    flex-direction: column;
+  }
+
+  .dateContainer img {
+    margin-bottom: 1rem;
+  }
+}
+
 @media screen and (max-width: 840px) {
   .playersAndCourtContainer {
     flex-direction: column;
-    padding: 0;
+  }
+
+  .playersAndCourt {
+    padding-right: 4rem;
   }
 }
 
@@ -105,123 +110,14 @@
     margin-bottom: 0.5rem;
     margin-left: 0;
     height: 1.4rem;
-
   }
 
   .playersAndCourt {
     flex-direction: column;
   }
-}
-/* .playersAndCourt {
-  flex-direction: column;
-} */
-/*
-@media screen and (max-width: 925px) {
-  .playersAndCourt {
-    display: flex;
-    flex-direction: column;
-  }
 
-  .playersAndCourtContainer h1 {
-    margin-bottom: 0.5rem;
-  }
-
-  .playersAndCourtContainer select {
-    font-size: 1rem;
-    height: 1.4rem;
+  .dateContainer img {
+    width: 350px;
+    height: 300px;
   }
 }
-
-@media screen and (max-width: 625px) {
-  .playersAndCourtContainer h1 {
-    font-size: 1rem;
-  }
-} */
-
-/* @media screen and (max-width: 1114px) {
-  .firstStepContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-} 
-
- .bookingContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 2rem 0;
-}
-
-.bookingPlayers {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.bookingPlayers img {
-  width: 500px;
-  height: 400px;
-  margin: 0.6rem 1rem 0 0;
-} 
-
-
-
- 
-
-/* .timeContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 9rem 3rem 9rem;
-}
-
- .time {
-  margin-bottom: 1.5rem;
-} */
-
-/* .availableTime {
-  margin: 1rem 1rem;
-  padding: 0.2rem 0.7rem;
-  background-color: #efad32;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-} */
-
-/* .availableTime:focus {
-  outline: none;
-  background-color: #268750;
-  cursor: pointer;
-} */
-
-/* .notAvailableTime {
-  margin: 1rem 1rem;
-  padding: 0.2rem 0.7rem;
-  background-color: #9a9798;
-  color: #fff;
-  border: none;
-}  */
-
-/* .bookButton {
-  cursor: pointer;
-  background-color: #efad32;
-  padding: 0.1rem 1.3rem;
-  color: white;
-  font-size: 1.5rem;
-  box-shadow: 5px 5px 0px 1px #db981b;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 38rem 3rem 38rem;
-}
-
-.bookButton button {
-  margin: 0.5rem;
-} */

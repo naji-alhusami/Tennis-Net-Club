@@ -62,3 +62,18 @@
 .currentDate {
   background-color: #163322;
 }
+
+@media screen and (max-width: 590px) {
+  .bookingDate {
+    width: 350px;
+    height: 300px;
+  }
+
+  .calendarTable th {
+    font-size: 1rem;
+  }
+
+  .calendarTable td {
+    padding: 0.3rem;
+  }
+}
