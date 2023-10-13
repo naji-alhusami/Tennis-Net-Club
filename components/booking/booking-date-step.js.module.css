@@ -1,54 +1,58 @@
 .firstStepContainer {
-  margin: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.playersAndCourtContainer {
+  background-color: #ababab;
+  width: 100%;
+  /* color: white; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-@media screen and (max-width: 1114px) {
-  .firstStepContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* .bookingContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 2rem 0;
-}
-
-.bookingPlayers {
+.playersDateContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin: 0 3rem 2.5rem 3rem;
 }
 
-.bookingPlayers img {
-  width: 500px;
-  height: 400px;
-  margin: 0.6rem 1rem 0 0;
-} */
+.playersAndCourtSelectionStyle button {
+  background: none;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 0.4rem;
+}
 
-/* .courtsContainer {
-  position: absolute;
-  top: 45%;
-  left: 27%;
+.playersAndCourtSelectionStyle h3 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.playersAndCourtSelectionStyle span {
+  font-size: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+.courtsContainer {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   color: white;
-} */
+}
 
-/* .courtsContainer h3 {
+.courtsContainer h3 {
   font-size: 2rem;
   margin: 0 0.8rem 0 0;
 }
@@ -74,33 +78,78 @@
   padding: 0.5rem;
 }
 
-.playersContainer {
-  position: absolute;
-  top: 65%;
-  left: 27%;
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.nextButton {
+  background-color: #efad32;
+  padding: 0.5rem 2rem;
   color: white;
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 0px 1px #db981b;
 }
 
-.playersContainer button {
-  background: none;
+.nextButton::before {
+  background-color: #f2a922;
+  padding: 0.6rem 1.3rem;
   color: white;
-  border: none;
-  padding: 0.2rem 0.5rem;
-  font-size: 2rem;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-right: 0.4rem;
+  font-size: var(--size-5);
 }
 
-.playersContainer h3 {
-  font-size: 2rem;
-  margin: 0;
+.nextButtonDisabled {
+  text-align: center;
+  background-color: #ababab;
+  padding: 0.5rem 2rem;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 0px 1px #888888;
 }
 
-.playersContainer span {
-  font-size: 2.5rem;
-  margin-right: 0.5rem;
-} */
+.nextButtonDisabled::before {
+  background-color: #f2a922;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  font-size: var(--size-5);
+}
+
+/* @media screen and (max-width: 1114px) {
+  .firstStepContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+} 
+
+ .bookingContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 2rem 0;
+}
+
+.bookingPlayers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookingPlayers img {
+  width: 500px;
+  height: 400px;
+  margin: 0.6rem 1rem 0 0;
+} 
+
+
+
+ 
 
 /* .timeContainer {
   display: flex;

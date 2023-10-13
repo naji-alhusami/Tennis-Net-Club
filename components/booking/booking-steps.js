@@ -19,7 +19,7 @@ function BookingSteps() {
         >
           1
         </div>
-        <h3>SELECT DATE</h3>
+        <h3>SELECT DATE, COURT & PLAYERS</h3>
       </div>
       <div className={classes.stepContainer}>
         <div

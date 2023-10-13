@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <MainNavigation />
             {children}
-            {/* <Footer /> */}
+            <Footer />
           </AuthProvider>
         </MyProvider>
       </body>

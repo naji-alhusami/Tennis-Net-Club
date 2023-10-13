@@ -3,6 +3,7 @@ import React, { Fragment, useContext } from "react";
 import { useSearchParams } from "next/navigation";
 import { AiFillCaretDown } from "react-icons/ai";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import BookingCalendar from "./booking-calendar";
 import AuthContext from "@/store/auth-context";
@@ -78,60 +79,82 @@ function DateSelectionStep({
     backgroundSize: "cover",
     width: "500px",
     height: "400px",
+    // filter: "brightness(0.7)",
   };
 
   return (
     <Fragment>
       <div className={classes.firstStepContainer}>
-        <div style={playersAndCourtSelectionStyle}>
-          <h1>naji</h1>
-        </div>
-        <div>
-          <BookingCalendar nextStepHandler={nextStepHandler} />
-        </div>
-      </div>
-      {/* <div  className={classes.bookingPlayers}> */}
-      {/* <Image
-          src={courtTypeImages[selectedCourtType]}
-          alt={selectedCourtType}
-          style={{ filter: "brightness(0.7)" }}
-          width={400}
-          height={300}
-          priority={true}
-        /> */}
-      {/* <div className={classes.courtsContainer} style={imageStyle}>
-          <h3>Courts:</h3>
-          <AiFillCaretDown
-            onClick={handleShowCourts}
-            style={{ marginTop: "1rem" }}
+        <div className={classes.playersDateContainer}>
+          <Image
+            src={courtTypeImages[selectedCourtType]}
+            alt={selectedCourtType}
+            // style={{ filter: "brightness(0.7)" }}
+            width={400}
+            height={300}
+            priority={true}
           />
+          {/* <div
+            style={playersAndCourtSelectionStyle}
+            className={classes.playersAndCourtSelectionStyle}
+          >
+            <div className={classes.courtsContainer}>
+              <h3>Courts:</h3>
+              <AiFillCaretDown
+                onClick={handleShowCourts}
+                style={{ marginTop: "1rem" }}
+              />
+              <div>
+                {isShowCourts && (
+                  <ul>
+                    <li onClick={handleChangeCourts}>Clay Courts</li>
+                    <li onClick={handleChangeCourts}>Hard Courts</li>
+                  </ul>
+                )}
+              </div>
+            </div>
+            <div>
+              <h3>Players:</h3>
+              <span>{numberOfPlayers}</span>
+              <button onClick={increasePlayers}>+</button>
+              <button onClick={decreasePlayers}>-</button>
+            </div>
+          </div> */}
           <div>
-            {isShowCourts && (
-              <ul>
-                <li onClick={handleChangeCourts}>Clay Courts</li>
-                <li onClick={handleChangeCourts}>Hard Courts</li>
-              </ul>
-            )}
+            <BookingCalendar nextStepHandler={nextStepHandler} />
           </div>
         </div>
-        <div className={classes.playersContainer}>
-          <h3>Players:</h3>
-          <span>{numberOfPlayers}</span>
-          <button onClick={increasePlayers}>+</button>
-          <button onClick={decreasePlayers}>-</button>
+        <div className={classes.playersAndCourtContainer}>
+          <h1>naji</h1>
         </div>
-        <BookingCalendar nextStepHandler={nextStepHandler} />
+        <div className={classes.buttonContainer}>
+          {activeDay ? (
+            <Link href="/booking" style={{ color: "white" }}>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                href={`/booking/?date=${formattedDate}`}
+                onClick={() => nextStepHandler()}
+                className={classes.nextButton}
+              >
+                Next
+              </motion.div>
+            </Link>
+          ) : (
+            <div className={classes.nextButtonDisabled}>Next</div>
+          )}
+        </div>
       </div>
-
-      <div>
-        <Link
-          href={`/booking/?date=${formattedDate}`}
-          onClick={() => nextStepHandler()}
-        >
-          NEXT
-        </Link>
-      </div> */}
     </Fragment>
   );
 }
+
 export default DateSelectionStep;
+
+{
+  /* <div className={classes.bookingPlayers}>
+  
+
+ 
+</div>; */
+}
