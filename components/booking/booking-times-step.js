@@ -9,6 +9,7 @@ import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 import BookingContainer from "./booking-container";
 import BookingSteps from "./booking-steps";
 import Link from "next/link";
+import { RightArrow } from "../icons/right-arrow";
 
 function TimeSelectionStep(props) {
   const {
@@ -72,11 +73,54 @@ function TimeSelectionStep(props) {
 
     fetchData();
   }, [activeDay]);
-  console.log(timeInfo);
+
   function timeHandler(time) {
     console.log(time);
+    // we should write if state before setting the time
     setTimeInfo(time);
     // props.nextStepHandler();
+  }
+
+  function getClassForTime(timeInfo) {
+    console.log(timeInfo);
+    if (
+      timeInfo.status === "PASSED TIME" ||
+      timeInfo.status === "RESERVED" ||
+      timeInfo.status === "NOT OPENED"
+    ) {
+      return classes.booked;
+    }
+
+    if (timeInfo.status === "BOOK COURT") {
+      return classes.book;
+    }
+    // const allMonthDates = new Date(currentYear, currentMonth, day);
+
+    // if (activeDay) {
+    //   if (
+    //     allMonthDates.getDate() === activeDay.getDate() &&
+    //     currentMonth === activeDay.getMonth() &&
+    //     currentYear === activeDay.getFullYear()
+    //   ) {
+    //     return classes.activeDay;
+    //   }
+    // }
+
+    // if (
+    //   allMonthDates.getDate() === currentDate.getDate() &&
+    //   currentMonth === thisMonth &&
+    //   currentYear === thisYear
+    // ) {
+    //   return classes.currentDate;
+    // }
+
+    // if (
+    //   allMonthDates.getDate() < currentDate.getDate() &&
+    //   currentMonth === thisMonth &&
+    //   currentYear === thisYear
+    // ) {
+    //   return classes.previousDay;
+    // }
   }
 
   return (
@@ -92,7 +136,13 @@ function TimeSelectionStep(props) {
               return (
                 <div key={timeSlot.id} className={classes.timeSlot}>
                   <p className={classes.time}>{timeSlot.time}</p>
-                  {timeSlot.status === "PASSED TIME" ? (
+                  <p
+                    className={getClassForTime(timeSlot)}
+                    onClick={() => timeHandler(timeSlot)}
+                  >
+                    {timeSlot.status}
+                  </p>
+                  {/* {timeSlot.status === "PASSED TIME" ? (
                     <p className={classes.booked}>PASSED TIME</p>
                   ) : timeSlot.status === "RESERVED" ? (
                     <p className={classes.booked}>RESERVED</p>
@@ -100,30 +150,37 @@ function TimeSelectionStep(props) {
                     <p className={classes.booked}>NOT OPENED</p>
                   ) : (
                     <p
-                      className={classes.book}
+                      className={getClassForTime(timeSlot)}
+                      // className={classes.book}
                       onClick={() => timeHandler(timeSlot)}
                     >
                       BOOK COURT
                     </p>
-                  )}
+                  )} */}
                 </div>
               );
             })}
           </div>
         )}
+        <div className={classes.buttonContainer}>
+          {timeInfo ? (
+            <Link
+              href={`/booking/?date=${router.get("date")}&time=${
+                timeInfo.time
+              }`}
+              onClick={() => nextStepHandler()}
+              className={classes.nextButton}
+              style={{ color: "white" }}
+            >
+              Next <RightArrow />
+            </Link>
+          ) : (
+            <div className={classes.nextButtonDisabled}>
+              Next <RightArrow />
+            </div>
+          )}
+        </div>
       </div>
-      {timeInfo && (
-        <Link
-          href={`/booking/?date=${router.get("date")}&time=${timeInfo.time}`}
-          onClick={() => nextStepHandler()}
-          className={classes.bookButton}
-          // whileHover={{ scale: 1.1 }}
-          // whileTap={{ scale: 0.9 }}
-          // onClick={props.prevStepHandler}
-        >
-          Next
-        </Link>
-      )}
     </Fragment>
   );
 }
