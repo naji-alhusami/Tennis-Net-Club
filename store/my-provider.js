@@ -12,7 +12,7 @@ const MyProvider = (props) => {
   const searchParams = useSearchParams();
   const datePath = searchParams.has("date");
   const timePath = searchParams.has("time");
-  console.log(datePath);
+  // console.log(datePath);
   const initialStep = timePath && datePath ? 3 : datePath && !timePath ? 2 : 1;
 
   const currentDay = new Date();
@@ -40,7 +40,7 @@ const MyProvider = (props) => {
     setCurrentStep(currentStep - 1);
     setActiveDay();
   };
-  console.log(currentStep);
+  // console.log(currentStep);
   return (
     <AuthContext.Provider
       value={{

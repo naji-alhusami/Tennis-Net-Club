@@ -7,7 +7,7 @@ function BookingSteps() {
   const { currentStep } = useContext(AuthContext);
   const searchParams = useSearchParams();
   const path = searchParams.has("date");
-  console.log(path);
+  // console.log(path);
 
   return (
     <div className={classes.stepsContainer}>

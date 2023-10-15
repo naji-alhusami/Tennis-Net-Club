@@ -17,8 +17,8 @@ import ConfirmationStep from "./booking-confirm-step";
 
 function BookingCourt({ session }) {
   const router = useSearchParams();
-  console.log(router.has("date"));
-  console.log(router.has("time"));
+  // console.log(router.has("date"));
+  // console.log(router.has("time"));
   const { currentStep } = useContext(AuthContext);
 
   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");

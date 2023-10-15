@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 
 import AuthContext from "@/store/auth-context";
 import { useSearchParams } from "next/navigation";
@@ -24,11 +24,11 @@ function TimeSelectionStep(props) {
     nextStepHandler,
   } = useContext(AuthContext);
 
-  console.log(activeDay);
+  // console.log(activeDay);
   const router = useSearchParams();
-  console.log(router.get("date"));
+  // console.log(router.get("date"));
   const date = new Date(router.get("date"));
-  console.log(date);
+  // console.log(date);
 
   useEffect(() => {
     async function fetchData() {
@@ -38,11 +38,11 @@ function TimeSelectionStep(props) {
 
         // generate all the times
         const generatedTimes = await generateTimeSlots(date);
-        console.log(generatedTimes);
+        // console.log(generatedTimes);
         // fetch the taken times
-        console.log("before fetching taken times");
+        // console.log("before fetching taken times");
         const takenTimes = await fetchTakenTimesFromMongo();
-        console.log(takenTimes);
+        // console.log(takenTimes);
         // check if there are taken times and give them false status
         if (takenTimes && takenTimes.data.length > 0) {
           console.log("inside taken times");
@@ -60,7 +60,7 @@ function TimeSelectionStep(props) {
           console.log(updatedGeneratedTimes);
           setTimeSlots(updatedGeneratedTimes);
         } else {
-          console.log("without takentimes");
+          // console.log("without takentimes");
           setTimeSlots(generatedTimes);
         }
 
@@ -74,53 +74,64 @@ function TimeSelectionStep(props) {
     fetchData();
   }, [activeDay]);
 
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+
   function timeHandler(time) {
-    console.log(time);
-    // we should write if state before setting the time
-    setTimeInfo(time);
+    // console.log(time);
+    if (time.status === "BOOK COURT") {
+      setSelectedTime(time);
+      setTimeInfo(time);
+    }
     // props.nextStepHandler();
   }
 
-  function getClassForTime(timeInfo) {
-    console.log(timeInfo);
-    if (
-      timeInfo.status === "PASSED TIME" ||
-      timeInfo.status === "RESERVED" ||
-      timeInfo.status === "NOT OPENED"
-    ) {
-      return classes.booked;
+  function handleMouseEnter(timeSlot) {
+    const updatedTimeSlots = timeSlots.map((slot) => {
+      if (slot.id === timeSlot.id && slot.status === "BOOK COURT") {
+        return { ...slot, isHovered: true };
+      }
+      return slot;
+    });
+
+    setTimeSlots(updatedTimeSlots);
+    console.log(timeSlots);
+  }
+
+  function handleMouseLeave(timeSlot) {
+    const updatedTimeSlots = timeSlots.map((slot) => {
+      if (slot.id === timeSlot.id && slot.status === "BOOK COURT") {
+        return { ...slot, isHovered: false };
+      }
+      return slot;
+    });
+
+    setTimeSlots(updatedTimeSlots);
+  }
+
+  function renderTimeSlotElement(timeSlot) {
+    if (timeSlot.status === "PASSED TIME") {
+      return <p className={classes.booked}>PASSED TIME</p>;
+    } else if (timeSlot.status === "RESERVED") {
+      return <p className={classes.booked}>RESERVED</p>;
+    } else if (timeSlot.status === "NOT OPENED") {
+      return <p className={classes.booked}>NOT OPENED</p>;
+    } else if (timeSlot.status === "BOOK COURT") {
+      return (
+        <p
+          className={
+            timeSlot.isHovered ? classes.book : classes.selectedHovered
+          }
+          onMouseEnter={() => handleMouseEnter(timeSlot)}
+          onMouseLeave={() => handleMouseLeave(timeSlot)}
+          onClick={() => timeHandler(timeSlot)}
+        >
+          {timeSlot.isHovered ? "SELECT TIME" : "BOOK COURT"}
+        </p>
+      );
+    } else {
+      return null;
     }
-
-    if (timeInfo.status === "BOOK COURT") {
-      return classes.book;
-    }
-    // const allMonthDates = new Date(currentYear, currentMonth, day);
-
-    // if (activeDay) {
-    //   if (
-    //     allMonthDates.getDate() === activeDay.getDate() &&
-    //     currentMonth === activeDay.getMonth() &&
-    //     currentYear === activeDay.getFullYear()
-    //   ) {
-    //     return classes.activeDay;
-    //   }
-    // }
-
-    // if (
-    //   allMonthDates.getDate() === currentDate.getDate() &&
-    //   currentMonth === thisMonth &&
-    //   currentYear === thisYear
-    // ) {
-    //   return classes.currentDate;
-    // }
-
-    // if (
-    //   allMonthDates.getDate() < currentDate.getDate() &&
-    //   currentMonth === thisMonth &&
-    //   currentYear === thisYear
-    // ) {
-    //   return classes.previousDay;
-    // }
   }
 
   return (
@@ -136,27 +147,7 @@ function TimeSelectionStep(props) {
               return (
                 <div key={timeSlot.id} className={classes.timeSlot}>
                   <p className={classes.time}>{timeSlot.time}</p>
-                  <p
-                    className={getClassForTime(timeSlot)}
-                    onClick={() => timeHandler(timeSlot)}
-                  >
-                    {timeSlot.status}
-                  </p>
-                  {/* {timeSlot.status === "PASSED TIME" ? (
-                    <p className={classes.booked}>PASSED TIME</p>
-                  ) : timeSlot.status === "RESERVED" ? (
-                    <p className={classes.booked}>RESERVED</p>
-                  ) : timeSlot.status === "NOT OPENED" ? (
-                    <p className={classes.booked}>NOT OPENED</p>
-                  ) : (
-                    <p
-                      className={getClassForTime(timeSlot)}
-                      // className={classes.book}
-                      onClick={() => timeHandler(timeSlot)}
-                    >
-                      BOOK COURT
-                    </p>
-                  )} */}
+                  {renderTimeSlotElement(timeSlot)}
                 </div>
               );
             })}
