@@ -80,6 +80,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 3rem;
 }
 
 .nextButton:hover {
@@ -96,4 +97,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 3rem;
+}
+
+.backButton {
+  background-color: #db981b;
+  padding: 0.8rem 2rem;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.backButton:hover {
+  background-color: #a97616;
+  transition: 0.3s ease-out;
 }

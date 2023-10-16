@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function GET(req) {
   if (req.method === "GET") {
-    console.log("inside getTakenTimes");
     const client = await connectToDatabase();
     const db = client.db();
     const collection = db.collection("takenTimes");

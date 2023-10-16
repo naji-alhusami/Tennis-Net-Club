@@ -18,8 +18,7 @@ function DateSelectionStep() {
   const searchParams = useSearchParams();
   const path = searchParams.has("date");
 
-  const { activeDay, nextStepHandler, currentStep, timeInfo, setTimeInfo } =
-    useContext(AuthContext);
+  const { activeDay, nextStepHandler, currentStep } = useContext(AuthContext);
   console.log(path, currentStep);
 
   let formattedDate = null;
@@ -33,16 +32,30 @@ function DateSelectionStep() {
     console.log(formattedDate); // Output: "Oct-05-2023"
   }
 
-  const [selectedCourtType, setSelectedCourtType] = useState("");
-  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
+  const [selectedCourtType, setSelectedCourtType] = useState(null);
+  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState(null);
 
-  function handleNextStep() {
-    setTimeInfo({
-      ...timeInfo,
-      formattedDate,
-      selectedCourtType,
-      selectedPlayersNumber,
-    });
+  async function handleNextStep() {
+    // const formattedActiveDay = activeDay.toISOString();
+    // console.log(formattedActiveDay);
+    // try {
+    //   const response = await fetch("/api/insertTakenTimes", {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       selectedCourtType,
+    //       selectedPlayersNumber,
+    //       activeDay: activeDay,
+    //     }),
+    //     headers: { "Content-Type": "application/json" },
+    //   });
+
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     console.log(data);
+    //   }
+    // } catch (error) {
+    //   console.log("Error", error.message);
+    // }
     nextStepHandler();
   }
 
@@ -57,14 +70,16 @@ function DateSelectionStep() {
             <select
               value={selectedCourtType}
               onChange={(e) => setSelectedCourtType(e.target.value)}
+              required
             >
               <option>--- Select Court Type ---</option>
-              <option value="Clay Court">Clay Court</option>
-              <option value="Hard Court">Hard Court</option>
+              <option value="Clay">Clay Court</option>
+              <option value="Hard">Hard Court</option>
             </select>
             <select
               value={selectedPlayersNumber}
               onChange={(e) => setSelectedPlayersNumber(e.target.value)}
+              required
             >
               <option>--- Select Players Number ---</option>
               <option value="1">1</option>
@@ -92,9 +107,9 @@ function DateSelectionStep() {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          {activeDay ? (
+          {activeDay && selectedCourtType && selectedPlayersNumber ? (
             <Link
-              href={`/booking/?date=${formattedDate}`}
+              href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`}
               className={classes.nextButton}
               style={{ color: "white" }}
               onClick={handleNextStep}

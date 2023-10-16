@@ -13,7 +13,6 @@ function ConfirmationStep(props) {
   const router = useSearchParams();
   console.log(router.get("date"));
 
-
   console.log(timeInfo);
   return (
     <div className={classes.bookingForm}>
@@ -31,7 +30,7 @@ function ConfirmationStep(props) {
           <b>Name:</b> {props.session.user.name}
         </p> */}
         <p>
-          <b>Players:</b> {numberOfPlayers}
+          <b>Players:</b> {router.get("players")}
         </p>
         <p>
           <b>Date:</b> {router.get("date")}
@@ -39,9 +38,7 @@ function ConfirmationStep(props) {
         <p>
           <b>Time:</b> {router.get("time")}
         </p>
-        <p>
-          {/* <b>Court:</b> {props.selectedCourtType} */}
-        </p>
+        <p>{/* <b>Court:</b> {props.selectedCourtType} */}</p>
       </div>
       <p onClick={props.prevStepHandler}>Back</p>
     </div>

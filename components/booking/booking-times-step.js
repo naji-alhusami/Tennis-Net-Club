@@ -2,13 +2,15 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 
 import AuthContext from "@/store/auth-context";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import classes from "./booking-times-step.module.css";
 import { generateTimeSlots } from "./generate-times";
 import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
+import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
 
 function TimeSelectionStep() {
   const {
@@ -19,11 +21,16 @@ function TimeSelectionStep() {
     timeSlots,
     setTimeSlots,
     timeInfo,
+    prevStepHandler,
     nextStepHandler,
   } = useContext(AuthContext);
 
-  const router = useSearchParams();
-  const date = new Date(router.get("date"));
+  const pathData = useSearchParams();
+  const router = useRouter();
+
+  console.log(router);
+  const date = new Date(pathData.get("date"));
+  const courtType = pathData.get("court");
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +38,7 @@ function TimeSelectionStep() {
         setIsLoadingTimes(true);
 
         // generate all the times
-        const generatedTimes = await generateTimeSlots(date);
+        const generatedTimes = await generateTimeSlots(date, courtType);
         // fetch the taken times
         const takenTimes = await fetchTakenTimesFromMongo();
         // check if there are taken times and give them false status
@@ -87,7 +94,7 @@ function TimeSelectionStep() {
       });
       setTimeSlots(updatedTimeSlots);
       setSelectedTime(timeSlot.time);
-      setTimeInfo({ ...timeInfo, timeSlot });
+      setTimeInfo(timeSlot);
     }
   }
   console.log(timeSlots);
@@ -148,7 +155,8 @@ function TimeSelectionStep() {
             {timeSlots.map((timeSlot) => {
               return (
                 <div key={timeSlot.id} className={classes.timeSlot}>
-                  <p className={classes.time}>{timeSlot.time}</p>
+                  <h1 className={classes.time}>{timeSlot.time}</h1>
+                  <p>{timeSlot.court} Court</p>
                   {renderTimeSlotElement(timeSlot)}
                 </div>
               );
@@ -156,22 +164,32 @@ function TimeSelectionStep() {
           </div>
         )}
         <div className={classes.buttonContainer}>
+          <Link
+            href="/booking"
+            onClick={() => prevStepHandler()}
+            className={classes.backButton}
+          >
+            <BsArrowLeft style={{ marginRight: "1rem" }} /> Back
+          </Link>
           {selectedTime !== "" ? (
             <Link
-              href={`/booking/?date=${router.get("date")}&time=${
-                timeInfo.time
-              }`}
+              href={`/booking/?date=${pathData.get(
+                "date"
+              )}&court=${pathData.get("court")}&players=${pathData.get(
+                "players"
+              )}&time=${selectedTime}`}
               onClick={() => nextStepHandler()}
               className={classes.nextButton}
               style={{ color: "white" }}
             >
-              Next <RightArrow />
+              Next <BsArrowRight style={{ marginLeft: "1rem" }} />
             </Link>
           ) : (
             <div className={classes.nextButtonDisabled}>
-              Next <RightArrow />
+              Next <BsArrowRight style={{ marginLeft: "1rem" }} />
             </div>
           )}
+          {/* <button onClick={()=>router.push('/booking')}>Click</button> */}
         </div>
       </div>
     </Fragment>

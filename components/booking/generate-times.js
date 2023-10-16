@@ -1,4 +1,4 @@
-export function generateTimeSlots(activeDay) {
+export function generateTimeSlots(activeDay, courtType) {
   const timeSlots = [];
 
   // Get the current time
@@ -15,7 +15,7 @@ export function generateTimeSlots(activeDay) {
   const threeDaysLater = new Date(currentDate);
   threeDaysLater.setDate(currentDate.getDate() + 3);
 
-  const intervalMinutes = 60; // You can adjust this to your desired time slot interval
+  const intervalMinutes = 60; // adjust this time slot interval
 
   let currentTime = new Date(todayStartTime);
   let id = 0;
@@ -32,17 +32,7 @@ export function generateTimeSlots(activeDay) {
       year: "numeric",
     });
 
-    // const afterThirdDay = activeDay > threeDaysLater;
-    // const timesBeforeCurrentTime =
-    //   activeDay.getDate() === currentDate.getDate() &&
-    //   currentDate.getHours() >= new Date(currentTime).getHours();
-    // const timesInThirdDay = currentTime > threeDaysLater;
-    // const status =
-    //   timesBeforeCurrentTime || timesInThirdDay || afterThirdDay // false for all the days after third day
-    //     ? false
-    //     : true;
-
-    let status = ""; // Initialize status as an empty string
+    let status = "";
 
     if (activeDay > threeDaysLater || currentTime > threeDaysLater) {
       status = "NOT OPENED";
@@ -52,16 +42,15 @@ export function generateTimeSlots(activeDay) {
     ) {
       status = "PASSED TIME";
     } else {
-      status = "BOOK COURT"; // Default status for open slots
+      status = "BOOK COURT";
     }
 
     timeSlots.push({
       id: id,
+      court: courtType,
       date: formattedDate,
       time: formattedTime,
       status: status,
-      // isHovered: false,
-      // selectedTime: false,
     });
 
     id++;
