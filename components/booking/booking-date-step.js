@@ -18,7 +18,8 @@ function DateSelectionStep() {
   const searchParams = useSearchParams();
   const path = searchParams.has("date");
 
-  const { activeDay, nextStepHandler, currentStep } = useContext(AuthContext);
+  const { activeDay, nextStepHandler, currentStep, timeInfo, setTimeInfo } =
+    useContext(AuthContext);
   console.log(path, currentStep);
 
   let formattedDate = null;
@@ -32,12 +33,18 @@ function DateSelectionStep() {
     console.log(formattedDate); // Output: "Oct-05-2023"
   }
 
-  const [selectedCourtType, setSelectedCourtType] = useState(""); // Default selected value
+  const [selectedCourtType, setSelectedCourtType] = useState("");
+  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 
-  const handleCourtTypeChange = (e) => {
-    setSelectedCourtType(e.target.value);
-    console.log(selectedCourtType);
-  };
+  function handleNextStep() {
+    setTimeInfo({
+      ...timeInfo,
+      formattedDate,
+      selectedCourtType,
+      selectedPlayersNumber,
+    });
+    nextStepHandler();
+  }
 
   return (
     <Fragment>
@@ -47,12 +54,18 @@ function DateSelectionStep() {
             <h1>Choose Court & Players:</h1>
           </div>
           <div className={classes.playersAndCourt}>
-            <select value={selectedCourtType} onChange={handleCourtTypeChange}>
+            <select
+              value={selectedCourtType}
+              onChange={(e) => setSelectedCourtType(e.target.value)}
+            >
               <option>--- Select Court Type ---</option>
               <option value="Clay Court">Clay Court</option>
               <option value="Hard Court">Hard Court</option>
             </select>
-            <select>
+            <select
+              value={selectedPlayersNumber}
+              onChange={(e) => setSelectedPlayersNumber(e.target.value)}
+            >
               <option>--- Select Players Number ---</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -84,7 +97,7 @@ function DateSelectionStep() {
               href={`/booking/?date=${formattedDate}`}
               className={classes.nextButton}
               style={{ color: "white" }}
-              onClick={() => nextStepHandler()}
+              onClick={handleNextStep}
             >
               Next <RightArrow />
             </Link>

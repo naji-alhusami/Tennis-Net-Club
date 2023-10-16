@@ -19,7 +19,7 @@ const MyProvider = (props) => {
   const [activeDay, setActiveDay] = useState();
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [numberOfPlayers, setNumberOfPlayers] = useState(0);
-  const [timeInfo, setTimeInfo] = useState();
+  const [timeInfo, setTimeInfo] = useState({});
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoadingTimes, setIsLoadingTimes] = useState(true);
   const [takenTimes, setTakenTimes] = useState([]);

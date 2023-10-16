@@ -10,7 +10,7 @@ import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 
-function TimeSelectionStep(props) {
+function TimeSelectionStep() {
   const {
     setTimeInfo,
     isLoadingTimes,
@@ -18,7 +18,6 @@ function TimeSelectionStep(props) {
     activeDay,
     timeSlots,
     setTimeSlots,
-    cuurrentStep,
     timeInfo,
     nextStepHandler,
   } = useContext(AuthContext);
@@ -45,7 +44,7 @@ function TimeSelectionStep(props) {
             );
             return {
               ...timeSlot,
-              status: isTaken ? "RESERVED" : timeSlot.status, // Set status to false if taken, true otherwise
+              status: isTaken ? "RESERVED" : timeSlot.status,
             };
           });
           setTimeSlots(updatedGeneratedTimes);
@@ -63,6 +62,9 @@ function TimeSelectionStep(props) {
     fetchData();
   }, [activeDay]);
 
+  const [hoveredTimeSlot, setHoveredTimeSlot] = useState(null);
+  const [selectedTime, setSelectedTime] = useState("");
+
   function timeHandler(timeSlot) {
     if (timeSlot.status === "BOOK COURT") {
       // Find the currently selected time slot (if any)
@@ -73,42 +75,29 @@ function TimeSelectionStep(props) {
       // Update the selected time and change the status
       const updatedTimeSlots = timeSlots.map((slot) => {
         if (slot.id === timeSlot.id) {
-          return { ...slot, status: "SELECTED", isHovered: false };
+          return { ...slot, status: "SELECTED" };
         } else if (
           currentlySelectedTimeSlot &&
           slot.id === currentlySelectedTimeSlot.id
         ) {
           // Deselect the previously selected time slot
-          return { ...slot, status: "BOOK COURT", isHovered: false };
+          return { ...slot, status: "BOOK COURT" };
         }
         return slot;
       });
-
       setTimeSlots(updatedTimeSlots);
-      setTimeInfo(timeSlot);
+      setSelectedTime(timeSlot.time);
+      setTimeInfo({ ...timeInfo, timeSlot });
     }
   }
+  console.log(timeSlots);
 
   function handleMouseEnter(timeSlot) {
-    const updatedTimeSlots = timeSlots.map((slot) => {
-      if (slot.id === timeSlot.id && slot.status === "BOOK COURT") {
-        return { ...slot, isHovered: true };
-      }
-      return slot;
-    });
-
-    setTimeSlots(updatedTimeSlots);
+    setHoveredTimeSlot(timeSlot);
   }
 
-  function handleMouseLeave(timeSlot) {
-    const updatedTimeSlots = timeSlots.map((slot) => {
-      if (slot.id === timeSlot.id && slot.status === "BOOK COURT") {
-        return { ...slot, isHovered: false };
-      }
-      return slot;
-    });
-
-    setTimeSlots(updatedTimeSlots);
+  function handleMouseLeave() {
+    setHoveredTimeSlot(null);
   }
 
   function renderTimeSlotElement(timeSlot) {
@@ -118,32 +107,32 @@ function TimeSelectionStep(props) {
       return <p className={classes.booked}>RESERVED</p>;
     } else if (timeSlot.status === "NOT OPENED") {
       return <p className={classes.booked}>NOT OPENED</p>;
-    } else if (
-      timeSlot.status === "BOOK COURT" ||
-      timeSlot.status === "SELECTED"
-    ) {
+    } else {
+      let buttonText;
+      if (timeSlot.status === "SELECTED") {
+        buttonText = "SELECTED";
+      } else if (timeSlot === hoveredTimeSlot) {
+        buttonText = "SELECT TIME";
+      } else {
+        buttonText = "BOOK COURT";
+      }
+
       return (
         <p
           className={
             timeSlot.status === "SELECTED"
               ? classes.selected
-              : timeSlot.isHovered
+              : timeSlot === hoveredTimeSlot
               ? classes.hovered
               : classes.book
           }
           onMouseEnter={() => handleMouseEnter(timeSlot)}
-          onMouseLeave={() => handleMouseLeave(timeSlot)}
+          onMouseLeave={handleMouseLeave}
           onClick={() => timeHandler(timeSlot)}
         >
-          {timeSlot.status === "SELECTED"
-            ? "SELECTED"
-            : timeSlot.isHovered
-            ? "SELECT TIME"
-            : "BOOK COURT"}
+          {buttonText}
         </p>
       );
-    } else {
-      return null;
     }
   }
 
@@ -167,7 +156,7 @@ function TimeSelectionStep(props) {
           </div>
         )}
         <div className={classes.buttonContainer}>
-          {timeInfo ? (
+          {selectedTime !== "" ? (
             <Link
               href={`/booking/?date=${router.get("date")}&time=${
                 timeInfo.time

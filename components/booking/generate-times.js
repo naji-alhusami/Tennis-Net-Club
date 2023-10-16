@@ -60,7 +60,7 @@ export function generateTimeSlots(activeDay) {
       date: formattedDate,
       time: formattedTime,
       status: status,
-      isHovered: false,
+      // isHovered: false,
       // selectedTime: false,
     });
 
