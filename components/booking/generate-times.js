@@ -26,11 +26,13 @@ export function generateTimeSlots(activeDay, courtType) {
       minute: "numeric",
       hour12: false,
     });
-    const formattedDate = currentTime.toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+
+    let formattedDate = "";
+    const month = activeDay.toLocaleString("en-US", { month: "short" });
+    const day = activeDay.getDate();
+    const year = activeDay.getFullYear();
+
+    formattedDate = `${month}-${day}-${year}`;
 
     let status = "";
 
@@ -47,7 +49,7 @@ export function generateTimeSlots(activeDay, courtType) {
 
     timeSlots.push({
       id: id,
-      court: courtType,
+      courtType: courtType,
       date: formattedDate,
       time: formattedTime,
       status: status,

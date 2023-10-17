@@ -14,21 +14,17 @@ import { BsArrowRight } from "react-icons/bs";
 
 function TimeSelectionStep() {
   const {
-    setTimeInfo,
     isLoadingTimes,
     setIsLoadingTimes,
     activeDay,
     timeSlots,
     setTimeSlots,
-    timeInfo,
     prevStepHandler,
     nextStepHandler,
   } = useContext(AuthContext);
 
   const pathData = useSearchParams();
-  const router = useRouter();
 
-  console.log(router);
   const date = new Date(pathData.get("date"));
   const courtType = pathData.get("court");
 
@@ -41,13 +37,15 @@ function TimeSelectionStep() {
         const generatedTimes = await generateTimeSlots(date, courtType);
         // fetch the taken times
         const takenTimes = await fetchTakenTimesFromMongo();
+        console.log(takenTimes);
         // check if there are taken times and give them false status
         if (takenTimes && takenTimes.data.length > 0) {
           const updatedGeneratedTimes = generatedTimes.map((timeSlot) => {
             const isTaken = takenTimes.data.some(
               (takenTime) =>
                 takenTime.date === timeSlot.date &&
-                takenTime.time === timeSlot.time
+                takenTime.time === timeSlot.time &&
+                takenTime.courtType === timeSlot.courtType
             );
             return {
               ...timeSlot,
@@ -156,7 +154,7 @@ function TimeSelectionStep() {
               return (
                 <div key={timeSlot.id} className={classes.timeSlot}>
                   <h1 className={classes.time}>{timeSlot.time}</h1>
-                  <p>{timeSlot.court} Court</p>
+                  <p>{timeSlot.courtType} Court</p>
                   {renderTimeSlotElement(timeSlot)}
                 </div>
               );

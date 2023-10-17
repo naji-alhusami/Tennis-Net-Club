@@ -8,13 +8,18 @@ export async function POST(req) {
     const collection = db.collection("takenTimes");
 
     try {
-      const { selectedCourtType, selectedPlayersNumber, activeDay } =
-        await req.json();
+      const {
+        selectedCourtType,
+        selectedPlayersNumber,
+        selectedDate,
+        selectedTime,
+      } = await req.json();
 
       const takenTime = {
         courtType: selectedCourtType,
         playersNumber: selectedPlayersNumber,
-        activeDay: activeDay,
+        date: selectedDate,
+        time: selectedTime,
       };
 
       const result = await collection.insertOne(takenTime);

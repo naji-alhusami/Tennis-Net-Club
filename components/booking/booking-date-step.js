@@ -36,26 +36,7 @@ function DateSelectionStep() {
   const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 
   async function handleNextStep() {
-    // const formattedActiveDay = activeDay.toISOString();
-    // console.log(formattedActiveDay);
-    // try {
-    //   const response = await fetch("/api/insertTakenTimes", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       selectedCourtType,
-    //       selectedPlayersNumber,
-    //       activeDay: activeDay,
-    //     }),
-    //     headers: { "Content-Type": "application/json" },
-    //   });
-
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     console.log(data);
-    //   }
-    // } catch (error) {
-    //   console.log("Error", error.message);
-    // }
+    
     nextStepHandler();
   }
 
