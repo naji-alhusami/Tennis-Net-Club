@@ -13,7 +13,6 @@ function BookingContainer() {
         style={{ filter: "brightness(0.7)" }}
         priority={true}
       />
-      <h1>Reserve Court</h1>
     </div>
   );
 }

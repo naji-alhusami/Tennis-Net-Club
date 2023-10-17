@@ -40,7 +40,7 @@ function BookingCourt({ session }) {
 
   const handleChangeCourts = () => {
     setSelectedCourtType((prevCourtType) =>
-      prevCourtType === "Clay Courts" ?  "Hard Courts" : "Clay Courts"
+      prevCourtType === "Clay Courts" ? "Hard Courts" : "Clay Courts"
     );
 
     setIsShowCourts(false);
@@ -50,6 +50,19 @@ function BookingCourt({ session }) {
     <div className={classes.bookingContainer}>
       <BookingContainer />
       <BookingSteps />
+      <div className={classes.bookingHeader}>
+        <h1>Book Your Court</h1>
+        {currentStep === 1 && (
+          <h2>Choose Court Type, Players Number and Date:</h2>
+        )}
+        {currentStep === 2 && router.has("date") && !router.has("time") && (
+          <h2>Choose Available Time:</h2>
+        )}
+        {currentStep === 3 && router.has("time") && (
+          <h2 style={{textAlign:'center'}}>Confirm Booking Details:</h2>
+        )}
+        <hr style={{ border: "1px solid #1c7f47", margin: "1rem 0", width:'6rem' }} />
+      </div>
 
       {/* <form onSubmit={reserveHandler}></form> */}
       {/* {currentStep === 1 && router === "/booking" && <DateSelectionStep />} */}

@@ -3,6 +3,17 @@
   width: 100%;
 }
 
+.bookingHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookingHeader h2 {
+  color: #1c7f47;
+}
+
 .bookButton button {
   cursor: pointer;
   background-color: #efad32;

@@ -63,10 +63,10 @@ function DateSelectionStep() {
     <Fragment>
       <div className={classes.firstStepContainer}>
         <div className={classes.playersAndCourtContainer}>
-          <div>
+          {/* <div>
             <h1>Reserve Court:</h1>
-          </div>
-          <div className={classes.playersAndCourt}>
+          </div> */}
+          {/* <div className={classes.playersAndCourt}> */}
             <select
               value={selectedCourtType}
               // value="court-type"
@@ -88,7 +88,7 @@ function DateSelectionStep() {
               <option value="3">3</option>
               <option value="4">4</option>
             </select>
-          </div>
+          {/* </div> */}
         </div>
         <div className={classes.dateContainer}>
           {selectedCourtType === "Clay" ? (

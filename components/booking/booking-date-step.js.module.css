@@ -12,25 +12,27 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 0 3rem;
   margin-bottom: 3rem;
 }
 
-.playersAndCourtContainer h1 {
+/* .playersAndCourtContainer h1 {
   margin-right: 1rem;
-}
+} */
 
 .playersAndCourtContainer select {
   width: max-content;
+  width: 100%;
   font-size: 1rem;
   height: 2rem;
-  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
-.playersAndCourt {
+/* .playersAndCourt {
   display: flex;
   flex-direction: row;
-}
+} */
 
 .dateContainer {
   display: flex;
@@ -94,6 +96,10 @@
     flex-direction: column;
   }
 
+  .playersAndCourtContainer select {
+    margin: 0.3rem 0;
+  }
+
   .playersAndCourt {
     padding-right: 4rem;
   }
@@ -109,7 +115,7 @@
     width: 100%;
     margin-bottom: 0.5rem;
     margin-left: 0;
-    height: 1.4rem;
+    /* height: 1.4rem; */
   }
 
   .playersAndCourt {

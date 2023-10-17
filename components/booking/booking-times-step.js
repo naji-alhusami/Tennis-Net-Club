@@ -146,8 +146,8 @@ function TimeSelectionStep() {
   return (
     <Fragment>
       <div className={classes.timeContainer}>
-        <h1>Choose Your Preferred Time:</h1>
-        <hr />
+        {/* <h1>Choose Your Preferred Time:</h1> */}
+        {/* <hr /> */}
         {isLoadingTimes ? (
           <p>Loading Times...</p>
         ) : (
