@@ -18,7 +18,13 @@ function DateSelectionStep() {
   const searchParams = useSearchParams();
   const path = searchParams.has("date");
 
-  const { activeDay, nextStepHandler, currentStep } = useContext(AuthContext);
+  const {
+    numberOfPlayers,
+    setNumberOfPlayers,
+    activeDay,
+    nextStepHandler,
+    currentStep,
+  } = useContext(AuthContext);
   console.log(path, currentStep);
 
   let formattedDate = null;
@@ -33,10 +39,8 @@ function DateSelectionStep() {
   }
 
   const [selectedCourtType, setSelectedCourtType] = useState("");
-  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 
   async function handleNextStep() {
-    
     nextStepHandler();
   }
 
@@ -48,27 +52,26 @@ function DateSelectionStep() {
             <h1>Reserve Court:</h1>
           </div> */}
           {/* <div className={classes.playersAndCourt}> */}
-            <select
-              value={selectedCourtType}
-              // value="court-type"
-              onChange={(e) => setSelectedCourtType(e.target.value)}
-              required
-            >
-              <option value="">--- Select Court Type ---</option>
-              <option value="Clay">Clay Court</option>
-              <option value="Hard">Hard Court</option>
-            </select>
-            <select
-              value={selectedPlayersNumber}
-              onChange={(e) => setSelectedPlayersNumber(e.target.value)}
-              required
-            >
-              <option value="">--- Select Players Number ---</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
+          <select
+            value={selectedCourtType}
+            onChange={(e) => setSelectedCourtType(e.target.value)}
+            required
+          >
+            <option value="">--- Select Court Type ---</option>
+            <option value="Clay">Clay Court</option>
+            <option value="Hard">Hard Court</option>
+          </select>
+          <select
+            value={numberOfPlayers}
+            onChange={(e) => setNumberOfPlayers(e.target.value)}
+            required
+          >
+            <option value="">--- Select Players Number ---</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
           {/* </div> */}
         </div>
         <div className={classes.dateContainer}>

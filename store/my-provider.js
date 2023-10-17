@@ -16,6 +16,7 @@ const MyProvider = (props) => {
 
   const currentDay = new Date();
   const [activeDay, setActiveDay] = useState();
+  const [numberOfPlayers, setNumberOfPlayers] = useState(1);
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoadingTimes, setIsLoadingTimes] = useState(true);
@@ -41,9 +42,11 @@ const MyProvider = (props) => {
   return (
     <AuthContext.Provider
       value={{
-        currentDay,
+        numberOfPlayers,
+        setNumberOfPlayers,
         activeDay,
         setActiveDay,
+        currentDay,
         timeSlots,
         setTimeSlots,
         isLoadingTimes,

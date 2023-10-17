@@ -45,11 +45,11 @@ function MainNavigation(props) {
             <li className={classes.navbarListHome}>
               <Link href="/">Home</Link>
             </li>
-            {session && (
+            {/* {session && (
               <li className={classes.navbarListBook}>
                 <Link href="/booking">Book Court</Link>
               </li>
-            )}
+            )} */}
             {session && (
               <li className={classes.navbarListPartner}>
                 <Link href="/">Find Partner</Link>
@@ -138,14 +138,14 @@ function MainNavigation(props) {
               >
                 <Link href="/">Home</Link>
               </li>
-              {session && (
+              {/* {session && (
                 <li
                   className={classes.navbarListBookSmall}
                   onClick={toggleButtonHandler}
                 >
                   <Link href="/booking">Book Court</Link>
                 </li>
-              )}
+              )} */}
               {session && (
                 <li
                   className={classes.navbarListPartnerSmall}
