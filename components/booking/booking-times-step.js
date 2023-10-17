@@ -94,7 +94,7 @@ function TimeSelectionStep() {
       });
       setTimeSlots(updatedTimeSlots);
       setSelectedTime(timeSlot.time);
-      setTimeInfo(timeSlot);
+      // setTimeInfo(timeSlot);
     }
   }
   console.log(timeSlots);

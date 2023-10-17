@@ -68,7 +68,8 @@ function DateSelectionStep() {
           </div>
           <div className={classes.playersAndCourt}>
             <select
-              value={selectedCourtType}
+              // value={selectedCourtType}
+              value="court-type"
               onChange={(e) => setSelectedCourtType(e.target.value)}
               required
             >
@@ -77,7 +78,8 @@ function DateSelectionStep() {
               <option value="Hard">Hard Court</option>
             </select>
             <select
-              value={selectedPlayersNumber}
+              // value={selectedPlayersNumber}
+              value="players-number"
               onChange={(e) => setSelectedPlayersNumber(e.target.value)}
               required
             >
@@ -91,11 +93,12 @@ function DateSelectionStep() {
         </div>
         <div className={classes.dateContainer}>
           {selectedCourtType === "Clay Court" ? (
-            <Image src={clay} alt={selectedCourtType} priority={true} />
+            <Image src={clay} alt="clay-court" priority={true} />
           ) : (
             <Image
               src={hard}
-              alt={selectedCourtType}
+              // alt={selectedCourtType}
+              alt="hard-court"
               width={500}
               height={400}
               priority={true}

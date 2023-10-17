@@ -3,44 +3,78 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import AuthContext from "@/store/auth-context";
-
+import clay from "@/public/images/clay.jpg";
+import hard from "@/public/images/hard.jpg";
 import classes from "./booking-confirm-step.module.css";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { BsArrowLeft } from "react-icons/bs";
+import { useSession } from "next-auth/react";
 
-function ConfirmationStep(props) {
-  const { numberOfPlayers, timeInfo } = useContext(AuthContext);
+function ConfirmationStep() {
+  const { data: session } = useSession();
+  const pathData = useSearchParams();
 
-  const router = useSearchParams();
-  console.log(router.get("date"));
-
-  console.log(timeInfo);
   return (
-    <div className={classes.bookingForm}>
-      {/* <div className={classes.bookingPlayers}>
-        <Image
-          src={props.courtTypeImages[props.selectedCourtType]}
-          alt={props.selectedCourtType}
-          style={{ filter: "brightness(0.7)" }}
-          width={400}
-          height={300}
-        />
-      </div> */}
-      <div className={classes.bookingDate}>
-        {/* <p>
-          <b>Name:</b> {props.session.user.name}
-        </p> */}
-        <p>
-          <b>Players:</b> {router.get("players")}
-        </p>
-        <p>
-          <b>Date:</b> {router.get("date")}
-        </p>
-        <p>
-          <b>Time:</b> {router.get("time")}
-        </p>
-        <p>{/* <b>Court:</b> {props.selectedCourtType} */}</p>
+    <div className={classes.confirmContainer}>
+      <div className={classes.bookingDetailsContainer}>
+        {pathData.get("court") === "Clay" ? (
+          <Image src={clay} alt="clay-court" priority={true} />
+        ) : (
+          <Image src={hard} alt="hard-court" priority={true} />
+        )}
       </div>
-      <p onClick={props.prevStepHandler}>Back</p>
+      <div className={classes.bookingDetails}>
+        <table className={classes.tableContainer}>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Court</th>
+
+              <th>Players</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+            <tr>
+              <td>{session.user.name}</td>
+              <td>{pathData.get("court")} Court</td>
+              <td>{pathData.get("players")}</td>
+              <td>{pathData.get("date")}</td>
+              <td>{pathData.get("time")}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className={classes.buttonContainer}>
+        <Link
+          href={`/booking?date=${pathData.get("date")}&court=${pathData.get(
+            "court"
+          )}&players=${pathData.get("players")}`}
+          onClick={() => prevStepHandler()}
+          className={classes.backButton}
+        >
+          <BsArrowLeft style={{ marginRight: "1rem" }} /> Back
+        </Link>
+        {/* <Link
+          href={`/booking/?date=${router.get("date")}&court=${pathData.get(
+            "court"
+          )}&players=${pathData.get("players")}`}
+          onClick={() => nextStepHandler()}
+          className={classes.nextButton}
+          style={{ color: "white" }}
+        >
+          Next <BsArrowRight style={{ marginLeft: "1rem" }} />
+        </Link> */}
+
+        <button
+          className={classes.confirmButton}
+          // onClick={() => router.push("/booking")}
+          onClick={() => console.log("/booking")}
+        >
+          Confirm
+        </button>
+      </div>
     </div>
   );
 }
