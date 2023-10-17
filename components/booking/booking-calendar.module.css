@@ -77,3 +77,18 @@
     padding: 0.3rem;
   }
 }
+
+@media screen and (max-width: 440px) {
+  .bookingDate {
+    width: 310px;
+    height: 300px;
+  }
+
+  .calendarTable th {
+    font-size: 0.6rem;
+  }
+
+  .calendarTable td {
+    padding: 0.3rem;
+  }
+}

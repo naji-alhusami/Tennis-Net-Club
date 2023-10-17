@@ -32,8 +32,8 @@ function DateSelectionStep() {
     console.log(formattedDate); // Output: "Oct-05-2023"
   }
 
-  const [selectedCourtType, setSelectedCourtType] = useState(null);
-  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState(null);
+  const [selectedCourtType, setSelectedCourtType] = useState("");
+  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 
   async function handleNextStep() {
     // const formattedActiveDay = activeDay.toISOString();
@@ -64,26 +64,25 @@ function DateSelectionStep() {
       <div className={classes.firstStepContainer}>
         <div className={classes.playersAndCourtContainer}>
           <div>
-            <h1>Choose Court & Players:</h1>
+            <h1>Reserve Court:</h1>
           </div>
           <div className={classes.playersAndCourt}>
             <select
-              // value={selectedCourtType}
-              value="court-type"
+              value={selectedCourtType}
+              // value="court-type"
               onChange={(e) => setSelectedCourtType(e.target.value)}
               required
             >
-              <option>--- Select Court Type ---</option>
+              <option value="">--- Select Court Type ---</option>
               <option value="Clay">Clay Court</option>
               <option value="Hard">Hard Court</option>
             </select>
             <select
-              // value={selectedPlayersNumber}
-              value="players-number"
+              value={selectedPlayersNumber}
               onChange={(e) => setSelectedPlayersNumber(e.target.value)}
               required
             >
-              <option>--- Select Players Number ---</option>
+              <option value="">--- Select Players Number ---</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -92,7 +91,7 @@ function DateSelectionStep() {
           </div>
         </div>
         <div className={classes.dateContainer}>
-          {selectedCourtType === "Clay Court" ? (
+          {selectedCourtType === "Clay" ? (
             <Image src={clay} alt="clay-court" priority={true} />
           ) : (
             <Image
@@ -110,7 +109,9 @@ function DateSelectionStep() {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          {activeDay && selectedCourtType && selectedPlayersNumber ? (
+          {activeDay &&
+          selectedCourtType !== "" &&
+          selectedPlayersNumber !== "" ? (
             <Link
               href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`}
               className={classes.nextButton}

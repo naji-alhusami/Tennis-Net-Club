@@ -121,3 +121,14 @@
     height: 300px;
   }
 }
+
+@media screen and (max-width: 440px) {
+  .dateContainer img {
+    width: 310px;
+    height: 270px;
+  }
+
+  .playersAndCourt {
+    padding-right: 0;
+  }
+}
