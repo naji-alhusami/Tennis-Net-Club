@@ -35,6 +35,7 @@ function TimeSelectionStep() {
 
         // generate all the times
         const generatedTimes = await generateTimeSlots(date, courtType);
+        console.log(generatedTimes);
         // fetch the taken times
         const takenTimes = await fetchTakenTimesFromMongo();
         console.log(takenTimes);
@@ -52,6 +53,7 @@ function TimeSelectionStep() {
               status: isTaken ? "RESERVED" : timeSlot.status,
             };
           });
+          console.log(updatedGeneratedTimes);
           setTimeSlots(updatedGeneratedTimes);
         } else {
           setTimeSlots(generatedTimes);

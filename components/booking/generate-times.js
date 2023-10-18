@@ -28,11 +28,12 @@ export function generateTimeSlots(activeDay, courtType) {
     });
 
     let formattedDate = "";
-    const month = activeDay.toLocaleString("en-US", { month: "short" });
+    // const month = activeDay.toLocaleString("en-US", { month: "short" });
     const day = activeDay.getDate();
+    const month = activeDay.getMonth() + 1;
     const year = activeDay.getFullYear();
 
-    formattedDate = `${month}-${day}-${year}`;
+    formattedDate = `${year}-${month}-${day}`;
 
     let status = "";
 

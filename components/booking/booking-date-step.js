@@ -29,13 +29,13 @@ function DateSelectionStep() {
 
   let formattedDate = null;
   if (activeDay) {
-    const month = activeDay.toLocaleString("en-US", { month: "short" });
     const day = activeDay.getDate();
+    const month = activeDay.getMonth() + 1;
     const year = activeDay.getFullYear();
 
-    formattedDate = `${month}-${day}-${year}`;
+    formattedDate = `${year}-${month}-${day}`;
 
-    console.log(formattedDate); // Output: "Oct-05-2023"
+    console.log(formattedDate); // Output: "2023-11-05"
   }
 
   const [selectedCourtType, setSelectedCourtType] = useState("");
@@ -93,11 +93,9 @@ function DateSelectionStep() {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          {activeDay &&
-          selectedCourtType !== "" &&
-          selectedPlayersNumber !== "" ? (
+          {activeDay && selectedCourtType !== "" && numberOfPlayers !== "" ? (
             <Link
-              href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`}
+              href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${numberOfPlayers}`}
               className={classes.nextButton}
               style={{ color: "white" }}
               onClick={handleNextStep}

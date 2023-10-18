@@ -1,17 +1,46 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Image from "next/image";
 
 import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "./events.module.css";
+import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 
 function Events() {
+  const [timesEvents, setTimesEvents] = useState("");
+  const [isLoadingTimesEvents, setIsLoadingTimesEvents] = useState(false);
+
   const calendarOptions = {
     initialView: "dayGridMonth",
     height: "600px",
   };
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoadingTimesEvents(true);
+
+      const takenTimes = await fetchTakenTimesFromMongo();
+
+      if (takenTimes && takenTimes.data.length > 0) {
+        setTimesEvents(takenTimes);
+      }
+
+      setIsLoadingTimesEvents(false);
+    }
+
+    fetchData();
+  }, []);
+  //   const takenTimes = fetchTakenTimesFromMongo();
+  //   if (isLoadingTimesEvents) {
+  console.log(timesEvents.data);
+  //   }
+
+  function eventsHandler() {
+    if (isLoadingTimesEvents) {
+      console.log(timesEvents);
+    }
+  }
 
   return (
     <div className={classes.eventsContainer}>
@@ -26,14 +55,25 @@ function Events() {
           Check your time slots, including (events, training sessions, and
           reserved courts)
         </p>
-      </div>
-      <div className={classes.calendar}>
-        <FullCalendar
-          plugins={[dayGridPlugin]}
-          {...calendarOptions}
-          eventBord
+        <hr
+          style={{
+            border: "1px solid #1c7f47",
+            width: "6rem",
+          }}
         />
       </div>
+      {isLoadingTimesEvents ? (
+        <p>Loading calendar events...</p>
+      ) : (
+        <div className={classes.calendar}>
+          <FullCalendar
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            height="600px"
+            events={timesEvents.data}
+          />
+        </div>
+      )}
     </div>
   );
 }
