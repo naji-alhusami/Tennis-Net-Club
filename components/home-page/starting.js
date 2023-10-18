@@ -53,7 +53,7 @@ function Starting() {
           {session ? (
             <Link href="/booking">
               <Button>
-                Book Court
+                Check My Calendar Events
                 <RightArrow />
               </Button>
             </Link>

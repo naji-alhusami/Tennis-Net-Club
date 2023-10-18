@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.9",
+    "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/react": "^6.1.9",
     "@mui/icons-material": "^5.14.8",
     "@mui/lab": "^5.0.0-alpha.143",
     "@mui/material": "^5.14.8",
