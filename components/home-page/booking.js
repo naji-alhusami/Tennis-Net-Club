@@ -14,7 +14,7 @@ import AuthContext from "@/store/auth-context";
 function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
       setNumberOfPlayers(numberOfPlayers - 1);
@@ -26,7 +26,8 @@ function Booking() {
       setNumberOfPlayers(numberOfPlayers + 1);
     }
   };
-
+  const time = new Date();
+  console.log(time);
   return (
     <div className={classes.container}>
       <div className={classes.text}>

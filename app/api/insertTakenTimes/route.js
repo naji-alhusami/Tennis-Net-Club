@@ -12,18 +12,36 @@ export async function POST(req) {
         selectedCourtType,
         selectedPlayersNumber,
         selectedDate,
+        startedTime,
         selectedTime,
       } = await req.json();
+      console.log(collection);
 
-      const takenTime = {
+      const eventType = {
+        title: "Court Reservation",
+        date: selectedDate,
+      };
+
+      const timeInfo = {
+        title: `${selectedCourtType} Court`,
         courtType: selectedCourtType,
         playersNumber: selectedPlayersNumber,
         date: selectedDate,
+        start: startedTime,
         time: selectedTime,
+        // end: selectedTime,
       };
 
-      const result = await collection.insertOne(takenTime);
-      console.log(takenTime);
+      const existingEvent = await collection.findOne({
+        title: eventType.title,
+      });
+
+      if (existingEvent) {
+        const result = await collection.insertOne(timeInfo);
+      } else {
+        const documentsToInsert = [eventType, timeInfo];
+        const result = await collection.insertMany(documentsToInsert);
+      }
 
       return NextResponse.json(
         { message: "Successfully stored taken time!" },

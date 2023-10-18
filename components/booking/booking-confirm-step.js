@@ -23,7 +23,15 @@ function ConfirmationStep() {
     const selectedPlayersNumber = pathData.get("players");
     const selectedDate = pathData.get("date");
     const selectedTime = pathData.get("time");
-    console.log(selectedDate);
+    // console.log(selectedTime);
+
+    const [hours, minutes] = selectedTime.split(":");
+    const year = new Date(selectedDate).getFullYear();
+    const month = new Date(selectedDate).getMonth();
+    const day = new Date(selectedDate).getDate();
+    const startedTime = new Date(year, month, day, hours, minutes);
+
+    console.log(selectedTime);
     // const formattedActiveDay = activeDay.toISOString();
     // console.log(formattedActiveDay);
     try {
@@ -34,6 +42,7 @@ function ConfirmationStep() {
           selectedPlayersNumber,
           selectedDate,
           selectedTime,
+          startedTime,
         }),
         headers: { "Content-Type": "application/json" },
       });

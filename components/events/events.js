@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/daygrid";
 import Image from "next/image";
 
 import calendarEvents from "@/public/images/calendar-events.jpg";
@@ -12,10 +13,6 @@ function Events() {
   const [timesEvents, setTimesEvents] = useState("");
   const [isLoadingTimesEvents, setIsLoadingTimesEvents] = useState(false);
 
-  const calendarOptions = {
-    initialView: "dayGridMonth",
-    height: "600px",
-  };
   useEffect(() => {
     async function fetchData() {
       setIsLoadingTimesEvents(true);
@@ -31,16 +28,7 @@ function Events() {
 
     fetchData();
   }, []);
-  //   const takenTimes = fetchTakenTimesFromMongo();
-  //   if (isLoadingTimesEvents) {
-  console.log(timesEvents.data);
-  //   }
-
-  function eventsHandler() {
-    if (isLoadingTimesEvents) {
-      console.log(timesEvents);
-    }
-  }
+  console.log(timesEvents);
 
   return (
     <div className={classes.eventsContainer}>
@@ -67,7 +55,7 @@ function Events() {
       ) : (
         <div className={classes.calendar}>
           <FullCalendar
-            plugins={[dayGridPlugin]}
+            plugins={[dayGridPlugin, timeGridPlugin]}
             initialView="dayGridMonth"
             height="600px"
             events={timesEvents.data}
