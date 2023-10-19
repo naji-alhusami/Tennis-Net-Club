@@ -1,5 +1,5 @@
 .container {
-  margin: 6rem 0 3rem 0 ;
+  margin: 6rem 0 3rem 0;
 }
 
 .text {
@@ -8,29 +8,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.textClub {
-  position: absolute;
-  top: 2%;
-  color: #858585;
-}
-
-.textHeader {
-  color: #ececec;
-  font-size: 3rem;
-  margin: 0;
-}
-
-.textHeader2 {
-  font-size: 4rem;
-  margin: 0;
-}
-
-.textp {
-  font-size: 1rem;
-  color: #858585;
-  margin-bottom: 3.5rem;
 }
 
 .services {
@@ -54,9 +31,9 @@
 
 @media screen and (max-width: 910px) {
   .container {
-    margin: 6rem 2rem ;
+    margin: 6rem 2rem;
   }
-  
+
   .textClub {
     position: absolute;
     top: 1%;

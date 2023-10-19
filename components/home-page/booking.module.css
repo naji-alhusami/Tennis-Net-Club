@@ -14,29 +14,6 @@
   margin-right: 1rem;
 }
 
-.texth3 {
-  position: absolute;
-  top: 7%;
-  color: #858585;
-}
-
-.text h1 {
-  color: #ececec;
-  font-size: 3rem;
-  margin: 0;
-}
-
-.text h2 {
-  font-size: 4rem;
-  margin: 0;
-}
-
-.text p {
-  font-size: 1rem;
-  color: #858585;
-  margin-bottom: 3rem;
-}
-
 .bookingContainer {
   display: flex;
   align-items: center;

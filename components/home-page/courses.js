@@ -28,16 +28,6 @@ function Courses() {
           level. Join us to elevate your game and enjoy the sport of tennis to
           the fullest!"
         />
-        {/* <h3>Never Too Late</h3>
-        <h1>TRAINING</h1>
-        <h2>Certified Coaches</h2>
-        <p>
-          Welcome to TENNIS NET club, home to certified coaches dedicated to
-          enhancing your tennis skills. We offer beginner, intermediate, and
-          advanced courses, providing tailored instruction for players at every
-          level. Join us to elevate your game and enjoy the sport of tennis to
-          the fullest!
-        </p> */}
         {coursesData.map((course) => (
           <div key={course.id} className={classes.rectangular}>
             <div className={classes[course.style]}>
