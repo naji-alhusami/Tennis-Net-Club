@@ -1,0 +1,31 @@
+.headers {
+  position: relative;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+.textClub {
+  position: absolute;
+  top: 2%;
+  color: #858585;
+}
+
+.textHeader {
+  color: #ececec;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.textHeader2 {
+  font-size: 4rem;
+  margin: 0;
+  color: #1c7f47;
+}
+
+.textp {
+  font-size: 1rem;
+  color: #858585;
+  margin-bottom: 3.5rem;
+}

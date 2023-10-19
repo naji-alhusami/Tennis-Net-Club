@@ -4,6 +4,7 @@ import { coursesData } from "@/lib/coursesData";
 import classes from "./courses.module.css";
 import player1 from "@/public/images/player1.jpg";
 import player2 from "@/public/images/player2.jpg";
+import Headers from "../ui/headers";
 
 function Courses() {
   return (
@@ -17,7 +18,17 @@ function Courses() {
         </div>
       </div>
       <div className={classes.text}>
-        <h3>Never Too Late</h3>
+        <Headers
+          H3Header="Never Too Late"
+          H1Header="TRAINING"
+          H2Header="Certified Coaches"
+          PHeader="Welcome to TENNIS NET club, home to certified coaches dedicated to
+          enhancing your tennis skills. We offer beginner, intermediate, and
+          advanced courses, providing tailored instruction for players at every
+          level. Join us to elevate your game and enjoy the sport of tennis to
+          the fullest!"
+        />
+        {/* <h3>Never Too Late</h3>
         <h1>TRAINING</h1>
         <h2>Certified Coaches</h2>
         <p>
@@ -26,7 +37,7 @@ function Courses() {
           advanced courses, providing tailored instruction for players at every
           level. Join us to elevate your game and enjoy the sport of tennis to
           the fullest!
-        </p>
+        </p> */}
         {coursesData.map((course) => (
           <div key={course.id} className={classes.rectangular}>
             <div className={classes[course.style]}>

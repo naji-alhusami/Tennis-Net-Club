@@ -57,7 +57,7 @@ function MainNavigation(props) {
             )}
             {session && (
               <li className={classes.navbarListTraining}>
-                <Link href="/">Trainings</Link>
+                <Link href="/trainings">Trainings</Link>
               </li>
             )}
             <li className={classes.navbarListBlogs}>

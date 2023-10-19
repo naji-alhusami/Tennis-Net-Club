@@ -6,18 +6,19 @@ import Image from "next/image";
 import newCoaches from "@/public/images/newCoaches.jpg";
 import newCourt from "@/public/images/newCourt.jpg";
 import newPlayers from "@/public/images/newPlayers.jpg";
+import Headers from "../ui/headers";
 
 function Events() {
   return (
     <div className={classes.container}>
       <div className={classes.text}>
-        <h3>Courses & Lessons</h3>
-        <h1>EVENTS</h1>
-        <h2>Discover Our Events</h2>
-        <p>
-          Experience a variety of engaging events that bring our tennis
-          community together.
-        </p>
+        <Headers
+          H3Header="Courses & Lessons"
+          H1Header="EVENTS"
+          H2Header="Discover Our Events"
+          PHeader="Experience a variety of engaging events that bring our tennis
+        community together."
+        />
         <div className={classes.tableContainer}>
           <table>
             <thead className={classes.firstLine}>

@@ -9,7 +9,7 @@ import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "./events.module.css";
 import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
 
-function Events() {
+function CalendarEvents() {
   const [timesEvents, setTimesEvents] = useState("");
   const [isLoadingTimesEvents, setIsLoadingTimesEvents] = useState(false);
 
@@ -66,4 +66,4 @@ function Events() {
   );
 }
 
-export default Events;
+export default CalendarEvents;

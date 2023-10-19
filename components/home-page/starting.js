@@ -51,7 +51,7 @@ function Starting() {
             </p>
           )}
           {session ? (
-            <Link href="/booking">
+            <Link href="/calendar">
               <Button>
                 Check My Calendar Events
                 <RightArrow />

@@ -10,6 +10,7 @@ import bg from "@/public/images/background1.jpg";
 import BookingDate from "./bookingDate";
 import { useSession } from "next-auth/react";
 import AuthContext from "@/store/auth-context";
+import Headers from "../ui/headers";
 
 function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
@@ -31,14 +32,13 @@ function Booking() {
   return (
     <div className={classes.container}>
       <div className={classes.text}>
-        <h3 className={classes.texth3}>Choose Your Time</h3>
-        <h1>BOOKING</h1>
-        <h2>Best Courts</h2>
-        <p>
-          Welcome to TENNIS NET club, home to certified coaches dedicated to
-          enhancing your tennis skills.
-        </p>
-        {/* <div className={classes.textContainer}> */}
+        <Headers
+          H3Header="Choose Your Time"
+          H1Header="BOOKING"
+          H2Header="Best Courts"
+          PHeader="Welcome to TENNIS NET club, home to certified coaches dedicated to
+          enhancing your tennis skills."
+        />
         <div className={classes.bookingContainer}>
           <div className={classes.playersContainer}>
             <BookingDate />
@@ -56,74 +56,12 @@ function Booking() {
           ) : (
             <div className={classes.reserveButtonDisabled}>Reserve Court</div>
           )}
-          {/* </div> */}
         </div>
       </div>
-      {/* <div className={classes.imageContainer}> */}
       <div className={classes.imageWrapper}>
-        <div className={classes.imageContainer}>
-          {/* <Image
-              src={bg}
-              alt="cover-image"
-              width={700}
-              height={560}
-              priority={true}
-            /> */}
-        </div>
+        <div className={classes.imageContainer}></div>
       </div>
-      {/* </div> */}
     </div>
-    // <div className={classes.container}>
-    //  <div className={classes.imageContainer}>
-    //   <div className={classes.imageWrapper}>
-    //     <Image
-    //       src={bookCourt}
-    //       alt="book-court"
-    //       // layout="fill"
-    //       // objectFit="cover"
-    //     />
-    //   </div>
-    // </div>
-    //   <div className={classes.imageContainer}>
-    //     <div className={classes.leftSideContainer}>
-    //       <Image
-    //         src={bg}
-    //         alt="cover-image"
-    //         width={700}
-    //         height={560}
-    //         priority={true}
-    //       />
-    //     </div>
-    //     <div className={classes.textContainer}>
-    //       <div className={classes.text}>
-    //         <h4>Best Courts</h4>
-    //         <h1>Reserve Your Court</h1>
-    //         <p>
-    //           Come and Reserve your courtCome  and Reserve your courtCome and
-    //           Reserve your courtCome and Reserve your court
-    //         </p>
-    //       </div>
-    //       <div className={classes.bookingContainer}>
-    //         <BookingDate />
-    //         <div className={classes.playersContainer}>
-    //           <h3>Players:</h3>
-    //           <button onClick={decreasePlayers}>-</button>
-    //           <span>{numberOfPlayers}</span>
-    //           <button onClick={increasePlayers}>+</button>
-    //         </div>
-    //         {/* {session ? ( */}
-    //         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-    //           <Link className={classes.reserveButton} href="/booking">
-    //             Reserve Court
-    //           </Link>
-    //         </motion.div>
-    //         {/* ) : (
-    //           <div className={classes.reserveButtonDisabled}>Reserve Court</div>
-    //         )} */}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 
