@@ -35,8 +35,8 @@ export async function POST(req) {
       const existingEvent = await collection.findOne({
         title: eventType.title,
       });
-
-      if (existingEvent) {
+      console.log( );
+      if (existingEvent && existingEvent.date === timeInfo.date ) {
         const result = await collection.insertOne(timeInfo);
       } else {
         const documentsToInsert = [eventType, timeInfo];
