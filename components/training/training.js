@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,10 +29,6 @@ function Training() {
           <h2>LEARN TENNIS</h2>
           <h1>Enroll In Our Training Sessions</h1>
         </div>
-        <div className={classes.titleContainer}>
-          <h2>LEARN TENNIS</h2>
-          <h1>Enroll In Our Training Sessions</h1>
-        </div>
         <div className={classes.trainingPricesContainers}>
           <div className={classes.trainingPricesContainer1}>
             <h2>Begginer Courses</h2>
@@ -42,15 +38,15 @@ function Training() {
             <p>jsdkasjdlkamdlk</p>
             <p>jsdkasjdlkamdlk</p>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.contactButton} href="/auth/login">
-                Contact Us
+              <Link className={classes.contactButton1} href="/auth/login">
+                Enroll
               </Link>
             </motion.div>
           </div>
           <div className={classes.trainingPricesContainer2}>
-            <div className={classes.imageContainer2}>
+            {/* <div className={classes.imageContainer2}>
               <Image src={bg} alt="bg-image" />
-            </div>
+            </div> */}
             <div className={classes.textContainer2}>
               <h2>INTERMEDIATE COURSES</h2>
               <h1>100$</h1>
@@ -59,8 +55,8 @@ function Training() {
               <p>jsdkasjdlkamdlk</p>
               <p>jsdkasjdlkamdlk</p>
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Link className={classes.contactButton1} href="/auth/login">
-                  Contact Us
+                <Link className={classes.contactButton} href="/auth/login">
+                  Enroll
                 </Link>
               </motion.div>
             </div>
@@ -73,13 +69,13 @@ function Training() {
             <p>jsdkasjdlkamdlk</p>
             <p>jsdkasjdlkamdlk</p>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.contactButton} href="/auth/login">
-                Contact Us
+              <Link className={classes.contactButton1} href="/auth/login">
+              Enroll
               </Link>
             </motion.div>
           </div>
         </div>
-        <div className={classes.equipmentsContainer}>
+        {/* <div className={classes.equipmentsContainer}>
           <div className={classes.equipmentContainer}>
             <div>
               <Image src={eq1} alt="eq1" />
@@ -116,7 +112,7 @@ function Training() {
               <p>equipment</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </Fragment>
   );

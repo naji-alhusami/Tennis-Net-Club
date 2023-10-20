@@ -1,10 +1,10 @@
 import React from "react";
 
-import Posts from "./posts";
+import Posts from "./blogs";
 
-import classes from "./all-posts.module.css";
+import classes from "./all-blogs.module.css";
 
-function AllPosts(props) {
+function AllBlogs(props) {
   return (
     <section className={classes.posts}>
       <h1>All Blogs</h1>
@@ -13,4 +13,4 @@ function AllPosts(props) {
   );
 }
 
-export default AllPosts;
+export default AllBlogs;

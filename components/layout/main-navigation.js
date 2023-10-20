@@ -57,7 +57,7 @@ function MainNavigation(props) {
             )}
             {session && (
               <li className={classes.navbarListTraining}>
-                <Link href="/trainings">Trainings</Link>
+                <Link href="/training">Trainings</Link>
               </li>
             )}
             <li className={classes.navbarListBlogs}>
@@ -159,7 +159,7 @@ function MainNavigation(props) {
                   className={classes.navbarListTrainingSmall}
                   onClick={toggleButtonHandler}
                 >
-                  <Link href="/">Trainings</Link>
+                  <Link href="/training">Trainings</Link>
                 </li>
               )}
               <li

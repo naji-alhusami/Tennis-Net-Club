@@ -1,9 +1,9 @@
 import React from "react";
-import PostItem from "./post-item.js";
+import PostItem from "./blog-content.js";
 
 import classes from "./posts.module.css";
 
-function Posts(props) {
+function Blogs(props) {
   const { posts } = props;
 
   return (
@@ -15,4 +15,4 @@ function Posts(props) {
   );
 }
 
-export default Posts;
+export default Blogs;

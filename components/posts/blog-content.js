@@ -1,10 +1,10 @@
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 
-import classes from "./post-item.module.css";
+import classes from "./blog-content.module.css";
 
-function PostItem(props) {
+function BlogContent(props) {
   const { title, image, excerpt, date, slug } = props.post;
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -39,4 +39,4 @@ function PostItem(props) {
   );
 }
 
-export default PostItem;
+export default BlogContent;
