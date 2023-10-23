@@ -60,9 +60,9 @@ function MainNavigation(props) {
                 <Link href="/training">Trainings</Link>
               </li>
             )}
-            <li className={classes.navbarListBlogs}>
+            {/* <li className={classes.navbarListBlogs}>
               <Link href="/posts">Blogs</Link>
-            </li>
+            </li> */}
             <li className={classes.navbarListContact}>
               <Link href="/contact">Contact</Link>
             </li>
@@ -162,12 +162,12 @@ function MainNavigation(props) {
                   <Link href="/training">Trainings</Link>
                 </li>
               )}
-              <li
+              {/* <li
                 className={classes.navbarListBlogsSmall}
                 onClick={toggleButtonHandler}
               >
                 <Link href="/posts">Blogs</Link>
-              </li>
+              </li> */}
               <li
                 className={classes.navbarListContactSmall}
                 onClick={toggleButtonHandler}

@@ -7,7 +7,6 @@ import Courses from "@/components/home-page/courses";
 import Numbers from "@/components/home-page/numbers";
 import Booking from "@/components/home-page/booking";
 import Events from "@/components/home-page/events";
-import FeaturedBlogs from "@/components/home-page/featured-blogs";
 
 function HomePage() {
   return (
@@ -18,7 +17,6 @@ function HomePage() {
       <Numbers />
       <Booking />
       <Events />
-      <FeaturedBlogs />
     </main>
   );
 }
