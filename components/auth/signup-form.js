@@ -7,6 +7,7 @@ import Link from "next/link";
 import { submitSignupHandler } from "@/lib/signupAction";
 import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
+import { FcGoogle } from "react-icons/fc";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -165,6 +166,12 @@ function Signup() {
           <h3>Already A Member?</h3>
           <Link href="/auth/login" className={classes.button}>
             Login
+          </Link>
+        </div>
+        <div className={classes.notMember}>
+          <h3>Or Signup With Google:</h3>
+          <Link href="/auth/login">
+            <FcGoogle size={30} />
           </Link>
         </div>
         {/* {notification && (

@@ -11,9 +11,9 @@
   width: 30rem;
   max-height: 40rem;
   position: absolute;
-  padding: 0 3% 3% 3.2%;
+  padding: 0 3% 2% 3.2%;
   background-color: rgb(255, 255, 255, 0.9);
-  top: 25%;
+  top: 20%;
   left: 6%;
 }
 
@@ -32,6 +32,7 @@
 .loginForm h1,
 .loginForm h3 {
   text-align: center;
+  margin-right: 1rem;
 }
 
 .button {
@@ -56,10 +57,18 @@
   border-color: #146135;
 }
 
+.googleLogin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
 @media screen and (max-width: 650px) {
   .loginForm {
     width: 20rem;
     position: absolute;
-    top: 30%;
+    top: 20%;
   }
 }

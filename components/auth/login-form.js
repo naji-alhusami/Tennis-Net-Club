@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 import classes from "./login-form.module.css";
+import { FcGoogle } from "react-icons/fc";
 
 function Login() {
   const [email, setEmail] = useState();
@@ -56,6 +57,12 @@ function Login() {
       <div>
         <Link href="/auth/signup" className={classes.button}>
           Signup
+        </Link>
+      </div>
+      <div className={classes.googleLogin}>
+        <h3>Or Login with Google:</h3>
+        <Link href="/auth/signup">
+          <FcGoogle size={30} />
         </Link>
       </div>
     </div>
