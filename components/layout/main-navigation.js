@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
+// import { getServerSession } from "next-auth";
 
 import Logo from "./logo";
 
