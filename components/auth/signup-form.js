@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-
+import { submitSignupHandler } from "@/lib/signupAction";
 import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
 
@@ -31,34 +31,34 @@ function Signup() {
   //   }
   // }, [requestStatus]);
 
-  async function submitHandler(event) {
-    event.preventDefault();
-    try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          passwordConfirmation,
-          role,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
+  // async function submitHandler(event) {
+  //   event.preventDefault();
+  //   try {
+  //     const response = await fetch("/api/signup", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         name,
+  //         email,
+  //         password,
+  //         passwordConfirmation,
+  //         role,
+  //       }),
+  //       headers: { "Content-Type": "application/json" },
+  //     });
 
-      const data = await response.json();
-      if (!response.ok) {
-        console.log("Validation Error:", data);
-      } else {
-        const form = event.target;
-        form.reset();
-      }
-      router.replace("/auth/login");
-      return data;
-    } catch (error) {
-      console.log("Error", error.message);
-    }
-  }
+  //     const data = await response.json();
+  //     if (!response.ok) {
+  //       console.log("Validation Error:", data);
+  //     } else {
+  //       const form = event.target;
+  //       form.reset();
+  //     }
+  //     router.replace("/auth/login");
+  //     return data;
+  //   } catch (error) {
+  //     console.log("Error", error.message);
+  //   }
+  // }
 
   // setRequestStatus("Pending");
   // setErrorMessage(null);
@@ -113,7 +113,7 @@ function Signup() {
   return (
     <div className={classes.signupForm}>
       <h1>Signup</h1>
-      <form onSubmit={submitHandler}>
+      <form action={submitSignupHandler}>
         <div>
           <input
             onChange={(e) => setName(e.target.value)}

@@ -9,6 +9,8 @@ import Booking from "@/components/home-page/booking";
 import Events from "@/components/home-page/events";
 
 function HomePage() {
+  // throw new Error("error in hamo page");
+
   return (
     <main>
       <Starting />
