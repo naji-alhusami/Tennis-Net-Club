@@ -99,7 +99,7 @@ function MainNavigation(props) {
                   className={classes.login}
                 >
                   {!session && !loading && (
-                    <Link className={classes.loginButton} href="/auth/login">
+                    <Link className={classes.loginButton} href="/auth/signin">
                       Login
                     </Link>
                   )}

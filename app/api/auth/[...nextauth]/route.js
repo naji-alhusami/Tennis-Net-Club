@@ -4,7 +4,7 @@ import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
-const authOptions = {
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -43,9 +43,9 @@ const authOptions = {
     jwt: true,
   },
   secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/auth/login",
-  },
+  // pages: {
+  //   signIn: '/auth/[authType]',
+  // },
 };
 
 const handler = NextAuth(authOptions);
