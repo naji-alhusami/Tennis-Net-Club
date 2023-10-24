@@ -1,4 +1,5 @@
-"use client";
+// "use client";
+'use server'
 import React from "react";
 
 import Image from "next/legacy/image";

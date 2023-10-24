@@ -16,6 +16,7 @@ function MainNavigation(props) {
   const [showUserLogout, setShowUserLogout] = useState(false);
   const { backgroundColor } = props;
   const { data: session, loading } = useSession();
+  console.log(session);
   function showUserLogoutHandler() {
     setShowUserLogout(!showUserLogout);
   }

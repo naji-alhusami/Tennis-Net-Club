@@ -61,9 +61,15 @@ function Login() {
       </div>
       <div className={classes.googleLogin}>
         <h3>Or Login with Google:</h3>
-        <Link href="/auth/signup">
+        <button
+            className={classes.googleButton}
+            onClick={() => signIn("google", { callbackUrl: "/" })}
+          >
+            <FcGoogle size={30} />
+          </button>
+        {/* <Link href="/auth/signup">
           <FcGoogle size={30} />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import React, { useState, useEffect } from "react";
+// import { useRouter } from "next/navigation";
 import Link from "next/link";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -8,14 +8,15 @@ import { submitSignupHandler } from "@/lib/signupAction";
 import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
 import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
 
 function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [role, setRole] = useState("");
-  const router = useRouter();
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  // const [role, setRole] = useState("");
+  // const router = useRouter();
 
   // const [selectedDate, setSelectedDate] = useState(null);
   // const [requestStatus, setRequestStatus] = useState();
@@ -117,43 +118,43 @@ function Signup() {
       <form action={submitSignupHandler}>
         <div>
           <input
-            onChange={(e) => setName(e.target.value)}
+            // onChange={(e) => setName(e.target.value)}
             type="text"
             id="name"
             placeholder="Your Name"
-            required
+            // required
           />
         </div>
         <div>
           <input
-            onChange={(e) => setEmail(e.target.value)}
+            // onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Your Email"
-            required
+            // required
           />
         </div>
         <div>
           <input
-            onChange={(e) => setPassword(e.target.value)}
+            // onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Your Password"
-            required
+            // required
           />
         </div>
         <div>
           <input
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            // onChange={(e) => setPasswordConfirmation(e.target.value)}
             type="password"
             placeholder="Password Confirmation"
-            required
+            // required
           />
         </div>
 
         <div>
           <select
-            onChange={(e) => setRole(e.target.value)}
+            // onChange={(e) => setRole(e.target.value)}
             className={classes.select}
-            required
+            // required
           >
             <option value="">Select your role</option>
             <option value="player">Player</option>
@@ -170,9 +171,12 @@ function Signup() {
         </div>
         <div className={classes.notMember}>
           <h3>Or Signup With Google:</h3>
-          <Link href="/auth/login">
+          <button
+            className={classes.googleButton}
+            onClick={() => signIn("google", { callbackUrl: "/" })}
+          >
             <FcGoogle size={30} />
-          </Link>
+          </button>
         </div>
         {/* {notification && (
           <Notification

@@ -104,7 +104,7 @@
   margin-left: 2rem;
   top: 100%;
   right: 0.5%;
-  width: 6.3rem;
+  width: 10rem;
 }
 
 .userList:hover {
@@ -117,7 +117,6 @@
 
 .list {
   color: black;
-  /* width: 1rem; */
 }
 
 .list:hover {

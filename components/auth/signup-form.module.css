@@ -73,7 +73,7 @@
 }
 
 .googleButton {
-  width: 10rem;
+  border: none;
 }
 
 @media screen and (max-width: 650px) {
