@@ -5,7 +5,7 @@ import AuthContext from "@/store/auth-context";
 import { useSearchParams, useRouter } from "next/navigation";
 import classes from "./booking-times-step.module.css";
 import { generateTimeSlots } from "./generate-times";
-import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimes";
+import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimesFromMongo";
 
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";

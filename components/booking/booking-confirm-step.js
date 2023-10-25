@@ -9,6 +9,7 @@ import classes from "./booking-confirm-step.module.css";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
+import { sendTakenTimesToMongo } from "@/lib/sendTakenTimesToMongo";
 // import { useSession } from "next-auth/react";
 
 function ConfirmationStep() {
@@ -31,18 +32,26 @@ function ConfirmationStep() {
     const day = new Date(selectedDate).getDate();
     const startedTime = new Date(year, month, day, hours, minutes);
 
-    console.log(selectedTime);
+    // console.log(selectedTime);
     // const formattedActiveDay = activeDay.toISOString();
     // console.log(formattedActiveDay);
     try {
-      const response = await fetch("/api/insertTakenTimes", {
+      await sendTakenTimesToMongo(
+        selectedCourtType,
+        selectedPlayersNumber,
+        selectedDate,
+        selectedTime,
+        startedTime
+      );
+    } catch (error) {
+      console.log("Error", error.message);
+    }
+
+    try {
+      const response = await fetch("/api/insertEvents", {
         method: "POST",
         body: JSON.stringify({
-          selectedCourtType,
-          selectedPlayersNumber,
           selectedDate,
-          selectedTime,
-          startedTime,
         }),
         headers: { "Content-Type": "application/json" },
       });

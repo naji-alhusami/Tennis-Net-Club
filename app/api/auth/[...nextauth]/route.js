@@ -1,6 +1,6 @@
 import { verifyPassword } from "@/lib/auth";
-import { connectToDatabase } from "@/lib/db";
-// import connectToDatabase from "@/lib/db";
+// import { connectToDatabase } from "@/lib/db";
+import connectToDatabase from "@/lib/db";
 import User from "@/models/userModel";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
