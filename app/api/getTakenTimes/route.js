@@ -1,10 +1,13 @@
 import { connectToDatabase } from "@/lib/db";
+// import connectToDatabase from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
   if (req.method === "GET") {
     const client = await connectToDatabase();
+    console.log(client);
     const db = client.db();
+    console.log("first GET getTakenTime");
     const collection = db.collection("takenTimes");
 
     try {

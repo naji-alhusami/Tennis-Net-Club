@@ -55,7 +55,9 @@ function TimeSelectionStep() {
           });
           console.log(updatedGeneratedTimes);
           setTimeSlots(updatedGeneratedTimes);
+          console.log("with takentimes");
         } else {
+          console.log("without takentimes");
           setTimeSlots(generatedTimes);
         }
 
