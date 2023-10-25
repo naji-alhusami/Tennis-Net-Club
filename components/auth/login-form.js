@@ -8,7 +8,7 @@ import { signIn } from "next-auth/react";
 import classes from "./login-form.module.css";
 import { FcGoogle } from "react-icons/fc";
 
-function Login() {
+function Login({ callbackUrl }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const router = useRouter();
@@ -62,11 +62,11 @@ function Login() {
       <div className={classes.googleLogin}>
         <h3>Or Login with Google:</h3>
         <button
-            className={classes.googleButton}
-            onClick={() => signIn("google", { callbackUrl: "/" })}
-          >
-            <FcGoogle size={30} />
-          </button>
+          className={classes.googleButton}
+          onClick={() => signIn("google", { callbackUrl })}
+        >
+          <FcGoogle size={30} />
+        </button>
         {/* <Link href="/auth/signup">
           <FcGoogle size={30} />
         </Link> */}
