@@ -9,9 +9,9 @@ import classes from "./booking-confirm-step.module.css";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
-import { sendTakenTimesToMongo } from "@/lib/sendTakenTimesToMongo";
-import { sendEventsToMongo } from "@/lib/sendEventsToMongo";
-import { fetchEventsFromMongo } from "@/lib/fetchEventsFromMongo";
+import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
+import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
+import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 // import { useSession } from "next-auth/react";
 
 function ConfirmationStep() {

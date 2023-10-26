@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "./events.module.css";
-import { fetchTakenTimesFromMongo } from "@/lib/fetchTakenTimesFromMongo";
+import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
 
 function CalendarEvents() {
   const [timesEvents, setTimesEvents] = useState("");
