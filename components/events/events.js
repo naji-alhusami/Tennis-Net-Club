@@ -8,27 +8,31 @@ import Image from "next/image";
 import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "./events.module.css";
 import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
+import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 
 function CalendarEvents() {
-  const [timesEvents, setTimesEvents] = useState("");
-  const [isLoadingTimesEvents, setIsLoadingTimesEvents] = useState(false);
+  const [timeEvents, setTimeEvents] = useState("");
+  const [isLoadingTimeEvents, setIsLoadingTimeEvents] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
-      setIsLoadingTimesEvents(true);
+      setIsLoadingTimeEvents(true);
 
       const takenTimes = await fetchTakenTimesFromMongo();
+      const events = await fetchEventsFromMongo();
+      console.log(takenTimes);
+      console.log(events);
+      const mergedData = [...events.data, ...takenTimes.data];
+      // if (takenTimes && takenTimes.data.length > 0) {
+      setTimeEvents(mergedData);
+      // }
 
-      if (takenTimes && takenTimes.data.length > 0) {
-        setTimesEvents(takenTimes);
-      }
-
-      setIsLoadingTimesEvents(false);
+      setIsLoadingTimeEvents(false);
     }
 
     fetchData();
   }, []);
-  console.log(timesEvents);
+  console.log(timeEvents);
 
   return (
     <div className={classes.eventsContainer}>
@@ -50,7 +54,7 @@ function CalendarEvents() {
           }}
         />
       </div>
-      {isLoadingTimesEvents ? (
+      {isLoadingTimeEvents ? (
         <p>Loading calendar events...</p>
       ) : (
         <div className={classes.calendar}>
@@ -58,7 +62,7 @@ function CalendarEvents() {
             plugins={[dayGridPlugin, timeGridPlugin]}
             initialView="dayGridMonth"
             height="600px"
-            events={timesEvents.data}
+            events={timeEvents}
           />
         </div>
       )}
