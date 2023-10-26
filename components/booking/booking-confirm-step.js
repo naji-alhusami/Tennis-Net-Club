@@ -11,6 +11,7 @@ import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { sendTakenTimesToMongo } from "@/lib/sendTakenTimesToMongo";
 import { sendEventsToMongo } from "@/lib/sendEventsToMongo";
+import { fetchEventsFromMongo } from "@/lib/fetchEventsFromMongo";
 // import { useSession } from "next-auth/react";
 
 function ConfirmationStep() {
@@ -48,10 +49,21 @@ function ConfirmationStep() {
       console.log("Error", error.message);
     }
 
-    try {
-      await sendEventsToMongo(selectedDate);
-    } catch (error) {
-      console.log("Error", error.message);
+    const existingEvents = await fetchEventsFromMongo();
+    console.log(existingEvents);
+
+    const hasExistingEvent = existingEvents.data.some((event) => {
+      return event.title === "Court Reservation" && event.date === selectedDate;
+    });
+
+    if (!hasExistingEvent) {
+      try {
+        await sendEventsToMongo(selectedDate);
+      } catch (error) {
+        console.log("Error", error.message);
+      }
+    } else {
+      console.log("there is existing event with the same name");
     }
 
     router.push("/");
