@@ -10,6 +10,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { sendTakenTimesToMongo } from "@/lib/sendTakenTimesToMongo";
+import { sendEventsToMongo } from "@/lib/sendEventsToMongo";
 // import { useSession } from "next-auth/react";
 
 function ConfirmationStep() {
@@ -48,18 +49,7 @@ function ConfirmationStep() {
     }
 
     try {
-      const response = await fetch("/api/insertEvents", {
-        method: "POST",
-        body: JSON.stringify({
-          selectedDate,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-      }
+      await sendEventsToMongo(selectedDate);
     } catch (error) {
       console.log("Error", error.message);
     }
