@@ -5,8 +5,6 @@ import classes from "./booking.module.css";
 import AuthContext from "@/store/auth-context";
 
 function BookingDate() {
-  const { activeDay, setActiveDay } = useContext(AuthContext);
-
   const currentDate = new Date();
 
   const datePickerRef = useRef(null);

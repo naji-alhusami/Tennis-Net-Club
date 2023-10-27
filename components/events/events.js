@@ -9,6 +9,7 @@ import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "./events.module.css";
 import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
+import Headers from "../ui/headers";
 
 function CalendarEvents() {
   const [timeEvents, setTimeEvents] = useState("");
@@ -20,8 +21,8 @@ function CalendarEvents() {
 
       const takenTimes = await fetchTakenTimesFromMongo();
       const events = await fetchEventsFromMongo();
-      console.log(takenTimes);
-      console.log(events);
+      // console.log(takenTimes);
+      // console.log(events);
       const mergedData = [...events.data, ...takenTimes.data];
       // if (takenTimes && takenTimes.data.length > 0) {
       setTimeEvents(mergedData);
@@ -32,7 +33,7 @@ function CalendarEvents() {
 
     fetchData();
   }, []);
-  console.log(timeEvents);
+  // console.log(timeEvents);
 
   return (
     <div className={classes.eventsContainer}>
@@ -40,18 +41,12 @@ function CalendarEvents() {
         <Image src={calendarEvents} alt="calendar-events" />
       </div>
       <div className={classes.text}>
-        <h3>Courses, Lessons & Reserved Courts</h3>
-        <h1>TIME SLOTS</h1>
-        <h2>My Calendar</h2>
-        <p>
-          Check your time slots, including (events, training sessions, and
-          reserved courts)
-        </p>
-        <hr
-          style={{
-            border: "1px solid #1c7f47",
-            width: "6rem",
-          }}
+        <Headers
+          H3Header="Courses, Lessons & Reserved Courts"
+          H1Header="TIME SLOTS"
+          H2Header="My Calendar"
+          PHeader="Check your time slots, including (events, training sessions, and
+            reserved courts)"
         />
       </div>
       {isLoadingTimeEvents ? (

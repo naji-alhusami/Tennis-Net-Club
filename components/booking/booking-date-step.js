@@ -1,31 +1,19 @@
 "use client";
-import React, { Fragment, useContext, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { AiFillCaretDown } from "react-icons/ai";
+import React, { Fragment, useState } from "react";
+
 import Image from "next/image";
-import { motion } from "framer-motion";
 import clay from "@/public/images/clay.jpg";
 import hard from "@/public/images/hard.jpg";
 
 import BookingCalendar from "./booking-calendar";
-import AuthContext from "@/store/auth-context";
 
 import classes from "./booking-date-step.js.module.css";
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 
-function DateSelectionStep() {
-  const searchParams = useSearchParams();
-  const path = searchParams.has("date");
-
-  const {
-    numberOfPlayers,
-    setNumberOfPlayers,
-    activeDay,
-    nextStepHandler,
-    currentStep,
-  } = useContext(AuthContext);
-  console.log(path, currentStep);
+function DateSelectionStep({ nextStepHandler}) {
+  const [selectedCourtType, setSelectedCourtType] = useState("");
+  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 
   let formattedDate = null;
   if (activeDay) {
@@ -38,20 +26,18 @@ function DateSelectionStep() {
     console.log(formattedDate); // Output: "2023-11-05"
   }
 
-  const [selectedCourtType, setSelectedCourtType] = useState("");
-
   async function handleNextStep() {
     nextStepHandler();
+    // console.log(formattedDate, selectedCourtType);
+    console.log("before fetch data from server");
+    // const naji = await fetchData(activeDay, selectedCourtType);
+    // console.log(naji);
   }
 
   return (
     <Fragment>
       <div className={classes.firstStepContainer}>
         <div className={classes.playersAndCourtContainer}>
-          {/* <div>
-            <h1>Reserve Court:</h1>
-          </div> */}
-          {/* <div className={classes.playersAndCourt}> */}
           <select
             value={selectedCourtType}
             onChange={(e) => setSelectedCourtType(e.target.value)}
@@ -62,8 +48,8 @@ function DateSelectionStep() {
             <option value="Hard">Hard Court</option>
           </select>
           <select
-            value={numberOfPlayers}
-            onChange={(e) => setNumberOfPlayers(e.target.value)}
+            value={selectedPlayersNumber}
+            onChange={(e) => setSelectedPlayersNumber(e.target.value)}
             required
           >
             <option value="">--- Select Players Number ---</option>
@@ -72,7 +58,6 @@ function DateSelectionStep() {
             <option value="3">3</option>
             <option value="4">4</option>
           </select>
-          {/* </div> */}
         </div>
         <div className={classes.dateContainer}>
           {selectedCourtType === "Clay" ? (
@@ -93,9 +78,11 @@ function DateSelectionStep() {
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          {activeDay && selectedCourtType !== "" && numberOfPlayers !== "" ? (
+          {activeDay &&
+          selectedCourtType !== "" &&
+          selectedPlayersNumber !== "" ? (
             <Link
-              href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${numberOfPlayers}`}
+              href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`}
               className={classes.nextButton}
               style={{ color: "white" }}
               onClick={handleNextStep}

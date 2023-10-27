@@ -38,7 +38,7 @@ export async function POST(req) {
     const db = client.db();
 
     const existingUser = await db.collection("users").findOne({ email: email });
-    console.log(existingUser);
+    // console.log(existingUser);
     if (existingUser) {
       return NextResponse.json("Member Exists!", {
         status: 422,

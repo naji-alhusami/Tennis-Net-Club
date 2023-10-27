@@ -50,7 +50,7 @@ function ConfirmationStep() {
     }
 
     const existingEvents = await fetchEventsFromMongo();
-    console.log(existingEvents);
+    // console.log(existingEvents);
 
     const hasExistingEvent = existingEvents.data.some((event) => {
       return event.title === "Court Reservation" && event.date === selectedDate;

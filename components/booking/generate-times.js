@@ -1,6 +1,6 @@
-export function generateTimeSlots(activeDay, courtType) {
+export async function generateTimeSlots(activeDay) {
+  // console.log(activeDay, "inside genereate Times");
   const timeSlots = [];
-
   // Get the current time
   const currentDate = new Date();
 
@@ -26,7 +26,6 @@ export function generateTimeSlots(activeDay, courtType) {
       minute: "numeric",
       hour12: false,
     });
-
     let formattedDate = "";
     // const month = activeDay.toLocaleString("en-US", { month: "short" });
     const day = activeDay.getDate();
@@ -50,7 +49,7 @@ export function generateTimeSlots(activeDay, courtType) {
 
     timeSlots.push({
       id: id,
-      courtType: courtType,
+      courtType: "Hard",
       date: formattedDate,
       time: formattedTime,
       status: status,
@@ -60,6 +59,5 @@ export function generateTimeSlots(activeDay, courtType) {
 
     currentTime.setMinutes(currentTime.getMinutes() + intervalMinutes);
   }
-
   return timeSlots;
 }

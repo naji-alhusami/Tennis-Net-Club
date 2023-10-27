@@ -29,7 +29,7 @@ function Booking() {
     }
   };
   const time = new Date();
-  console.log(time);
+  // console.log(time);
   return (
     <div className={classes.container}>
       <div className={classes.text}>

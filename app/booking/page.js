@@ -1,21 +1,22 @@
-"use client";
-
 import React from "react";
-import { useParams } from "next/navigation";
-import BookingCourt from "@/components/booking/booking";
-import { useSession } from "next-auth/react";
+import BookingContainer from "@/components/booking/booking-container";
+import BookingSteps from "@/components/booking/booking-steps";
+import BookingInfo from "@/components/booking/BookingInfo";
 
-function BookingPage() {
-  // const { data: session } = useSession({
-  //   required: true,
-  //   onUnauthenticated() {
-  //     redirect("/auth/signin?callbackUrl=/booking");
-  //   },
-  // });
+import classes from "@/components/booking/booking";
+import { fetchData } from "@/lib/fetchTimesAction";
+
+async function BookingPage() {
+  // const dateForTest = new Date();
+  // const data = await fetchData(dateForTest);
+  // console.log(data);
 
   return (
-    <div>
-      <BookingCourt />
+    <div className={classes.bookingContainer}>
+      <BookingContainer />
+      <BookingSteps />
+      <BookingInfo />
+      {/* <BookingCourt /> */}
     </div>
   );
 }
