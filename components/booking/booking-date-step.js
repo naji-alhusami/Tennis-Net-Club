@@ -11,7 +11,7 @@ import classes from "./booking-date-step.js.module.css";
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 
-function DateSelectionStep({ nextStepHandler}) {
+function DateSelectionStep({ nextStepHandler, activeDay }) {
   const [selectedCourtType, setSelectedCourtType] = useState("");
   const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 

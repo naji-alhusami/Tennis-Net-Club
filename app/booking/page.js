@@ -1,21 +1,20 @@
 import React from "react";
 import BookingContainer from "@/components/booking/booking-container";
 import BookingSteps from "@/components/booking/booking-steps";
-import BookingInfo from "@/components/booking/BookingInfo";
+import BookingInfo from "@/components/booking/booking-Info";
 
 import classes from "@/components/booking/booking";
-import { fetchData } from "@/lib/fetchTimesAction";
+import { fetchTimeSlots } from "@/lib/generate-times";
 
-async function BookingPage() {
-  // const dateForTest = new Date();
-  // const data = await fetchData(dateForTest);
-  // console.log(data);
+async function BookingPage({ searchParams }) {
+  const newDate = searchParams.date;
+  const timeSlots = await fetchTimeSlots(newDate);
 
   return (
     <div className={classes.bookingContainer}>
       <BookingContainer />
       <BookingSteps />
-      <BookingInfo />
+      <BookingInfo timeSlots={timeSlots} />
       {/* <BookingCourt /> */}
     </div>
   );

@@ -25,7 +25,7 @@ function BookingCalendar({ nextStepHandler }) {
 
   const { activeDay, setActiveDay, timeSlots, setNextButton } =
     useContext(AuthContext);
-  // console.log(activeDay);
+  console.log(activeDay);
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();
