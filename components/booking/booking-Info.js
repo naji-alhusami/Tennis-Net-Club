@@ -6,7 +6,6 @@ import DateSelectionStep from "./booking-date-step";
 import AuthContext from "@/store/auth-context";
 import TimeSelectionStep from "./booking-times-step";
 import ConfirmationStep from "./booking-confirm-step";
-import classes from "./booking-Info.module.css";
 
 function BookingInfo({ timeSlots }) {
   const router = useSearchParams();
@@ -20,7 +19,7 @@ function BookingInfo({ timeSlots }) {
   };
 
   return (
-    <div className={classes.BookingInfoContainer}>
+    <div>
       {currentStep === 1 && (
         <div>
           <h2 style={headerStyle}>

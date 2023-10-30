@@ -16,7 +16,6 @@ import { useSession } from "next-auth/react";
 
 function ConfirmationStep() {
   const { data: session } = useSession();
-  console.log(session);
   const router = useRouter();
   const pathData = useSearchParams();
 
