@@ -9,6 +9,7 @@ import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
+import { signupWithCredentials } from "@/actions/sinupActions";
 
 function Signup() {
   // const [name, setName] = useState("");
@@ -112,50 +113,53 @@ function Signup() {
   //   };
   // }
 
+  async function signupCredentialsHandler(formData) {
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const passwordConfirmation = formData.get("password-confirmation");
+    const role = formData.get("role");
+
+    console.log({ name, email, password, passwordConfirmation, role });
+
+    const response = await signupWithCredentials({
+      name,
+      email,
+      password,
+      passwordConfirmation,
+      role,
+    });
+  }
+
   return (
     <div className={classes.signupForm}>
       <h1>Signup</h1>
-      <form action={submitSignupHandler}>
+      <form action={signupCredentialsHandler}>
         <div>
-          <input
-            // onChange={(e) => setName(e.target.value)}
-            type="text"
-            id="name"
-            placeholder="Your Name"
-            // required
-          />
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="Your Email" required />
         </div>
         <div>
           <input
-            // onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Your Email"
-            // required
-          />
-        </div>
-        <div>
-          <input
-            // onChange={(e) => setPassword(e.target.value)}
             type="password"
+            name="password"
             placeholder="Your Password"
-            // required
+            required
           />
         </div>
         <div>
           <input
-            // onChange={(e) => setPasswordConfirmation(e.target.value)}
             type="password"
+            name="password-confirmation"
             placeholder="Password Confirmation"
-            // required
+            required
           />
         </div>
 
         <div>
-          <select
-            // onChange={(e) => setRole(e.target.value)}
-            className={classes.select}
-            // required
-          >
+          <select name="role" className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>
             <option value="trainer">Trainer</option>
