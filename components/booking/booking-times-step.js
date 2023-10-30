@@ -42,7 +42,6 @@ function TimeSelectionStep({ timeSlots }) {
       // setTimeInfo(timeSlot);
     }
   }
-  // console.log(timeSlots);
 
   function handleMouseEnter(timeSlot) {
     setHoveredTimeSlot(timeSlot);

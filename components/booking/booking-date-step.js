@@ -26,12 +26,8 @@ function DateSelectionStep({ nextStepHandler, activeDay }) {
     console.log(formattedDate); // Output: "2023-11-05"
   }
 
-  async function handleNextStep() {
+  function handleNextStep() {
     nextStepHandler();
-    // console.log(formattedDate, selectedCourtType);
-    console.log("before fetch data from server");
-    // const naji = await fetchData(activeDay, selectedCourtType);
-    // console.log(naji);
   }
 
   const nextPath = `/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`;

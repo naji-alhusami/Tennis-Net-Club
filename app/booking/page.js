@@ -8,14 +8,14 @@ import { fetchTimeSlots } from "@/lib/generate-times";
 
 async function BookingPage({ searchParams }) {
   const newDate = searchParams.date;
-  const timeSlots = await fetchTimeSlots(newDate);
+  const newCourt = searchParams.court;
+  const timeSlots = await fetchTimeSlots(newDate, newCourt);
 
   return (
     <div className={classes.bookingContainer}>
       <BookingContainer />
       <BookingSteps />
       <BookingInfo timeSlots={timeSlots} />
-      {/* <BookingCourt /> */}
     </div>
   );
 }
