@@ -5,12 +5,13 @@ import { useSearchParams } from "next/navigation";
 import DateSelectionStep from "./booking-date-step";
 import AuthContext from "@/store/auth-context";
 import TimeSelectionStep from "./booking-times-step";
+import ConfirmationStep from "./booking-confirm-step";
 
 function BookingInfo({ timeSlots }) {
   const router = useSearchParams();
   const { currentStep, activeDay, nextStepHandler, prevStepHandler } =
     useContext(AuthContext);
-    
+
   return (
     <div>
       {currentStep === 1 && (
@@ -26,6 +27,12 @@ function BookingInfo({ timeSlots }) {
         <div>
           <h2>Choose Available Time:</h2>
           <TimeSelectionStep timeSlots={timeSlots} />
+        </div>
+      )}
+      {currentStep === 3 && router.has("time") && (
+        <div>
+          <h2 style={{ textAlign: "center" }}>Confirm Booking Details:</h2>
+          <ConfirmationStep />
         </div>
       )}
     </div>

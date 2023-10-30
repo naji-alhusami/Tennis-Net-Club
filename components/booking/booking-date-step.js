@@ -34,6 +34,8 @@ function DateSelectionStep({ nextStepHandler, activeDay }) {
     // console.log(naji);
   }
 
+  const nextPath = `/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`;
+
   return (
     <Fragment>
       <div className={classes.firstStepContainer}>
@@ -82,7 +84,7 @@ function DateSelectionStep({ nextStepHandler, activeDay }) {
           selectedCourtType !== "" &&
           selectedPlayersNumber !== "" ? (
             <Link
-              href={`/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`}
+              href={nextPath}
               className={classes.nextButton}
               style={{ color: "white" }}
               onClick={handleNextStep}

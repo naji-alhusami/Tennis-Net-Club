@@ -12,10 +12,11 @@ import { BsArrowLeft } from "react-icons/bs";
 import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
 import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 function ConfirmationStep() {
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
+  console.log(session);
   const router = useRouter();
   const pathData = useSearchParams();
 
@@ -69,6 +70,10 @@ function ConfirmationStep() {
     router.push("/");
   }
 
+  const prevPath = `/booking?date=${pathData.get("date")}&court=${pathData.get(
+    "court"
+  )}&players=${pathData.get("players")}`;
+
   return (
     <form
       onSubmit={bookingConfirmationHandler}
@@ -85,16 +90,15 @@ function ConfirmationStep() {
         <table className={classes.tableContainer}>
           <tbody>
             <tr>
-              {/* <th>Name</th> */}
+              <th>Name</th>
               <th>Court</th>
-
               <th>Players</th>
               <th>Date</th>
               <th>Time</th>
             </tr>
             <tr>
-              {/* <td>{session.user.name}</td> */}
-              <td>{pathData.get("court")} Court</td>
+              <td>{session?.user.name}</td>
+              <td>{pathData.get("court")}</td>
               <td>{pathData.get("players")}</td>
               <td>{pathData.get("date")}</td>
               <td>{pathData.get("time")}</td>
@@ -105,9 +109,7 @@ function ConfirmationStep() {
 
       <div className={classes.buttonContainer}>
         <Link
-          href={`/booking?date=${pathData.get("date")}&court=${pathData.get(
-            "court"
-          )}&players=${pathData.get("players")}`}
+          href={prevPath}
           onClick={() => prevStepHandler()}
           className={classes.backButton}
         >

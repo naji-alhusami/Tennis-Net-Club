@@ -13,6 +13,7 @@ function TimeSelectionStep({ timeSlots }) {
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
   const pathData = useSearchParams();
 
+  const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
   const [hoveredTimeSlot, setHoveredTimeSlot] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
 
@@ -24,7 +25,7 @@ function TimeSelectionStep({ timeSlots }) {
       );
 
       // Update the selected time and change the status
-      const updatedTimeSlots = timeSlots.map((slot) => {
+      const timeSlotsStatus = timeSlots.map((slot) => {
         if (slot.id === timeSlot.id) {
           return { ...slot, status: "SELECTED" };
         } else if (
@@ -36,12 +37,12 @@ function TimeSelectionStep({ timeSlots }) {
         }
         return slot;
       });
-      // setTimeSlots(updatedTimeSlots);
+      setNewTimeSlots(timeSlotsStatus);
       setSelectedTime(timeSlot.time);
       // setTimeInfo(timeSlot);
     }
   }
-  console.log(timeSlots);
+  // console.log(timeSlots);
 
   function handleMouseEnter(timeSlot) {
     setHoveredTimeSlot(timeSlot);
@@ -87,12 +88,15 @@ function TimeSelectionStep({ timeSlots }) {
     }
   }
 
-  console.log(timeSlots);
+  const nextPath = `/booking/?date=${pathData.get("date")}&court=${pathData.get(
+    "court"
+  )}&players=${pathData.get("players")}&time=${selectedTime}`;
+
   return (
     <Fragment>
       <div className={classes.timeContainer}>
         <div className={classes.timeSlotsContainer}>
-          {timeSlots.map((timeSlot) => {
+          {newTimeSlots.map((timeSlot) => {
             return (
               <div key={timeSlot.id} className={classes.timeSlot}>
                 <h1 className={classes.time}>{timeSlot.time}</h1>
@@ -112,11 +116,7 @@ function TimeSelectionStep({ timeSlots }) {
           </Link>
           {selectedTime !== "" ? (
             <Link
-              href={`/booking/?date=${pathData.get(
-                "date"
-              )}&court=${pathData.get("court")}&players=${pathData.get(
-                "players"
-              )}&time=${selectedTime}`}
+              href={nextPath}
               onClick={() => nextStepHandler()}
               className={classes.nextButton}
               style={{ color: "white" }}
