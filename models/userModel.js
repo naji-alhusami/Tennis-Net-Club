@@ -12,7 +12,7 @@ const userSchema = new Schema(
       unique: true,
     },
     password: String,
-    passwordConfirmation: String,
+    // passwordConfirmation: String,
     provider: {
       type: String,
       default: "credentials",

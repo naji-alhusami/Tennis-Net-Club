@@ -27,7 +27,7 @@
 .signupForm select {
   width: 100%;
   height: 2rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 
   /* margin-left: 0.8rem; */
 }
@@ -74,6 +74,11 @@
 
 .googleButton {
   border: none;
+}
+
+.error {
+  color: #c80000ef;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 650px) {
