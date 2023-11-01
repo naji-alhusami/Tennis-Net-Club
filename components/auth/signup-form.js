@@ -16,7 +16,6 @@ function Signup() {
   const ref = useRef(null);
 
   async function signupCredentialsHandler(formData) {
-    console.log(pending);
 
     const name = formData.get("name");
     const email = formData.get("email");
