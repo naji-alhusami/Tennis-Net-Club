@@ -1,9 +1,12 @@
 "use server";
 
 import { hashPassword } from "@/lib/auth";
+import sendEmail from "@/lib/sendEmail";
 import { generateToken } from "@/lib/token";
 import User from "@/models/userModel";
 // import { redirect } from "next/navigation";
+
+const BASE_URL = process.env.NEXTAUTH_URL;
 
 export async function signupWithCredentials(data) {
   // try {
@@ -33,7 +36,11 @@ export async function signupWithCredentials(data) {
 
   const token = await generateToken({ user: data });
 
-  console.log({ token });
+  await sendEmail({
+    to: data.email,
+    url: `${BASE_URL}/verify?token=${token}`,
+    text: "VERIFY EMAIL",
+  });
 
   return {
     message: "Signup Success, Please Check Your Email To Verify Your Email.",
