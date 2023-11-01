@@ -1,19 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 // import { useRouter } from "next/navigation";
 import Link from "next/link";
-
 import { submitSignupHandler } from "@/lib/signupAction";
 import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { signupWithCredentials } from "@/actions/signupActions";
+// import ButtonTest from "../ui/buttonTest";
+import ButtonTest from "../ui/buttonTest";
 
 function Signup() {
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const ref = useRef(null);
 
   async function signupCredentialsHandler(formData) {
+    console.log(pending);
+
     const name = formData.get("name");
     const email = formData.get("email");
     const password = formData.get("password");
@@ -23,15 +27,22 @@ function Signup() {
     console.log({ name, email, password, passwordConfirmation, role });
 
     try {
-      await signupWithCredentials({
+      const response = await signupWithCredentials({
         name,
         email,
         password,
         passwordConfirmation,
         role,
       });
+      console.log(response);
+
+      if (response?.message) {
+        ref.current?.reset();
+        setErrorMessage("");
+        console.log(response?.message);
+      }
     } catch (error) {
-      // Handle errors thrown by signupWithCredentials
+      console.log(error.message);
       setErrorMessage(error.message);
     }
   }
@@ -39,7 +50,7 @@ function Signup() {
   return (
     <div className={classes.signupForm}>
       <h1>Signup</h1>
-      <form action={signupCredentialsHandler}>
+      <form action={signupCredentialsHandler} ref={ref}>
         <div>
           <input type="text" name="name" placeholder="Your Name" required />
         </div>
@@ -70,15 +81,24 @@ function Signup() {
             <option value="trainer">Trainer</option>
           </select>
         </div>
-        {errorMessage && <p className={classes.error}>{errorMessage}</p>}
+        <div>
+          {errorMessage ? (
+            <p className={classes.error}>{errorMessage}</p>
+          ) : (
+            <p>
+              <br />
+            </p>
+          )}
+        </div>
         <div className={classes.notMember}>
-          <button
+          <ButtonTest />
+          {/* <button
             className={classes.button}
             // onClick={() => startTransition(() => signupCredentialsHandler())}
           >
-            {/* {isPending ? "Signing Up..." : "Signup"} */}
-            Signup
-          </button>
+            {pending ? "Signing Up..." : "Signup"} */}
+          {/* Signup */}
+          {/* </button> */}
 
           <h3>Already A Member?</h3>
           <Link href="/auth/login" className={classes.button}>

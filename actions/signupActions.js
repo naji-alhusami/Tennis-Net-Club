@@ -37,6 +37,8 @@ export async function signupWithCredentials(data) {
     };
   // } catch (error) {
     // redirect(`/errors?error=${error.message}`);
-    // return error.message;
+  //   return {
+  //     error: error.message,
+  //   };
   // }
 }
