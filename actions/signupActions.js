@@ -2,14 +2,13 @@
 
 import { hashPassword } from "@/lib/auth";
 import sendEmail from "@/lib/sendEmail";
-import { generateToken } from "@/lib/token";
+import { generateToken, verifyToken } from "@/lib/token";
 import User from "@/models/userModel";
-// import { redirect } from "next/navigation";
 
 const BASE_URL = process.env.NEXTAUTH_URL;
 
+// Signup With Credentials
 export async function signupWithCredentials(data) {
-  // try {
   const user = await User.findOne({ email: data.email });
   if (user) {
     throw new Error("Email already Exists!");
@@ -45,10 +44,17 @@ export async function signupWithCredentials(data) {
   return {
     message: "Signup Success, Please Check Your Email To Verify Your Email.",
   };
-  // } catch (error) {
-  // redirect(`/errors?error=${error.message}`);
-  //   return {
-  //     error: error.message,
-  //   };
-  // }
+}
+
+// verification of email.
+export async function verifyWithCredentials(token) {
+  const { user } = verifyToken(token);
+
+  const newUser = new User(user);
+
+  await newUser.save();
+
+  return {
+    message: "Your Email is Verified",
+  };
 }

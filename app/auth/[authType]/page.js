@@ -14,7 +14,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 async function AuthType({ params, searchParams }) {
   const session = await getServerSession(authOptions);
   // console.log({ session });
-  // console.log({ searchParams });
+  console.log({ searchParams });
 
   return (
     <div className={classes.signup}>
@@ -34,6 +34,7 @@ async function AuthType({ params, searchParams }) {
           <Signup />
         ) : (
           <Login callbackUrl={searchParams.callbackUrl || "/"} />
+          // <Login />
         )}
       </div>
     </div>

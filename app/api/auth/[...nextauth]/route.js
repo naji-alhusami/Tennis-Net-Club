@@ -18,27 +18,21 @@ export const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const client = await connectToDatabase();
-        const usersCollection = client.db().collection("users");
-        const user = await usersCollection.findOne({
-          email: credentials.email,
-        });
+        const user = await User.findOne({ email: credentials.email });
 
         if (!user) {
-          client.close();
           throw new Error("No User Found");
         }
 
-        const isValid = await verifyPassword(
+        const verifyPasswords = await verifyPassword(
           credentials.password,
           user.password
         );
 
-        if (!isValid) {
+        if (!verifyPasswords) {
           throw new Error("Could Not Log you in");
         }
 
-        client.close();
         return { email: user.email, name: user.name };
       },
     }),
@@ -100,3 +94,21 @@ async function getUserByEmail({ email }) {
 
   return { ...user._doc, _id: user._id.toString() };
 }
+
+// -----------------------------
+
+// async function singInWithCredentials(email, password) {
+//   const user = await User.findOne({ email });
+
+//   if (!user) {
+//     throw new Error("No User Found");
+//   }
+
+//   const verifyPasswords = await verifyPassword(password, user.password);
+
+//   if (!verifyPasswords) {
+//     throw new Error("Could Not Log you in");
+//   }
+
+//   return { ...user._doc, _id: user._id.toString() };
+// }

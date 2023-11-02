@@ -8,7 +8,6 @@ import classes from "./signup-form.module.css";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { signupWithCredentials } from "@/actions/signupActions";
-// import ButtonTest from "../ui/buttonTest";
 import ButtonTest from "../ui/buttonTest";
 
 function Signup() {
@@ -16,7 +15,6 @@ function Signup() {
   const ref = useRef(null);
 
   async function signupCredentialsHandler(formData) {
-
     const name = formData.get("name");
     const email = formData.get("email");
     const password = formData.get("password");
@@ -38,6 +36,7 @@ function Signup() {
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
+        // don't forget to redirect to thanks page
         console.log(response?.message);
       }
     } catch (error) {
@@ -90,7 +89,7 @@ function Signup() {
           )}
         </div>
         <div className={classes.notMember}>
-          <ButtonTest />
+          <ButtonTest>Signup</ButtonTest>
           {/* <button
             className={classes.button}
             // onClick={() => startTransition(() => signupCredentialsHandler())}
