@@ -9,6 +9,7 @@ import Headers from "../ui/headers";
 import calendarEvents from "@/public/images/calendar-events.jpg";
 
 function CalendarEvents({ eventsAndTimes }) {
+  console.log(eventsAndTimes);
   return (
     <div className={classes.eventsContainer}>
       <div className={classes.image}>

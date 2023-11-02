@@ -17,10 +17,10 @@ function DateSelectionStep({ nextStepHandler, activeDay }) {
 
   let formattedDate = null;
   if (activeDay) {
-    const day = activeDay.getDate();
+    const day = activeDay.getDate().toString().padStart(2, "0"); // Output: "05" or "09"
     const month = activeDay.getMonth() + 1;
     const year = activeDay.getFullYear();
-
+    console.log(day);
     formattedDate = `${year}-${month}-${day}`;
 
     console.log(formattedDate); // Output: "2023-11-05"

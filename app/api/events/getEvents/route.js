@@ -9,6 +9,7 @@ export async function GET(req) {
     try {
       // Fetch data using Mongoose
       const events = await Event.find({});
+      console.log(events);
       return NextResponse.json(
         { data: events },
         {

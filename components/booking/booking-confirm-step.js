@@ -14,10 +14,11 @@ import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import { useSession } from "next-auth/react";
 
-function ConfirmationStep() {
+function ConfirmationStep({ events }) {
   const { data: session } = useSession();
   const router = useRouter();
   const pathData = useSearchParams();
+  console.log(events);
 
   async function bookingConfirmationHandler(event) {
     event.preventDefault();
@@ -48,15 +49,13 @@ function ConfirmationStep() {
     } catch (error) {
       console.log("Error", error.message);
     }
+    console.log("before fetching events in confirm booking");
 
-    const existingEvents = await fetchEventsFromMongo();
-    // console.log(existingEvents);
-
-    const hasExistingEvent = existingEvents.data.some((event) => {
+    const reservationEvent = events.data.some((event) => {
       return event.title === "Court Reservation" && event.date === selectedDate;
     });
 
-    if (!hasExistingEvent) {
+    if (!reservationEvent) {
       try {
         await sendEventsToMongo(selectedDate);
       } catch (error) {
