@@ -86,13 +86,21 @@ export async function POST(req) {
 
     try {
       const {
+        member,
         selectedCourtType,
         selectedPlayersNumber,
         selectedDate,
         startedTime,
         selectedTime,
       } = await req.json();
-      // console.log(collection);
+      console.log(
+        member,
+        selectedCourtType,
+        selectedPlayersNumber,
+        selectedDate,
+        startedTime,
+        selectedTime
+      );
 
       // const newEvent = new Event({
       //   // title: profile.name,
@@ -100,6 +108,7 @@ export async function POST(req) {
       // });
 
       const newTimeInfo = new TakenTime({
+        member,
         title: `${selectedCourtType} Court`,
         courtType: selectedCourtType,
         playersNumber: selectedPlayersNumber,

@@ -18,11 +18,12 @@ function ConfirmationStep({ events }) {
   const { data: session } = useSession();
   const router = useRouter();
   const pathData = useSearchParams();
-  console.log(events);
+  console.log(session?.user.name);
 
   async function bookingConfirmationHandler(event) {
     event.preventDefault();
 
+    const member = session?.user.name;
     const selectedCourtType = pathData.get("court");
     const selectedPlayersNumber = pathData.get("players");
     const selectedDate = pathData.get("date");
@@ -37,9 +38,10 @@ function ConfirmationStep({ events }) {
 
     // console.log(selectedTime);
     // const formattedActiveDay = activeDay.toISOString();
-    // console.log(formattedActiveDay);
+
     try {
       await sendTakenTimesToMongo(
+        member,
         selectedCourtType,
         selectedPlayersNumber,
         selectedDate,

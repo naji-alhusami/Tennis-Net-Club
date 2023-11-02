@@ -12,6 +12,8 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 
 function DateSelectionStep({ nextStepHandler, activeDay }) {
+  const naji = new Date();
+  console.log(naji);
   const [selectedCourtType, setSelectedCourtType] = useState("");
   const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 

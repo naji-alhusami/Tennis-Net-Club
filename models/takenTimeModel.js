@@ -1,6 +1,10 @@
 import { Schema, model, models } from "mongoose";
 
 const takenTimeSchema = new Schema({
+  member: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
