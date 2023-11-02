@@ -21,7 +21,7 @@ export const authOptions = {
         const user = await User.findOne({ email: credentials.email });
 
         if (!user) {
-          throw new Error("No User Found");
+          throw new Error("No User With This Email Founded");
         }
 
         const verifyPasswords = await verifyPassword(
@@ -30,7 +30,7 @@ export const authOptions = {
         );
 
         if (!verifyPasswords) {
-          throw new Error("Could Not Log you in");
+          throw new Error("Your Password Is Incorrect");
         }
 
         return { email: user.email, name: user.name };
@@ -47,6 +47,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       // signInWithOAuth
+      console.log(account);
       if (account.type === "oauth") {
         return await signInWithOAuth({ account, profile });
       }

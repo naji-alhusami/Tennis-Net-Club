@@ -10,51 +10,29 @@ import { FcGoogle } from "react-icons/fc";
 import ButtonTest from "../ui/buttonTest";
 
 function Login({ callbackUrl }) {
-  console.log(callbackUrl);
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);
 
-  // const router = useRouter();
-
-  // async function loginHandler(event) {
-  //   event.preventDefault();
-
-  //   try {
-  //     const result = await signIn("credentials", {
-  //       redirect: false,
-  //       email: email,
-  //       password: password,
-  //     });
-
-  //     router.replace("/");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  const router = useRouter();
 
   async function loginWithCredentialsHanlder(formData) {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    // try {
-    await signIn("credentials", {
+    const response = await signIn("credentials", {
       redirect: false,
       email: email,
       password: password,
       // callbackUrl,
     });
-    // console.log(response);
-    // if (response?.message) {
-    //   ref.current?.reset();
-    //   setErrorMessage("");
-    //   console.log(response?.message);
-    // }
+    console.log(response);
 
-    // router.replace("/");
-    // } catch (error) {
-    // console.log(error.message);
-    // setErrorMessage(error.message);
-    // }
+    if (!response.ok) {
+      setErrorMessage(response.error);
+    } else {
+      setErrorMessage("");
+      router.replace("/");
+    }
   }
 
   return (
@@ -72,9 +50,9 @@ function Login({ callbackUrl }) {
             required
           />
         </div>
-        <div>
+        <div className={classes.error}>
           {errorMessage ? (
-            <p className={classes.error}>{errorMessage}</p>
+            <p>{errorMessage}</p>
           ) : (
             <p>
               <br />

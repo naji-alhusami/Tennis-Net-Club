@@ -69,6 +69,12 @@
   border: none;
 }
 
+.error p {
+  color: #c80000ef;
+  font-weight: bold;
+  margin-top: 0;
+}
+
 @media screen and (max-width: 650px) {
   .loginForm {
     width: 20rem;
