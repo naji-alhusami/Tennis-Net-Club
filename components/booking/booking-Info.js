@@ -7,7 +7,7 @@ import AuthContext from "@/store/auth-context";
 import TimeSelectionStep from "./booking-times-step";
 import ConfirmationStep from "./booking-confirm-step";
 
-function BookingInfo({ timeSlots, events }) {
+function BookingInfo({ timeSlots, events, takenTimes }) {
   const router = useSearchParams();
   const { currentStep, activeDay, nextStepHandler, prevStepHandler } =
     useContext(AuthContext);
@@ -36,7 +36,7 @@ function BookingInfo({ timeSlots, events }) {
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
-          <TimeSelectionStep timeSlots={timeSlots} />
+          <TimeSelectionStep timeSlots={timeSlots} takenTimes={takenTimes} />
         </div>
       )}
       {currentStep === 3 && router.has("time") && (

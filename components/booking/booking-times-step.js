@@ -8,14 +8,28 @@ import classes from "./booking-times-step.module.css";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
+import { useSession } from "next-auth/react";
 
-function TimeSelectionStep({ timeSlots }) {
+function TimeSelectionStep({ timeSlots, takenTimes }) {
+  const { data: session } = useSession();
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
   const pathData = useSearchParams();
 
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
   const [hoveredTimeSlot, setHoveredTimeSlot] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
+
+  // Check if the member has an existing reservation for the selected day
+  console.log(takenTimes);
+  console.log(session);
+  const dayFromLink = pathData.get("date");
+  const memberTakenTimes = takenTimes.data.filter(
+    (reservation) => reservation.member === session.user.name
+  );
+  const hasReservationForDay = memberTakenTimes.some(
+    (reservation) => reservation.date === dayFromLink
+  );
+  console.log(hasReservationForDay);
 
   function timeHandler(timeSlot) {
     if (timeSlot.status === "BOOK COURT") {
@@ -95,15 +109,19 @@ function TimeSelectionStep({ timeSlots }) {
     <Fragment>
       <div className={classes.timeContainer}>
         <div className={classes.timeSlotsContainer}>
-          {newTimeSlots.map((timeSlot) => {
-            return (
-              <div key={timeSlot.id} className={classes.timeSlot}>
-                <h1 className={classes.time}>{timeSlot.time}</h1>
-                <p>{timeSlot.courtType} Court</p>
-                {renderTimeSlotElement(timeSlot)}
-              </div>
-            );
-          })}
+          {hasReservationForDay ? (
+            <p>You Already have Time Reserved For This Day</p>
+          ) : (
+            newTimeSlots.map((timeSlot) => {
+              return (
+                <div key={timeSlot.id} className={classes.timeSlot}>
+                  <h1 className={classes.time}>{timeSlot.time}</h1>
+                  <p>{timeSlot.courtType} Court</p>
+                  {renderTimeSlotElement(timeSlot)}
+                </div>
+              );
+            })
+          )}
         </div>
         <div className={classes.buttonContainer}>
           <Link
