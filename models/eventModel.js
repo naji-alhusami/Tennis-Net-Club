@@ -1,13 +1,17 @@
 import { Schema, model, models } from "mongoose";
 
 const eventSchema = new Schema({
-  title: {
+  member: {
     type: String,
-    default: "Court Reservation",
+    required: true,
   },
   date: {
     type: String,
     required: true,
+  },
+  title: {
+    type: String,
+    default: "Court Reservation",
   },
 });
 

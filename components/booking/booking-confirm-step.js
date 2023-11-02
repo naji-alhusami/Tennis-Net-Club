@@ -59,7 +59,7 @@ function ConfirmationStep({ events }) {
 
     if (!reservationEvent) {
       try {
-        await sendEventsToMongo(selectedDate);
+        await sendEventsToMongo(member, selectedDate);
       } catch (error) {
         console.log("Error", error.message);
       }

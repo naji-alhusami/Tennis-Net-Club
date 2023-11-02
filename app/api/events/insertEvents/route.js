@@ -7,10 +7,10 @@ connectToDatabase();
 export async function POST(req) {
   if (req.method === "POST") {
     try {
-      const { selectedDate } = await req.json();
-
+      const { member, selectedDate } = await req.json();
+      console.log("insied the API ROUTE", member);
       const newEvent = new Event({
-        // title: profile.name,
+        member: member,
         date: selectedDate,
       });
 
