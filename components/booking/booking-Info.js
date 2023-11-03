@@ -6,8 +6,10 @@ import DateSelectionStep from "./booking-date-step";
 import AuthContext from "@/store/auth-context";
 import TimeSelectionStep from "./booking-times-step";
 import ConfirmationStep from "./booking-confirm-step";
+import { useSession } from "next-auth/react";
 
 function BookingInfo({ timeSlots, events, takenTimes }) {
+  const { data: session } = useSession();
   const router = useSearchParams();
   const { currentStep, activeDay, nextStepHandler, prevStepHandler } =
     useContext(AuthContext);
@@ -36,14 +38,14 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
-          <TimeSelectionStep timeSlots={timeSlots} takenTimes={takenTimes} />
+          <TimeSelectionStep timeSlots={timeSlots} takenTimes={takenTimes} session={session} />
         </div>
       )}
       {currentStep === 3 && router.has("time") && (
         <div>
           <h2 style={headerStyle}>Confirm Booking Details</h2>
           <hr style={hrStyle} />
-          <ConfirmationStep events={events} />
+          <ConfirmationStep events={events} session={session} />
         </div>
       )}
     </div>

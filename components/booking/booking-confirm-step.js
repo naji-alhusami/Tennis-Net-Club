@@ -14,8 +14,7 @@ import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import { useSession } from "next-auth/react";
 
-function ConfirmationStep({ events }) {
-  const { data: session } = useSession();
+function ConfirmationStep({ session, events }) {
   const router = useRouter();
   const pathData = useSearchParams();
   console.log(session?.user.name);
@@ -28,16 +27,12 @@ function ConfirmationStep({ events }) {
     const selectedPlayersNumber = pathData.get("players");
     const selectedDate = pathData.get("date");
     const selectedTime = pathData.get("time");
-    // console.log(selectedTime);
 
     const [hours, minutes] = selectedTime.split(":");
     const year = new Date(selectedDate).getFullYear();
     const month = new Date(selectedDate).getMonth();
     const day = new Date(selectedDate).getDate();
     const startedTime = new Date(year, month, day, hours, minutes);
-
-    // console.log(selectedTime);
-    // const formattedActiveDay = activeDay.toISOString();
 
     try {
       await sendTakenTimesToMongo(

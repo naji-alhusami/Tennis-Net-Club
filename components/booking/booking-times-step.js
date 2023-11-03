@@ -8,10 +8,8 @@ import classes from "./booking-times-step.module.css";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
-import { useSession } from "next-auth/react";
 
-function TimeSelectionStep({ timeSlots, takenTimes }) {
-  const { data: session } = useSession();
+function TimeSelectionStep({ session, timeSlots, takenTimes }) {
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
   const pathData = useSearchParams();
 
