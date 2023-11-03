@@ -7,11 +7,9 @@ import { motion } from "framer-motion";
 import classes from "./training.module.css";
 import courses from "@/public/images/courses.jpg";
 import bg from "@/public/images/background1.jpg";
-import eq1 from "@/public/images/req1.png";
-import eq2 from "@/public/images/req2.png";
-import eq3 from "@/public/images/req3.png";
-import eq4 from "@/public/images/req4.png";
 import Headers from "../ui/headers";
+import { trainingData } from "./trainingData";
+import { equipmentsData } from "./equipmentsData";
 
 function Training() {
   return (
@@ -34,7 +32,58 @@ function Training() {
             PHeader="Enroll In Our Training Sessions, Starting from Beginner to Advanced, Group or Individual"
           />
         </div>
-        
+        <div className={classes.trainingPricesContainers}>
+          {trainingData.map((data) => (
+            <div
+              key={data.id}
+              className={
+                data.id === "2"
+                  ? classes.trainingPricesContainer2
+                  : classes.trainingPricesContainer1
+              }
+            >
+              <div>
+                <h1>{data.courseType}</h1>
+                <h2>{data.price}</h2>
+              </div>
+              <div>
+                <p>{data.pText1}</p>
+                <p>{data.pText2}</p>
+                <p>{data.pText3}</p>
+                <p>{data.pText4}</p>
+                {/* <p>{data.pText5}</p> */}
+              </div>
+              <div>
+                <Link href="/auth/login">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={
+                      data.id === "2"
+                        ? classes.enrollButton2
+                        : classes.enrollButton1
+                    }
+                  >
+                    Enroll
+                  </motion.div>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* <div className={classes.equipmentsContainer}>
+          {equipmentsData.map((eq) => (
+            <div key={eq.id} className={classes.equipmentContainer}>
+              <div>
+                <Image src={eq.image} alt="eq1" />
+              </div>
+              <div>
+                <h1>{eq.title}</h1>
+                <p>{eq.description}</p>
+              </div>
+            </div>
+          ))}
+        </div> */}
         {/* <div className={classes.trainingPricesContainers}>
           <div className={classes.trainingPricesContainer1}>
             <h2>GROUP SESSION</h2>

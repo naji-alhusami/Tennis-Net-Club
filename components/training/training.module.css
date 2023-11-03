@@ -10,6 +10,19 @@
 
 .imageContainer {
   width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* .imageContainer {
+  width: 100%;
   height: 100%;
   overflow: hidden;
 }
@@ -17,7 +30,7 @@
 .imageContainer img {
   width: 100%;
   height: 600px;
-}
+} */
 
 .text {
   position: relative;
@@ -52,39 +65,78 @@
   margin-bottom: 3.5rem;
 }
 
-/* --------------- */
-
 .trainingPricesContainers {
   width: 100%;
-  /* margin: 3rem; */
+  height: 100%;
+  margin: 3rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 60%;
 }
 
-.trainingPricesContainer1,
-.trainingPricesContainer3 {
+.trainingPricesContainer1 {
   width: 25%;
-  height: 35%;
+  height: 32rem;
   background-color: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  padding: 3rem;
+  padding: 1rem 2rem 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .trainingPricesContainer2 {
-  position: relative;
-  width: 35%;
-  height: 30rem;
-  background-color: rgb(26, 87, 50);
+  width: 30%;
+  height: 35rem;
+  background-color: #1c8c4c;
   color: white;
-  display: flex;
-  justify-content: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  padding: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.trainingPricesContainer1 h1,
+.trainingPricesContainer2 h1 {
+  font-size: 2rem;
+}
+
+.trainingPricesContainer1 p,
+.trainingPricesContainer2 p {
+  font-size: 1rem;
+}
+
+.enrollButton1 {
+  background-color: #1c8c4c;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  font-size: var(--size-5);
+  box-shadow: 5px 5px 0px 1px #165431;
+  margin-top: 1rem;
+}
+
+.enrollButton2 {
+  background-color: #efad32;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  font-size: var(--size-5);
+  box-shadow: 5px 5px 0px 1px #db981b;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 720px) {
+  .trainingPricesContainers {
+    flex-direction: column;
+  }
+
+  .trainingPricesContainer1,
+  .trainingPricesContainer2 {
+    width: fit-content;
+  }
+}
+/* --------------- */
 
 /* .trainingPricesContainer2 img {
   width: 100%;
@@ -93,62 +145,44 @@
   color: white;
 } */
 
-.textContainer2 {
+/* .textContainer2 {
   position: absolute;
-  /* top: 30%; */
+  top: 30%;
 }
 
 .textContainer2 div {
   margin-top: 3rem;
-}
+} */
 
 /* .textContainer2 h2 {
   margin: 3rem 0 0 0;
 } */
 
-.textContainer2 h1 {
+/* .textContainer2 h1 {
   font-size: 4rem;
   margin: 0;
-}
+} */
 
-.contactButton {
-  background-color: #efad32;
-  padding: 0.6rem 1.3rem;
-  /* border: 10px solid rgb(137, 227, 59); */
-  color: white;
-  font-size: var(--size-5);
-  box-shadow: 5px 5px 0px 1px #db981b;
-}
-
-.trainingPricesContainer1 div,
+/* .trainingPricesContainer1 div,
 .trainingPricesContainer3 div {
   margin-top: 3rem;
-}
+} */
 
-.contactButton::before {
+/* .enrollButton2::before {
   background-color: #f2a922;
   padding: 0.6rem 1.3rem;
   color: white;
   font-size: var(--size-5);
-}
+} */
 
-.contactButton1 {
-  background-color: #1c8c4c;
-  padding: 0.6rem 1.3rem;
-  /* border: 10px solid rgb(137, 227, 59); */
-  color: white;
-  font-size: var(--size-5);
-  box-shadow: 5px 5px 0px 1px #165431;
-}
-
-.contactButton1::before {
+/* .enrollButton1::before {
   background-color: #165431;
   padding: 0.6rem 1.3rem;
   color: white;
   font-size: var(--size-5);
-}
+} */
 
-.equipmentsContainer {
+/* .equipmentsContainer {
   position: absolute;
   top: 130%;
   display: flex;
@@ -169,10 +203,10 @@
 
 .equipmentContainer h1 {
   margin: 0;
-}
+} */
 
-@media screen and (max-width: 670px) {
+/* @media screen and (max-width: 670px) {
   .trainingPricesContainers {
     flex-direction: column;
   }
-}
+} */
