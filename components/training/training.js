@@ -11,6 +11,7 @@ import eq1 from "@/public/images/req1.png";
 import eq2 from "@/public/images/req2.png";
 import eq3 from "@/public/images/req3.png";
 import eq4 from "@/public/images/req4.png";
+import Headers from "../ui/headers";
 
 function Training() {
   return (
@@ -25,18 +26,24 @@ function Training() {
             property="true"
           />
         </div>
-        <div className={classes.titleContainer}>
-          <h2>LEARN TENNIS</h2>
-          <h1>Enroll In Our Training Sessions</h1>
+        <div className={classes.text}>
+          <Headers
+            H3Header="Courses, Lessons & Training Sessions"
+            H1Header="NEVER TOO LATE"
+            H2Header="Training Sessions"
+            PHeader="Enroll In Our Training Sessions, Starting from Beginner to Advanced, Group or Individual"
+          />
         </div>
-        <div className={classes.trainingPricesContainers}>
+        
+        {/* <div className={classes.trainingPricesContainers}>
           <div className={classes.trainingPricesContainer1}>
-            <h2>Begginer Courses</h2>
-            <h1>100$</h1>
-            <p>jsdkasjdlkamdlk</p>
-            <p>jsdkasjdlkamdlk</p>
-            <p>jsdkasjdlkamdlk</p>
-            <p>jsdkasjdlkamdlk</p>
+            <h2>GROUP SESSION</h2>
+            <h1>300$ / Month</h1>
+            <p>Intermediate / Advanced Level</p>
+            <p>3 Days Per Week</p>
+            <p>1 Hour</p>
+            <p>Up To 3 Players</p>
+            <p>All Equipments Are Available</p>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link className={classes.contactButton1} href="/auth/login">
                 Enroll
@@ -44,16 +51,14 @@ function Training() {
             </motion.div>
           </div>
           <div className={classes.trainingPricesContainer2}>
-            {/* <div className={classes.imageContainer2}>
-              <Image src={bg} alt="bg-image" />
-            </div> */}
             <div className={classes.textContainer2}>
-              <h2>INTERMEDIATE COURSES</h2>
-              <h1>100$</h1>
-              <p>jsdkasjdlkamdlk</p>
-              <p>jsdkasjdlkamdlk</p>
-              <p>jsdkasjdlkamdlk</p>
-              <p>jsdkasjdlkamdlk</p>
+              <h2>GROUP SESSION</h2>
+              <h1>150$ / Month</h1>
+              <p>Beginner Level</p>
+              <p>3 Days Per Week</p>
+              <p>1 Hour</p>
+              <p>Up To 3 Players</p>
+              <p>All Equipments Are Available</p>
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <Link className={classes.contactButton} href="/auth/login">
                   Enroll
@@ -62,19 +67,19 @@ function Training() {
             </div>
           </div>
           <div className={classes.trainingPricesContainer3}>
-            <h2>ADVANCED Courses</h2>
-            <h1>100$</h1>
-            <p>jsdkasjdlkamdlk</p>
-            <p>jsdkasjdlkamdlk</p>
-            <p>jsdkasjdlkamdlk</p>
-            <p>jsdkasjdlkamdlk</p>
+            <h2>INDIVIDUAL SESSION</h2>
+            <h1>150$ / Month</h1>
+            <p>Intermediate / Advanced Level</p>
+            <p>3 Days Per Week</p>
+            <p>Can Bring A Friend</p>
+            <p>All Equipments Are Available</p>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link className={classes.contactButton1} href="/auth/login">
-              Enroll
+                Enroll
               </Link>
             </motion.div>
           </div>
-        </div>
+        </div> */}
         {/* <div className={classes.equipmentsContainer}>
           <div className={classes.equipmentContainer}>
             <div>
