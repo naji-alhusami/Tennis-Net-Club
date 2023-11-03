@@ -8,7 +8,7 @@ export async function POST(req) {
   if (req.method === "POST") {
     try {
       const { member, selectedDate } = await req.json();
-      console.log("insied the API ROUTE", member);
+      // console.log("insied the API ROUTE", member);
       const newEvent = new Event({
         member: member,
         date: selectedDate,

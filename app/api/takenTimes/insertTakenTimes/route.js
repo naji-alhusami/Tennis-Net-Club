@@ -109,7 +109,7 @@ export async function POST(req) {
 
       const newTimeInfo = new TakenTime({
         member,
-        title: `${selectedCourtType} Court`,
+        title: `${member} - ${selectedCourtType} Court`,
         courtType: selectedCourtType,
         playersNumber: selectedPlayersNumber,
         date: selectedDate,

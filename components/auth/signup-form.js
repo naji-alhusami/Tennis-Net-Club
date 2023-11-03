@@ -21,7 +21,7 @@ function Signup() {
     const passwordConfirmation = formData.get("password-confirmation");
     const role = formData.get("role");
 
-    console.log({ name, email, password, passwordConfirmation, role });
+    // console.log({ name, email, password, passwordConfirmation, role });
 
     try {
       const response = await signupWithCredentials({
@@ -31,13 +31,13 @@ function Signup() {
         passwordConfirmation,
         role,
       });
-      console.log(response);
+      // console.log(response);
 
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
         // don't forget to redirect to thanks page
-        console.log(response?.message);
+        // console.log(response?.message);
       }
     } catch (error) {
       console.log(error.message);

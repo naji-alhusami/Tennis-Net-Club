@@ -1,3 +1,5 @@
+'use client'
+
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/daygrid";
@@ -5,7 +7,7 @@ import React from "react";
 import Headers from "../ui/headers";
 import classes from "../calendar/calendar-events.module.css";
 
-function ClubCalendar() {
+function ClubCalendar({eventsAndTimes}) {
   return (
     <div className={classes.eventsContainer}>
       <div className={classes.text}>
@@ -22,7 +24,7 @@ function ClubCalendar() {
           plugins={[dayGridPlugin, timeGridPlugin]}
           initialView="dayGridMonth"
           height="600px"
-          // events={eventsAndTimes}
+          events={eventsAndTimes}
         />
       </div>
     </div>

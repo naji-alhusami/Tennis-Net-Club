@@ -1,3 +1,4 @@
+'use client'
 import React, { Fragment } from "react";
 import Image from "next/image";
 import background from "@/public/images/background.jpg";
