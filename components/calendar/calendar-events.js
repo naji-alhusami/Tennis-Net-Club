@@ -11,17 +11,11 @@ import { useSession } from "next-auth/react";
 
 function CalendarEvents({ events, takenTimes }) {
   const { data: session } = useSession();
-  // console.log(takenTimes);
-  // console.log(session);
-  // console.log(events);
 
   const memberTakenTimes = takenTimes.filter((takenTime) => {
     return takenTime.member === session?.user.name;
   });
-  // console.log(memberTakenTimes);
-  // const memberEvents = events.filter((event) => {
-  //   return event.member === session.user.name;
-  // });
+
   const eventsWithMatchingDates = events.filter((event) => {
     return memberTakenTimes.some((takenTime) => {
       return event.date === takenTime.date;

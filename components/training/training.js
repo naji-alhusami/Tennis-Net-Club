@@ -6,12 +6,15 @@ import { motion } from "framer-motion";
 
 import classes from "./training.module.css";
 import courses from "@/public/images/courses.jpg";
-import bg from "@/public/images/background1.jpg";
 import Headers from "../ui/headers";
 import { trainingData } from "./trainingData";
-import { equipmentsData } from "./equipmentsData";
+import { useSession } from "next-auth/react";
+// import TrainingForm from "./trainingForm";
 
 function Training() {
+  const { data: session } = useSession();
+  // const [showEnrollForm, setShowEnrollForm] = useState(false);
+
   return (
     <Fragment>
       <div className={classes.trainingContainer}>
@@ -54,80 +57,29 @@ function Training() {
                 {/* <p>{data.pText5}</p> */}
               </div>
               <div>
-                <Link href="/auth/login">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={
-                      data.id === "2"
-                        ? classes.enrollButton2
-                        : classes.enrollButton1
-                    }
-                  >
-                    Enroll
-                  </motion.div>
-                </Link>
+                {session ? (
+                  <Link href="/contact">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.9 }}
+                      className={
+                        data.id === "2"
+                          ? classes.enrollButton2
+                          : classes.enrollButton1
+                      }
+                    >
+                      Contact Us
+                    </motion.div>
+                  </Link>
+                ) : (
+                  <div className={classes.enrollButtonDisabled}>Enroll</div>
+                )}
               </div>
             </div>
           ))}
         </div>
-        {/* <div className={classes.equipmentsContainer}>
-          {equipmentsData.map((eq) => (
-            <div key={eq.id} className={classes.equipmentContainer}>
-              <div>
-                <Image src={eq.image} alt="eq1" />
-              </div>
-              <div>
-                <h1>{eq.title}</h1>
-                <p>{eq.description}</p>
-              </div>
-            </div>
-          ))}
-        </div> */}
-        {/* <div className={classes.trainingPricesContainers}>
-          <div className={classes.trainingPricesContainer1}>
-            <h2>GROUP SESSION</h2>
-            <h1>300$ / Month</h1>
-            <p>Intermediate / Advanced Level</p>
-            <p>3 Days Per Week</p>
-            <p>1 Hour</p>
-            <p>Up To 3 Players</p>
-            <p>All Equipments Are Available</p>
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.contactButton1} href="/auth/login">
-                Enroll
-              </Link>
-            </motion.div>
-          </div>
-          <div className={classes.trainingPricesContainer2}>
-            <div className={classes.textContainer2}>
-              <h2>GROUP SESSION</h2>
-              <h1>150$ / Month</h1>
-              <p>Beginner Level</p>
-              <p>3 Days Per Week</p>
-              <p>1 Hour</p>
-              <p>Up To 3 Players</p>
-              <p>All Equipments Are Available</p>
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Link className={classes.contactButton} href="/auth/login">
-                  Enroll
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-          <div className={classes.trainingPricesContainer3}>
-            <h2>INDIVIDUAL SESSION</h2>
-            <h1>150$ / Month</h1>
-            <p>Intermediate / Advanced Level</p>
-            <p>3 Days Per Week</p>
-            <p>Can Bring A Friend</p>
-            <p>All Equipments Are Available</p>
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.contactButton1} href="/auth/login">
-                Enroll
-              </Link>
-            </motion.div>
-          </div>
+        {/* <div>
+          <TrainingForm />
         </div> */}
         {/* <div className={classes.equipmentsContainer}>
           <div className={classes.equipmentContainer}>

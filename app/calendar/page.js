@@ -6,9 +6,7 @@ import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMo
 async function CalendarPage() {
   const events = await fetchEventsFromMongo();
   const takenTimes = await fetchTakenTimesFromMongo();
-  // console.log(events);
-  // console.log(takenTimes);
-  // const mergedData = [...events.data, ...takenTimes.data];
+
 
   return (
     <CalendarEvents

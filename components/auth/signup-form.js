@@ -17,6 +17,7 @@ function Signup() {
   async function signupCredentialsHandler(formData) {
     const name = formData.get("name");
     const email = formData.get("email");
+    const number = formData.get("number");
     const password = formData.get("password");
     const passwordConfirmation = formData.get("password-confirmation");
     const role = formData.get("role");
@@ -27,6 +28,7 @@ function Signup() {
       const response = await signupWithCredentials({
         name,
         email,
+        number,
         password,
         passwordConfirmation,
         role,
@@ -54,6 +56,14 @@ function Signup() {
         </div>
         <div>
           <input type="email" name="email" placeholder="Your Email" required />
+        </div>
+        <div>
+          <input
+            type="number"
+            name="number"
+            placeholder="Your Number"
+            required
+          />
         </div>
         <div>
           <input

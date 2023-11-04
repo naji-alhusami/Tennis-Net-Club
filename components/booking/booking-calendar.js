@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, use } from "react";
+import React, { useState, useContext } from "react";
 import AuthContext from "@/store/auth-context";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
@@ -23,9 +23,8 @@ function BookingCalendar({ nextStepHandler }) {
     "December",
   ];
 
-  const { activeDay, setActiveDay, timeSlots, setNextButton } =
-    useContext(AuthContext);
-  // console.log(activeDay);
+  const { activeDay, setActiveDay, setNextButton } = useContext(AuthContext);
+  console.log(activeDay);
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();

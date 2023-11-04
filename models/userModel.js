@@ -11,6 +11,10 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    WhatsApp: {
+      type: Number,
+      required: true,
+    },
     password: String,
     // passwordConfirmation: String,
     provider: {

@@ -130,7 +130,6 @@
 .reserveButtonDisabled {
   background-color: #ababab;
   padding: 0.3rem 1rem;
-  /* border: 10px solid rgb(137, 227, 59); */
   color: white;
   margin-left: 2rem;
   font-size: var(--size-5);

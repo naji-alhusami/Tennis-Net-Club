@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/layout/footer";
 import MyProvider from "@/store/my-provider";
 import { AuthProvider } from "./Providers";
-import { useSession } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +20,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <MainNavigation />
             {children}
-            {/* <Footer /> */}
+            <Footer />
           </AuthProvider>
         </MyProvider>
       </body>

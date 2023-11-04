@@ -11,8 +11,13 @@ import { useSession } from "next-auth/react";
 function BookingInfo({ timeSlots, events, takenTimes }) {
   const { data: session } = useSession();
   const router = useSearchParams();
-  const { currentStep, activeDay, nextStepHandler, prevStepHandler } =
-    useContext(AuthContext);
+  const {
+    currentStep,
+    activeDay,
+    nextStepHandler,
+    numberOfPlayers,
+    setNumberOfPlayers,
+  } = useContext(AuthContext);
 
   const headerStyle = { textAlign: "center", fontSize: "2rem" };
   const hrStyle = {
@@ -31,6 +36,8 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
           <DateSelectionStep
             nextStepHandler={nextStepHandler}
             activeDay={activeDay}
+            numberOfPlayers={numberOfPlayers}
+            setNumberOfPlayers={setNumberOfPlayers}
           />
         </div>
       )}
@@ -38,7 +45,11 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
-          <TimeSelectionStep timeSlots={timeSlots} takenTimes={takenTimes} session={session} />
+          <TimeSelectionStep
+            timeSlots={timeSlots}
+            takenTimes={takenTimes}
+            session={session}
+          />
         </div>
       )}
       {currentStep === 3 && router.has("time") && (

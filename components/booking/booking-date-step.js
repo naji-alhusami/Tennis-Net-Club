@@ -11,11 +11,16 @@ import classes from "./booking-date-step.js.module.css";
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 
-function DateSelectionStep({ nextStepHandler, activeDay }) {
+function DateSelectionStep({
+  nextStepHandler,
+  activeDay,
+  numberOfPlayers,
+  setNumberOfPlayers,
+}) {
   const naji = new Date();
   console.log(naji);
   const [selectedCourtType, setSelectedCourtType] = useState("");
-  const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
+  // const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 
   let formattedDate = null;
   if (activeDay) {
@@ -32,7 +37,7 @@ function DateSelectionStep({ nextStepHandler, activeDay }) {
     nextStepHandler();
   }
 
-  const nextPath = `/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${selectedPlayersNumber}`;
+  const nextPath = `/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${numberOfPlayers}`;
 
   return (
     <Fragment>
@@ -48,8 +53,8 @@ function DateSelectionStep({ nextStepHandler, activeDay }) {
             <option value="Hard">Hard Court</option>
           </select>
           <select
-            value={selectedPlayersNumber}
-            onChange={(e) => setSelectedPlayersNumber(e.target.value)}
+            value={numberOfPlayers}
+            onChange={(e) => setNumberOfPlayers(e.target.value)}
             required
           >
             <option value="">--- Select Players Number ---</option>
