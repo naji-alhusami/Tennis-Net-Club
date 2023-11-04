@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { Fragment } from "react";
 import Image from "next/image";
 import background from "@/public/images/background.jpg";
@@ -7,6 +7,7 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./starting.module.css";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 function Starting() {
   const { data: session } = useSession();
@@ -29,7 +30,12 @@ function Starting() {
             priority={true}
           />
         </div>
-        <div className={classes.startingText}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className={classes.startingText}
+        >
           <h1>Hi</h1>
           {session ? (
             <h2>Welcome to our TENNIS NET Club</h2>
@@ -37,12 +43,12 @@ function Starting() {
             <h2>Join Our Legacy of Tennis Enthusiasts</h2>
           )}
           {session ? (
-            <p>
+            <motion.p>
               Go now and book your training session. If you are a good player
               and you want to play with your friend, you can book a court. If
               you are looking for a partner, you can find your partner in our
               club.
-            </p>
+            </motion.p>
           ) : (
             <p>
               Whether you are a novice eager to learn, a competitor hungry for
@@ -66,7 +72,7 @@ function Starting() {
               </Button>
             </Link>
           )}
-        </div>
+        </motion.div>
       </div>
     </Fragment>
   );
