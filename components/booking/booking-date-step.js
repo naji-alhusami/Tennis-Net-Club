@@ -83,9 +83,7 @@ function DateSelectionStep({
           </div>
         </div>
         <div className={classes.buttonContainer}>
-          {activeDay &&
-          selectedCourtType !== "" &&
-          selectedPlayersNumber !== "" ? (
+          {activeDay && selectedCourtType !== "" && numberOfPlayers !== "" ? (
             <Link
               href={nextPath}
               className={classes.nextButton}
