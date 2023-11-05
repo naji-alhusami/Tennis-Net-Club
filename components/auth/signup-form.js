@@ -20,7 +20,7 @@ function Signup() {
     const number = formData.get("number");
     const password = formData.get("password");
     const passwordConfirmation = formData.get("password-confirmation");
-    const role = formData.get("role");
+    // const role = formData.get("role");
 
     // console.log({ name, email, password, passwordConfirmation, role });
 
@@ -31,7 +31,7 @@ function Signup() {
         number,
         password,
         passwordConfirmation,
-        role,
+        // role,
       });
       // console.log(response);
 
@@ -82,13 +82,13 @@ function Signup() {
           />
         </div>
 
-        <div>
+        {/* <div>
           <select name="role" className={classes.select} required>
             <option value="">Select your role</option>
             <option value="player">Player</option>
             <option value="trainer">Trainer</option>
           </select>
-        </div>
+        </div> */}
         <div>
           {errorMessage ? (
             <p className={classes.error}>{errorMessage}</p>
@@ -100,14 +100,6 @@ function Signup() {
         </div>
         <div className={classes.notMember}>
           <ButtonTest>Signup</ButtonTest>
-          {/* <button
-            className={classes.button}
-            // onClick={() => startTransition(() => signupCredentialsHandler())}
-          >
-            {pending ? "Signing Up..." : "Signup"} */}
-          {/* Signup */}
-          {/* </button> */}
-
           <h3>Already A Member?</h3>
           <Link href="/auth/login" className={classes.button}>
             Login
@@ -117,7 +109,7 @@ function Signup() {
           <h3>Or Signup With Google:</h3>
           <button
             className={classes.googleButton}
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn("google", { callbackUrl: "/auth/addWhatsApp" })}
           >
             <FcGoogle size={30} />
           </button>

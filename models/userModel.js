@@ -11,9 +11,9 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    WhatsApp: {
+    WhatsAppNumber: {
       type: Number,
-      required: true,
+      default: "1234567898",
     },
     password: String,
     // passwordConfirmation: String,

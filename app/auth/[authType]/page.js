@@ -10,6 +10,7 @@ import { getServerSession } from "next-auth";
 import signup from "@/public/images/signup.jpg";
 import classes from "@/components/auth/signup-form.module.css";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import AddWhatsApp from "@/components/auth/add-whatsapp";
 
 async function AuthType({ params, searchParams }) {
   const session = await getServerSession(authOptions);
@@ -32,10 +33,9 @@ async function AuthType({ params, searchParams }) {
       <div>
         {params.authType === "signup" ? (
           <Signup />
-        ) : (
+        ) : params.authType === "signin" ? (
           <Login callbackUrl={searchParams.callbackUrl || "/"} />
-          // <Login />
-        )}
+        ) : <AddWhatsApp /> }
       </div>
     </div>
   );

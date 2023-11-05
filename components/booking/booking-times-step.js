@@ -22,7 +22,7 @@ function TimeSelectionStep({ session, timeSlots, takenTimes }) {
   console.log(session);
   const dayFromLink = pathData.get("date");
   const memberTakenTimes = takenTimes.data.filter(
-    (reservation) => reservation.member === session.user.name
+    (reservation) => reservation.member === session?.user.name
   );
   const hasReservationForDay = memberTakenTimes.some(
     (reservation) => reservation.date === dayFromLink

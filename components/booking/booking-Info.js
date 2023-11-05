@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { Suspense, useContext } from "react";
 import { useSearchParams } from "next/navigation";
 
 import DateSelectionStep from "./booking-date-step";
@@ -45,11 +45,13 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
-          <TimeSelectionStep
-            timeSlots={timeSlots}
-            takenTimes={takenTimes}
-            session={session}
-          />
+          <Suspense fallback={<p>Loading...</p>}>
+            <TimeSelectionStep
+              timeSlots={timeSlots}
+              takenTimes={takenTimes}
+              session={session}
+            />
+          </Suspense>
         </div>
       )}
       {currentStep === 3 && router.has("time") && (

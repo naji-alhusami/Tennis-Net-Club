@@ -1,0 +1,55 @@
+.addWhatsAppForm {
+  width: 30rem;
+  max-height: 40rem;
+  position: absolute;
+  padding: 0 3% 2% 3.2%;
+  background-color: rgb(255, 255, 255, 0.9);
+  top: 35%;
+  left: 6%;
+}
+
+.addWhatsAppForm input {
+  width: 100%;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.addWhatsAppForm h1 {
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.button {
+  width: 100%;
+  font-size: var(--size-6);
+  padding: 2%;
+  background-color: #1c7f47;
+  border: 2px solid #1c7f47;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: #146135;
+  border-color: #146135;
+}
+
+.error p {
+  color: #c80000ef;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 650px) {
+  .addWhatsAppForm {
+    width: 20rem;
+    position: absolute;
+    top: 20%;
+  }
+}
