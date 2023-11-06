@@ -1,6 +1,7 @@
 import { verifyPassword } from "@/lib/auth";
 // import { connectToDatabase } from "@/lib/db";
 import connectToDatabase from "@/lib/db";
+import { verifyToken } from "@/lib/token";
 import User from "@/models/userModel";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
@@ -19,7 +20,7 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials) {
         const user = await User.findOne({ email: credentials.email });
-        console.log(user);
+        console.log("inide auth", user);
         if (!user) {
           throw new Error("No User With This Email Founded");
         }
@@ -33,7 +34,15 @@ export const authOptions = {
           throw new Error("Your Password Is Incorrect");
         }
 
-        return { email: user.email, name: user.name };
+        if (!user.emailVerified) {
+          throw new Error("Email Is Not Verified");
+        }
+
+        return {
+          email: user.email,
+          name: user.name,
+          emailVerified: user.emailVerified,
+        };
       },
     }),
   ],
@@ -47,7 +56,7 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       // signInWithOAuth
-      // console.log(account);
+
       if (account.type === "oauth") {
         return await signInWithOAuth({ account, profile });
       }
@@ -82,6 +91,7 @@ async function signInWithOAuth({ account, profile }) {
     name: profile.name,
     email: profile.email,
     provider: account.provider,
+    emailVerified: false,
   });
 
   await newUser.save();
@@ -97,6 +107,40 @@ async function getUserByEmail({ email }) {
 }
 
 // -----------------------------
+
+// verification of email.
+export async function verifyWithCredentials(token) {
+  const { user } = verifyToken(token);
+
+  try {
+    // Find the user by their email
+    const existingUser = await User.findOne({ email: user.email });
+
+    if (existingUser) {
+      // Update the emailVerified property to true
+      existingUser.emailVerified = true;
+
+      // Save the updated user
+      await existingUser.save();
+
+      // return a success messag
+      return {
+        message: "Your email is verified.",
+      };
+    } else {
+      // Handle the case when the user is not found
+      return {
+        message: "User not found.",
+      };
+    }
+  } catch (error) {
+    // Handle any errors that may occur during the process
+    console.error(error);
+    return {
+      error: "An error occurred while verifying the email.",
+    };
+  }
+}
 
 // async function singInWithCredentials(email, password) {
 //   const user = await User.findOne({ email });

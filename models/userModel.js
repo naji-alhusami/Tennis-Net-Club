@@ -21,9 +21,10 @@ const userSchema = new Schema(
       type: String,
       default: "credentials",
     },
-    provider: {
+    emailVerified: {
       type: Boolean,
       default: false,
+      required: false,
     },
   },
   { timestamps: true }

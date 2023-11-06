@@ -24,7 +24,7 @@ function Signup() {
     const passwordConfirmation = formData.get("password-confirmation");
     // const role = formData.get("role");
 
-    // console.log({ name, email, password, passwordConfirmation, role });
+    console.log({ name, email, password, passwordConfirmation, number });
 
     try {
       const response = await signupWithCredentials({
@@ -33,7 +33,6 @@ function Signup() {
         number,
         password,
         passwordConfirmation,
-        // role,
       });
       // console.log(response);
 
@@ -104,7 +103,7 @@ function Signup() {
         <div className={classes.notMember}>
           <ButtonTest>Signup</ButtonTest>
           <h3>Already A Member?</h3>
-          <Link href="/auth/login" className={classes.button}>
+          <Link href="/auth/signin" className={classes.button}>
             Login
           </Link>
         </div>

@@ -19,19 +19,20 @@ function Login({ callbackUrl }) {
     const email = formData.get("email");
     const password = formData.get("password");
 
+    // try {
     const response = await signIn("credentials", {
       redirect: false,
       email: email,
       password: password,
       // callbackUrl,
     });
-    // console.log(response);
-
+    console.log(response);
     if (!response.ok) {
       setErrorMessage(response.error);
-    } else {
+    } else if (response.ok) {
+      ref.current?.reset();
       setErrorMessage("");
-      router.replace("/");
+      router.push("/");
     }
   }
 
@@ -74,7 +75,7 @@ function Login({ callbackUrl }) {
         <h3>Or Login with Google:</h3>
         <button
           className={classes.googleButton}
-          onClick={() => signIn("google", { callbackUrl })}
+          onClick={() => signIn("google", { callbackUrl: "/auth/addWhatsApp" })}
         >
           <FcGoogle size={30} />
         </button>

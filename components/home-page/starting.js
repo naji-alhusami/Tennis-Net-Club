@@ -7,7 +7,6 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./starting.module.css";
 import { useSession } from "next-auth/react";
-import { motion } from "framer-motion";
 
 function Starting() {
   const { data: session } = useSession();
@@ -30,30 +29,44 @@ function Starting() {
             priority={true}
           />
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className={classes.startingText}
-        >
+        <div className={classes.startingText}>
           <h1>Hi</h1>
           {session ? (
             <h2>Welcome to our TENNIS NET Club</h2>
           ) : (
             <h2>Join Our Legacy of Tennis Enthusiasts</h2>
           )}
-          <motion.p>
-            Go now and book your training session. If you are a good player and
-            you want to play with your friend, you can book a court. If you are
-            looking for a partner, you can find your partner in our club.
-          </motion.p>
-          <Link href="/calendar">
-            <Button>
-              Check My Calendar Events
-              <RightArrow />
-            </Button>
-          </Link>
-        </motion.div>
+          {session ? (
+            <p>
+              Go now and book your training session. If you are a good player
+              and you want to play with your friend, you can book a court. If
+              you are looking for a partner, you can find your partner in our
+              club.
+            </p>
+          ) : (
+            <p>
+              Whether you are a novice eager to learn, a competitor hungry for
+              victory, or a fan of the game, we invite you to join us in this
+              journey. The court is set, the ball is in your court. Come be a
+              part of TENNIS NET Club.
+            </p>
+          )}
+          {session ? (
+            <Link href="/calendar">
+              <Button>
+                Check My Calendar Events
+                <RightArrow />
+              </Button>
+            </Link>
+          ) : (
+            <Link href="/auth/signup">
+              <Button>
+                Become A Member
+                <RightArrow />
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
     </Fragment>
   );

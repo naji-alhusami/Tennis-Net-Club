@@ -1,4 +1,5 @@
-import { verifyWithCredentials } from "@/actions/signupActions";
+import Thanks from "@/components/thanks/thanks";
+import { verifyWithCredentials } from "../api/auth/[...nextauth]/route";
 
 async function verifyPage({ searchParams }) {
   const response = await verifyWithCredentials(searchParams.token);
@@ -6,7 +7,8 @@ async function verifyPage({ searchParams }) {
   // console.log(searchParams.token);
   return (
     <div>
-      <h1>{response?.message}</h1>
+      <Thanks thanksMessage={response?.message} />
+      {/* <h1>{response?.message}</h1> */}
     </div>
   );
 }

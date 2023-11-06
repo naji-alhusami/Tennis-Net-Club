@@ -35,31 +35,24 @@ export async function signupWithCredentials(data) {
 
   const token = await generateToken({ user: data });
 
+  const newUser = new User({
+    name: data.name,
+    email: data.email,
+    WhatsAppNumber: data.number,
+    password: data.password,
+    emailVerified: false,
+  });
+
   await sendEmail({
     to: data.email,
     url: `${BASE_URL}/verify?token=${token}`,
     text: "VERIFY EMAIL",
   });
 
-  const newUser = new User(user);
-
   await newUser.save();
 
   return {
     message:
       "Signup Success, Before You Login, Please Check Your Email To Verify Your Email.",
-  };
-}
-
-// verification of email.
-export async function verifyWithCredentials(token) {
-  const { user } = verifyToken(token);
-
-  const newUser = new User(user);
-
-  await newUser.save();
-
-  return {
-    message: "Your Email is Verified",
   };
 }
