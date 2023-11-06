@@ -11,8 +11,6 @@ import { useSession } from "next-auth/react";
 
 function FindPartner({ players }) {
   const { data: session } = useSession();
-  console.log(session?.user.name);
-  console.log(players);
 
   const filteredPlayers = players.filter(
     (player) => player.name !== session?.user.name

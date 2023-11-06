@@ -4,7 +4,7 @@ import React from "react";
 
 async function ManageBookingPage() {
   const takenTimes = await fetchTakenTimesFromMongo();
-  return <ManageBooking takenTimes={takenTimes} />;
+  return <ManageBooking takenTimes={takenTimes.data} />;
 }
 
 export default ManageBookingPage;
