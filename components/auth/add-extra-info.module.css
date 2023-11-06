@@ -1,4 +1,4 @@
-.addWhatsAppForm {
+.AddExtraInfo {
   width: 30rem;
   max-height: 40rem;
   position: absolute;
@@ -8,15 +8,20 @@
   left: 6%;
 }
 
-.addWhatsAppForm input {
+.AddExtraInfo input {
   width: 100%;
   height: 2rem;
   margin-bottom: 1rem;
 }
 
-.addWhatsAppForm h1 {
+.AddExtraInfo h1 {
   text-align: center;
   margin-right: 1rem;
+}
+
+.AddExtraInfo select {
+  width: 100%;
+  height: 2rem;
 }
 
 .button {

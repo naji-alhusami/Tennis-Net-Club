@@ -22,7 +22,7 @@ function Signup() {
     const number = formData.get("number");
     const password = formData.get("password");
     const passwordConfirmation = formData.get("password-confirmation");
-    // const role = formData.get("role");
+    const level = formData.get("level");
 
     console.log({ name, email, password, passwordConfirmation, number });
 
@@ -33,6 +33,7 @@ function Signup() {
         number,
         password,
         passwordConfirmation,
+        level,
       });
       // console.log(response);
 
@@ -84,13 +85,14 @@ function Signup() {
           />
         </div>
 
-        {/* <div>
-          <select name="role" className={classes.select} required>
-            <option value="">Select your role</option>
-            <option value="player">Player</option>
-            <option value="trainer">Trainer</option>
+        <div>
+          <select name="level" className={classes.select} required>
+            <option value="">Select Your Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advance">Advance</option>
           </select>
-        </div> */}
+        </div>
         <div>
           {errorMessage ? (
             <p className={classes.error}>{errorMessage}</p>
@@ -112,7 +114,7 @@ function Signup() {
           <button
             className={classes.googleButton}
             onClick={() =>
-              signIn("google", { callbackUrl: "/auth/addWhatsApp" })
+              signIn("google", { callbackUrl: "/auth/addExtraInfo" })
             }
           >
             <FcGoogle size={30} />

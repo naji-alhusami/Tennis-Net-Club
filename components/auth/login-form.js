@@ -75,7 +75,7 @@ function Login({ callbackUrl }) {
         <h3>Or Login with Google:</h3>
         <button
           className={classes.googleButton}
-          onClick={() => signIn("google", { callbackUrl: "/auth/addWhatsApp" })}
+          onClick={() => signIn("google", { callbackUrl: "/auth/addExtraInfo" })}
         >
           <FcGoogle size={30} />
         </button>

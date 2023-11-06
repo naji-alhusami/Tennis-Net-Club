@@ -17,6 +17,10 @@ const userSchema = new Schema(
     },
     password: String,
     // passwordConfirmation: String,
+    level: {
+      type: String,
+      default: "Beginner",
+    },
     provider: {
       type: String,
       default: "credentials",

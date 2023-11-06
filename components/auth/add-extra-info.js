@@ -2,31 +2,33 @@
 import React, { useRef, useState } from "react";
 
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import classes from "./add-whatsapp.module.css";
+import classes from "./add-extra-info.module.css";
 import ButtonTest from "../ui/buttonTest";
-import { AddWhatsAppActions } from "@/actions/addWhatsAppActions";
+import { AddExtraInfoActions } from "@/actions/addExtraInfoActions";
 
-function AddWhatsApp({ callbackUrl }) {
+function AddExtraInfo({ callbackUrl }) {
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);
 
   const router = useRouter();
 
-  async function AddWhatsAppHandler(formData) {
+  async function AddExtraInfoHandler(formData) {
     const number = formData.get("number");
+    const level = formData.get("level");
 
     try {
-      const response = await AddWhatsAppActions({
+      const response = await AddExtraInfoActions({
         number,
+        level,
       });
       console.log(response);
 
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
-        router.replace("/");
+        router.replace(`/thanks?thanks=${response.message}`);
         // don't forget to redirect to thanks page
         // console.log(response?.message);
       }
@@ -37,9 +39,9 @@ function AddWhatsApp({ callbackUrl }) {
   }
 
   return (
-    <div className={classes.addWhatsAppForm}>
-      <h1>Add WhatsApp</h1>
-      <form action={AddWhatsAppHandler} ref={ref}>
+    <div className={classes.AddExtraInfo}>
+      <h1>Add Extra Information</h1>
+      <form action={AddExtraInfoHandler} ref={ref}>
         <div>
           <input
             name="number"
@@ -47,6 +49,14 @@ function AddWhatsApp({ callbackUrl }) {
             placeholder="Your WhatsApp"
             required
           />
+        </div>
+        <div>
+          <select name="level" className={classes.select} required>
+            <option value="">Select Your Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advance">Advance</option>
+          </select>
         </div>
         <div className={classes.error}>
           {errorMessage ? (
@@ -65,4 +75,4 @@ function AddWhatsApp({ callbackUrl }) {
   );
 }
 
-export default AddWhatsApp;
+export default AddExtraInfo;

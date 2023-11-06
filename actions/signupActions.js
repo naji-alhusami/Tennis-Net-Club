@@ -40,6 +40,7 @@ export async function signupWithCredentials(data) {
     email: data.email,
     WhatsAppNumber: data.number,
     password: data.password,
+    level: data.level,
     emailVerified: false,
   });
 
