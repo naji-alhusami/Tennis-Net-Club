@@ -47,14 +47,19 @@ function MainNavigation(props) {
             <li className={classes.navbarListHome}>
               <Link href="/">Home</Link>
             </li>
-            {/* {session && (
+            {session && (
               <li className={classes.navbarListBook}>
                 <Link href="/booking">Book Court</Link>
               </li>
-            )} */}
+            )}
+            {session && (
+              <li className={classes.navbarListBook}>
+                <Link href="/manage">Manage Bookings</Link>
+              </li>
+            )}
             {session && (
               <li className={classes.navbarListPartner}>
-                <Link href="/">Find Partner</Link>
+                <Link href="/partner">Find Partner</Link>
               </li>
             )}
             {session && (
@@ -62,14 +67,11 @@ function MainNavigation(props) {
                 <Link href="/training">Trainings</Link>
               </li>
             )}
-            {/* <li className={classes.navbarListBlogs}>
+            <li className={classes.navbarListBlogs}>
               <Link href="/posts">Blogs</Link>
-            </li> */}
+            </li>
             <li className={classes.navbarListContact}>
               <Link href="/contact">Contact</Link>
-            </li>
-            <li className={classes.navbarListAbout}>
-              <Link href="/about">About</Link>
             </li>
             <li>
               {session ? (
