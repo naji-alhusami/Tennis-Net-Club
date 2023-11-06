@@ -1,18 +1,14 @@
 "use client";
 import React, { Fragment } from "react";
 import Image from "next/image";
-import background from "@/public/images/background.jpg";
+import thanks from "@/public/images/thanks.jpg";
 import Button from "../ui/button";
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
-import classes from "./starting.module.css";
-import { useSession } from "next-auth/react";
+import classes from "./thanks.module.css";
 import { motion } from "framer-motion";
 
-function Starting() {
-  const { data: session } = useSession();
-  // console.log(session);
-
+function Thanks({ thanksMessage }) {
   return (
     <Fragment>
       <div className={classes.starting}>
@@ -21,7 +17,7 @@ function Starting() {
           style={{ filter: "brightness(0.7)" }}
         >
           <Image
-            src={background}
+            src={thanks}
             alt="website background"
             // height={500}
             // width={1500}
@@ -37,19 +33,12 @@ function Starting() {
           className={classes.startingText}
         >
           <h1>Hi</h1>
-          {session ? (
-            <h2>Welcome to our TENNIS NET Club</h2>
-          ) : (
-            <h2>Join Our Legacy of Tennis Enthusiasts</h2>
-          )}
-          <motion.p>
-            Go now and book your training session. If you are a good player and
-            you want to play with your friend, you can book a court. If you are
-            looking for a partner, you can find your partner in our club.
-          </motion.p>
-          <Link href="/calendar">
+          <h2>Welcome to our TENNIS NET Club</h2>
+          <motion.p>{thanksMessage}</motion.p>
+
+          <Link href="/auth/signin">
             <Button>
-              Check My Calendar Events
+              Login
               <RightArrow />
             </Button>
           </Link>
@@ -59,4 +48,4 @@ function Starting() {
   );
 }
 
-export default Starting;
+export default Thanks;

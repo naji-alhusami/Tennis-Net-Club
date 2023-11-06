@@ -19,7 +19,7 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials) {
         const user = await User.findOne({ email: credentials.email });
-
+        console.log(user);
         if (!user) {
           throw new Error("No User With This Email Founded");
         }

@@ -41,8 +41,13 @@ export async function signupWithCredentials(data) {
     text: "VERIFY EMAIL",
   });
 
+  const newUser = new User(user);
+
+  await newUser.save();
+
   return {
-    message: "Signup Success, Please Check Your Email To Verify Your Email.",
+    message:
+      "Signup Success, Before You Login, Please Check Your Email To Verify Your Email.",
   };
 }
 

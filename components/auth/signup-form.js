@@ -9,10 +9,12 @@ import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { signupWithCredentials } from "@/actions/signupActions";
 import ButtonTest from "../ui/buttonTest";
+import { useRouter } from "next/navigation";
 
 function Signup() {
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);
+  const router = useRouter();
 
   async function signupCredentialsHandler(formData) {
     const name = formData.get("name");
@@ -38,6 +40,7 @@ function Signup() {
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
+        router.push(`/thanks?thanks=${response?.message}`);
         // don't forget to redirect to thanks page
         // console.log(response?.message);
       }
@@ -109,7 +112,9 @@ function Signup() {
           <h3>Or Signup With Google:</h3>
           <button
             className={classes.googleButton}
-            onClick={() => signIn("google", { callbackUrl: "/auth/addWhatsApp" })}
+            onClick={() =>
+              signIn("google", { callbackUrl: "/auth/addWhatsApp" })
+            }
           >
             <FcGoogle size={30} />
           </button>

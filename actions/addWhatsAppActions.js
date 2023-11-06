@@ -11,10 +11,6 @@ export async function AddWhatsAppActions(data) {
   if (!session) {
     throw new Error("Unauthorization");
   }
-  console.log(session);
-
-  const userId = session.user._id; 
-  console.log
 
   const user = await User.findByIdAndUpdate(
     session?.user?._id,
