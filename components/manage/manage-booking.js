@@ -5,13 +5,24 @@ import Headers from "../ui/headers";
 import manage from "@/public/images/manage.jpg";
 import classes from "./manage-booking.module.css";
 import { useSession } from "next-auth/react";
+import ButtonTest from "../ui/buttonTest";
+import {
+  deleteReservedTimesAction,
+  deleteReservedTimesActions,
+} from "@/actions/deleteReservedTimesActions";
 
 function ManageBooking({ takenTimes }) {
   const { data: session } = useSession();
   const filteredTakenTimes = takenTimes.filter(
     (takenTime) => takenTime.member === session?.user.name
   );
-  console.log(filteredTakenTimes);
+
+  async function cancelReservedTimeHandler(timeSlot) {
+    console.log(timeSlot);
+    console.log(filteredTakenTimes);
+
+    await deleteReservedTimesActions(timeSlot);
+  }
 
   return (
     <Fragment>
@@ -33,28 +44,33 @@ function ManageBooking({ takenTimes }) {
             PHeader="Change OR Cancel Your Booking"
           />
         </div>
-        <div className={classes.timeSlotsContainer}>
-          {filteredTakenTimes.length > 0 ? (
-            filteredTakenTimes.map((timeSlot) => {
-              return (
-                <div key={timeSlot._id} className={classes.timeSlot}>
-                  <h1>{timeSlot.courtType} Court</h1>
-                  <div>
-                    <p className={classes.time}>{timeSlot.time}</p>
-                    <p>{timeSlot.date}</p>
+
+        {!filteredTakenTimes.length > 0 ? (
+          <p>You Do Not Have Reserved Times.</p>
+        ) : (
+          filteredTakenTimes.map((timeSlot) => {
+            return (
+              <>
+                <form
+                  className={classes.timeSlotsContainer}
+                  action={() => cancelReservedTimeHandler(timeSlot)}
+                  // onSubmit={editReservedTimesHandler}
+                >
+                  <div key={timeSlot._id} className={classes.timeSlot}>
+                    <h1>{timeSlot.courtType} Court</h1>
+                    <div>
+                      <p className={classes.time}>{timeSlot.time}</p>
+                      <p>{timeSlot.date}</p>
+                    </div>
+                    <div className={classes.button}>
+                      <ButtonTest>CANCEL</ButtonTest>
+                    </div>
                   </div>
-                  <div className={classes.buttonsContainer}>
-                    <p className={classes.editButton}>CHANGE</p>
-                    <p className={classes.editButton}>CANCEL</p>
-                    {/* {renderTimeSlotElement(timeSlot)} */}
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <p>You Do Not Have Reserved Times.</p>
-          )}
-        </div>
+                </form>
+              </>
+            );
+          })
+        )}
       </div>
     </Fragment>
   );

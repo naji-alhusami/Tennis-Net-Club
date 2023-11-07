@@ -75,7 +75,11 @@
   margin: 2rem 0;
 }
 
-.editButton {
+.button {
+  min-width: 20%;
+}
+
+/* .editButton {
   width: 8rem;
   background-color: #db981b;
   border-color: #db981b;
@@ -83,12 +87,13 @@
   padding: 0.8rem 1.3rem;
   cursor: pointer;
   font-size: 1.1rem;
+  margin: 0.3rem 0;
 }
 
 .editButton:hover {
   background-color: #a97616;
   border-color: #a97616;
-}
+} */
 
 @media screen and (max-width: 620px) {
   .text h2 {
@@ -96,5 +101,8 @@
   }
   .timeSlot {
     flex-direction: column;
+  }
+  .button {
+    min-width: 50%;
   }
 }

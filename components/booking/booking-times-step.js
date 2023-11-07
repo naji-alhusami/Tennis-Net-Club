@@ -18,8 +18,8 @@ function TimeSelectionStep({ session, timeSlots, takenTimes }) {
   const [selectedTime, setSelectedTime] = useState("");
 
   // Check if the member has an existing reservation for the selected day
-  console.log(takenTimes);
-  console.log(session);
+  // console.log(takenTimes);
+  // console.log(session);
   const dayFromLink = pathData.get("date");
   const memberTakenTimes = takenTimes.data.filter(
     (reservation) => reservation.member === session?.user.name
