@@ -38,12 +38,16 @@ function ManageBooking({ takenTimes }) {
             filteredTakenTimes.map((timeSlot) => {
               return (
                 <div key={timeSlot._id} className={classes.timeSlot}>
-                  <h1 className={classes.time}>{timeSlot.time}</h1>
-                  <p>{timeSlot.date}</p>
-                  <p>{timeSlot.courtType} Court</p>
-                  <p className={classes.editButton}>CHANGE</p>
-                  <p className={classes.editButton}>CANCEL</p>
-                  {/* {renderTimeSlotElement(timeSlot)} */}
+                  <h1>{timeSlot.courtType} Court</h1>
+                  <div>
+                    <p className={classes.time}>{timeSlot.time}</p>
+                    <p>{timeSlot.date}</p>
+                  </div>
+                  <div className={classes.buttonsContainer}>
+                    <p className={classes.editButton}>CHANGE</p>
+                    <p className={classes.editButton}>CANCEL</p>
+                    {/* {renderTimeSlotElement(timeSlot)} */}
+                  </div>
                 </div>
               );
             })
