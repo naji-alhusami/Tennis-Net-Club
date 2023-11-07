@@ -16,7 +16,7 @@ async function HomePage() {
   const takenTimes = await fetchTakenTimesFromMongo();
   const bookingEvents = await fetchEventsFromMongo();
   // console.log(events);
-  // console.log(events);
+  console.log(takenTimes);
 
   const eventsAndTimes = [...takenTimes.data, ...bookingEvents.data, ...events];
   // console.log(eventsAndTimes);
