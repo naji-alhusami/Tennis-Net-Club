@@ -3,11 +3,11 @@ import { Schema, model, models } from "mongoose";
 const eventSchema = new Schema({
   member: {
     type: String,
-    required: true,
+    required: false,
   },
   date: {
     type: String,
-    required: true,
+    required: false,
   },
   title: {
     type: String,

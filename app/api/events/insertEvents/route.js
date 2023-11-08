@@ -7,14 +7,30 @@ connectToDatabase();
 export async function POST(req) {
   if (req.method === "POST") {
     try {
-      const { member, selectedDate } = await req.json();
-      // console.log("insied the API ROUTE", member);
-      const newEvent = new Event({
+      const { member, selectedDate, endedDate } = await req.json();
+
+      if (endedDate) {
+        const TrainingEvent = {
+          title: "Training Session",
+          member: member,
+          startRecur: selectedDate,
+          endRecur: endedDate,
+        };
+
+        const newTrainingEvent = new Event(TrainingEvent);
+
+        await newTrainingEvent.save();
+      }
+
+      cosole.log(endedDate);
+      // Create a base event object with mandatory properties
+      const courtReservationEvent = {
         member: member,
         date: selectedDate,
-      });
+      };
 
-      await newEvent.save();
+      const newReservationEvent = new Event(courtReservationEvent);
+      await newReservationEvent.save();
 
       return NextResponse.json(
         { message: "Successfully stored event!" },

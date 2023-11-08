@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -9,11 +9,12 @@ import courses from "@/public/images/courses.jpg";
 import Headers from "../ui/headers";
 import { trainingData } from "./trainingData";
 import { useSession } from "next-auth/react";
+import TrainingForm from "./trainingForm";
 // import TrainingForm from "./trainingForm";
 
 function Training() {
   const { data: session } = useSession();
-  // const [showEnrollForm, setShowEnrollForm] = useState(false);
+  const [showEnrollForm, setShowEnrollForm] = useState(false);
 
   return (
     <Fragment>
@@ -58,29 +59,32 @@ function Training() {
               </div>
               <div>
                 {session ? (
-                  <Link href="/contact">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.9 }}
-                      className={
-                        data.id === "2"
-                          ? classes.enrollButton2
-                          : classes.enrollButton1
-                      }
-                    >
-                      Contact Us
-                    </motion.div>
-                  </Link>
+                  // <Link onClick={() => setShowEnrollForm(true)}>
+                  <motion.div
+                    onClick={() => setShowEnrollForm(true)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={
+                      data.id === "2"
+                        ? classes.enrollButton2
+                        : classes.enrollButton1
+                    }
+                  >
+                    Enroll
+                  </motion.div>
                 ) : (
+                  // </Link>
                   <div className={classes.enrollButtonDisabled}>Enroll</div>
                 )}
               </div>
             </div>
           ))}
         </div>
-        {/* <div>
-          <TrainingForm />
-        </div> */}
+        {showEnrollForm && (
+          <div>
+            <TrainingForm />
+          </div>
+        )}
         {/* <div className={classes.equipmentsContainer}>
           <div className={classes.equipmentContainer}>
             <div>

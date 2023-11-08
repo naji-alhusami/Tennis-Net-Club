@@ -98,6 +98,7 @@
 }
 
 .enrollButton1 {
+  cursor: pointer;
   background-color: #1c8c4c;
   padding: 0.6rem 1.3rem;
   color: white;
@@ -107,6 +108,7 @@
 }
 
 .enrollButton2 {
+  cursor: pointer;
   background-color: #efad32;
   padding: 0.6rem 1.3rem;
   color: white;
