@@ -7,14 +7,15 @@ connectToDatabase();
 export async function POST(req) {
   if (req.method === "POST") {
     try {
-      const { member, selectedDate, endedDate } = await req.json();
-
-      if (endedDate) {
+      const { member, selectedDate, endedDate, daysOfWeek } = await req.json();
+      console.log(member, selectedDate, endedDate, daysOfWeek);
+      if (endedDate && daysOfWeek) {
         const TrainingEvent = {
           title: "Training Session",
           member: member,
           startRecur: selectedDate,
           endRecur: endedDate,
+          daysOfWeek: daysOfWeek,
         };
 
         const newTrainingEvent = new Event(TrainingEvent);
@@ -22,15 +23,14 @@ export async function POST(req) {
         await newTrainingEvent.save();
       }
 
-      cosole.log(endedDate);
-      // Create a base event object with mandatory properties
-      const courtReservationEvent = {
-        member: member,
-        date: selectedDate,
-      };
+      // cosole.log(endedDate);
+      // const courtReservationEvent = {
+      //   member: member,
+      //   date: selectedDate,
+      // };
 
-      const newReservationEvent = new Event(courtReservationEvent);
-      await newReservationEvent.save();
+      // const newReservationEvent = new Event(courtReservationEvent);
+      // await newReservationEvent.save();
 
       return NextResponse.json(
         { message: "Successfully stored event!" },

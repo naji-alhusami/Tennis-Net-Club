@@ -14,7 +14,7 @@ export const trainingData = [
     courseType: "INDIVIDUAL SESSIONS",
     price: "150$ / Month",
     pText1: "Intermediate / Advanced Level",
-    pText2: "3 Days Per Week",
+    pText2: "1 Day Per Week",
     pText3: "1 Hour",
     pText4: "Bring A Friend",
     pText5: "All Equipments Are Available",

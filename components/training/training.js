@@ -15,7 +15,13 @@ import TrainingForm from "./trainingForm";
 function Training() {
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
+  const [selectedTrainingType, setSelectedTrainingType] = useState(null);
 
+  const handleEnrollClick = (typeId) => {
+    setSelectedTrainingType(typeId);
+    setShowEnrollForm(true);
+  };
+  console.log(selectedTrainingType);
   return (
     <Fragment>
       <div className={classes.trainingContainer}>
@@ -55,13 +61,12 @@ function Training() {
                 <p>{data.pText2}</p>
                 <p>{data.pText3}</p>
                 <p>{data.pText4}</p>
-                {/* <p>{data.pText5}</p> */}
               </div>
               <div>
                 {session ? (
-                  // <Link onClick={() => setShowEnrollForm(true)}>
                   <motion.div
-                    onClick={() => setShowEnrollForm(true)}
+                    // onClick={() => setShowEnrollForm(true)}
+                    onClick={() => handleEnrollClick(data.id)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.9 }}
                     className={
@@ -73,7 +78,6 @@ function Training() {
                     Enroll
                   </motion.div>
                 ) : (
-                  // </Link>
                   <div className={classes.enrollButtonDisabled}>Enroll</div>
                 )}
               </div>
@@ -82,47 +86,9 @@ function Training() {
         </div>
         {showEnrollForm && (
           <div>
-            <TrainingForm />
+            <TrainingForm selectedTrainingType={selectedTrainingType} />
           </div>
         )}
-        {/* <div className={classes.equipmentsContainer}>
-          <div className={classes.equipmentContainer}>
-            <div>
-              <Image src={eq1} alt="eq1" />
-            </div>
-            <div>
-              <h1>eq 1</h1>
-              <p>equipment</p>
-            </div>
-          </div>
-          <div className={classes.equipmentContainer}>
-            <div>
-              <Image src={eq2} alt="eq2" />
-            </div>
-            <div>
-              <h1>eq 1</h1>
-              <p>equipment</p>
-            </div>
-          </div>
-          <div className={classes.equipmentContainer}>
-            <div>
-              <Image src={eq3} alt="eq3" />
-            </div>
-            <div>
-              <h1>eq 1</h1>
-              <p>equipment</p>
-            </div>
-          </div>
-          <div className={classes.equipmentContainer}>
-            <div>
-              <Image src={eq4} alt="eq4" />
-            </div>
-            <div>
-              <h1>eq 1</h1>
-              <p>equipment</p>
-            </div>
-          </div>
-        </div> */}
       </div>
     </Fragment>
   );
