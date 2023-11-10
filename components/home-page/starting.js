@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 
 function Starting() {
   const { data: session } = useSession();
-  // console.log(session);
+  console.log(session);
 
   return (
     <Fragment>

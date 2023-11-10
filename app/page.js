@@ -10,7 +10,9 @@ import Headers from "@/components/ui/headers";
 import classes from "../components/calendar/calendar-events.module.css";
 import CalendarEvents from "@/components/calendar/calendar-events";
 
-function HomePage() {
+// import { useSession } from "next-auth/react";
+
+async function HomePage() {
   return (
     <main>
       <Starting />
