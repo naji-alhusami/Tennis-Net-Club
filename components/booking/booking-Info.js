@@ -18,7 +18,7 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
     numberOfPlayers,
     setNumberOfPlayers,
   } = useContext(AuthContext);
-
+  // console.log("loading", loading);
   const headerStyle = { textAlign: "center", fontSize: "2rem" };
   const hrStyle = {
     border: "1px solid #1c7f47",
@@ -45,13 +45,13 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
-          <Suspense fallback={<p>Loading...</p>}>
+          {/* <Suspense fallback={<p style={{ height: "600px" }}>Loading...</p>}> */}
             <TimeSelectionStep
               timeSlots={timeSlots}
               takenTimes={takenTimes}
               session={session}
             />
-          </Suspense>
+          {/* </Suspense> */}
         </div>
       )}
       {currentStep === 3 && router.has("time") && (

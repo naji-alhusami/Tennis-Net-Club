@@ -24,13 +24,13 @@ export async function POST(req) {
       }
 
       // cosole.log(endedDate);
-      // const courtReservationEvent = {
-      //   member: member,
-      //   date: selectedDate,
-      // };
+      const courtReservationEvent = {
+        member: member,
+        date: selectedDate,
+      };
 
-      // const newReservationEvent = new Event(courtReservationEvent);
-      // await newReservationEvent.save();
+      const newReservationEvent = new Event(courtReservationEvent);
+      await newReservationEvent.save();
 
       return NextResponse.json(
         { message: "Successfully stored event!" },

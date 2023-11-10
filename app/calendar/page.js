@@ -1,19 +1,31 @@
-import React from "react";
+import React, { Suspense } from "react";
 import CalendarEvents from "@/components/calendar/calendar-events";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
+import Image from "next/image";
+import Headers from "@/components/ui/headers";
+import calendarEvents from "@/public/images/calendar-events.jpg";
+import classes from "../../components/calendar/calendar-events.module.css";
 
 async function CalendarPage() {
-  const events = await fetchEventsFromMongo();
-  const takenTimes = await fetchTakenTimesFromMongo();
-
-
   return (
-    <CalendarEvents
-      // eventsAndTimes={mergedData}
-      events={events.data}
-      takenTimes={takenTimes.data}
-    />
+    <div>
+      <div className={classes.image}>
+        <Image src={calendarEvents} alt="calendar-events" />
+      </div>
+      <div className={classes.text}>
+        <Headers
+          H3Header="Courses, Lessons & Reserved Courts"
+          H1Header="TIME SLOTS"
+          H2Header="My Calendar"
+          PHeader="Check your time slots, including (events, training sessions, and
+            reserved courts)"
+        />
+      </div>
+      <Suspense fallback={<h1 style={{ height: "600px" }}>Loading Naji...</h1>}>
+        <CalendarEvents />
+      </Suspense>
+    </div>
   );
 }
 

@@ -1,52 +1,37 @@
-"use client";
 import React from "react";
 import classes from "./calendar-events.module.css";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/daygrid";
-import Image from "next/image";
-import Headers from "../ui/headers";
-import calendarEvents from "@/public/images/calendar-events.jpg";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
+import Calendar from "./calendar";
+import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
+import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
 
-function CalendarEvents({ events, takenTimes }) {
-  const { data: session } = useSession();
+async function CalendarEvents() {
+  const events = await fetchEventsFromMongo();
+  const takenTimes = await fetchTakenTimesFromMongo();
+  // const { data: session } = useSession();
+  // console.log("events", events);
+  // const memberTakenTimes = takenTimes.filter((takenTime) => {
+  //   return takenTime.member === session?.user.name;
+  // });
 
-  const memberTakenTimes = takenTimes.filter((takenTime) => {
-    return takenTime.member === session?.user.name;
-  });
-
-  const eventsWithMatchingDates = events.filter((event) => {
-    return memberTakenTimes.some((takenTime) => {
-      return event.date === takenTime.date;
-    });
-  });
-  // console.log(memberTakenTimes);
-  // console.log(eventsWithMatchingDates);
-  const eventsAndTimes = [...eventsWithMatchingDates, ...memberTakenTimes];
+  // const eventsWithMatchingDates = events.filter((event) => {
+  //   return memberTakenTimes.some((takenTime) => {
+  //     return event.date === takenTime.date;
+  //   });
+  // });
+  // // console.log(memberTakenTimes);
+  // console.log("eventsWithMatchingDates", eventsWithMatchingDates);
+  // const eventsAndTimes = [...events, ...memberTakenTimes];
 
   return (
-    <div className={classes.eventsContainer}>
-      <div className={classes.image}>
-        <Image src={calendarEvents} alt="calendar-events" />
-      </div>
-      <div className={classes.text}>
-        <Headers
-          H3Header="Courses, Lessons & Reserved Courts"
-          H1Header="TIME SLOTS"
-          H2Header="My Calendar"
-          PHeader="Check your time slots, including (events, training sessions, and
-            reserved courts)"
-        />
-      </div>
-      <div className={classes.calendar}>
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin]}
-          initialView="dayGridMonth"
-          height="600px"
-          events={eventsAndTimes}
-        />
-      </div>
+    <div className={classes.calendar}>
+      <Calendar events={events.data} takenTimes={takenTimes.data} />
+      {/* <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin]}
+        initialView="dayGridMonth"
+        height="600px"
+        events={eventsAndTimes}
+      /> */}
     </div>
   );
 }

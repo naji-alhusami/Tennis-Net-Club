@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import BookingContainer from "@/components/booking/booking-container";
 import BookingSteps from "@/components/booking/booking-steps";
 import BookingInfo from "@/components/booking/booking-Info";
@@ -15,12 +15,27 @@ async function BookingPage({ searchParams }) {
   const events = await fetchEventsFromMongo();
 
   const takenTimes = await fetchTakenTimesFromMongo();
- 
+  console.log(takenTimes);
   return (
     <div className={classes.bookingContainer}>
       <BookingContainer />
       <BookingSteps />
-      <BookingInfo timeSlots={timeSlots} events={events} takenTimes={takenTimes} />
+      <Suspense
+        fallback={
+          <div style={{ height: "400px", backgroundColor: "red" }}>
+            Loading...xxx
+          </div>
+        }
+      >
+        {events.data.map((takenTime) => (
+          <p key={takenTime._id}>{takenTime.date}</p>
+        ))}
+      </Suspense>
+      {/* <BookingInfo
+          timeSlots={timeSlots}
+          events={events}
+          takenTimes={takenTimes}
+        /> */}
     </div>
   );
 }

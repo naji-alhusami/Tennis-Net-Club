@@ -27,7 +27,7 @@ function TimeSelectionStep({ session, timeSlots, takenTimes }) {
   const hasReservationForDay = memberTakenTimes.some(
     (reservation) => reservation.date === dayFromLink
   );
-  console.log(hasReservationForDay);
+  // console.log(hasReservationForDay);
 
   function timeHandler(timeSlot) {
     if (timeSlot.status === "BOOK COURT") {
