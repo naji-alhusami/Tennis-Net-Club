@@ -16,7 +16,7 @@ async function BookingInfo({ searchParams }) {
   const takenTimes = await fetchTakenTimesFromMongo();
   const events = await fetchEventsFromMongo();
   const { user } = await getServerSession(authOptions);
-  console.log("searchParams", searchParams);
+  console.log("takenTimes", takenTimes);
 
   const headerStyle = { textAlign: "center", fontSize: "2rem" };
   const hrStyle = {
@@ -35,7 +35,7 @@ async function BookingInfo({ searchParams }) {
           <DateSelectionStep />
         </div>
       )}
-      {!searchParams.time && (
+      {searchParams.date && searchParams.court && !searchParams.time && (
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
@@ -43,7 +43,7 @@ async function BookingInfo({ searchParams }) {
             searchParams={searchParams}
             user={user}
             timeSlots={timeSlots}
-            takenTimes={takenTimes}
+            takenTimes={takenTimes.data}
           />
         </div>
       )}

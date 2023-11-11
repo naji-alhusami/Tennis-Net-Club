@@ -11,10 +11,10 @@ import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMo
 async function ManageBooking() {
   const { user } = await getServerSession(authOptions);
   const takenTimes = await fetchTakenTimesFromMongo();
-
   const filteredTakenTimes = takenTimes.data.filter(
     (takenTime) => takenTime.member === user.name
   );
+  console.log("filteredTakenTimes", filteredTakenTimes);
 
   async function cancelReservedTimeHandler(timeSlot) {
     // "use server";
@@ -41,9 +41,10 @@ async function ManageBooking() {
                       <p className={classes.time}>{timeSlot.time}</p>
                       <p>{timeSlot.date}</p>
                     </div>
-                    {/* <div className={classes.button}>
-                      <ButtonTest>CANCEL</ButtonTest>
-                    </div> */}
+                    <div className={classes.button}>
+                      {/* <ButtonTest>CANCEL</ButtonTest> */}
+                      <button type="submit">CANCEL</button>
+                    </div>
                   </div>
                 </form>
               </>

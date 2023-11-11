@@ -14,8 +14,14 @@ const eventSchema = new Schema({
     default: "Court Reservation",
   },
   daysOfWeek: {
-    type: [Number], // An array of numbers representing days of the week
-    required: false,
+    type: [Number],
+    default: function () {
+      // Only set a default value if the array is not empty
+      if (this.daysOfWeek && this.daysOfWeek.length > 0) {
+        return this.daysOfWeek;
+      }
+      return undefined; // This prevents the field from being persisted if empty
+    },
   },
   startRecur: {
     type: String,

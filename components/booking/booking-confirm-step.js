@@ -52,11 +52,11 @@ function ConfirmationStep({ searchParams, user, events }) {
     });
 
     if (!reservationEvent) {
-      try {
-        await sendEventsToMongo(member, selectedDate);
-      } catch (error) {
-        console.log("Error", error.message);
-      }
+      // try {
+      await sendEventsToMongo(member, selectedDate);
+      // } catch (error) {
+      // console.log("Error", error.message);
+      // }
     } else {
       console.log("there is existing event with the same name");
     }

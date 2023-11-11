@@ -19,7 +19,6 @@ export async function POST(req) {
         };
 
         const newTrainingEvent = new Event(TrainingEvent);
-
         await newTrainingEvent.save();
       }
 

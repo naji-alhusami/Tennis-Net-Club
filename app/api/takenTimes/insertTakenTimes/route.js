@@ -94,6 +94,7 @@ export async function POST(req) {
         selectedTime,
       } = await req.json();
       console.log(
+        "inside route sending takenTimes:",
         member,
         selectedCourtType,
         selectedPlayersNumber,

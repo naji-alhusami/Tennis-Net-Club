@@ -17,9 +17,10 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
 
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
-  const memberTakenTimes = takenTimes.data.filter(
+  const memberTakenTimes = takenTimes.filter(
     (reservation) => reservation.member === user.name
   );
+
   const hasReservationForDay = memberTakenTimes.some(
     (reservation) => reservation.date === dayFromLink
   );
@@ -95,9 +96,7 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
     }
   }
 
-  const nextPath = `/booking/?date=${searchParams.date}&court=${
-    searchParams.court
-  }&players=${searchParams.players}&time=${selectedTime}`;
+  const nextPath = `/booking/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
 
   return (
     <Fragment>
