@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 
 import Image from "next/image";
 import clay from "@/public/images/clay.jpg";
@@ -10,15 +10,24 @@ import BookingCalendar from "./booking-calendar";
 import classes from "./booking-date-step.js.module.css";
 import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
+import AuthContext from "@/store/auth-context";
 
-function DateSelectionStep({
-  nextStepHandler,
-  activeDay,
-  numberOfPlayers,
-  setNumberOfPlayers,
-}) {
-  const naji = new Date();
-  console.log(naji);
+function DateSelectionStep(
+  {
+    // nextStepHandler,
+    // activeDay,
+    // numberOfPlayers,
+    // setNumberOfPlayers,
+  }
+) {
+  const {
+    currentStep,
+    activeDay,
+    nextStepHandler,
+    numberOfPlayers,
+    setNumberOfPlayers,
+  } = useContext(AuthContext);
+
   const [selectedCourtType, setSelectedCourtType] = useState("");
   // const [selectedPlayersNumber, setSelectedPlayersNumber] = useState("");
 

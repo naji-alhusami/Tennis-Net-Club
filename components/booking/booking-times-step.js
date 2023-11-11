@@ -2,27 +2,23 @@
 import React, { Fragment, useContext, useState } from "react";
 
 import AuthContext from "@/store/auth-context";
-import { useSearchParams } from "next/navigation";
 import classes from "./booking-times-step.module.css";
 
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 
-function TimeSelectionStep({ session, timeSlots, takenTimes }) {
+function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
-  const pathData = useSearchParams();
 
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
   const [hoveredTimeSlot, setHoveredTimeSlot] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
 
   // Check if the member has an existing reservation for the selected day
-  // console.log(takenTimes);
-  // console.log(session);
-  const dayFromLink = pathData.get("date");
+  const dayFromLink = searchParams.date;
   const memberTakenTimes = takenTimes.data.filter(
-    (reservation) => reservation.member === session?.user.name
+    (reservation) => reservation.member === user.name
   );
   const hasReservationForDay = memberTakenTimes.some(
     (reservation) => reservation.date === dayFromLink
@@ -99,9 +95,9 @@ function TimeSelectionStep({ session, timeSlots, takenTimes }) {
     }
   }
 
-  const nextPath = `/booking/?date=${pathData.get("date")}&court=${pathData.get(
-    "court"
-  )}&players=${pathData.get("players")}&time=${selectedTime}`;
+  const nextPath = `/booking/?date=${searchParams.date}&court=${
+    searchParams.court
+  }&players=${searchParams.players}&time=${selectedTime}`;
 
   return (
     <Fragment>

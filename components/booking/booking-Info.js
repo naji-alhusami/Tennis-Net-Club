@@ -1,24 +1,23 @@
-"use client";
-import React, { Suspense, useContext } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { Suspense } from "react";
 
 import DateSelectionStep from "./booking-date-step";
-import AuthContext from "@/store/auth-context";
 import TimeSelectionStep from "./booking-times-step";
 import ConfirmationStep from "./booking-confirm-step";
-import { useSession } from "next-auth/react";
+import { fetchTimeSlots } from "@/lib/generate-times";
+import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
+import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-function BookingInfo({ timeSlots, events, takenTimes }) {
-  const { data: session } = useSession();
-  const router = useSearchParams();
-  const {
-    currentStep,
-    activeDay,
-    nextStepHandler,
-    numberOfPlayers,
-    setNumberOfPlayers,
-  } = useContext(AuthContext);
-  // console.log("loading", loading);
+async function BookingInfo({ searchParams }) {
+  const newDate = searchParams.date;
+  const newCourt = searchParams.court;
+  const timeSlots = await fetchTimeSlots(newDate, newCourt);
+  const takenTimes = await fetchTakenTimesFromMongo();
+  const events = await fetchEventsFromMongo();
+  const { user } = await getServerSession(authOptions);
+  console.log("searchParams", searchParams);
+
   const headerStyle = { textAlign: "center", fontSize: "2rem" };
   const hrStyle = {
     border: "1px solid #1c7f47",
@@ -27,38 +26,36 @@ function BookingInfo({ timeSlots, events, takenTimes }) {
 
   return (
     <div>
-      {currentStep === 1 && (
+      {Object.keys(searchParams).length === 0 && (
         <div>
           <h2 style={headerStyle}>
             Choose Court Type, Players Number and Date
           </h2>{" "}
           <hr style={hrStyle} />
-          <DateSelectionStep
-            nextStepHandler={nextStepHandler}
-            activeDay={activeDay}
-            numberOfPlayers={numberOfPlayers}
-            setNumberOfPlayers={setNumberOfPlayers}
-          />
+          <DateSelectionStep />
         </div>
       )}
-      {currentStep === 2 && router.has("date") && !router.has("time") && (
+      {!searchParams.time && (
         <div>
           <h2 style={headerStyle}>Choose Available Time</h2>
           <hr style={hrStyle} />
-          {/* <Suspense fallback={<p style={{ height: "600px" }}>Loading...</p>}> */}
-            <TimeSelectionStep
-              timeSlots={timeSlots}
-              takenTimes={takenTimes}
-              session={session}
-            />
-          {/* </Suspense> */}
+          <TimeSelectionStep
+            searchParams={searchParams}
+            user={user}
+            timeSlots={timeSlots}
+            takenTimes={takenTimes}
+          />
         </div>
       )}
-      {currentStep === 3 && router.has("time") && (
+      {searchParams.date && searchParams.court && searchParams.time && (
         <div>
           <h2 style={headerStyle}>Confirm Booking Details</h2>
           <hr style={hrStyle} />
-          <ConfirmationStep events={events} session={session} />
+          <ConfirmationStep
+            events={events}
+            user={user}
+            searchParams={searchParams}
+          />
         </div>
       )}
     </div>

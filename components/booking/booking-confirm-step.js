@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+"use client";
+import React from "react";
 import Image from "next/image";
 // import { motion } from "framer-motion";
 
@@ -11,22 +12,20 @@ import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
 import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
-import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
-import { useSession } from "next-auth/react";
 
-function ConfirmationStep({ session, events }) {
+function ConfirmationStep({ searchParams, user, events }) {
   const router = useRouter();
-  const pathData = useSearchParams();
-  console.log(session?.user.name);
+  // const pathData = useSearchParams();
+  // console.log(session?.user.name);
 
   async function bookingConfirmationHandler(event) {
     event.preventDefault();
 
-    const member = session?.user.name;
-    const selectedCourtType = pathData.get("court");
-    const selectedPlayersNumber = pathData.get("players");
-    const selectedDate = pathData.get("date");
-    const selectedTime = pathData.get("time");
+    const member = user.name;
+    const selectedCourtType = searchParams.court;
+    const selectedPlayersNumber = searchParams.players;
+    const selectedDate = searchParams.date;
+    const selectedTime = searchParams.time;
 
     const [hours, minutes] = selectedTime.split(":");
     const year = new Date(selectedDate).getFullYear();
@@ -65,9 +64,7 @@ function ConfirmationStep({ session, events }) {
     router.push("/");
   }
 
-  const prevPath = `/booking?date=${pathData.get("date")}&court=${pathData.get(
-    "court"
-  )}&players=${pathData.get("players")}`;
+  const prevPath = `/booking?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}`;
 
   return (
     <form
@@ -75,7 +72,7 @@ function ConfirmationStep({ session, events }) {
       className={classes.confirmContainer}
     >
       <div className={classes.bookingDetailsContainer}>
-        {pathData.get("court") === "Clay" ? (
+        {searchParams.court === "Clay" ? (
           <Image src={clay} alt="clay-court" priority={true} />
         ) : (
           <Image src={hard} alt="hard-court" priority={true} />
@@ -92,11 +89,11 @@ function ConfirmationStep({ session, events }) {
               <th>Time</th>
             </tr>
             <tr>
-              <td>{session?.user.name}</td>
-              <td>{pathData.get("court")}</td>
-              <td>{pathData.get("players")}</td>
-              <td>{pathData.get("date")}</td>
-              <td>{pathData.get("time")}</td>
+              <td>{user.name}</td>
+              <td>{searchParams.court}</td>
+              <td>{searchParams.players}</td>
+              <td>{searchParams.date}</td>
+              <td>{searchParams.time}</td>
             </tr>
           </tbody>
         </table>
