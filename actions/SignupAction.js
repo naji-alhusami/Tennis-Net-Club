@@ -1,5 +1,4 @@
 "use server";
-
 import { hashPassword } from "@/lib/auth";
 import sendEmail from "@/lib/sendEmail";
 import { generateToken, verifyToken } from "@/lib/token";
@@ -33,6 +32,7 @@ export async function signupWithCredentials(data) {
     data.password = await hashPassword(data.password);
   }
 
+  // Create Token for Email Verification:
   const token = await generateToken({ user: data });
 
   const newUser = new User({

@@ -3,7 +3,8 @@
 }
 
 .image {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  height: 800px;
   overflow: hidden;
   position: relative;
 }

@@ -13,10 +13,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import AddExtraInfo from "@/components/auth/add-extra-info";
 
 async function AuthType({ params, searchParams }) {
-  // const session = await getServerSession(authOptions);
-  // console.log("session", session);
-  console.log({ searchParams });
-
   return (
     <div className={classes.signup}>
       <div className={classes.image}>

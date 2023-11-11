@@ -21,18 +21,19 @@ export const authOptions = {
       async authorize(credentials) {
         const user = await User.findOne({ email: credentials.email });
         console.log("inide auth", user);
-        if (!user) {
-          throw new Error("No User With This Email Founded");
-        }
 
         const verifyPasswords = await verifyPassword(
           credentials.password,
           user.password
         );
 
-        if (!verifyPasswords) {
-          throw new Error("Your Password Is Incorrect");
+        if (!user || !verifyPasswords) {
+          throw new Error("Your Email Or Password Is Incorrect");
         }
+
+        // if (!verifyPasswords) {
+        //   throw new Error("Your Password Is Incorrect");
+        // }
 
         if (!user.emailVerified) {
           throw new Error("Email Is Not Verified");

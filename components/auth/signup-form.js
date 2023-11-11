@@ -2,19 +2,28 @@
 import React, { useState, useRef } from "react";
 // import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { submitSignupHandler } from "@/lib/signupAction";
+// import { submitSignupHandler } from "@/lib/signupAction";
 import classes from "./signup-form.module.css";
 // import Notification from "../ui/notification";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
-import { signupWithCredentials } from "@/actions/signupActions";
+import { signupWithCredentials } from "@/actions/SignupAction";
 import ButtonTest from "../ui/buttonTest";
 import { useRouter } from "next/navigation";
+import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
+import { motion } from "framer-motion";
 
 function Signup() {
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);
   const router = useRouter();
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    const formattedNumber = FormatPhoneNumber(inputValue);
+    setPhoneNumber(formattedNumber);
+  };
 
   async function signupCredentialsHandler(formData) {
     const name = formData.get("name");
@@ -23,8 +32,6 @@ function Signup() {
     const password = formData.get("password");
     const passwordConfirmation = formData.get("password-confirmation");
     const level = formData.get("level");
-
-    console.log({ name, email, password, passwordConfirmation, number });
 
     try {
       const response = await signupWithCredentials({
@@ -35,14 +42,11 @@ function Signup() {
         passwordConfirmation,
         level,
       });
-      // console.log(response);
 
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
         router.push(`/thanks?thanks=${response?.message}`);
-        // don't forget to redirect to thanks page
-        // console.log(response?.message);
       }
     } catch (error) {
       console.log(error.message);
@@ -51,7 +55,12 @@ function Signup() {
   }
 
   return (
-    <div className={classes.signupForm}>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className={classes.signupForm}
+    >
       <h1>Signup</h1>
       <form action={signupCredentialsHandler} ref={ref}>
         <div>
@@ -62,9 +71,12 @@ function Signup() {
         </div>
         <div>
           <input
-            type="number"
+            type="tel"
             name="number"
-            placeholder="Your Number"
+            placeholder="0 (555) 555 55 55 - Start With Zero"
+            value={phoneNumber}
+            onChange={handleInputChange}
+            maxLength="17"
             required
           />
         </div>
@@ -84,7 +96,6 @@ function Signup() {
             required
           />
         </div>
-
         <div>
           <select name="level" className={classes.select} required>
             <option value="">Select Your Level</option>
@@ -121,7 +132,7 @@ function Signup() {
           </button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

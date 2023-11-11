@@ -10,7 +10,6 @@ import { useSession } from "next-auth/react";
 
 function Starting() {
   const { data: session } = useSession();
-  console.log(session);
 
   return (
     <Fragment>
@@ -22,9 +21,6 @@ function Starting() {
           <Image
             src={background}
             alt="website background"
-            // height={500}
-            // width={1500}
-            // layout="fill"
             objectFit="cover"
             priority={true}
           />

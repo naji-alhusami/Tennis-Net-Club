@@ -12,7 +12,7 @@ const userSchema = new Schema(
       unique: true,
     },
     WhatsAppNumber: {
-      type: Number,
+      type: String,
       default: "1234567898",
     },
     password: String,

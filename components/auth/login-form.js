@@ -1,15 +1,15 @@
 "use client";
 import React, { useRef, useState } from "react";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
 
 import classes from "./login-form.module.css";
-import { FcGoogle } from "react-icons/fc";
 import ButtonTest from "../ui/buttonTest";
+import { FcGoogle } from "react-icons/fc";
 
-function Login({ callbackUrl }) {
+function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);
 
@@ -37,7 +37,12 @@ function Login({ callbackUrl }) {
   }
 
   return (
-    <div className={classes.loginForm}>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className={classes.loginForm}
+    >
       <h1>Login</h1>
       <form action={loginWithCredentialsHanlder} ref={ref}>
         <div>
@@ -75,7 +80,9 @@ function Login({ callbackUrl }) {
         <h3>Or Login with Google:</h3>
         <button
           className={classes.googleButton}
-          onClick={() => signIn("google", { callbackUrl: "/auth/addExtraInfo" })}
+          onClick={() =>
+            signIn("google", { callbackUrl: "/auth/addExtraInfo" })
+          }
         >
           <FcGoogle size={30} />
         </button>
@@ -83,7 +90,7 @@ function Login({ callbackUrl }) {
           <FcGoogle size={30} />
         </Link> */}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
