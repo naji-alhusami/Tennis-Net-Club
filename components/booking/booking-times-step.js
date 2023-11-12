@@ -1,5 +1,11 @@
 "use client";
-import React, { Fragment, useContext, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import AuthContext from "@/store/auth-context";
 import classes from "./booking-times-step.module.css";
@@ -7,13 +13,21 @@ import classes from "./booking-times-step.module.css";
 import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
+import { motion, useAnimation, useInView } from "framer-motion";
+import TimeSlots from "./render-time-slots";
 
 function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
 
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
-  const [hoveredTimeSlot, setHoveredTimeSlot] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
+
+  const headerRef = useRef(null);
+  const isInViewHeader = useInView(headerRef, { once: true });
+  const headerControls = useAnimation();
+  useEffect(() => {
+    if (isInViewHeader) headerControls.start("visible");
+  }, [isInViewHeader, headerControls]);
 
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
@@ -26,94 +40,41 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   );
   // console.log(hasReservationForDay);
 
-  function timeHandler(timeSlot) {
-    if (timeSlot.status === "BOOK COURT") {
-      // Find the currently selected time slot (if any)
-      const currentlySelectedTimeSlot = timeSlots.find(
-        (slot) => slot.status === "SELECTED"
-      );
-
-      // Update the selected time and change the status
-      const timeSlotsStatus = timeSlots.map((slot) => {
-        if (slot.id === timeSlot.id) {
-          return { ...slot, status: "SELECTED" };
-        } else if (
-          currentlySelectedTimeSlot &&
-          slot.id === currentlySelectedTimeSlot.id
-        ) {
-          // Deselect the previously selected time slot
-          return { ...slot, status: "BOOK COURT" };
-        }
-        return slot;
-      });
-      setNewTimeSlots(timeSlotsStatus);
-      setSelectedTime(timeSlot.time);
-      // setTimeInfo(timeSlot);
-    }
-  }
-
-  function handleMouseEnter(timeSlot) {
-    setHoveredTimeSlot(timeSlot);
-  }
-
-  function handleMouseLeave() {
-    setHoveredTimeSlot(null);
-  }
-
-  function renderTimeSlotElement(timeSlot) {
-    if (timeSlot.status === "PASSED TIME") {
-      return <p className={classes.booked}>PASSED TIME</p>;
-    } else if (timeSlot.status === "RESERVED") {
-      return <p className={classes.booked}>RESERVED</p>;
-    } else if (timeSlot.status === "NOT OPENED") {
-      return <p className={classes.booked}>NOT OPENED</p>;
-    } else {
-      let buttonText;
-      if (timeSlot.status === "SELECTED") {
-        buttonText = "SELECTED";
-      } else if (timeSlot === hoveredTimeSlot) {
-        buttonText = "SELECT TIME";
-      } else {
-        buttonText = "BOOK COURT";
-      }
-
-      return (
-        <p
-          className={
-            timeSlot.status === "SELECTED"
-              ? classes.selected
-              : timeSlot === hoveredTimeSlot
-              ? classes.hovered
-              : classes.book
-          }
-          onMouseEnter={() => handleMouseEnter(timeSlot)}
-          onMouseLeave={handleMouseLeave}
-          onClick={() => timeHandler(timeSlot)}
-        >
-          {buttonText}
-        </p>
-      );
-    }
-  }
+  const headerStyle = { textAlign: "center", fontSize: "2rem" };
+  const hrStyle = {
+    border: "1px solid #1c7f47",
+    width: "6rem",
+  };
 
   const nextPath = `/booking/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
 
   return (
     <Fragment>
       <div className={classes.timeContainer}>
-        <div className={classes.timeSlotsContainer}>
+        <motion.h2
+          variants={{
+            hidden: { opacity: 0, y: -75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={headerControls}
+          transition={{ duration: 0.3, delay: 0.4 }}
+          ref={headerRef}
+          style={headerStyle}
+        >
+          Choose Available Time
+          <hr style={hrStyle} />
+        </motion.h2>
+        <div>
           {hasReservationForDay ? (
             <p>You Already have Time Reserved For This Day</p>
           ) : (
-            newTimeSlots.map((timeSlot) => {
-              return (
-                <div key={timeSlot.id} className={classes.timeSlot}>
-                  <h1 className={classes.time}>{timeSlot.time}</h1>
-                  <p>{timeSlot.courtType} Court</p>
-                  {renderTimeSlotElement(timeSlot)}
-                </div>
-              );
-            })
+            <TimeSlots
+              timeSlots={timeSlots}
+              newTimeSlots={newTimeSlots}
+              setNewTimeSlots={setNewTimeSlots}
+              setSelectedTime={setSelectedTime}
+            />
           )}
         </div>
         <div className={classes.buttonContainer}>

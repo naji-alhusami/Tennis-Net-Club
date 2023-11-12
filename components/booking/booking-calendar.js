@@ -67,7 +67,7 @@ function BookingCalendar({ nextStepHandler }) {
     }
 
     setActiveDay(selectedDate);
-    setNextButton(true);
+    // setNextButton(true);
     // nextStepHandler();
   }
 

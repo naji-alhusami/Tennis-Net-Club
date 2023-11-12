@@ -16,22 +16,22 @@ const MyProvider = (props) => {
 
   const currentDay = new Date();
   const [activeDay, setActiveDay] = useState();
-  const [numberOfPlayers, setNumberOfPlayers] = useState(1);
+  const [numberOfPlayers, setNumberOfPlayers] = useState("");
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [timeSlots, setTimeSlots] = useState([]);
   const [isLoadingTimes, setIsLoadingTimes] = useState(true);
   const [takenTimes, setTakenTimes] = useState([]);
-  const [nextButton, setNextButton] = useState(false);
-  const [secondStep, setSecondStep] = useState(true);
-  const [thirdStep, setThirdStep] = useState(true);
+  // const [nextButton, setNextButton] = useState(false);
+  // const [secondStep, setSecondStep] = useState(true);
+  // const [thirdStep, setThirdStep] = useState(true);
 
   const nextStepHandler = () => {
     setCurrentStep(currentStep + 1);
-    if (currentStep === 1) {
-      setSecondStep(!secondStep);
-    } else if (currentStep === 2) {
-      setThirdStep(!thirdStep);
-    }
+    // if (currentStep === 1) {
+    //   setSecondStep(!secondStep);
+    // } else if (currentStep === 2) {
+    //   setThirdStep(!thirdStep);
+    // }
   };
 
   const prevStepHandler = () => {
@@ -53,16 +53,16 @@ const MyProvider = (props) => {
         setIsLoadingTimes,
         takenTimes,
         setTakenTimes,
-        nextButton,
-        setNextButton,
+        // nextButton,
+        // setNextButton,
         currentStep,
         setCurrentStep,
         nextStepHandler,
         prevStepHandler,
-        secondStep,
-        setSecondStep,
-        thirdStep,
-        setThirdStep,
+        // secondStep,
+        // setSecondStep,
+        // thirdStep,
+        // setThirdStep,
       }}
     >
       {props.children}

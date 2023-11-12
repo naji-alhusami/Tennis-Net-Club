@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import DateSelectionStep from "./booking-date-step";
 import TimeSelectionStep from "./booking-times-step";
@@ -18,27 +18,15 @@ async function BookingInfo({ searchParams }) {
   const { user } = await getServerSession(authOptions);
   console.log("takenTimes", takenTimes);
 
-  const headerStyle = { textAlign: "center", fontSize: "2rem" };
-  const hrStyle = {
-    border: "1px solid #1c7f47",
-    width: "6rem",
-  };
-
   return (
     <div>
       {Object.keys(searchParams).length === 0 && (
         <div>
-          <h2 style={headerStyle}>
-            Choose Court Type, Players Number and Date
-          </h2>{" "}
-          <hr style={hrStyle} />
           <DateSelectionStep />
         </div>
       )}
       {searchParams.date && searchParams.court && !searchParams.time && (
         <div>
-          <h2 style={headerStyle}>Choose Available Time</h2>
-          <hr style={hrStyle} />
           <TimeSelectionStep
             searchParams={searchParams}
             user={user}
