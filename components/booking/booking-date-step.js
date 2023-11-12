@@ -17,7 +17,7 @@ import clay from "@/public/images/clay.jpg";
 import hard from "@/public/images/hard.jpg";
 import classes from "./booking-date-step.js.module.css";
 
-function DateSelectionStep() {
+const DateSelectionStep = () => {
   const [selectedCourtType, setSelectedCourtType] = useState("");
   const { activeDay, nextStepHandler, numberOfPlayers, setNumberOfPlayers } =
     useContext(AuthContext);
@@ -28,7 +28,6 @@ function DateSelectionStep() {
     const day = activeDay.getDate().toString().padStart(2, "0"); // Output: "05" or "09"
     const month = activeDay.getMonth() + 1;
     const year = activeDay.getFullYear();
-    console.log(day);
     formattedDate = `${year}-${month}-${day}`;
 
     console.log(formattedDate); // Output: "2023-11-05"
@@ -182,6 +181,6 @@ function DateSelectionStep() {
       </div>
     </Fragment>
   );
-}
+};
 
 export default DateSelectionStep;

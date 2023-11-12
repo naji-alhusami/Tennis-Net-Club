@@ -1,10 +1,10 @@
 import React from "react";
-
 import Image from "next/image";
+
 import reserve from "@/public/images/reserve.jpg";
 import classes from "./booking-container.module.css";
 
-function BookingContainer() {
+const BookingContainer = () => {
   return (
     <div className={classes.imageContainer}>
       <Image
@@ -15,6 +15,6 @@ function BookingContainer() {
       />
     </div>
   );
-}
+};
 
 export default BookingContainer;

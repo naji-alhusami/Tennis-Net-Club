@@ -21,21 +21,13 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
   const [selectedTime, setSelectedTime] = useState("");
 
-  // Animtion for header:
-  const headerRef = useRef(null);
-  const isInViewHeader = useInView(headerRef, { once: true });
-  const headerControls = useAnimation();
+  // Animtion
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
   useEffect(() => {
-    if (isInViewHeader) headerControls.start("visible");
-  }, [isInViewHeader, headerControls]);
-
-  // Animtion for times:
-  const timesRef = useRef(null);
-  const isInViewTimes = useInView(timesRef, { once: true });
-  const timesControls = useAnimation();
-  useEffect(() => {
-    if (isInViewTimes) timesControls.start("visible");
-  }, [isInViewTimes, timesControls]);
+    if (isInView) mainControls.start("visible");
+  }, [isInView, mainControls]);
 
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
@@ -66,9 +58,9 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
             visible: { opacity: 1, y: 0 },
           }}
           initial="hidden"
-          animate={headerControls}
+          animate={mainControls}
           transition={{ duration: 0.3, delay: 0.4 }}
-          ref={headerRef}
+          ref={ref}
           style={headerStyle}
         >
           Choose Available Time
@@ -80,9 +72,9 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
             visible: { opacity: 1, y: 0 },
           }}
           initial="hidden"
-          animate={timesControls}
+          animate={mainControls}
           transition={{ duration: 0.3, delay: 0.4 }}
-          ref={timesRef}
+          ref={ref}
           className={classes.timeSlotsContainer}
         >
           {hasReservationForDay ? (

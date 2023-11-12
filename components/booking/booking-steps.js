@@ -1,14 +1,11 @@
-'use client'
+"use client";
 import React, { useContext } from "react";
-// import { usePathname, useSearchParams } from "next/navigation";
-import classes from "./booking-steps.module.css";
+
 import AuthContext from "@/store/auth-context";
+import classes from "./booking-steps.module.css";
 
 function BookingSteps() {
   const { currentStep } = useContext(AuthContext);
-  // const searchParams = useSearchParams();
-  // const path = searchParams.has("date");
-  // console.log(data);
 
   return (
     <div className={classes.stepsContainer}>

@@ -1,13 +1,11 @@
 import React, { useState, useContext } from "react";
-import AuthContext from "@/store/auth-context";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
+import AuthContext from "@/store/auth-context";
 import classes from "./booking-calendar.module.css";
-import Link from "next/link";
 
-function BookingCalendar({ nextStepHandler }) {
+function BookingCalendar() {
   const months = [
     "January",
     "February",
@@ -23,8 +21,7 @@ function BookingCalendar({ nextStepHandler }) {
     "December",
   ];
 
-  const { activeDay, setActiveDay, setNextButton } = useContext(AuthContext);
-  console.log(activeDay);
+  const { activeDay, setActiveDay } = useContext(AuthContext);
   const currentDate = new Date();
   const thisMonth = currentDate.getMonth();
   const thisYear = currentDate.getFullYear();
@@ -32,15 +29,14 @@ function BookingCalendar({ nextStepHandler }) {
   const [currentYear, setCurrentYear] = useState(thisYear);
 
   // Start handle clicking on next month
-  function nextMonthHandler() {
+  const nextMonthHandler = () => {
     const nextMonth = new Date(currentYear, currentMonth + 1, 1);
     setCurrentMonth(nextMonth.getMonth());
     setCurrentYear(nextMonth.getFullYear());
-  }
-  // Finish handle clicking on next month
+  };
 
   // Start handle clicking on prev month
-  function prevMonthHandler() {
+  const prevMonthHandler = () => {
     const prevMonth = new Date(currentYear, currentMonth - 1, 1);
     // Check if the previous month is not earlier than the current month and not one month ahead
     if (
@@ -51,11 +47,10 @@ function BookingCalendar({ nextStepHandler }) {
       setCurrentMonth(prevMonth.getMonth());
       setCurrentYear(prevMonth.getFullYear());
     }
-  }
-  // Finish handle clicking on prev month
+  };
 
   // handle show time slots for the selectedDate
-  async function showTimeSlotsHandler(day) {
+  const showTimeSlotsHandler = (day) => {
     const selectedDate = new Date(currentYear, currentMonth, day);
     selectedDate.setHours(0, 0, 0, 0); // Set time to midnight
 
@@ -67,11 +62,9 @@ function BookingCalendar({ nextStepHandler }) {
     }
 
     setActiveDay(selectedDate);
-    // setNextButton(true);
-    // nextStepHandler();
-  }
+  };
 
-  function getClassForDay(day) {
+  const getClassForDay = (day) => {
     const allMonthDates = new Date(currentYear, currentMonth, day);
 
     if (activeDay) {
@@ -99,7 +92,7 @@ function BookingCalendar({ nextStepHandler }) {
     ) {
       return classes.previousDay;
     }
-  }
+  };
 
   // Start generating days in each month
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
@@ -122,7 +115,6 @@ function BookingCalendar({ nextStepHandler }) {
   for (let day = 1; day <= daysInMonth; day++) {
     calendarGrid.push(day);
   }
-  // End generating days in each month
 
   return (
     <div className={classes.bookingDate}>
