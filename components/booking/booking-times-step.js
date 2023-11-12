@@ -6,15 +6,14 @@ import React, {
   useRef,
   useState,
 } from "react";
-
 import AuthContext from "@/store/auth-context";
-import classes from "./booking-times-step.module.css";
-
 import Link from "next/link";
+import { motion, useAnimation, useInView } from "framer-motion";
+
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
-import { motion, useAnimation, useInView } from "framer-motion";
-import TimeSlots from "./render-time-slots";
+import classes from "./booking-times-step.module.css";
+import RenderBookingButton from "./render-booking-button";
 
 function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
@@ -22,12 +21,21 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
   const [selectedTime, setSelectedTime] = useState("");
 
+  // Animtion for header:
   const headerRef = useRef(null);
   const isInViewHeader = useInView(headerRef, { once: true });
   const headerControls = useAnimation();
   useEffect(() => {
     if (isInViewHeader) headerControls.start("visible");
   }, [isInViewHeader, headerControls]);
+
+  // Animtion for times:
+  const timesRef = useRef(null);
+  const isInViewTimes = useInView(timesRef, { once: true });
+  const timesControls = useAnimation();
+  useEffect(() => {
+    if (isInViewTimes) timesControls.start("visible");
+  }, [isInViewTimes, timesControls]);
 
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
@@ -38,14 +46,15 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
   const hasReservationForDay = memberTakenTimes.some(
     (reservation) => reservation.date === dayFromLink
   );
-  // console.log(hasReservationForDay);
 
+  // Styling for header:
   const headerStyle = { textAlign: "center", fontSize: "2rem" };
   const hrStyle = {
     border: "1px solid #1c7f47",
     width: "6rem",
   };
 
+  // Link for next page:
   const nextPath = `/booking/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
 
   return (
@@ -65,18 +74,36 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
           Choose Available Time
           <hr style={hrStyle} />
         </motion.h2>
-        <div>
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: -75 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={timesControls}
+          transition={{ duration: 0.3, delay: 0.4 }}
+          ref={timesRef}
+          className={classes.timeSlotsContainer}
+        >
           {hasReservationForDay ? (
             <p>You Already have Time Reserved For This Day</p>
           ) : (
-            <TimeSlots
-              timeSlots={timeSlots}
-              newTimeSlots={newTimeSlots}
-              setNewTimeSlots={setNewTimeSlots}
-              setSelectedTime={setSelectedTime}
-            />
+            newTimeSlots.map((timeSlot) => {
+              return (
+                <div key={timeSlot.id} className={classes.timeSlot}>
+                  <h1 className={classes.time}>{timeSlot.time}</h1>
+                  <p>{timeSlot.courtType} Court</p>
+                  <RenderBookingButton
+                    timeSlot={timeSlot}
+                    timeSlots={timeSlots}
+                    setNewTimeSlots={setNewTimeSlots}
+                    setSelectedTime={setSelectedTime}
+                  />
+                </div>
+              );
+            })
           )}
-        </div>
+        </motion.div>
         <div className={classes.buttonContainer}>
           <Link
             href="/booking"
@@ -99,7 +126,6 @@ function TimeSelectionStep({ user, searchParams, timeSlots, takenTimes }) {
               Next <BsArrowRight style={{ marginLeft: "1rem" }} />
             </div>
           )}
-          {/* <button onClick={()=>router.push('/booking')}>Click</button> */}
         </div>
       </div>
     </Fragment>
