@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
 
 import classes from "./login-form.module.css";
-import ButtonTest from "../ui/buttonTest";
 import { FcGoogle } from "react-icons/fc";
+import SubmitButton from "../ui/submit-button";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,7 +19,6 @@ function Login() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    // try {
     const response = await signIn("credentials", {
       redirect: false,
       email: email,
@@ -66,8 +65,7 @@ function Login() {
           )}
         </div>
         <div>
-          <ButtonTest>Login</ButtonTest>
-          {/* <button className={classes.button}>Login</button> */}
+          <SubmitButton>Login</SubmitButton>
         </div>
       </form>
       <h3>Not A Member?</h3>
@@ -86,9 +84,6 @@ function Login() {
         >
           <FcGoogle size={30} />
         </button>
-        {/* <Link href="/auth/signup">
-          <FcGoogle size={30} />
-        </Link> */}
       </div>
     </motion.div>
   );

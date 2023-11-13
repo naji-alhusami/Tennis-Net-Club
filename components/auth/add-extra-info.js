@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import classes from "./add-extra-info.module.css";
-import ButtonTest from "../ui/buttonTest";
+import ButtonTest from "../ui/submit-button";
 import { AddExtraInfoActions } from "@/actions/addExtraInfoActions";
 
 function AddExtraInfo({ callbackUrl }) {

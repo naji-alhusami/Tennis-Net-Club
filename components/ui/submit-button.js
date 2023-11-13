@@ -2,7 +2,7 @@ import React from "react";
 import { useFormStatus } from "react-dom";
 import classes from "../auth/signup-form.module.css";
 
-function ButtonTest(props) {
+function SubmitButton(props) {
   const { pending } = useFormStatus();
 
   return (
@@ -12,4 +12,4 @@ function ButtonTest(props) {
   );
 }
 
-export default ButtonTest;
+export default SubmitButton;

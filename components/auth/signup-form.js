@@ -8,10 +8,11 @@ import classes from "./signup-form.module.css";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { signupWithCredentials } from "@/actions/SignupAction";
-import ButtonTest from "../ui/buttonTest";
+import ButtonTest from "../ui/submit-button";
 import { useRouter } from "next/navigation";
 import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
 import { motion } from "framer-motion";
+import SubmitButton from "../ui/submit-button";
 
 function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -114,7 +115,7 @@ function Signup() {
           )}
         </div>
         <div className={classes.notMember}>
-          <ButtonTest>Signup</ButtonTest>
+          <SubmitButton>Signup</SubmitButton>
           <h3>Already A Member?</h3>
           <Link href="/auth/signin" className={classes.button}>
             Login
