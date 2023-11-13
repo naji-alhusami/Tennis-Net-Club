@@ -8,7 +8,7 @@ import { useAnimation, useInView } from "framer-motion";
 import { BsArrowLeft } from "react-icons/bs";
 
 import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
-import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
+// import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import AuthContext from "@/store/auth-context";
 
 import clay from "@/public/images/clay.jpg";
@@ -47,15 +47,15 @@ function ConfirmationStep({ searchParams, user, events }) {
       console.log("Error", error.message);
     }
 
-    const reservationEvent = events.data.some((event) => {
-      return event.title === "Court Reservation" && event.date === selectedDate;
-    });
+    // const reservationEvent = events.data.some((event) => {
+    //   return event.title === "Court Reservation" && event.date === selectedDate;
+    // });
 
-    if (!reservationEvent) {
-      await sendEventsToMongo(member, selectedDate);
-    } else {
-      console.log("there is existing event with the same name");
-    }
+    // if (!reservationEvent) {
+    //   await sendEventsToMongo(member, selectedDate);
+    // } else {
+    //   console.log("there is existing event with the same name");
+    // }
     setCurrentStep(1);
     router.push("/thanks?thanks=Your Court Is Reserved");
   }

@@ -11,7 +11,7 @@ const eventSchema = new Schema({
   },
   title: {
     type: String,
-    default: "Court Reservation",
+    default: "Training Session",
   },
   daysOfWeek: {
     type: [Number],

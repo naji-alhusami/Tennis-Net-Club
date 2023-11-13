@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import TrainingForm from "./trainingForm";
 
 function Training() {
+  const trainingFormRef = useRef(null);
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
   const [selectedTrainingType, setSelectedTrainingType] = useState(null);
@@ -25,9 +26,22 @@ function Training() {
     }
   }, [trainingOffersIsInView, trainingOffersControls]);
 
+  useEffect(() => {
+    if (showEnrollForm) {
+      trainingFormRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showEnrollForm]);
+
   const handleEnrollClick = (typeId) => {
+    setShowEnrollForm(false);
     setSelectedTrainingType(typeId);
     setShowEnrollForm(true);
+
+    if (trainingFormRef.current) {
+      trainingFormRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   };
   console.log(selectedTrainingType);
   return (
@@ -107,7 +121,7 @@ function Training() {
           ))}
         </motion.div>
         {showEnrollForm && (
-          <div>
+          <div ref={trainingFormRef}>
             <TrainingForm selectedTrainingType={selectedTrainingType} />
           </div>
         )}

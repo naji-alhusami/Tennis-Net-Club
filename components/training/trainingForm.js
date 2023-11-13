@@ -8,7 +8,6 @@ import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { useSession } from "next-auth/react";
 
 function TrainingForm({ selectedTrainingType }) {
-  const [errorMessage, setErrorMessage] = useState("");
   const session = useSession();
   const member = session?.data.user.name;
   const { activeDay } = useContext(AuthContext);
@@ -61,7 +60,6 @@ function TrainingForm({ selectedTrainingType }) {
     try {
       await sendEventsToMongo(member, startedDate, endedDate, daysOfWeek);
     } catch (error) {
-      setErrorMessage(error.message);
       console.log("Error", error.message);
     }
   }
@@ -71,12 +69,15 @@ function TrainingForm({ selectedTrainingType }) {
       <form onSubmit={trainingSubmitHandler}>
         <h1>Choose Your Starting Date</h1>
         {selectedTrainingType === "2" ? (
-          <h4>(You Should Select Sataurday for Individual Sessions)</h4>
+          <h4 style={{ color: "red" }}>
+            (You Should Select Sataurday for Individual Sessions)
+          </h4>
         ) : (
-          <h4>(You Can Select Any Day EXCEPT Sataurday)</h4>
+          <h4 style={{ color: "red" }}>
+            (You Can Select Any Day EXCEPT Sataurday)
+          </h4>
         )}
         <BookingCalendar />
-        {errorMessage && <p>Sataurday is Sessions Holiday</p>}
         {daysOfWeek.length > 1 &&
         (activeDay.getDay() === 0 ||
           activeDay.getDay() === 1 ||
