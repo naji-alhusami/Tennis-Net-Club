@@ -1,8 +1,8 @@
 "use client";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 import classes from "./training.module.css";
 import courses from "@/public/images/courses.jpg";
@@ -10,12 +10,20 @@ import Headers from "../ui/headers";
 import { trainingData } from "./trainingData";
 import { useSession } from "next-auth/react";
 import TrainingForm from "./trainingForm";
-// import TrainingForm from "./trainingForm";
 
 function Training() {
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
   const [selectedTrainingType, setSelectedTrainingType] = useState(null);
+  const trainingOffersRef = useRef(null);
+  const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });
+  const trainingOffersControls = useAnimation();
+
+  useEffect(() => {
+    if (trainingOffersIsInView) {
+      trainingOffersControls.start("visible");
+    }
+  }, [trainingOffersIsInView, trainingOffersControls]);
 
   const handleEnrollClick = (typeId) => {
     setSelectedTrainingType(typeId);
@@ -34,15 +42,29 @@ function Training() {
             property="true"
           />
         </div>
-        <div className={classes.text}>
+        <motion.div
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className={classes.text}
+        >
           <Headers
             H3Header="Courses, Lessons & Training Sessions"
             H1Header="NEVER TOO LATE"
             H2Header="Training Sessions"
             PHeader="Enroll In Our Training Sessions, Starting from Beginner to Advanced, Group or Individual"
           />
-        </div>
-        <div className={classes.trainingPricesContainers}>
+        </motion.div>
+        <motion.div
+          ref={trainingOffersRef}
+          variants={{
+            hidden: { opacity: 0, scale: 0.8, z: -50 },
+            visible: { opacity: 1, scale: 1, z: 0 },
+          }}
+          initial="hidden"
+          animate={trainingOffersControls}
+          transition={{ duration: 0.3, delay: 1 }}
+          className={classes.trainingPricesContainers}
+        >
           {trainingData.map((data) => (
             <div
               key={data.id}
@@ -83,7 +105,7 @@ function Training() {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
         {showEnrollForm && (
           <div>
             <TrainingForm selectedTrainingType={selectedTrainingType} />
