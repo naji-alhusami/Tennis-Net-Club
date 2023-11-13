@@ -6,10 +6,8 @@ import Image from "next/legacy/image";
 
 import Signup from "@/components/auth/signup-form";
 import Login from "@/components/auth/login-form";
-import { getServerSession } from "next-auth";
 import signup from "@/public/images/signup.jpg";
 import classes from "@/components/auth/signup-form.module.css";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import AddExtraInfo from "@/components/auth/add-extra-info";
 
 async function AuthType({ params, searchParams }) {

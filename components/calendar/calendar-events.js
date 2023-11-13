@@ -1,31 +1,29 @@
 import React from "react";
 import classes from "./calendar-events.module.css";
 // import { useSession } from "next-auth/react";
-import Calendar from "./calendar";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
+import PlayerCalendar from "./player-calendar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function CalendarEvents() {
+  const session = await getServerSession(authOptions);
+
   const events = await fetchEventsFromMongo();
   const takenTimes = await fetchTakenTimesFromMongo();
-  // const { data: session } = useSession();
-  // console.log("events", events);
-  // const memberTakenTimes = takenTimes.filter((takenTime) => {
-  //   return takenTime.member === session?.user.name;
-  // });
 
-  // const eventsWithMatchingDates = events.filter((event) => {
-  //   return memberTakenTimes.some((takenTime) => {
-  //     return event.date === takenTime.date;
-  //   });
-  // });
-  // // console.log(memberTakenTimes);
+  // console.log("eventsWithMatchingDates:", eventsWithMatchingDates);
   // console.log("eventsWithMatchingDates", eventsWithMatchingDates);
   // const eventsAndTimes = [...events, ...memberTakenTimes];
 
   return (
     <div className={classes.calendar}>
-      <Calendar events={events.data} takenTimes={takenTimes.data} />
+      <PlayerCalendar
+        session={session}
+        events={events.data}
+        takenTimes={takenTimes.data}
+      />
       {/* <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"

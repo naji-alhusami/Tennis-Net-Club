@@ -34,7 +34,7 @@ function Thanks({ thanksMessage }) {
         >
           <h1>Hi</h1>
           <h2>Welcome to our TENNIS NET Club</h2>
-          <motion.p>{thanksMessage}</motion.p>
+          <motion.h1>{thanksMessage}</motion.h1>
 
           <Link href="/">
             <Button>
