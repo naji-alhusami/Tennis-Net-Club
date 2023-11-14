@@ -22,8 +22,8 @@ async function trainingPage() {
       </div>
       <div className={classes.text}>
         <Headers
-          H3Header="Courses, Lessons & Training Sessions"
-          H1Header="NEVER TOO LATE"
+          H3Header=""
+          H1Header=""
           H2Header="Training Sessions"
           PHeader="Enroll In Our Training Sessions, Starting from Beginner to Advanced, Group or Individual"
         />

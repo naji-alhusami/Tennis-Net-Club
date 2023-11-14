@@ -21,8 +21,6 @@ function TrainingOffers({ trainings }) {
     return training.member === session?.user.name;
   });
 
-  console.log(hasTrainingMembership);
-
   useEffect(() => {
     if (trainingOffersIsInView) {
       trainingOffersControls.start("visible");
@@ -46,7 +44,7 @@ function TrainingOffers({ trainings }) {
       });
     }
   };
-  console.log(selectedTrainingType);
+
   return (
     <Fragment>
       <div className={classes.trainingContainer}>

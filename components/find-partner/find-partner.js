@@ -5,11 +5,11 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Partners from "./partners";
 
 async function FindPartner() {
-  const { user } = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
   const players = await fetchPlayersFromMongo();
 
   const filteredPlayers = players.data.filter(
-    (player) => player.name !== user.name
+    (player) => player.name !== session?.user.name
   );
 
   return (

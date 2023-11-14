@@ -13,7 +13,7 @@ async function cancelReservedTimeHandler(timeSlot) {
 
 function ManageBookingPage() {
   return (
-    <>
+    <div className={classes.manageContainer}>
       <div className={classes.imageContainer}>
         <Image src={manage} alt="book-course" priority="true" property="true" />
       </div>
@@ -28,7 +28,7 @@ function ManageBookingPage() {
       <Suspense fallback={<h1>Loading TakenTimes ... </h1>}>
         <ManageBooking cancelReservedTimeHandler={cancelReservedTimeHandler} />
       </Suspense>
-    </>
+    </div>
   );
 }
 

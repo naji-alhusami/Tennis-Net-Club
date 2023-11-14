@@ -15,16 +15,14 @@ async function ManageBooking({ cancelReservedTimeHandler }) {
 
   return (
     <Fragment>
-      <div className={classes.manageContainer}>
-        {!filteredTakenTimes.length > 0 ? (
-          <p>You Do Not Have Reserved Times.</p>
-        ) : (
-          <ManageBookingForm
-            cancelReservedTimeHandler={cancelReservedTimeHandler}
-            filteredTakenTimes={filteredTakenTimes}
-          />
-        )}
-      </div>
+      {!filteredTakenTimes.length > 0 ? (
+        <p>You Do Not Have Reserved Times.</p>
+      ) : (
+        <ManageBookingForm
+          cancelReservedTimeHandler={cancelReservedTimeHandler}
+          filteredTakenTimes={filteredTakenTimes}
+        />
+      )}
     </Fragment>
   );
 }

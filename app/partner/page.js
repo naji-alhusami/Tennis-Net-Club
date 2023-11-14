@@ -18,8 +18,8 @@ function PartnerPage() {
       </div>
       <div className={classes.text}>
         <Headers
-          H3Header="ALL PLAYERS IN THE CLUB"
-          H1Header="CHOOSE MEMBER"
+          H3Header=""
+          H1Header=""
           H2Header="Find Partner"
           PHeader="You Can Choose Player To Play With, By Contacting Using WhatsApp"
         />
