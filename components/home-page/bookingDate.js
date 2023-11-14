@@ -24,14 +24,16 @@ function BookingDate() {
   return (
     <div className={classes.dateContainer}>
       <div className={classes.showDateContainer}>
-        <h3>Date:</h3>
-        {activeDay
-          ? activeDay.toLocaleDateString("en-US", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })
-          : null}
+        <h2 style={{marginRight:"1rem"}}>Date:</h2>
+        <h3>
+          {activeDay
+            ? activeDay.toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })
+            : null}
+        </h3>
       </div>
       <div className={classes.dateDisplay}>
         <div className={classes.reactDatePicker}>

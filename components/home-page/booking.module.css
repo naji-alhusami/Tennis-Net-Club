@@ -1,33 +1,31 @@
 .bookingContainer {
+  max-width: 87%;
+  position: relative;
+  height: 100%;
+  margin: 5rem 5rem 8rem 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.boxContainer {
   background-image: url("../../public/images/background1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
-  height: 35rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15rem 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.boxContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  color: black;
+  color: white;
   padding: 1rem 2rem;
   border-radius: 10px;
+  height: 24.3rem;
   width: 40%;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   border: solid 2px #268750;
-  margin-left: 1rem;
 }
 
 .text {
@@ -35,26 +33,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-
-.text p {
-  margin: 0;
+  align-items: flex-start;
+  width: 48%;
+  margin-right: 5rem;
 }
 
 .dateAndReserveContainer {
-  width: 87%;
+  position: absolute;
+  left: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
 .dateContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
-  /* align-items: flex-start; */
+  margin: 1rem 0 7rem 0;
+  align-items: center;
 }
 
 .showDateContainer {
@@ -88,7 +86,7 @@
   background-color: #ababab;
   padding: 0.3rem 1rem;
   color: white;
-  margin-left: 2rem;
+  /* margin-left: 2rem; */
   font-size: var(--size-5);
   box-shadow: 5px 5px 0px 1px #888888;
 }
@@ -97,13 +95,29 @@
   background-color: #efad32;
   padding: 0.3rem 1rem;
   color: white;
-  margin: 1rem 0;
   font-size: var(--size-5);
   box-shadow: 5px 5px 0px 1px #db981b;
 }
 
 .reactDatePicker input {
   display: none;
+}
+
+@media screen and (max-width: 950px) {
+  .bookingContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dateAndReserveContainer {
+    left: 35%;
+    top:50%;
+  }
+
+  .boxContainer {
+    margin: 1rem 4rem 0 0;
+  }
 }
 /* 
 .reserveButton::before {

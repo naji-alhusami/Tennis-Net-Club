@@ -18,7 +18,7 @@ async function HomePage() {
       <Starting />
       <Services />
       <Courses />
-      <Numbers />
+      {/* <Numbers /> */}
       <Booking />
       <div className={classes.eventsContainer}>
         <div className={classes.text}>
