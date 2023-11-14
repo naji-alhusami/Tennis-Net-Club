@@ -15,7 +15,7 @@ async function BookingInfo({ searchParams }) {
   const timeSlots = await fetchTimeSlots(newDate, newCourt);
   const takenTimes = await fetchTakenTimesFromMongo();
   const events = await fetchEventsFromMongo();
-  const { user } = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
   return (
     <div>
@@ -28,7 +28,7 @@ async function BookingInfo({ searchParams }) {
         <div>
           <TimeSelectionStep
             searchParams={searchParams}
-            user={user}
+            session={session}
             timeSlots={timeSlots}
             takenTimes={takenTimes.data}
           />
@@ -38,7 +38,7 @@ async function BookingInfo({ searchParams }) {
         <div>
           <ConfirmationStep
             events={events}
-            user={user}
+            session={session}
             searchParams={searchParams}
           />
         </div>

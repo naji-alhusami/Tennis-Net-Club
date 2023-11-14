@@ -33,14 +33,6 @@ const DateSelectionStep = () => {
     console.log(formattedDate); // Output: "2023-11-05"
   }
 
-  // Animation for header:
-  const headerRef = useRef(null);
-  const isInViewHeader = useInView(headerRef, { once: true });
-  const headerControls = useAnimation();
-  useEffect(() => {
-    if (isInViewHeader) headerControls.start("visible");
-  }, [isInViewHeader, headerControls]);
-
   // Animation for select players number and court type:
   const selectRef = useRef(null);
   const isInViewSelesction = useInView(selectRef, { once: true });
@@ -67,33 +59,12 @@ const DateSelectionStep = () => {
     if (isInViewCalendar) calendarControls.start("visible");
   }, [isInViewCalendar, calendarControls]);
 
-  // Header styling:
-  const headerStyle = { textAlign: "center", fontSize: "2rem" };
-  const hrStyle = {
-    border: "1px solid #1c7f47",
-    width: "6rem",
-  };
-
   // Link for the next step:
   const nextPath = `/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${numberOfPlayers}`;
 
   return (
     <Fragment>
       <div className={classes.firstStepContainer}>
-        <motion.h2
-          variants={{
-            hidden: { opacity: 0, y: -75 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={headerControls}
-          transition={{ duration: 0.3, delay: 0.4 }}
-          ref={headerRef}
-          style={headerStyle}
-        >
-          Choose Court Type, Players Number and Date
-          <hr style={hrStyle} />
-        </motion.h2>
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 75 },
@@ -136,6 +107,7 @@ const DateSelectionStep = () => {
             animate={imageControls}
             transition={{ duration: 0.3, delay: 0.4 }}
             ref={imageRef}
+            className={classes.imageContainer}
           >
             {selectedCourtType === "Clay" ? (
               <Image src={clay} alt="clay-court" priority={true} />
