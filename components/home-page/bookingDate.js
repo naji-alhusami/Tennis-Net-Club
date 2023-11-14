@@ -23,8 +23,8 @@ function BookingDate() {
 
   return (
     <div className={classes.dateContainer}>
-      <h3>Date:</h3>
-      <div className={classes.dateDisplay}>
+      <div className={classes.showDateContainer}>
+        <h3>Date:</h3>
         {activeDay
           ? activeDay.toLocaleDateString("en-US", {
               day: "numeric",
@@ -32,7 +32,8 @@ function BookingDate() {
               year: "numeric",
             })
           : null}
-        <button onClick={toggleCalendar}>Choose</button>
+      </div>
+      <div className={classes.dateDisplay}>
         <div className={classes.reactDatePicker}>
           <DatePicker
             onChange={handleDateChange}
@@ -41,6 +42,7 @@ function BookingDate() {
             showPopperArrow={false}
           />
         </div>
+        <button onClick={toggleCalendar}>Choose</button>
       </div>
     </div>
   );

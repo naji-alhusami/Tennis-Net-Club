@@ -8,6 +8,7 @@ import player2 from "@/public/images/player2.jpg";
 import Headers from "../ui/headers";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useSpring, animated } from "react-spring";
+import Link from "next/link";
 
 function Number({ n }) {
   const { number } = useSpring({
@@ -28,7 +29,7 @@ function Courses() {
     if (isInView) {
       mainControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, mainControls]);
 
   return (
     <div className={classes.container}>
@@ -67,10 +68,10 @@ function Courses() {
             H1Header="TRAINING"
             H2Header="Certified Coaches"
             PHeader="Welcome to TENNIS NET club, home to certified coaches dedicated to
-          enhancing your tennis skills. We offer beginner, intermediate, and
-          advanced courses, providing tailored instruction for players at every
-          level. Join us to elevate your game and enjoy the sport of tennis to
-          the fullest!"
+            enhancing your tennis skills. We offer beginner, intermediate, and
+            advanced courses, providing tailored instruction for players at every
+            level. Join us to elevate your game and enjoy the sport of tennis to
+            the fullest!"
           />
         </motion.div>
         {coursesData.map((course) => (
@@ -101,11 +102,13 @@ function Courses() {
               <span className={classes.percentage}>
                 <Number n={course.percent} />
                 &#37;
-                {/* {course.percent} */}
               </span>
             </motion.div>
           </div>
         ))}
+        <Link href="/training" className={classes.trainingLink}>
+          Check Traingings Offers
+        </Link>
       </div>
     </div>
   );

@@ -44,9 +44,6 @@ function MainNavigation(props) {
         <nav>
           <ul className={classes.ul}>
             {/* Large Screens */}
-            <li className={classes.navbarListHome}>
-              <Link href="/">Home</Link>
-            </li>
             {session && (
               <li className={classes.navbarListBook}>
                 <Link href="/booking">Book Court</Link>
@@ -67,16 +64,9 @@ function MainNavigation(props) {
                 <Link href="/training">Trainings</Link>
               </li>
             )}
-            <li className={classes.navbarListContact}>
-              <Link href="/contact">Contact</Link>
-            </li>
             <li>
               {session ? (
-                <div
-                  // whileHover={{ scale: 1.1 }}
-                  className={classes.user}
-                  onClick={showUserLogoutHandler}
-                >
+                <div className={classes.user} onClick={showUserLogoutHandler}>
                   <div className={classes.userName}>
                     {session?.user.name}{" "}
                     <AiFillCaretDown className={classes.icon} />
@@ -133,12 +123,7 @@ function MainNavigation(props) {
           >
             <ul className={classes.ulSmallScreen}>
               {/* Small Screens */}
-              <li
-                className={classes.navbarListHomeSmall}
-                onClick={toggleButtonHandler}
-              >
-                <Link href="/">Home</Link>
-              </li>
+
               {/* {session && (
                 <li
                   className={classes.navbarListBookSmall}
@@ -168,12 +153,6 @@ function MainNavigation(props) {
                 onClick={toggleButtonHandler}
               >
                 <Link href="/contact">Contact</Link>
-              </li>
-              <li
-                className={classes.navbarListAboutSmall}
-                onClick={toggleButtonHandler}
-              >
-                <Link href="/about">About</Link>
               </li>
             </ul>
           </motion.div>
