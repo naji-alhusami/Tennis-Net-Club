@@ -12,8 +12,7 @@ function PartnerPage() {
         <Image
           src={partner}
           alt="find-partner"
-          // width={300}
-          // height={300}
+          priority="true"
           property="true"
         />
       </div>

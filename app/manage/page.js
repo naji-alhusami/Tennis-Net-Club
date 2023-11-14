@@ -15,13 +15,7 @@ function ManageBookingPage() {
   return (
     <>
       <div className={classes.imageContainer}>
-        <Image
-          src={manage}
-          alt="book-course"
-          // width={300}
-          // height={300}
-          property="true"
-        />
+        <Image src={manage} alt="book-course" priority="true" property="true" />
       </div>
       <div className={classes.text}>
         <Headers
