@@ -6,12 +6,14 @@ import classes from "./training.module.css";
 // import { trainingRegisteration } from "@/actions/trainingActions";
 import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { useSession } from "next-auth/react";
+import SubmitButton from "../ui/submit-button";
+import { useRouter } from "next/navigation";
 
 function TrainingForm({ selectedTrainingType }) {
   const session = useSession();
   const member = session?.data.user.name;
   const { activeDay } = useContext(AuthContext);
-  // console.log(trainingType("GROUP SESSIONS"));
+  const router = useRouter();
 
   let startedDate = null;
   let endedDate = null;
@@ -53,15 +55,16 @@ function TrainingForm({ selectedTrainingType }) {
 
   async function trainingSubmitHandler(event) {
     event.preventDefault();
-    // console.log(startedDate);
-    // console.log(endedDate);
-    // console.log(daysOfWeek);
 
     try {
       await sendEventsToMongo(member, startedDate, endedDate, daysOfWeek);
     } catch (error) {
       console.log("Error", error.message);
     }
+
+    router.push(
+      "/thanks?thanks=Your Training Session Is Added, Please Check Your Calendar"
+    );
   }
 
   return (
@@ -85,15 +88,15 @@ function TrainingForm({ selectedTrainingType }) {
           activeDay.getDay() === 3 ||
           activeDay.getDay() === 4 ||
           activeDay.getDay() === 5) ? (
-          <button className={classes.confirmButton} type="submit">
+          <SubmitButton type="submit" className={classes.confirmButton}>
             Confirm
-          </button>
+          </SubmitButton>
         ) : daysOfWeek.length === 1 && activeDay.getDay() === 6 ? (
-          <button className={classes.confirmButton} type="submit">
+          <SubmitButton type="submit" className={classes.confirmButton}>
             Confirm
-          </button>
+          </SubmitButton>
         ) : (
-          <p>nothing</p>
+          <p className={classes.confirmtButtonDisabled}>Confirm</p>
         )}
       </form>
     </div>

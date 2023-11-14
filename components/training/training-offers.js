@@ -1,17 +1,14 @@
 "use client";
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 import classes from "./training.module.css";
-import courses from "@/public/images/courses.jpg";
-import Headers from "../ui/headers";
+
 import { trainingData } from "./trainingData";
 import { useSession } from "next-auth/react";
-import TrainingForm from "./trainingForm";
+import TrainingForm from "./training-form";
 
-function Training() {
+function TrainingOffers({ trainings }) {
   const trainingFormRef = useRef(null);
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
@@ -19,6 +16,12 @@ function Training() {
   const trainingOffersRef = useRef(null);
   const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });
   const trainingOffersControls = useAnimation();
+
+  const hasTrainingMembership = trainings.data.some((training) => {
+    return training.member === session?.user.name;
+  });
+
+  console.log(hasTrainingMembership);
 
   useEffect(() => {
     if (trainingOffersIsInView) {
@@ -47,27 +50,11 @@ function Training() {
   return (
     <Fragment>
       <div className={classes.trainingContainer}>
-        <div className={classes.imageContainer}>
-          <Image
-            src={courses}
-            alt="book-course"
-            // width={300}
-            // height={300}
-            property="true"
-          />
-        </div>
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className={classes.text}
-        >
-          <Headers
-            H3Header="Courses, Lessons & Training Sessions"
-            H1Header="NEVER TOO LATE"
-            H2Header="Training Sessions"
-            PHeader="Enroll In Our Training Sessions, Starting from Beginner to Advanced, Group or Individual"
-          />
-        </motion.div>
+        {hasTrainingMembership && (
+          <h4 style={{ color: "red" }}>
+            You Are Already Involved in Training Sessions
+          </h4>
+        )}
         <motion.div
           ref={trainingOffersRef}
           variants={{
@@ -99,9 +86,8 @@ function Training() {
                 <p>{data.pText4}</p>
               </div>
               <div>
-                {session ? (
+                {session && !hasTrainingMembership ? (
                   <motion.div
-                    // onClick={() => setShowEnrollForm(true)}
                     onClick={() => handleEnrollClick(data.id)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.9 }}
@@ -114,7 +100,7 @@ function Training() {
                     Enroll
                   </motion.div>
                 ) : (
-                  <div className={classes.enrollButtonDisabled}>Enroll</div>
+                  <div className={classes.buttonDisabled}>Enroll</div>
                 )}
               </div>
             </div>
@@ -130,4 +116,4 @@ function Training() {
   );
 }
 
-export default Training;
+export default TrainingOffers;

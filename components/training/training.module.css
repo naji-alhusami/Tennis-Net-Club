@@ -117,12 +117,29 @@
   margin-top: 1rem;
 }
 
-.enrollButtonDisabled {
+.buttonDisabled {
   background-color: #ababab;
   padding: 0.6rem 1.3rem;
   color: white;
   font-size: var(--size-5);
   box-shadow: 5px 5px 0px 1px #888888;
+}
+
+.confirmButton {
+  margin: 1rem 0;
+}
+
+.confirmtButtonDisabled {
+  text-align: center;
+  background-color: #888787;
+  border: 2px solid #888787;
+  padding: 2%;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 @media screen and (max-width: 720px) {
@@ -133,6 +150,24 @@
   .trainingPricesContainer1,
   .trainingPricesContainer2 {
     width: fit-content;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .text h3 {
+    display: none;
+  }
+
+  .text h1 {
+    display: none;
+  }
+
+  .text h2 {
+    font-size: 2rem;
+  }
+
+  .text p {
+    display: none;
   }
 }
 /* --------------- */

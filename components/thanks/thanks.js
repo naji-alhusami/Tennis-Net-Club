@@ -19,9 +19,6 @@ function Thanks({ thanksMessage }) {
           <Image
             src={thanks}
             alt="website background"
-            // height={500}
-            // width={1500}
-            // layout="fill"
             objectFit="cover"
             priority={true}
           />
