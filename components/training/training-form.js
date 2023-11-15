@@ -30,22 +30,20 @@ function TrainingForm({ activeDay, selectedTrainingType }) {
 
     //set the days of week:
     if (
-      activeDay.getDay() === 0 ||
-      activeDay.getDay() === 2 ||
-      activeDay.getDay() === 4 ||
-      selectedTrainingType === "1" ||
-      selectedTrainingType === "3"
+      (activeDay.getDay() === 0 ||
+        activeDay.getDay() === 2 ||
+        activeDay.getDay() === 4) &&
+      (selectedTrainingType === "1" || selectedTrainingType === "3")
     ) {
       daysOfWeek = [0, 2, 4];
     } else if (
-      activeDay.getDay() === 1 ||
-      activeDay.getDay() === 3 ||
-      activeDay.getDay() === 5 ||
-      selectedTrainingType === "1" ||
-      selectedTrainingType === "3"
+      (activeDay.getDay() === 1 ||
+        activeDay.getDay() === 3 ||
+        activeDay.getDay() === 5) &&
+      (selectedTrainingType === "1" || selectedTrainingType === "3")
     ) {
       daysOfWeek = [1, 3, 5];
-    } else if (activeDay.getDay() === 6 || selectedTrainingType === "2") {
+    } else if (activeDay.getDay() === 6 && selectedTrainingType === "2") {
       daysOfWeek = [6];
     }
   }
