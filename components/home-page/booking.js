@@ -1,6 +1,6 @@
 "use client";
-import React, { useContext } from "react";
-import { motion } from "framer-motion";
+import React, { useContext, useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import Link from "next/link";
 import classes from "./booking.module.css";
 import BookingDate from "./bookingDate";
@@ -12,6 +12,16 @@ import AuthContext from "@/store/auth-context";
 function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
   const { data: session } = useSession();
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+    }
+  }, [isInView, mainControls]);
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
@@ -27,7 +37,17 @@ function Booking() {
 
   return (
     <div className={classes.bookingContainer}>
-      <div className={classes.text}>
+      <motion.div
+        className={classes.text}
+        ref={ref}
+        variants={{
+          hidden: { opacity: 0, x: -100 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate={mainControls}
+        transition={{ duration: 0.3, delay: 0.4 }}
+      >
         <Headers
           H3Header="Choose Your Time"
           H1Header="BOOKING"
@@ -36,10 +56,17 @@ function Booking() {
          enhancing your tennis skills."
         />
         <Numbers />
-      </div>
-      <div
+      </motion.div>
+      <motion.div
         className={classes.boxContainer}
-        // style={{ filter: "brightness(0.5)" }}
+        ref={ref}
+        variants={{
+          hidden: { opacity: 0, x: 100 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate={mainControls}
+        transition={{ duration: 0.3, delay: 0.4 }}
       >
         <div className={classes.dateAndReserveContainer}>
           <BookingDate />
@@ -59,7 +86,7 @@ function Booking() {
             <div className={classes.reserveButtonDisabled}>Reserve Court</div>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

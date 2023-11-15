@@ -7,6 +7,7 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./starting.module.css";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 function Starting() {
   const { data: session } = useSession();
@@ -18,14 +19,14 @@ function Starting() {
           className={classes.imageContainer}
           style={{ filter: "brightness(0.7)" }}
         >
-          <Image
-            src={background}
-            alt="website background"
-            objectFit="cover"
-            priority={true}
-          />
+          <Image src={background} alt="website background" priority={true} />
         </div>
-        <div className={classes.startingText}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className={classes.startingText}
+        >
           <h1>Hi</h1>
           {session ? (
             <h2>Welcome to our TENNIS NET Club</h2>
@@ -62,7 +63,7 @@ function Starting() {
               </Button>
             </Link>
           )}
-        </div>
+        </motion.div>
       </div>
     </Fragment>
   );

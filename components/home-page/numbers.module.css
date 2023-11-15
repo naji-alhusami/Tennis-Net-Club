@@ -30,7 +30,6 @@
 
 @media screen and (max-width: 970px) {
   .container {
-    /* width:100%; */
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   }
 }

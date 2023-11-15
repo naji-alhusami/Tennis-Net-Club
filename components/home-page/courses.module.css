@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 1rem 5rem;
+  margin: 17rem 5rem;
 }
 
 .imagesContainer {
@@ -20,29 +20,6 @@
   height: 510px;
   margin-right: 2rem;
 }
-
-/* .numbers {
-  background-color: white;
-  min-width: 5rem;
-  position: absolute;
-  top: 10%;
-  left: 19%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.numbers h1 {
-  margin: 0;
-  margin-top: 1rem;
-}
-
-.numbers p {
-  margin: 0;
-  margin-bottom: 1.5rem;
-  color: #5d5d5d;
-} */
 
 .text {
   position: relative;
@@ -139,7 +116,6 @@
   }
 
   .imagesContainer {
-
     height: 100px;
   }
 
