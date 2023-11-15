@@ -1,5 +1,4 @@
 .bookingContainer {
-  max-width: 87%;
   position: relative;
   height: 100%;
   margin: 5rem 5rem 8rem 5rem;
@@ -10,7 +9,7 @@
 }
 
 .boxContainer {
-  background-image: url("../../public/images/background1.jpg");
+  background-image: url("../../public/images/calendarBackground.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,13 +18,13 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  color: white;
   padding: 1rem 2rem;
   border-radius: 10px;
   height: 24.3rem;
   width: 40%;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   border: solid 2px #268750;
+  color: black;
 }
 
 .text {
@@ -34,24 +33,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 48%;
-  margin-right: 5rem;
+  margin-right: 2rem;
 }
 
 .dateAndReserveContainer {
-  position: absolute;
-  left: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
 .dateContainer {
   display: flex;
   flex-direction: column;
-  margin: 1rem 0 7rem 0;
+  margin: 1rem 0 2rem 0;
   align-items: center;
 }
 
@@ -82,11 +77,33 @@
   color: white;
 }
 
+.players {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+.players button {
+  background-color: rgb(226, 223, 223);
+  color: black;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 30px;
+  margin: 0 1rem;
+}
+
+.players button:hover {
+  background-color: #db981b;
+  color: white;
+}
+
 .reserveButtonDisabled {
   background-color: #ababab;
   padding: 0.3rem 1rem;
   color: white;
-  /* margin-left: 2rem; */
   font-size: var(--size-5);
   box-shadow: 5px 5px 0px 1px #888888;
 }
@@ -103,20 +120,26 @@
   display: none;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 970px) {
   .bookingContainer {
+    margin: 3rem 5rem;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
   }
 
-  .dateAndReserveContainer {
-    left: 35%;
-    top:50%;
+  .text {
+    width: 100%;
   }
 
   .boxContainer {
-    margin: 1rem 4rem 0 0;
+    width: 100%;
+    margin: 1rem 5rem 0 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .bookingContainer {
+    margin: 3rem 2rem;
   }
 }
 /* 
