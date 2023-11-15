@@ -1,53 +1,52 @@
 .eventsContainer {
-    position: relative;
-  }
-  
-  .image {
-    width: 100%;
-    height: 80%;
-  }
-  
-  .image img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .text {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem 0 0 0;
-  }
-  
-  .text h3 {
-    position: absolute;
-    top: 2%;
-    color: #858585;
-  }
-  
-  .text h1 {
-    color: #ececec;
-    font-size: 3rem;
-    margin: 0;
-  }
-  
-  .text h2 {
-    font-size: 4rem;
-    margin: 0;
-    color: #1c7f47;
-  }
-  
-  .text p {
-    font-size: 1rem;
-    color: #858585;
-    margin-bottom: 3.5rem;
-  }
-  
-  .calendar {
-    width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto;
-  }
-  
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 80%;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0 0;
+}
+
+.text h3 {
+  position: absolute;
+  top: 2%;
+  color: #858585;
+}
+
+.text h1 {
+  color: #ececec;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.text h2 {
+  font-size: 4rem;
+  margin: 0;
+  color: #1c7f47;
+}
+
+.text p {
+  font-size: 1rem;
+  color: #858585;
+  margin-bottom: 3.5rem;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}

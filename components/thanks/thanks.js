@@ -7,6 +7,7 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./thanks.module.css";
 import { motion } from "framer-motion";
+import { equipmentsData } from "../training/equipmentsData";
 
 function Thanks({ thanksMessage }) {
   return (
@@ -19,7 +20,7 @@ function Thanks({ thanksMessage }) {
           <Image
             src={thanks}
             alt="website background"
-            objectFit="cover"
+            // objectFit="cover"
             priority={true}
           />
         </div>
@@ -29,7 +30,7 @@ function Thanks({ thanksMessage }) {
           transition={{ duration: 0.3, delay: 0.1 }}
           className={classes.startingText}
         >
-          <h1>Hi</h1>
+          <h2>Hi</h2>
           <h2>Welcome to our TENNIS NET Club</h2>
           <motion.h1>{thanksMessage}</motion.h1>
 
@@ -40,6 +41,19 @@ function Thanks({ thanksMessage }) {
             </Button>
           </Link>
         </motion.div>
+      </div>
+      <div className={classes.equipmentsContainer}>
+        {equipmentsData.map((equipment) => (
+          <div key={equipment.id} className={classes.equipmentContainer}>
+            <div>
+              <Image src={equipment.image} alt="eq1" />
+            </div>
+            <div>
+              <h1>{equipment.title}</h1>
+              <p>{equipment.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </Fragment>
   );

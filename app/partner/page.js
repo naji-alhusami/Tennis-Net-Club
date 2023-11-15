@@ -4,6 +4,7 @@ import Headers from "@/components/ui/headers";
 import Image from "next/image";
 import partner from "@/public/images/partner.jpg";
 import classes from "@/components/find-partner/find-partner.module.css";
+import LoadingData from "@/components/ui/loading-data";
 
 function PartnerPage() {
   return (
@@ -24,7 +25,7 @@ function PartnerPage() {
           PHeader="You Can Choose Player To Play With, By Contacting Using WhatsApp"
         />
       </div>
-      <Suspense fallback={<h1>Loading Players...</h1>}>
+      <Suspense fallback={<LoadingData />}>
         <FindPartner />
       </Suspense>
     </div>

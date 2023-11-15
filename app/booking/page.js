@@ -4,13 +4,14 @@ import BookingSteps from "@/components/booking/booking-steps";
 import BookingInfo from "@/components/booking/booking-Info";
 
 import classes from "@/components/booking/booking";
+import LoadingData from "@/components/ui/loading-data";
 
 async function BookingPage({ searchParams }) {
   return (
     <div className={classes.bookingContainer}>
       <BookingContainer />
       <BookingSteps />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<LoadingData />}>
         <BookingInfo searchParams={searchParams} />
       </Suspense>
     </div>

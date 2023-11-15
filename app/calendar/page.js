@@ -7,6 +7,7 @@ import Headers from "@/components/ui/headers";
 import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "../../components/calendar/calendar-events.module.css";
 import { motion } from "framer-motion";
+import LoadingData from "@/components/ui/loading-data";
 
 async function CalendarPage() {
   return (
@@ -23,9 +24,7 @@ async function CalendarPage() {
             reserved courts)"
         />
       </div>
-      <Suspense
-        fallback={<h1 style={{ height: "600px" }}>Loading Calendar Page...</h1>}
-      >
+      <Suspense fallback={<LoadingData />}>
         <CalendarEvents />
       </Suspense>
     </div>

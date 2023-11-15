@@ -5,6 +5,7 @@ import manage from "@/public/images/manage.jpg";
 import React, { Suspense } from "react";
 import classes from "@/components/manage/manage-booking.module.css";
 import { deleteReservedTimesActions } from "@/actions/deleteReservedTimesActions";
+import LoadingData from "@/components/ui/loading-data";
 
 async function cancelReservedTimeHandler(timeSlot) {
   "use server";
@@ -25,7 +26,7 @@ function ManageBookingPage() {
           PHeader="Change OR Cancel Your Booking"
         />
       </div>
-      <Suspense fallback={<h1>Loading TakenTimes ... </h1>}>
+      <Suspense fallback={<LoadingData />}>
         <ManageBooking cancelReservedTimeHandler={cancelReservedTimeHandler} />
       </Suspense>
     </div>

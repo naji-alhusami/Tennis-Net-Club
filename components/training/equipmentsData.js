@@ -23,7 +23,7 @@ export const equipmentsData = [
     description: "Reserve a sports.",
   },
   {
-    id: "3",
+    id: "4",
     image: eq4,
     title: "Rent Tennis Shoes",
     description: "Reserve a sports.",

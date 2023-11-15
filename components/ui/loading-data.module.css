@@ -1,0 +1,23 @@
+.laoadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+  margin: 0;
+}
+
+.tennisSpinner {
+  width: 100px;
+  height: 100px;
+  animation: rotate 2s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

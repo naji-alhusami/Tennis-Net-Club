@@ -5,6 +5,7 @@ import Services from "@/components/home-page/services";
 import Courses from "@/components/home-page/courses";
 import Booking from "@/components/home-page/booking";
 import CalendarEvents from "@/components/calendar/calendar-events";
+import LoadingData from "@/components/ui/loading-data";
 
 async function HomePage() {
   return (
@@ -13,9 +14,7 @@ async function HomePage() {
       <Services />
       <Courses />
       <Booking />
-      <Suspense
-        fallback={<h1 style={{ height: "600px" }}>Loading Calendar...</h1>}
-      >
+      <Suspense fallback={<LoadingData />}>
         <CalendarEvents />
       </Suspense>
       {/* <Events /> */}
