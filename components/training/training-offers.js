@@ -1,5 +1,11 @@
 "use client";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 import classes from "./training.module.css";
@@ -7,8 +13,10 @@ import classes from "./training.module.css";
 import { trainingData } from "./trainingData";
 import { useSession } from "next-auth/react";
 import TrainingForm from "./training-form";
+import AuthContext from "@/store/auth-context";
 
 function TrainingOffers({ trainings }) {
+  const { setActiveDay, activeDay } = useContext(AuthContext);
   const trainingFormRef = useRef(null);
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
@@ -34,9 +42,13 @@ function TrainingOffers({ trainings }) {
   }, [showEnrollForm]);
 
   const handleEnrollClick = (typeId) => {
-    setShowEnrollForm(false);
-    setSelectedTrainingType(typeId);
+    if (selectedTrainingType !== null) {
+      setActiveDay();
+      setShowEnrollForm(false);
+      setSelectedTrainingType(null);
+    }
     setShowEnrollForm(true);
+    setSelectedTrainingType(typeId);
 
     if (trainingFormRef.current) {
       trainingFormRef.current.scrollIntoView({
@@ -106,7 +118,10 @@ function TrainingOffers({ trainings }) {
         </motion.div>
         {showEnrollForm && (
           <div ref={trainingFormRef}>
-            <TrainingForm selectedTrainingType={selectedTrainingType} />
+            <TrainingForm
+              activeDay={activeDay}
+              selectedTrainingType={selectedTrainingType}
+            />
           </div>
         )}
       </div>

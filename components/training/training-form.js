@@ -1,18 +1,15 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React from "react";
 import BookingCalendar from "../booking/booking-calendar";
-import AuthContext from "@/store/auth-context";
 import classes from "./training.module.css";
-// import { trainingRegisteration } from "@/actions/trainingActions";
 import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { useSession } from "next-auth/react";
 import SubmitButton from "../ui/submit-button";
 import { useRouter } from "next/navigation";
 
-function TrainingForm({ selectedTrainingType }) {
+function TrainingForm({ activeDay, selectedTrainingType }) {
   const session = useSession();
   const member = session?.data.user.name;
-  const { activeDay } = useContext(AuthContext);
   const router = useRouter();
 
   let startedDate = null;
