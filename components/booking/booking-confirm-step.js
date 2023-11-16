@@ -43,7 +43,7 @@ function ConfirmationStep({ searchParams, session }) {
         startedTime
       );
     } catch (error) {
-      console.log("Error", error.message);
+      return;
     }
 
     setCurrentStep(1);

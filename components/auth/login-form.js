@@ -25,7 +25,6 @@ function Login() {
       password: password,
       // callbackUrl,
     });
-    console.log(response);
     if (!response.ok) {
       setErrorMessage(response.error);
     } else if (response.ok) {

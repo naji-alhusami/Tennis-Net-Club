@@ -28,9 +28,7 @@ const DateSelectionStep = () => {
     const day = activeDay.getDate().toString().padStart(2, "0"); // Output: "05" or "09"
     const month = activeDay.getMonth() + 1;
     const year = activeDay.getFullYear();
-    formattedDate = `${year}-${month}-${day}`;
-
-    console.log(formattedDate); // Output: "2023-11-05"
+    formattedDate = `${year}-${month}-${day}`; // Output: "2023-11-05"
   }
 
   // Animation for select players number and court type:

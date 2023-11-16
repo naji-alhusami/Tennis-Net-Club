@@ -8,7 +8,6 @@ export default withAuth({
   },
   callbacks: {
     async redirect({ url, req }) {
-      console.log(req);
       if (req.session.user) {
         // User is already authenticated, redirect to a different page
         return "/";

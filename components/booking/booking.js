@@ -17,8 +17,7 @@
 
 // function BookingCourt() {
 //   const router = useSearchParams();
-//   // console.log(router.has("date"));
-//   // console.log(router.has("time"));
+
 //   const { currentStep } = useContext(AuthContext);
 
 //   const [selectedCourtType, setSelectedCourtType] = useState("Clay Courts");
@@ -26,9 +25,7 @@
 
 //   //   async function reserveHandler(event) {
 //   //     event.preventDefault();
-//   //     console.log("click on confirm");
 //   //     if (timeInfo) {
-//   //       console.log(timeInfo);
 //   //       await sendTakenTimesToMongo(timeInfo);
 //   //     }
 //   //   }

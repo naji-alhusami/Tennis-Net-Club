@@ -54,7 +54,7 @@ function TrainingForm({ activeDay, selectedTrainingType }) {
     try {
       await sendEventsToMongo(member, startedDate, endedDate, daysOfWeek);
     } catch (error) {
-      console.log("Error", error.message);
+      return;
     }
 
     router.push(

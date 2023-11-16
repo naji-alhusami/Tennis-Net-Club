@@ -3,7 +3,6 @@
 
 // async function getTakenTimesHandler(req, res) {
 //   if (req.method === "GET") {
-//     // console.log("inside getTakenTimes");
 //     const client = await connectToDatabase();
 //     const db = client.db();
 //     const collection = db.collection("takenTimes");

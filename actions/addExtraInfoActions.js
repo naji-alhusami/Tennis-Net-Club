@@ -6,7 +6,6 @@ import { getServerSession } from "next-auth";
 
 export async function AddExtraInfoActions(data) {
   const { number, level } = data;
-  // console.log(number);
   const session = await getServerSession(authOptions);
   if (!session) {
     throw new Error("Unauthorization");

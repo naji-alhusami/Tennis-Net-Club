@@ -46,7 +46,6 @@ function Signup() {
         router.push(`/thanks?thanks=${response?.message}`);
       }
     } catch (error) {
-      console.log(error.message);
       setErrorMessage(error.message);
     }
   }

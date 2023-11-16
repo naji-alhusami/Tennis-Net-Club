@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 export async function deleteReservedTimesActions(timeSlot) {
   try {
     const result = await TakenTime.deleteOne({ _id: timeSlot._id });
-    // console.log(result);
+    
     if (result.deletedCount === 1) {
       revalidatePath("/manage");
       return { message: "Deleted Reserved Time Successfully" };

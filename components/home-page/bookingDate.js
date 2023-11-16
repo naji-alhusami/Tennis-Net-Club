@@ -11,7 +11,6 @@ function BookingDate() {
   const datePickerRef = useRef(null);
 
   const handleDateChange = (date) => {
-    console.log(date);
     setActiveDay(date);
   };
 

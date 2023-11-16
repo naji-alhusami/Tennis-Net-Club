@@ -17,6 +17,8 @@ async function sendContactData(contactDetails) {
 
   if (!response.ok) {
     throw new Error(data.message || "Something went wrong!");
+  } else if (response.ok) {
+    alert(data.message);
   }
 }
 
@@ -27,7 +29,6 @@ function ContactForm() {
 
   async function sendMessageHandler(event) {
     event.preventDefault();
-
     try {
       await sendContactData({
         email: enteredEmail,
@@ -38,7 +39,6 @@ function ContactForm() {
       setEnteredName("");
       setEnteredMessage("");
     } catch (error) {
-      console.log(error.message);
       return;
     }
   }
@@ -74,57 +74,17 @@ function ContactForm() {
             <label htmlFor="message">Your Message</label>
             <textarea
               id="message"
-              rows="5"
+              rows="4"
               value={enteredMessage}
               onChange={(event) => setEnteredMessage(event.target.value)}
               required
             ></textarea>
           </div>
-          <div className={classes.actions}>
-            <SubmitButton>Send Message</SubmitButton>
-          </div>
+          {/* <div className={classes.actions}> */}
+          <SubmitButton>Send Message</SubmitButton>
+          {/* </div> */}
         </form>
       </div>
-      {/* <section className={classes.contactFormContainer}>
-        <form className={classes.form} onSubmit={sendMessageHandler}>
-          <h1>Contact Form</h1>
-          <div className={classes.controls}>
-            <div className={classes.control}>
-              <label htmlFor="email">Your Email</label>
-              <input
-                type="email"
-                id="email"
-                value={enteredEmail}
-                onChange={(event) => setEnteredEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="name">Your Name</label>
-              <input
-                type="text"
-                id="name"
-                value={enteredName}
-                onChange={(event) => setEnteredName(event.target.value)}
-                required
-              />
-            </div>
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="message">Your Message</label>
-            <textarea
-              id="message"
-              rows="5"
-              value={enteredMessage}
-              onChange={(event) => setEnteredMessage(event.target.value)}
-              required
-            ></textarea>
-          </div>
-          <div className={classes.actions}>
-            <SubmitButton>Send Message</SubmitButton>
-          </div>
-        </form>
-      </section> */}
     </div>
   );
 }

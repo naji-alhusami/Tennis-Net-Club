@@ -31,7 +31,6 @@ function AddExtraInfo({ callbackUrl }) {
         number,
         level,
       });
-      console.log(response);
 
       if (response?.message) {
         ref.current?.reset();
@@ -39,7 +38,6 @@ function AddExtraInfo({ callbackUrl }) {
         router.replace(`/thanks?thanks=${response.message}`);
       }
     } catch (error) {
-      console.log(error.message);
       setErrorMessage(error.message);
     }
   }
@@ -79,7 +77,9 @@ function AddExtraInfo({ callbackUrl }) {
         <div className={classes.ButtonsContainer}>
           <ButtonTest>Add</ButtonTest>
           <h3>Already Added Information?</h3>
-          <Link href="/" className={classes.button}>Home</Link>
+          <Link href="/" className={classes.button}>
+            Home
+          </Link>
         </div>
       </form>
     </div>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectToDatabase from "@/lib/db";
-import Event from "@/models/eventModel";
+import Contact from "@/models/contactModel";
 
 connectToDatabase();
 
@@ -8,19 +8,17 @@ export async function POST(req) {
   if (req.method === "POST") {
     try {
       const { email, name, message } = await req.json();
-      // console.log(member, selectedDate, endedDate, daysOfWeek);
-      //   if (endedDate && daysOfWeek) {
       const contact = {
         email,
         name,
         message,
       };
 
-      const newContact = new Event(contact);
+      const newContact = new Contact(contact);
       await newContact.save();
 
       return NextResponse.json(
-        { message: "Successfully stored contact information!" },
+        { message: "Your contact Information sent Successfully!" },
         {
           status: 201,
         }

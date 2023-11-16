@@ -15,7 +15,6 @@
 //         startedTime,
 //         selectedTime,
 //       } = await req.json();
-//       console.log(collection);
 
 //       const eventType = {
 //         title: "Court Reservation",
@@ -35,7 +34,6 @@
 //       const existingEvent = await collection.findOne({
 //         title: eventType.title,
 //       });
-//       console.log( );
 //       if (existingEvent && existingEvent.date === timeInfo.date ) {
 //         const result = await collection.insertOne(timeInfo);
 //       } else {
@@ -93,20 +91,6 @@ export async function POST(req) {
         startedTime,
         selectedTime,
       } = await req.json();
-      // console.log(
-      //   "inside route sending takenTimes:",
-      //   member,
-      //   selectedCourtType,
-      //   selectedPlayersNumber,
-      //   selectedDate,
-      //   startedTime,
-      //   selectedTime
-      // );
-
-      // const newEvent = new Event({
-      //   // title: profile.name,
-      //   date: selectedDate,
-      // });
 
       const newTimeInfo = new TakenTime({
         member,

@@ -69,10 +69,10 @@
   min-width: 10rem;
 }
 
-.actions {
+/* .actions {
   margin-top: var(--size-4);
   text-align: right;
-}
+} */
 
 @media (max-width: 840px) {
   .contactFormContainer {
