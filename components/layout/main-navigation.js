@@ -49,22 +49,22 @@ function MainNavigation(props) {
           <ul className={classes.ul}>
             {/* Large Screens */}
             {session && (
-              <li className={classes.navbarListBook}>
+              <li className={classes.navbarList}>
                 <Link href="/booking">Book Court</Link>
               </li>
             )}
             {session && (
-              <li className={classes.navbarListBook}>
+              <li className={classes.navbarList}>
                 <Link href="/manage">Manage Bookings</Link>
               </li>
             )}
             {session && (
-              <li className={classes.navbarListPartner}>
+              <li className={classes.navbarList}>
                 <Link href="/partner">Find Partner</Link>
               </li>
             )}
             {session && (
-              <li className={classes.navbarListTraining}>
+              <li className={classes.navbarList}>
                 <Link href="/training">Trainings</Link>
               </li>
             )}
@@ -135,27 +135,28 @@ function MainNavigation(props) {
           >
             <ul className={classes.ulSmallScreen}>
               {/* Small Screens */}
-
+              <li onClick={toggleButtonHandler}>
+                <Link href="/">Home</Link>
+              </li>
               {session && (
-                <li
-                  className={classes.navbarListPartnerSmall}
-                  onClick={toggleButtonHandler}
-                >
-                  <Link href="/">Find Partner</Link>
+                <li onClick={toggleButtonHandler}>
+                  <Link href="/booking">Book Court</Link>
                 </li>
               )}
               {session && (
-                <li
-                  className={classes.navbarListTrainingSmall}
-                  onClick={toggleButtonHandler}
-                >
-                  <Link href="/training">Trainings</Link>
+                <li onClick={toggleButtonHandler}>
+                  <Link href="/booking">Manage Bookings</Link>
                 </li>
               )}
-              <li
-                className={classes.navbarListContactSmall}
-                onClick={toggleButtonHandler}
-              >
+              {session && (
+                <li onClick={toggleButtonHandler}>
+                  <Link href="/partner">Find Partner</Link>
+                </li>
+              )}
+              <li onClick={toggleButtonHandler}>
+                <Link href="/training">Trainings</Link>
+              </li>
+              <li onClick={toggleButtonHandler}>
                 <Link href="/contact">Contact</Link>
               </li>
             </ul>

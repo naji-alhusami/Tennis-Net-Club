@@ -27,26 +27,14 @@
   padding: 0;
 }
 
-.navbarListHome a,
-.navbarListBook a,
-.navbarListPartner a,
-.navbarListTraining a,
-.navbarListBlogs a,
-.navbarListContact a,
-.navbarListAbout a {
+.navbarList a {
   margin: 0 var(--size-4);
   color: rgb(0, 0, 0);
   font-size: var(--size-5);
   font-weight: bolder;
 }
 
-.navbarListHome a:hover,
-.navbarListBook a:hover,
-.navbarListPartner a:hover,
-.navbarListTraining a:hover,
-.navbarListBlogs a:hover,
-.navbarListContact a:hover,
-.navbarListAbout a:hover {
+.navbarList a:hover {
   color: #1c7f47;
 }
 
@@ -105,7 +93,7 @@
   margin-left: 2rem;
   top: 100%;
   right: 0.1%;
-  width:7.9rem;
+  width: 7.9rem;
   border: #1c7f47 1px solid;
 }
 
@@ -145,23 +133,17 @@
   display: none;
 }
 
-@media (min-width: 950px) {
+/* @media (min-width: 960px) {
   .navbarListHome,
   .navbarListBlogs,
   .navbarListContact,
   .navbarListAbout {
     display: none;
   }
-}
+} */
 
-@media (max-width: 809px) {
-  .navbarListHome,
-  .navbarListBook,
-  .navbarListPartner,
-  .navbarListTraining,
-  .navbarListBlogs,
-  .navbarListContact,
-  .navbarListAbout {
+@media (max-width: 960px) {
+  .navbarList {
     display: none;
   }
 
