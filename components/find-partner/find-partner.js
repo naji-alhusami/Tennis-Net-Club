@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
-import { fetchPlayersFromMongo } from "@/lib/players/fetchPlayersFromMongo";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import Partners from "./partners";
+import { fetchPlayersFromMongo } from "@/lib/players/fetchPlayersFromMongo";
 
 async function FindPartner() {
   const session = await getServerSession(authOptions);

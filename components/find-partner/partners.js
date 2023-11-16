@@ -1,9 +1,10 @@
 "use client";
-import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
+import { motion, useAnimation, useInView } from "framer-motion";
+
 import { BsWhatsapp } from "react-icons/bs";
 import classes from "./find-partner.module.css";
-import { motion, useAnimation, useInView } from "framer-motion";
 
 function Partners({ filteredPlayers }) {
   const ref = useRef(null);

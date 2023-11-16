@@ -2,10 +2,10 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
-import classes from "./manage-booking.module.css";
 import SubmitButton from "../ui/submit-button";
+import classes from "./manage-reservations.module.css";
 
-const ManageBookingForm = ({
+const ManageReservationForm = ({
   filteredTakenTimes,
   cancelReservedTimeHandler,
 }) => {
@@ -60,4 +60,4 @@ const ManageBookingForm = ({
   );
 };
 
-export default ManageBookingForm;
+export default ManageReservationForm;

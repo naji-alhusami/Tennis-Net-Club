@@ -1,11 +1,12 @@
-import ManageBooking from "@/components/manage/manage-booking";
-import Headers from "@/components/ui/headers";
-import Image from "next/image";
-import manage from "@/public/images/manage.jpg";
 import React, { Suspense } from "react";
-import classes from "@/components/manage/manage-booking.module.css";
+import Image from "next/image";
+
 import { deleteReservedTimesActions } from "@/actions/deleteReservedTimesActions";
+import ManageBooking from "@/components/manage/manage-reservations";
+import Headers from "@/components/ui/headers";
 import LoadingData from "@/components/ui/loading-data";
+import manage from "@/public/images/manage.jpg";
+import classes from "@/components/manage/manage-reservations.module.css";
 
 async function cancelReservedTimeHandler(timeSlot) {
   "use server";
@@ -14,10 +15,10 @@ async function cancelReservedTimeHandler(timeSlot) {
 
 export const metadata = {
   title: "Manage Bookings",
-  description: "Manage your booking courts with Tennis Net Club"
+  description: "Manage your booking courts with Tennis Net Club",
 };
 
-function ManageBookingPage() {
+function ManageReservationPage() {
   return (
     <div className={classes.manageContainer}>
       <div className={classes.imageContainer}>
@@ -38,4 +39,4 @@ function ManageBookingPage() {
   );
 }
 
-export default ManageBookingPage;
+export default ManageReservationPage;

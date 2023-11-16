@@ -1,12 +1,12 @@
 "use server";
 import React, { Fragment } from "react";
-import classes from "./manage-booking.module.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
-import ManageBookingForm from "./manage-booking-form";
 
-async function ManageBooking({ cancelReservedTimeHandler }) {
+import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
+import ManageBookingForm from "./manage-reservation-form";
+
+async function ManageReservations({ cancelReservedTimeHandler }) {
   const session = await getServerSession(authOptions);
   const takenTimes = await fetchTakenTimesFromMongo();
   const filteredTakenTimes = takenTimes.data.filter(
@@ -16,7 +16,7 @@ async function ManageBooking({ cancelReservedTimeHandler }) {
   return (
     <Fragment>
       {!filteredTakenTimes.length > 0 ? (
-        <p>You Do Not Have Reserved Times.</p>
+        <p>You Do Not Have Reserved Times</p>
       ) : (
         <ManageBookingForm
           cancelReservedTimeHandler={cancelReservedTimeHandler}
@@ -27,4 +27,4 @@ async function ManageBooking({ cancelReservedTimeHandler }) {
   );
 }
 
-export default ManageBooking;
+export default ManageReservations;
