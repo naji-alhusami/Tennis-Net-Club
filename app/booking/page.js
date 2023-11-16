@@ -6,6 +6,11 @@ import BookingInfo from "@/components/booking/booking-Info";
 import classes from "@/components/booking/booking";
 import LoadingData from "@/components/ui/loading-data";
 
+export const metadata = {
+  title: "Booking Court",
+  description: "Book court with Tennis Net Club"
+};
+
 async function BookingPage({ searchParams }) {
   return (
     <div className={classes.bookingContainer}>

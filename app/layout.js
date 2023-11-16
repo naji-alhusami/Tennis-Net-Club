@@ -8,24 +8,19 @@ import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Tennis Net App",
-  description: "Created by Naji Alhusami",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* <Suspense fallback={<h1>Loading Main Page...</h1>}> */}
-        <body>
-          <MyProvider>
-            <AuthProvider>
-              <MainNavigation />
-              {children}
-              <Footer />
-            </AuthProvider>
-          </MyProvider>
-        </body>
+      <body>
+        <MyProvider>
+          <AuthProvider>
+            <MainNavigation />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </MyProvider>
+      </body>
       {/* </Suspense> */}
     </html>
   );

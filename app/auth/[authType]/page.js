@@ -10,6 +10,15 @@ import signup from "@/public/images/signup.jpg";
 import classes from "@/components/auth/signup-form.module.css";
 import AddExtraInfo from "@/components/auth/add-extra-info";
 
+export async function generateMetadata({ params }) {
+  const authType = params.authType;
+
+  return {
+    title: "Signup and Login to our Tennis Net Club",
+    description: `${authType} To Start Book Courts And Find Partners From Our Club to Play With.`,
+  };
+}
+
 async function AuthType({ params, searchParams }) {
   return (
     <div className={classes.signup}>
@@ -17,8 +26,6 @@ async function AuthType({ params, searchParams }) {
         <Image
           src={signup}
           alt="signup"
-          // height={500}
-          // width={500}
           layout="fill"
           objectFit="cover"
           priority={true}

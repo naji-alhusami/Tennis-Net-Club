@@ -12,6 +12,11 @@ async function cancelReservedTimeHandler(timeSlot) {
   await deleteReservedTimesActions(timeSlot);
 }
 
+export const metadata = {
+  title: "Manage Bookings",
+  description: "Manage your booking courts with Tennis Net Club"
+};
+
 function ManageBookingPage() {
   return (
     <div className={classes.manageContainer}>

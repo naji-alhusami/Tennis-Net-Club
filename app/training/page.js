@@ -7,6 +7,12 @@ import Headers from "@/components/ui/headers";
 import classes from "@/components/training/training.module.css";
 import courses from "@/public/images/courses.jpg";
 
+export const metadata = {
+  title: "Training Offers",
+  description:
+    "Check our training offers in the Tennis Net Club, and Enroll if you are a member",
+};
+
 async function trainingPage() {
   const trainings = await fetchEventsFromMongo();
 

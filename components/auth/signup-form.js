@@ -1,14 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
-// import { useRouter } from "next/navigation";
 import Link from "next/link";
-// import { submitSignupHandler } from "@/lib/signupAction";
 import classes from "./signup-form.module.css";
-// import Notification from "../ui/notification";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { signupWithCredentials } from "@/actions/SignupAction";
-import ButtonTest from "../ui/submit-button";
 import { useRouter } from "next/navigation";
 import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
 import { motion } from "framer-motion";

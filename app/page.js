@@ -6,16 +6,14 @@ import Courses from "@/components/home-page/courses";
 import Booking from "@/components/home-page/booking";
 import CalendarEvents from "@/components/calendar/calendar-events";
 import LoadingData from "@/components/ui/loading-data";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+
+export const metadata = {
+  title: "Tennis Net Club",
+  description:
+    "Join the ultimate tennis experience in Istanbul! Sign up, log in, to become member of the club, and easily book courts to enjoy your favorite sport. Manage your bookings seamlessly and connect with fellow club members to find tennis partners. Elevate your game with Tennis Net Club – your go-to destination for everything tennis!",
+};
 
 async function HomePage() {
-  // const session = await getServerSession(authOptions);
-  // console.log("session", session);
-
-  // if (session === null) {
-  //   <LoadingData />;
-  // }
   return (
     <main>
       <Starting />

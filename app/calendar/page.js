@@ -1,13 +1,15 @@
 import React, { Suspense } from "react";
 import CalendarEvents from "@/components/calendar/calendar-events";
-import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
-import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
 import Image from "next/image";
 import Headers from "@/components/ui/headers";
 import calendarEvents from "@/public/images/calendar-events.jpg";
 import classes from "../../components/calendar/calendar-events.module.css";
-import { motion } from "framer-motion";
 import LoadingData from "@/components/ui/loading-data";
+
+export const metadata = {
+  title: "Member Calendar Events",
+  description: "Check your calendar events in Tennis Net Club",
+};
 
 async function CalendarPage() {
   return (

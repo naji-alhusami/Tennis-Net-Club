@@ -6,6 +6,11 @@ import partner from "@/public/images/partner.jpg";
 import classes from "@/components/find-partner/find-partner.module.css";
 import LoadingData from "@/components/ui/loading-data";
 
+export const metadata = {
+  title: "Find Partner",
+  description: "Find partner from our Tennis Net Club to play with",
+};
+
 function PartnerPage() {
   return (
     <div className={classes.partnerContainer}>
