@@ -15,8 +15,8 @@ export async function AddExtraInfoActions(data) {
   const user = await User.findByIdAndUpdate(
     session?.user?._id,
     {
-      $set: { WhatsAppNumber: number }, // $set to update the "whatsAppNumber" field
-      $set: { level: level },
+      $set: { WhatsAppNumber: number, level: level }, // $set to update the "whatsAppNumber" field
+      // $set: { level: level },
     },
     { new: true }
   ).select("-password");

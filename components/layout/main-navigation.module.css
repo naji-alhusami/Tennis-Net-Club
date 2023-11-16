@@ -94,9 +94,23 @@
   margin-left: 1rem;
 }
 
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  list-style-type: none;
+  background-color: rgb(255, 255, 255);
+  font-size: 1.3rem;
+  margin-left: 2rem;
+  top: 100%;
+  right: 0.1%;
+  width:7.9rem;
+  border: #1c7f47 1px solid;
+}
+
 .userList {
   text-align: center;
-  /* display: none; */
   position: absolute;
   list-style-type: none;
   background-color: rgb(255, 255, 255);
@@ -243,6 +257,7 @@
   }
 
   .ulSmallScreen {
+    margin-top: 4rem;
     list-style: none;
     padding: 0;
   }

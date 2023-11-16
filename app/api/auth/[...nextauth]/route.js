@@ -141,19 +141,3 @@ export async function verifyWithCredentials(token) {
     };
   }
 }
-
-// async function singInWithCredentials(email, password) {
-//   const user = await User.findOne({ email });
-
-//   if (!user) {
-//     throw new Error("No User Found");
-//   }
-
-//   const verifyPasswords = await verifyPassword(password, user.password);
-
-//   if (!verifyPasswords) {
-//     throw new Error("Could Not Log you in");
-//   }
-
-//   return { ...user._doc, _id: user._id.toString() };
-// }

@@ -75,13 +75,21 @@ function MainNavigation(props) {
                     {session?.user.name}{" "}
                     <AiFillCaretDown className={classes.icon} />
                     {showUserLogout && (
-                      <Link
-                        className={classes.list}
-                        href="/"
-                        onClick={logoutHandler}
-                      >
-                        <div className={classes.userList}>Logout</div>
-                      </Link>
+                      <div className={classes.userContainer}>
+                        <Link
+                          className={classes.list}
+                          href="/auth/addExtraInfo"
+                        >
+                          <div>Edit Account</div>
+                        </Link>
+                        <Link
+                          className={classes.list}
+                          href="/"
+                          onClick={logoutHandler}
+                        >
+                          <div>Logout</div>
+                        </Link>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -128,14 +136,6 @@ function MainNavigation(props) {
             <ul className={classes.ulSmallScreen}>
               {/* Small Screens */}
 
-              {/* {session && (
-                <li
-                  className={classes.navbarListBookSmall}
-                  onClick={toggleButtonHandler}
-                >
-                  <Link href="/booking">Book Court</Link>
-                </li>
-              )} */}
               {session && (
                 <li
                   className={classes.navbarListPartnerSmall}
