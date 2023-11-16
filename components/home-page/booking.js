@@ -8,11 +8,11 @@ import { useSession } from "next-auth/react";
 import Headers from "../ui/headers";
 import Numbers from "./numbers";
 import AuthContext from "@/store/auth-context";
+import LoadingData from "../ui/loading-data";
 
 function Booking() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
   const { data: session } = useSession();
-
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();

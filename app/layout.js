@@ -16,8 +16,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        {/* <Suspense fallback={<h1>Loading Main Page...</h1>}> */}
+      {/* <Suspense fallback={<h1>Loading Main Page...</h1>}> */}
+        <body>
           <MyProvider>
             <AuthProvider>
               <MainNavigation />
@@ -25,8 +25,8 @@ export default function RootLayout({ children }) {
               <Footer />
             </AuthProvider>
           </MyProvider>
-        {/* </Suspense> */}
-      </body>
+        </body>
+      {/* </Suspense> */}
     </html>
   );
 }

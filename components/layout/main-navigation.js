@@ -15,7 +15,7 @@ function MainNavigation(props) {
   const [showSideNavbar, setShowSideNavbar] = useState(false);
   const [showUserLogout, setShowUserLogout] = useState(false);
   const { backgroundColor } = props;
-  const { data: session, loading } = useSession();
+  const { data: session, status } = useSession();
   // console.log(session);
   function showUserLogoutHandler() {
     setShowUserLogout(!showUserLogout);
@@ -34,6 +34,10 @@ function MainNavigation(props) {
   const headerStyle = {
     backgroundColor: backgroundColor,
   };
+
+  if (status === "loading") {
+    return;
+  }
 
   return (
     <div className={classes.container}>
@@ -87,7 +91,7 @@ function MainNavigation(props) {
                   whileTap={{ scale: 0.9 }}
                   className={classes.login}
                 >
-                  {!session && !loading && (
+                  {!session && (
                     <Link className={classes.loginButton} href="/auth/signin">
                       Login
                     </Link>

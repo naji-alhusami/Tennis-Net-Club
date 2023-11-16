@@ -8,7 +8,7 @@ export async function POST(req) {
   if (req.method === "POST") {
     try {
       const { member, selectedDate, endedDate, daysOfWeek } = await req.json();
-      console.log(member, selectedDate, endedDate, daysOfWeek);
+      // console.log(member, selectedDate, endedDate, daysOfWeek);
       if (endedDate && daysOfWeek) {
         const TrainingEvent = {
           title: "Training Session",

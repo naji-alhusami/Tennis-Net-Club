@@ -93,15 +93,15 @@ export async function POST(req) {
         startedTime,
         selectedTime,
       } = await req.json();
-      console.log(
-        "inside route sending takenTimes:",
-        member,
-        selectedCourtType,
-        selectedPlayersNumber,
-        selectedDate,
-        startedTime,
-        selectedTime
-      );
+      // console.log(
+      //   "inside route sending takenTimes:",
+      //   member,
+      //   selectedCourtType,
+      //   selectedPlayersNumber,
+      //   selectedDate,
+      //   startedTime,
+      //   selectedTime
+      // );
 
       // const newEvent = new Event({
       //   // title: profile.name,

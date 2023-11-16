@@ -20,7 +20,6 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials) {
         const user = await User.findOne({ email: credentials.email });
-        console.log("inide auth", user);
 
         const verifyPasswords = await verifyPassword(
           credentials.password,
