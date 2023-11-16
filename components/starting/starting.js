@@ -1,13 +1,14 @@
 "use client";
 import React, { Fragment } from "react";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
 import background from "@/public/images/background.jpg";
 import Button from "../ui/button";
-import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./starting.module.css";
-import { useSession } from "next-auth/react";
-import { motion } from "framer-motion";
 
 function Starting() {
   const { data: session } = useSession();

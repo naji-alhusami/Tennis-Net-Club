@@ -8,14 +8,7 @@
   align-items: center;
 }
 
-/* .imageContainer {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-} */
-
 .imageContainer {
-  /* min-height: 95vh; */
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -91,6 +84,5 @@
 
   .starting p {
     display: none;
-    /* font-size: 1rem; */
   }
 }

@@ -8,7 +8,7 @@ export const servicesData = [
       image: icon1,
       title: "Book A Court",
       description:
-        "Reserve a sports court for your favorite activity. Our easy-to-use booking system lets you choose the time and court that suits you best.",
+        "Reserve a tennis court for your favorite activity. Our easy-to-use booking system lets you choose the time and court that suits you best.",
     },
     {
       id: "2",
@@ -22,6 +22,6 @@ export const servicesData = [
       image: icon3,
       title: "Enroll in Training",
       description:
-        "Enhance your skills with our professional training programs. Our experienced trainers will help you master the techniques and strategies of your chosen sport.",
+        "Enhance your skills with our professional training programs. Our experienced trainers will help you master the techniques and strategies of tennis sport.",
     },
   ];

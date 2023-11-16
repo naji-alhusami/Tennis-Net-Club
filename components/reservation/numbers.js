@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import { useSpring, animated } from "react-spring";
-import classes from "./numbers.module.css";
 import { useAnimation, useInView } from "framer-motion";
+
+import classes from "./numbers.module.css";
 
 function Number({ n }) {
   const { number } = useSpring({
@@ -23,7 +24,7 @@ function Numbers() {
     if (isInView) {
       mainControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView, mainControls]);
 
   return (
     <div ref={ref} className={classes.container}>

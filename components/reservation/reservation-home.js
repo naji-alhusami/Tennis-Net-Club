@@ -1,16 +1,16 @@
 "use client";
 import React, { useContext, useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
 import Link from "next/link";
-import classes from "./booking.module.css";
-import BookingDate from "./bookingDate";
 import { useSession } from "next-auth/react";
-import Headers from "../ui/headers";
-import Numbers from "./numbers";
-import AuthContext from "@/store/auth-context";
-import LoadingData from "../ui/loading-data";
+import { motion, useAnimation, useInView } from "framer-motion";
 
-function Booking() {
+import AuthContext from "@/store/auth-context";
+import Numbers from "./numbers";
+import ReservationDate from "./reservation-date";
+import Headers from "../ui/headers";
+import classes from "./reservation-home.module.css";
+
+function ReservationHome() {
   const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
   const { data: session } = useSession();
   const ref = useRef(null);
@@ -69,7 +69,7 @@ function Booking() {
         transition={{ duration: 0.3, delay: 0.4 }}
       >
         <div className={classes.dateAndReserveContainer}>
-          <BookingDate />
+          <ReservationDate />
           <h3>Players:</h3>
           <div className={classes.players}>
             <button onClick={decreasePlayers}>-</button>
@@ -91,4 +91,4 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default ReservationHome;

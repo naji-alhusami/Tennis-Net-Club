@@ -7,7 +7,7 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./thanks.module.css";
 import { motion } from "framer-motion";
-import { equipmentsData } from "../training/equipmentsData";
+import { equipmentsData } from "../traininga/equipmentsData";
 
 function Thanks({ thanksMessage }) {
   return (

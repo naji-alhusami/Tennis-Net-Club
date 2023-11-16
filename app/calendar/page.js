@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import CalendarEvents from "@/components/calendar/calendar-events";
+import CalendarEvents from "@/components/calendaraa/calendar-events";
 import Image from "next/image";
 import Headers from "@/components/ui/headers";
 import calendarEvents from "@/public/images/calendar-events.jpg";

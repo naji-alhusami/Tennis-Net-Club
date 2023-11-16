@@ -1,6 +1,6 @@
 import React from "react";
 
-import TrainingOffers from "@/components/training/training-offers";
+import TrainingOffers from "@/components/traininga/training-offers";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import Image from "next/image";
 import Headers from "@/components/ui/headers";

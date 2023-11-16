@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 
-import Starting from "@/components/home-page/starting";
-import Services from "@/components/home-page/services";
-import Courses from "@/components/home-page/courses";
-import Booking from "@/components/home-page/booking";
-import CalendarEvents from "@/components/calendar/calendar-events";
+import Starting from "@/components/starting/starting";
+import Services from "@/components/services/services";
+import TrainingHome from "@/components/training/training-home";
+import ReservationHome from "@/components/reservation/reservation-home";
 import LoadingData from "@/components/ui/loading-data";
+import CalendarHome from "@/components/calendar/calendar-home";
 
 export const metadata = {
   title: "Tennis Net Club",
@@ -18,10 +18,10 @@ async function HomePage() {
     <main>
       <Starting />
       <Services />
-      <Courses />
-      <Booking />
+      <TrainingHome />
+      <ReservationHome />
       <Suspense fallback={<LoadingData />}>
-        <CalendarEvents />
+        <CalendarHome />
       </Suspense>
     </main>
   );

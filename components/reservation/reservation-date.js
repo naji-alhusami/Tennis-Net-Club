@@ -1,10 +1,11 @@
 import React, { useRef, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import classes from "./booking.module.css";
-import AuthContext from "@/store/auth-context";
 
-function BookingDate() {
+import AuthContext from "@/store/auth-context";
+import classes from "./reservation-home.module.css";
+
+function ReservationDate() {
   const { activeDay, setActiveDay } = useContext(AuthContext);
   const currentDate = new Date();
 
@@ -49,4 +50,4 @@ function BookingDate() {
   );
 }
 
-export default BookingDate;
+export default ReservationDate;

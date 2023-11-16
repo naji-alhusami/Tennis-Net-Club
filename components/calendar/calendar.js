@@ -1,15 +1,16 @@
 "use client";
+import React, { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { motion, useAnimation, useInView } from "framer-motion";
+
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import classes from "../calendar/calendar-events.module.css";
 import timeGridPlugin from "@fullcalendar/daygrid";
-import { usePathname } from "next/navigation";
 import { eventsExtra } from "@/lib/events/extraEventsData";
 import Headers from "../ui/headers";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import classes from "../calendar/calendar-home.module.css";
 
-function PlayerCalendar({ session, events, takenTimes }) {
+function Calendar({ session, events, takenTimes }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -26,13 +27,6 @@ function PlayerCalendar({ session, events, takenTimes }) {
   const memberTakenTimes = takenTimes.filter((takenTime) => {
     return takenTime.member === session?.user.name;
   });
-
-  // Filter Events that match takenTimes Dates
-  // const eventsWithMatchingDates = events.filter((event) => {
-  //   return memberTakenTimes.some((takenTime) => {
-  //     return event.date === takenTime.date;
-  //   });
-  // });
 
   // Filter Events that match player logged-in
   const memberEvents = events.filter((event) => {
@@ -86,4 +80,4 @@ function PlayerCalendar({ session, events, takenTimes }) {
   );
 }
 
-export default PlayerCalendar;
+export default Calendar;

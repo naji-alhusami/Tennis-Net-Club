@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-
-import Image from "next/legacy/image";
-import Headers from "../ui/headers";
-import { servicesData } from "@/lib/servicesData";
-import classes from "./services.module.css";
+import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
+
+import Headers from "../ui/headers";
+import { servicesData } from "@/components/services/services-data";
+import classes from "./services.module.css";
 
 function Services() {
   const ref = useRef(null);

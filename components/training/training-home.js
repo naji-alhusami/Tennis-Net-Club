@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { coursesData } from "@/lib/coursesData";
-import classes from "./courses.module.css";
-import player1 from "@/public/images/player1.jpg";
-import player2 from "@/public/images/player2.jpg";
-import Headers from "../ui/headers";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useSpring, animated } from "react-spring";
-import Link from "next/link";
+
+import { coursesData } from "@/lib/coursesData";
+import Headers from "../ui/headers";
+import player1 from "@/public/images/player1.jpg";
+import player2 from "@/public/images/player2.jpg";
+import classes from "./training-home.module.css";
 
 function Number({ n }) {
   const { number } = useSpring({
@@ -20,7 +21,7 @@ function Number({ n }) {
   return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>;
 }
 
-function Courses() {
+function TrainingHome() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -114,4 +115,4 @@ function Courses() {
   );
 }
 
-export default Courses;
+export default TrainingHome;
