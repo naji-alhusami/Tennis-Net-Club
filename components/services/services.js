@@ -8,29 +8,39 @@ import { servicesData } from "@/components/services/services-data";
 import classes from "./services.module.css";
 
 function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-
+  // Motion for header
+  const headerRef = useRef(null);
+  const isInViewHeader = useInView(headerRef, { once: true });
+  const headerControls = useAnimation();
   useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
+    if (isInViewHeader) {
+      headerControls.start("visible");
     }
-  }, [isInView, mainControls]);
+  }, [isInViewHeader, headerControls]);
+
+  // Motion for services
+  const servicesRef = useRef(null);
+  const isInViewServices = useInView(servicesRef, { once: true });
+  const servicesControls = useAnimation();
+  useEffect(() => {
+    if (isInViewServices) {
+      servicesControls.start("visible");
+    }
+  }, [isInViewServices, servicesControls]);
 
   return (
-    <motion.div
-      className={classes.container}
-      variants={{
-        hidden: { opacity: 0, y: 75 },
-        visible: { opacity: 1, y: 0 },
-      }}
-      initial="hidden"
-      animate={mainControls}
-      transition={{ duration: 0.3, delay: 0.4 }}
-      ref={ref}
-    >
-      <div className={classes.text}>
+    <div className={classes.container}>
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: -75 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate={headerControls}
+        transition={{ duration: 0.3, delay: 0.4 }}
+        ref={headerRef}
+        className={classes.text}
+      >
         <Headers
           H3Header="TENNIS NET"
           H1Header="SERVICES"
@@ -38,10 +48,31 @@ function Services() {
           PHeader="Experience a variety of engaging services that bring our tennis
           community together."
         />
-      </div>
-      <div className={classes.services}>
+      </motion.div>
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: -75 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate={servicesControls}
+        transition={{ duration: 0.3, delay: 0.4 }}
+        ref={servicesRef}
+        className={classes.services}
+      >
         {servicesData.map((service) => (
-          <div key={service.id} className={classes.service}>
+          <div
+            // variants={{
+            //   hidden: { opacity: 0, y: -75 },
+            //   visible: { opacity: 1, y: 0 },
+            // }}
+            // initial="hidden"
+            // animate={servicesControls}
+            // transition={{ duration: 0.3, delay: 0.4 }}
+            // ref={servicesControls}
+            key={service.id}
+            className={classes.service}
+          >
             <div>
               <Image src={service.image} alt="hi" />
             </div>
@@ -53,8 +84,8 @@ function Services() {
             </div>
           </div>
         ))}
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 

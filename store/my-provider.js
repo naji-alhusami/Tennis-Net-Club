@@ -32,7 +32,6 @@ const MyProvider = (props) => {
         setNumberOfPlayers,
         activeDay,
         setActiveDay,
-        // currentDay,
         timeSlots,
         setTimeSlots,
         selectedTime,

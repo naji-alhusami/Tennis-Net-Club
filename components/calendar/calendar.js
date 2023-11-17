@@ -53,7 +53,7 @@ function Calendar({ session, events, takenTimes }) {
             className={classes.text}
             ref={ref}
             variants={{
-              hidden: { opacity: 0, y: 75 },
+              hidden: { opacity: 0, y: -75 },
               visible: { opacity: 1, y: 0 },
             }}
             initial="hidden"

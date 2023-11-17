@@ -37,32 +37,34 @@ function ReservationHome() {
 
   return (
     <div className={classes.bookingContainer}>
-      <motion.div
-        className={classes.text}
-        ref={ref}
-        variants={{
-          hidden: { opacity: 0, x: -100 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.3, delay: 0.4 }}
-      >
-        <Headers
-          H3Header="Choose Your Time"
-          H1Header="BOOKING"
-          H2Header="Best Courts"
-          PHeader="Welcome to TENNIS NET club, home to certified coaches dedicated to
+      <div className={classes.headerAndNumbersContainer}>
+        <motion.div
+          className={classes.text}
+          ref={ref}
+          variants={{
+            hidden: { opacity: 0, y: -100 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          initial="hidden"
+          animate={mainControls}
+          transition={{ duration: 0.3, delay: 0.4 }}
+        >
+          <Headers
+            H3Header="Choose Your Time"
+            H1Header="BOOKING"
+            H2Header="Best Courts"
+            PHeader="Welcome to TENNIS NET club, home to certified coaches dedicated to
          enhancing your tennis skills."
-        />
+          />
+        </motion.div>
         <Numbers />
-      </motion.div>
+      </div>
       <motion.div
         className={classes.boxContainer}
         ref={ref}
         variants={{
-          hidden: { opacity: 0, x: 100 },
-          visible: { opacity: 1, x: 0 },
+          hidden: { opacity: 0, z: 100 },
+          visible: { opacity: 1, z: 0 },
         }}
         initial="hidden"
         animate={mainControls}

@@ -27,6 +27,14 @@
   color: black;
 }
 
+.headerAndNumbersContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 2rem;
+}
+
 .text {
   position: relative;
   display: flex;
