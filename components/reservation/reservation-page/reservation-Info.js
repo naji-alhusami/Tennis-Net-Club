@@ -1,15 +1,15 @@
 import React from "react";
 import { getServerSession } from "next-auth";
 
-import DateSelectionStep from "./booking-date-step";
-import TimeSelectionStep from "./booking-times-step";
-import ConfirmationStep from "./booking-confirm-step";
+import DateSelectionStep from "./reservation-date-step";
+import TimeSelectionStep from "./reservation-times-step";
+import ConfirmationStep from "./reservation-confirm-step";
 import { fetchTimeSlots } from "@/lib/generate-times";
 import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-async function BookingInfo({ searchParams }) {
+async function ReservationInfo({ searchParams }) {
   const newDate = searchParams.date;
   const newCourt = searchParams.court;
   const timeSlots = await fetchTimeSlots(newDate, newCourt);
@@ -47,4 +47,4 @@ async function BookingInfo({ searchParams }) {
   );
 }
 
-export default BookingInfo;
+export default ReservationInfo;

@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import AuthContext from "@/store/auth-context";
-import classes from "./booking-calendar.module.css";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import classes from "./reservation-calendar.module.css";
 
-function BookingCalendar() {
+function ReservationCalendar() {
   const months = [
     "January",
     "February",
@@ -169,4 +169,4 @@ function BookingCalendar() {
   );
 }
 
-export default BookingCalendar;
+export default ReservationCalendar;

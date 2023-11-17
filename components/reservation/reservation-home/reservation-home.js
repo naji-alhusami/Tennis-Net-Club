@@ -7,7 +7,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import AuthContext from "@/store/auth-context";
 import Numbers from "./numbers";
 import ReservationDate from "./reservation-date";
-import Headers from "../ui/headers";
+import Headers from "../../ui/headers";
 import classes from "./reservation-home.module.css";
 
 function ReservationHome() {

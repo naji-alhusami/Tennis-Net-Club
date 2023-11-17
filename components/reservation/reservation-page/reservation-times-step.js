@@ -6,14 +6,14 @@ import React, {
   useRef,
   useState,
 } from "react";
-import AuthContext from "@/store/auth-context";
 import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
 
+import AuthContext from "@/store/auth-context";
+import RenderReservationButton from "./render-reservation-button";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
-import classes from "./booking-times-step.module.css";
-import RenderBookingButton from "./render-booking-button";
+import classes from "./reservation-times-step.module.css";
 
 function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
   const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
@@ -40,7 +40,7 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
   );
 
   // Link for next page:
-  const nextPath = `/booking/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
+  const nextPath = `/reservation/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
 
   return (
     <Fragment>
@@ -66,7 +66,7 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
                 <div key={timeSlot.id} className={classes.timeSlot}>
                   <h1 className={classes.time}>{timeSlot.time}</h1>
                   <p>{timeSlot.courtType} Court</p>
-                  <RenderBookingButton
+                  <RenderReservationButton
                     timeSlot={timeSlot}
                     timeSlots={timeSlots}
                     setNewTimeSlots={setNewTimeSlots}
@@ -79,7 +79,7 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
         </motion.div>
         <div className={classes.buttonContainer}>
           <Link
-            href="/booking"
+            href="/reservation"
             onClick={() => prevStepHandler()}
             className={classes.backButton}
           >

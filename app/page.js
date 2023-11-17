@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import Starting from "@/components/starting/starting";
 import Services from "@/components/services/services";
 import TrainingHome from "@/components/training/training-home";
-import ReservationHome from "@/components/reservation/reservation-home";
+import ReservationHome from "@/components/reservation/reservation-home/reservation-home";
 import CalendarHome from "@/components/calendar/calendar-home";
 import LoadingData from "@/components/ui/loading-data";
 

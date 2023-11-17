@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import classes from "./booking-times-step.module.css";
+import classes from "./reservation-times-step.module.css";
 
-const RenderBookingButton = ({
+const RenderReservationButton = ({
   timeSlot,
   timeSlots,
   setNewTimeSlots,
@@ -79,4 +79,4 @@ const RenderBookingButton = ({
   }
 };
 
-export default RenderBookingButton;
+export default RenderReservationButton;

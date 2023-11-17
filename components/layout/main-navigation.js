@@ -49,7 +49,7 @@ function MainNavigation(props) {
             {/* Large Screens */}
             {session && (
               <li className={classes.navbarList}>
-                <Link href="/booking">Book Court</Link>
+                <Link href="/reservation">Book Court</Link>
               </li>
             )}
             {session && (
@@ -139,12 +139,12 @@ function MainNavigation(props) {
               </li>
               {session && (
                 <li onClick={toggleButtonHandler}>
-                  <Link href="/booking">Book Court</Link>
+                  <Link href="/reservation">Book Court</Link>
                 </li>
               )}
               {session && (
                 <li onClick={toggleButtonHandler}>
-                  <Link href="/booking">Manage Bookings</Link>
+                  <Link href="/manage">Manage Bookings</Link>
                 </li>
               )}
               {session && (

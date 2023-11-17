@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 
 import reserve from "@/public/images/reserve.jpg";
-import classes from "./booking-container.module.css";
+import classes from "./reservation-image-page.module.css";
 
-const BookingContainer = () => {
+const ReservationImage = () => {
   return (
     <div className={classes.imageContainer}>
       <Image
@@ -17,4 +17,4 @@ const BookingContainer = () => {
   );
 };
 
-export default BookingContainer;
+export default ReservationImage;

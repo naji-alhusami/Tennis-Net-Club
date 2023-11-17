@@ -11,11 +11,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import AuthContext from "@/store/auth-context";
-import BookingCalendar from "./booking-calendar";
-import { RightArrow } from "../icons/right-arrow";
+import BookingCalendar from "./reservation-calendar";
+import { RightArrow } from "../../icons/right-arrow";
 import clay from "@/public/images/clay.jpg";
 import hard from "@/public/images/hard.jpg";
-import classes from "./booking-date-step.js.module.css";
+import classes from "./reservation-date-step.module.css";
 
 const DateSelectionStep = () => {
   const [selectedCourtType, setSelectedCourtType] = useState("");
@@ -58,7 +58,7 @@ const DateSelectionStep = () => {
   }, [isInViewCalendar, calendarControls]);
 
   // Link for the next step:
-  const nextPath = `/booking/?date=${formattedDate}&court=${selectedCourtType}&players=${numberOfPlayers}`;
+  const nextPath = `/reservation/?date=${formattedDate}&court=${selectedCourtType}&players=${numberOfPlayers}`;
 
   return (
     <Fragment>

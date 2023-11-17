@@ -2,9 +2,9 @@
 import React, { useContext } from "react";
 
 import AuthContext from "@/store/auth-context";
-import classes from "./booking-steps.module.css";
+import classes from "./reservation-steps.module.css";
 
-function BookingSteps() {
+function ReservationSteps() {
   const { currentStep } = useContext(AuthContext);
 
   return (
@@ -43,4 +43,4 @@ function BookingSteps() {
   );
 }
 
-export default BookingSteps;
+export default ReservationSteps;
