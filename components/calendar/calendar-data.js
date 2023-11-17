@@ -1,13 +1,13 @@
 import React from "react";
 import { getServerSession } from "next-auth";
 
-import PlayerCalendar from "./calendar";
+import Calendar from "./calendar";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import { fetchTakenTimesFromMongo } from "@/lib/takenTimes/fetchTakenTimesFromMongo";
-import classes from "./calendar-home.module.css";
+import classes from "./calendar.module.css";
 
-async function CalendarHome() {
+async function CalendarData() {
   const session = await getServerSession(authOptions);
 
   const events = await fetchEventsFromMongo();
@@ -15,7 +15,7 @@ async function CalendarHome() {
 
   return (
     <div className={classes.calendar}>
-      <PlayerCalendar
+      <Calendar
         session={session}
         events={events.data}
         takenTimes={takenTimes.data}
@@ -24,4 +24,4 @@ async function CalendarHome() {
   );
 }
 
-export default CalendarHome;
+export default CalendarData;

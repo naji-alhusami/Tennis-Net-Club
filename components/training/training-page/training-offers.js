@@ -10,7 +10,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 
 import classes from "./training.module.css";
 
-import { trainingData } from "./trainingData";
+import { TrainingOffersData } from "./training-offers-data";
 import { useSession } from "next-auth/react";
 import TrainingForm from "./training-form";
 import AuthContext from "@/store/auth-context";
@@ -76,7 +76,7 @@ function TrainingOffers({ trainings }) {
           transition={{ duration: 0.3, delay: 1 }}
           className={classes.trainingPricesContainers}
         >
-          {trainingData.map((data) => (
+          {TrainingOffersData.map((data) => (
             <div
               key={data.id}
               className={

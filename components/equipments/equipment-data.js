@@ -3,7 +3,7 @@ import eq2 from "@/public/images/req2.png";
 import eq3 from "@/public/images/req3.png";
 import eq4 from "@/public/images/req4.png";
 
-export const equipmentsData = [
+export const EquipmentsData = [
   {
     id: "1",
     image: eq1,

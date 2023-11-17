@@ -1,4 +1,4 @@
-export const coursesData = [
+export const TrainingLevelsData = [
   {
     id: "1",
     courseType: "BEGINNER COURSES",

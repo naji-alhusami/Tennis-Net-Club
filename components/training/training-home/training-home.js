@@ -5,8 +5,8 @@ import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useSpring, animated } from "react-spring";
 
-import { coursesData } from "@/lib/coursesData";
-import Headers from "../ui/headers";
+import { TrainingLevelsData } from "@/components/training/training-home/training-levels-data";
+import Headers from "../../ui/headers";
 import player1 from "@/public/images/player1.jpg";
 import player2 from "@/public/images/player2.jpg";
 import classes from "./training-home.module.css";
@@ -75,14 +75,14 @@ function TrainingHome() {
             the fullest!"
           />
         </motion.div>
-        {coursesData.map((course) => (
-          <div key={course.id} className={classes.rectangular}>
+        {TrainingLevelsData.map((training) => (
+          <div key={training.id} className={classes.rectangular}>
             <motion.div
-              className={classes[course.style]}
+              className={classes[training.style]}
               ref={ref}
               variants={{
                 hidden: { width: 0 },
-                visible: { width: `${course.width}%` },
+                visible: { width: `${training.width}%` },
               }}
               initial="hidden"
               animate={mainControls}
@@ -98,10 +98,10 @@ function TrainingHome() {
                 animate={mainControls}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                {course.courseType}
+                {training.courseType}
               </motion.p>
               <span className={classes.percentage}>
-                <Number n={course.percent} />
+                <Number n={training.percent} />
                 &#37;
               </span>
             </motion.div>

@@ -1,4 +1,4 @@
-export const trainingData = [
+export const TrainingOffersData = [
   {
     id: "1",
     courseType: "GROUP SESSIONS",

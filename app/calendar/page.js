@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
-import CalendarEvents from "@/components/calendaraa/calendar-events";
 import Image from "next/image";
 import Headers from "@/components/ui/headers";
 import calendarEvents from "@/public/images/calendar-events.jpg";
-import classes from "../../components/calendar/calendar-events.module.css";
+import classes from "@/components/calendar/calendar.module.css";
 import LoadingData from "@/components/ui/loading-data";
+import CalendarHome from "@/components/calendar/calendar-data";
 
 export const metadata = {
   title: "Member Calendar Events",
@@ -27,7 +27,7 @@ async function CalendarPage() {
         />
       </div>
       <Suspense fallback={<LoadingData />}>
-        <CalendarEvents />
+        <CalendarHome />
       </Suspense>
     </div>
   );

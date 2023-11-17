@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
-import classes from "./contact-from.module.css";
 import SubmitButton from "../ui/submit-button";
+import classes from "./contact-from.module.css";
 
 async function sendContactData(contactDetails) {
   const response = await fetch("/api/contact", {
@@ -80,9 +80,7 @@ function ContactForm() {
               required
             ></textarea>
           </div>
-          {/* <div className={classes.actions}> */}
           <SubmitButton>Send Message</SubmitButton>
-          {/* </div> */}
         </form>
       </div>
     </div>

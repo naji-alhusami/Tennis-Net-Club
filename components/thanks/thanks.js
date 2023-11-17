@@ -7,7 +7,7 @@ import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./thanks.module.css";
 import { motion } from "framer-motion";
-import { equipmentsData } from "../traininga/equipmentsData";
+import Equipments from "../equipments/equipments";
 
 function Thanks({ thanksMessage }) {
   return (
@@ -17,12 +17,7 @@ function Thanks({ thanksMessage }) {
           className={classes.imageContainer}
           style={{ filter: "brightness(0.7)" }}
         >
-          <Image
-            src={thanks}
-            alt="website background"
-            // objectFit="cover"
-            priority={true}
-          />
+          <Image src={thanks} alt="website background" priority={true} />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,10 +25,10 @@ function Thanks({ thanksMessage }) {
           transition={{ duration: 0.3, delay: 0.1 }}
           className={classes.startingText}
         >
-          <h2>Hi</h2>
+          {/* <h2>Hi</h2> */}
           <h2>Welcome to our TENNIS NET Club</h2>
           <motion.h1>{thanksMessage}</motion.h1>
-
+          <Equipments />
           <Link href="/">
             <Button>
               Back To Home
@@ -41,19 +36,6 @@ function Thanks({ thanksMessage }) {
             </Button>
           </Link>
         </motion.div>
-      </div>
-      <div className={classes.equipmentsContainer}>
-        {equipmentsData.map((equipment) => (
-          <div key={equipment.id} className={classes.equipmentContainer}>
-            <div>
-              <Image src={equipment.image} alt="eq1" />
-            </div>
-            <div>
-              <h1>{equipment.title}</h1>
-              <p>{equipment.description}</p>
-            </div>
-          </div>
-        ))}
       </div>
     </Fragment>
   );

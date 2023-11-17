@@ -2,9 +2,9 @@ import React, { Suspense } from "react";
 
 import Starting from "@/components/starting/starting";
 import Services from "@/components/services/services";
-import TrainingHome from "@/components/training/training-home";
+import TrainingHome from "@/components/training/training-home/training-home";
 import ReservationHome from "@/components/reservation/reservation-home/reservation-home";
-import CalendarHome from "@/components/calendar/calendar-home";
+import CalendarData from "@/components/calendar/calendar-data";
 import LoadingData from "@/components/ui/loading-data";
 
 export const metadata = {
@@ -21,7 +21,7 @@ async function HomePage() {
       <TrainingHome />
       <ReservationHome />
       <Suspense fallback={<LoadingData />}>
-        <CalendarHome />
+        <CalendarData />
       </Suspense>
     </main>
   );

@@ -1,10 +1,10 @@
 import React from "react";
-
-import TrainingOffers from "@/components/traininga/training-offers";
-import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import Image from "next/image";
+
+import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
+import TrainingOffers from "@/components/training/training-page/training-offers";
 import Headers from "@/components/ui/headers";
-import classes from "@/components/training/training.module.css";
+import classes from "@/components/training/training-page/training.module.css";
 import courses from "@/public/images/courses.jpg";
 
 export const metadata = {
@@ -13,7 +13,7 @@ export const metadata = {
     "Check our training offers in the Tennis Net Club, and Enroll if you are a member",
 };
 
-async function trainingPage() {
+async function TrainingPage() {
   const trainings = await fetchEventsFromMongo();
 
   return (
@@ -39,4 +39,4 @@ async function trainingPage() {
   );
 }
 
-export default trainingPage;
+export default TrainingPage;

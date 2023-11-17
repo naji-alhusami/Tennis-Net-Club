@@ -8,7 +8,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/daygrid";
 import { eventsExtra } from "@/lib/events/extraEventsData";
 import Headers from "../ui/headers";
-import classes from "../calendar/calendar-home.module.css";
+import classes from "../calendar/calendar.module.css";
 
 function Calendar({ session, events, takenTimes }) {
   const ref = useRef(null);

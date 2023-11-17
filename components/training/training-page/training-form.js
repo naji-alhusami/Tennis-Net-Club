@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import BookingCalendar from "../reservation/reservation-page/reservation-calendar";
+import BookingCalendar from "../../reservation/reservation-page/reservation-calendar";
 import classes from "./training.module.css";
 import { sendEventsToMongo } from "@/lib/events/sendEventsToMongo";
 import { useSession } from "next-auth/react";
-import SubmitButton from "../ui/submit-button";
+import SubmitButton from "../../ui/submit-button";
 import { useRouter } from "next/navigation";
 
 function TrainingForm({ activeDay, selectedTrainingType }) {
