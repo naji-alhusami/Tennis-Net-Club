@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
@@ -16,12 +17,12 @@ import RenderReservationButton from "./render-reservation-button";
 import classes from "./reservation-times-step.module.css";
 
 function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
-  const { prevStepHandler, nextStepHandler } = useContext(AuthContext);
-
+  const { activeDay, prevStepHandler, nextStepHandler, setCurrentStep, selectedTime, setSelectedTime } =
+    useContext(AuthContext);
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
-  const [selectedTime, setSelectedTime] = useState("");
+  const router = useRouter();
 
-  // Animtion
+  // Motion
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -29,8 +30,22 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
     if (isInView) mainControls.start("visible");
   }, [isInView, mainControls]);
 
+  // test
+  let formattedDate = null;
+  if (activeDay) {
+    const day = activeDay.getDate().toString().padStart(2, "0"); // Output: "05" or "09"
+    const month = activeDay.getMonth() + 1;
+    const year = activeDay.getFullYear();
+    formattedDate = `${year}-${month}-${day}`; // Output: "2023-11-05"
+  }
+  // test
+
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
+  // const newDate = new Date(dayFromLink);
+  console.log(dayFromLink === formattedDate);
+  // console.log(activeDay);
+  // console.log(newDate);
   const memberTakenTimes = takenTimes.filter(
     (reservation) => reservation.member === session?.user.name
   );
@@ -41,6 +56,13 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
 
   // Link for next page:
   const nextPath = `/reservation/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
+
+  useEffect(() => {
+    if (!(dayFromLink === formattedDate)) {
+      router.replace("/reservation");
+      setCurrentStep(1);
+    }
+  }, [dayFromLink, formattedDate]);
 
   return (
     <Fragment>

@@ -1,22 +1,22 @@
 "use client";
 import React, { useContext, useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAnimation, useInView } from "framer-motion";
 import { BsArrowLeft } from "react-icons/bs";
+import { AiOutlineCalendar } from "react-icons/ai";
+import { FaRegClock } from "react-icons/fa6";
 
 import AuthContext from "@/store/auth-context";
 import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
-import clay from "@/public/images/clay.jpg";
-import hard from "@/public/images/hard.jpg";
 import classes from "./reservation-confirm-step.module.css";
 
 function ConfirmationStep({ searchParams, session }) {
-  const { setCurrentStep } = useContext(AuthContext);
+  const { selectedTime, setCurrentStep } = useContext(AuthContext);
   const router = useRouter();
-
+  // console.log(searchParams.time === selectedTime);
+  
   async function bookingConfirmationHandler(event) {
     event.preventDefault();
 
@@ -24,9 +24,9 @@ function ConfirmationStep({ searchParams, session }) {
     const selectedCourtType = searchParams.court;
     const selectedPlayersNumber = searchParams.players;
     const selectedDate = searchParams.date;
-    const selectedTime = searchParams.time;
+    const timeFromLink = searchParams.time;
 
-    const [hours, minutes] = selectedTime.split(":");
+    const [hours, minutes] = timeFromLink.split(":");
     const year = new Date(selectedDate).getFullYear();
     const month = new Date(selectedDate).getMonth();
     const day = new Date(selectedDate).getDate();
@@ -38,7 +38,7 @@ function ConfirmationStep({ searchParams, session }) {
         selectedCourtType,
         selectedPlayersNumber,
         selectedDate,
-        selectedTime,
+        timeFromLink,
         startedTime
       );
     } catch (error) {
@@ -57,7 +57,14 @@ function ConfirmationStep({ searchParams, session }) {
     if (isInView) mainControls.start("visible");
   }, [isInView, mainControls]);
 
-  const prevPath = `/booking?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}`;
+  const prevPath = `/reservation?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}`;
+
+  useEffect(() => {
+    if (!(searchParams.time === selectedTime)) {
+      router.replace("/reservation");
+      setCurrentStep(1);
+    }
+  }, [searchParams.time, selectedTime]);
 
   return (
     <form
@@ -73,36 +80,27 @@ function ConfirmationStep({ searchParams, session }) {
         animate={mainControls}
         transition={{ duration: 0.3 }}
         ref={ref}
-        className={classes.bookingDetailsContainer}
+        className={classes.tableContainer}
       >
-        {searchParams.court === "Clay" ? (
-          <Image src={clay} alt="clay-court" priority={true} />
-        ) : (
-          <Image src={hard} alt="hard-court" priority={true} />
-        )}
-      </motion.div>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: -75 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.3 }}
-        ref={ref}
-        className={classes.bookingDetails}
-      >
-        <table className={classes.tableContainer}>
-          <tbody>
+        <table>
+          <thead className={classes.firstLine}>
             <tr>
               <th>Name</th>
               <th>Court</th>
               <th>Players</th>
-              <th>Date</th>
-              <th>Time</th>
+              <th>
+                <AiOutlineCalendar />
+              </th>
+              <th>
+                <FaRegClock />
+              </th>
             </tr>
-            <tr>
-              <td>{session?.user.name}</td>
+          </thead>
+          <tbody>
+            <tr className={classes.info}>
+              <td className={classes.events}>
+                <h4>{session?.user.name}</h4>
+              </td>
               <td>{searchParams.court}</td>
               <td>{searchParams.players}</td>
               <td>{searchParams.date}</td>
