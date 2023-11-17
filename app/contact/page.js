@@ -1,6 +1,7 @@
 import React from "react";
-import ContactForm from "@/components/contact/contact-form";
 import Image from "next/image";
+
+import ContactForm from "@/components/contact/contact-form";
 import contact from "@/public/images/contact.jpg";
 import classes from "@/components/contact/contact-from.module.css";
 

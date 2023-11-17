@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAnimation, useInView } from "framer-motion";
+import { BsArrowLeft } from "react-icons/bs";
 
 import AuthContext from "@/store/auth-context";
 import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
-import { BsArrowLeft } from "react-icons/bs";
 import clay from "@/public/images/clay.jpg";
 import hard from "@/public/images/hard.jpg";
 import classes from "./reservation-confirm-step.module.css";

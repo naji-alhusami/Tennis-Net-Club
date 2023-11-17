@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-
-import AuthContext from "@/store/auth-context";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+
+import AuthContext from "@/store/auth-context";
 import classes from "./reservation-calendar.module.css";
 
 function ReservationCalendar() {

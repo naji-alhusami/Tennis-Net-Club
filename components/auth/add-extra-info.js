@@ -1,15 +1,14 @@
 "use client";
 import React, { useRef, useState } from "react";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import classes from "./add-extra-info.module.css";
-import ButtonTest from "../ui/submit-button";
 import { AddExtraInfoActions } from "@/actions/addExtraInfoActions";
 import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
+import ButtonTest from "../ui/submit-button";
+import classes from "./add-extra-info.module.css";
 
-function AddExtraInfo({ callbackUrl }) {
+function AddExtraInfo() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);

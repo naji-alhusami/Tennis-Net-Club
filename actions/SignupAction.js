@@ -1,8 +1,8 @@
 "use server";
-import { hashPassword } from "@/lib/auth";
-import sendEmail from "@/lib/sendEmail";
-import { generateToken, verifyToken } from "@/lib/token";
 import User from "@/models/userModel";
+import sendEmail from "@/lib/sendEmail";
+import { hashPassword } from "@/lib/auth";
+import { generateToken } from "@/lib/token";
 
 const BASE_URL = process.env.NEXTAUTH_URL;
 

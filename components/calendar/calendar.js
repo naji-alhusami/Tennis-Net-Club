@@ -2,11 +2,11 @@
 import React, { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useAnimation, useInView } from "framer-motion";
-
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/daygrid";
-import { eventsExtra } from "@/lib/events/extraEventsData";
+
+import { ExtraEvents } from "@/components/calendar/extra-events-data";
 import Headers from "../ui/headers";
 import classes from "../calendar/calendar.module.css";
 
@@ -36,7 +36,7 @@ function Calendar({ session, events, takenTimes }) {
   // TakenTimes & Events for the Player Logged-in
   const playerCalendar = [...memberEvents, ...memberTakenTimes];
 
-  const clubCalendar = [...takenTimes, ...eventsExtra];
+  const clubCalendar = [...takenTimes, ...ExtraEvents];
 
   return (
     <div className={classes.calendar}>

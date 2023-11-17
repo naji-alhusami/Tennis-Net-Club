@@ -7,7 +7,7 @@
   height: 13%;
   position: absolute;
   top: 4%;
-  /* background-color: rgba(247, 0, 0, 0.8); */
+  left: 2%;
   background-color: rgb(255, 255, 255, 0.8);
   display: flex;
   justify-content: space-between;
@@ -133,16 +133,7 @@
   display: none;
 }
 
-/* @media (min-width: 960px) {
-  .navbarListHome,
-  .navbarListBlogs,
-  .navbarListContact,
-  .navbarListAbout {
-    display: none;
-  }
-} */
-
-@media (max-width: 960px) {
+@media (max-width: 1110px) {
   .navbarList {
     display: none;
   }
@@ -163,11 +154,6 @@
     padding: 0.3rem 0.5rem;
     font-size: 1rem;
   }
-
-  /* .userList {
-    font-size: 1.25rem;
-    width: 5rem;
-  } */
 
   .navbarToggleContainer {
     position: relative;

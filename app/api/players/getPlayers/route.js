@@ -1,6 +1,7 @@
-import connectToDatabase from "@/lib/db";
-import User from "@/models/userModel";
 import { NextResponse } from "next/server";
+
+import User from "@/models/userModel";
+import connectToDatabase from "@/lib/db";
 
 connectToDatabase();
 

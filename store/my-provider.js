@@ -10,13 +10,12 @@ const MyProvider = (props) => {
   const timePath = searchParams.has("time");
   const initialStep = timePath && datePath ? 3 : datePath && !timePath ? 2 : 1;
 
-  const currentDay = new Date();
+  // const currentDay = new Date();
   const [activeDay, setActiveDay] = useState();
   const [numberOfPlayers, setNumberOfPlayers] = useState(1);
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [timeSlots, setTimeSlots] = useState([]);
-  // const [isLoadingTimes, setIsLoadingTimes] = useState(true);
-  const [takenTimes, setTakenTimes] = useState([]);
+  // const [takenTimes, setTakenTimes] = useState([]);
 
   const nextStepHandler = () => {
     setCurrentStep(currentStep + 1);
@@ -33,13 +32,11 @@ const MyProvider = (props) => {
         setNumberOfPlayers,
         activeDay,
         setActiveDay,
-        currentDay,
+        // currentDay,
         timeSlots,
         setTimeSlots,
-        // isLoadingTimes,
-        // setIsLoadingTimes,
-        takenTimes,
-        setTakenTimes,
+        // takenTimes,
+        // setTakenTimes,
         currentStep,
         setCurrentStep,
         nextStepHandler,

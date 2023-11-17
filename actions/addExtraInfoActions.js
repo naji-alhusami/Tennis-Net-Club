@@ -1,8 +1,8 @@
 "use server";
+import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import User from "@/models/userModel";
-import { getServerSession } from "next-auth";
 
 export async function AddExtraInfoActions(data) {
   const { number, level } = data;
@@ -15,7 +15,6 @@ export async function AddExtraInfoActions(data) {
     session?.user?._id,
     {
       $set: { WhatsAppNumber: number, level: level }, // $set to update the "whatsAppNumber" field
-      // $set: { level: level },
     },
     { new: true }
   ).select("-password");

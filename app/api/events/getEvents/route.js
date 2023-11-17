@@ -1,6 +1,7 @@
-import connectToDatabase from "@/lib/db";
-import Event from "@/models/eventModel";
 import { NextResponse } from "next/server";
+
+import Event from "@/models/eventModel";
+import connectToDatabase from "@/lib/db";
 
 connectToDatabase();
 

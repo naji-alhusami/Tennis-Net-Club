@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import classes from "./signup-form.module.css";
-import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
-import { signupWithCredentials } from "@/actions/SignupAction";
 import { useRouter } from "next/navigation";
-import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
+import { signIn } from "next-auth/react";
 import { motion } from "framer-motion";
+import { FcGoogle } from "react-icons/fc";
+
+import { signupWithCredentials } from "@/actions/SignupAction";
+import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
 import SubmitButton from "../ui/submit-button";
+import classes from "./signup-form.module.css";
 
 function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");

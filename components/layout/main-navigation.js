@@ -2,12 +2,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { AiFillCaretDown } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
-// import { getServerSession } from "next-auth";
+import { AiFillCaretDown } from "react-icons/ai";
 
 import Logo from "./logo";
-
 import classes from "./main-navigation.module.css";
 
 function MainNavigation(props) {
@@ -40,13 +38,22 @@ function MainNavigation(props) {
 
   return (
     <div className={classes.container}>
-      <header className={classes.header} style={headerStyle}>
+      <motion.header
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className={classes.header}
+        style={headerStyle}
+      >
         <Link href="/">
           <Logo />
         </Link>
         <nav>
           <ul className={classes.ul}>
             {/* Large Screens */}
+            <li className={classes.navbarList}>
+              <Link href="/">Home</Link>
+            </li>
             {session && (
               <li className={classes.navbarList}>
                 <Link href="/reservation">Book Court</Link>
@@ -67,6 +74,9 @@ function MainNavigation(props) {
                 <Link href="/training">Trainings</Link>
               </li>
             )}
+            <li className={classes.navbarList}>
+              <Link href="/contact">Contact</Link>
+            </li>
             <li>
               {session ? (
                 <div className={classes.user} onClick={showUserLogoutHandler}>
@@ -120,7 +130,7 @@ function MainNavigation(props) {
             </li>
           </ul>
         </nav>
-      </header>
+      </motion.header>
       <AnimatePresence>
         {showSideNavbar && (
           <motion.div

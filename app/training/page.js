@@ -4,8 +4,8 @@ import Image from "next/image";
 import { fetchEventsFromMongo } from "@/lib/events/fetchEventsFromMongo";
 import TrainingOffers from "@/components/training/training-page/training-offers";
 import Headers from "@/components/ui/headers";
-import classes from "@/components/training/training-page/training.module.css";
 import courses from "@/public/images/courses.jpg";
+import classes from "@/components/training/training-page/training.module.css";
 
 export const metadata = {
   title: "Training Offers",

@@ -1,4 +1,5 @@
 import React from "react";
+
 import Thanks from "@/components/thanks/thanks";
 
 function ThanksPage({ searchParams }) {

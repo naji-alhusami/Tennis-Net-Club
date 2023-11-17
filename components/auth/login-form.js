@@ -2,12 +2,12 @@
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-
-import classes from "./login-form.module.css";
+import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
+
 import SubmitButton from "../ui/submit-button";
+import classes from "./login-form.module.css";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");

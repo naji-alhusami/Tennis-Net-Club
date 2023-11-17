@@ -1,6 +1,7 @@
 import React from "react";
-import ball from "@/public/images/ball.png";
 import Image from "next/image";
+
+import ball from "@/public/images/ball.png";
 import classes from "./loading-data.module.css";
 
 export default function LoadingData() {

@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import background from "@/public/images/background.jpg";
 import Button from "../ui/button";
 import { RightArrow } from "../icons/right-arrow";
+import background from "@/public/images/background.jpg";
 import classes from "./starting.module.css";
 
 function Starting() {
@@ -25,7 +25,7 @@ function Starting() {
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 1 }}
           className={classes.startingText}
         >
           <h1>Hi</h1>
@@ -52,7 +52,7 @@ function Starting() {
           {session ? (
             <Link href="/calendar">
               <Button>
-                Check My Calendar Events
+                Check My Calendar
                 <RightArrow />
               </Button>
             </Link>

@@ -8,11 +8,11 @@ import React, {
 } from "react";
 import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { BsArrowLeft } from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
 
 import AuthContext from "@/store/auth-context";
 import RenderReservationButton from "./render-reservation-button";
-import { BsArrowLeft } from "react-icons/bs";
-import { BsArrowRight } from "react-icons/bs";
 import classes from "./reservation-times-step.module.css";
 
 function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {

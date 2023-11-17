@@ -2,8 +2,8 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
-
 import { BsWhatsapp } from "react-icons/bs";
+
 import classes from "./find-partner.module.css";
 
 function Partners({ filteredPlayers }) {
@@ -39,7 +39,11 @@ function Partners({ filteredPlayers }) {
           </div>
           <div className={classes.playerInfo}>
             <div className={classes.icon}>
-              <Link href={`https://wa.me/${player.WhatsAppNumber}`}>
+              <Link
+                href={`https://wa.me/${player.WhatsAppNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <BsWhatsapp />
               </Link>
             </div>

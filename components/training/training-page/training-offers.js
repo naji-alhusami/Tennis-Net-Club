@@ -6,14 +6,13 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useSession } from "next-auth/react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
-import classes from "./training.module.css";
-
 import { TrainingOffersData } from "./training-offers-data";
-import { useSession } from "next-auth/react";
 import TrainingForm from "./training-form";
 import AuthContext from "@/store/auth-context";
+import classes from "./training.module.css";
 
 function TrainingOffers({ trainings }) {
   const { setActiveDay, activeDay } = useContext(AuthContext);
@@ -21,14 +20,16 @@ function TrainingOffers({ trainings }) {
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
   const [selectedTrainingType, setSelectedTrainingType] = useState(null);
-  const trainingOffersRef = useRef(null);
-  const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });
-  const trainingOffersControls = useAnimation();
+
 
   const hasTrainingMembership = trainings.data.some((training) => {
     return training.member === session?.user.name;
   });
 
+  // Motion
+  const trainingOffersRef = useRef(null);
+  const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });
+  const trainingOffersControls = useAnimation();
   useEffect(() => {
     if (trainingOffersIsInView) {
       trainingOffersControls.start("visible");

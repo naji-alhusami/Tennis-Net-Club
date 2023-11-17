@@ -78,7 +78,7 @@ function ReservationHome() {
           </div>
           {session ? (
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.reserveButton} href="/booking">
+              <Link className={classes.reserveButton} href="/reservation">
                 Reserve Court
               </Link>
             </motion.div>

@@ -1,6 +1,7 @@
-import connectToDatabase from "@/lib/db";
-import TakenTime from "@/models/takenTimeModel";
 import { NextResponse } from "next/server";
+
+import TakenTime from "@/models/takenTimeModel";
+import connectToDatabase from "@/lib/db";
 
 connectToDatabase();
 

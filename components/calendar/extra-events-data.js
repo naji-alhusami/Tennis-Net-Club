@@ -1,4 +1,4 @@
-export const eventsExtra = [
+export const ExtraEvents = [
   {
     id: "1",
     title: "Tournament",

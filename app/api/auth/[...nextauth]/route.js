@@ -1,11 +1,11 @@
-import { verifyPassword } from "@/lib/auth";
-// import { connectToDatabase } from "@/lib/db";
-import connectToDatabase from "@/lib/db";
-import { verifyToken } from "@/lib/token";
-import User from "@/models/userModel";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+
+import User from "@/models/userModel";
+import connectToDatabase from "@/lib/db";
+import { verifyPassword } from "@/lib/auth";
+import { verifyToken } from "@/lib/token";
 
 connectToDatabase();
 
@@ -29,10 +29,6 @@ export const authOptions = {
         if (!user || !verifyPasswords) {
           throw new Error("Your Email Or Password Is Incorrect");
         }
-
-        // if (!verifyPasswords) {
-        //   throw new Error("Your Password Is Incorrect");
-        // }
 
         if (!user.emailVerified) {
           throw new Error("Email Is Not Verified");
@@ -79,8 +75,7 @@ const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
 
-// -----------------------
-
+// signin with OAuth (Google)
 async function signInWithOAuth({ account, profile }) {
   const user = await User.findOne({ email: profile.email });
 
@@ -97,6 +92,7 @@ async function signInWithOAuth({ account, profile }) {
   return true;
 }
 
+// get user by email
 async function getUserByEmail({ email }) {
   const user = await User.findOne({ email }).select("-password"); // we exclude password here using -password
 
@@ -104,8 +100,6 @@ async function getUserByEmail({ email }) {
 
   return { ...user._doc, _id: user._id.toString() };
 }
-
-// -----------------------------
 
 // verification of email.
 export async function verifyWithCredentials(token) {

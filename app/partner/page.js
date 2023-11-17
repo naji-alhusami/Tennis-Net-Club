@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
+import Image from "next/image";
+
 import FindPartner from "@/components/find-partner/find-partner";
 import Headers from "@/components/ui/headers";
-import Image from "next/image";
+import LoadingData from "@/components/ui/loading-data";
 import partner from "@/public/images/partner.jpg";
 import classes from "@/components/find-partner/find-partner.module.css";
-import LoadingData from "@/components/ui/loading-data";
 
 export const metadata = {
   title: "Find Partner",

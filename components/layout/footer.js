@@ -2,6 +2,7 @@ import React from "react";
 import { MdLocationPin } from "react-icons/md";
 import { AiFillPhone } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
+
 import classes from "./footer.module.css";
 
 function Footer() {

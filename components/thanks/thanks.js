@@ -1,13 +1,14 @@
 "use client";
 import React, { Fragment } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+import Equipments from "../equipments/equipments";
 import thanks from "@/public/images/thanks.jpg";
 import Button from "../ui/button";
-import Link from "next/link";
 import { RightArrow } from "../icons/right-arrow";
 import classes from "./thanks.module.css";
-import { motion } from "framer-motion";
-import Equipments from "../equipments/equipments";
 
 function Thanks({ thanksMessage }) {
   return (

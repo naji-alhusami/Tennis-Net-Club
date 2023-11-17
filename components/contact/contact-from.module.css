@@ -28,7 +28,6 @@
   background-color: rgb(255, 255, 255, 0.9);
   position: absolute;
   top: 90%;
-  /* right: 30%; */
   transform: translate(-50%, -50%);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   border: solid 2px #268750;
@@ -68,11 +67,6 @@
   flex: 1;
   min-width: 10rem;
 }
-
-/* .actions {
-  margin-top: var(--size-4);
-  text-align: right;
-} */
 
 @media (max-width: 840px) {
   .contactFormContainer {

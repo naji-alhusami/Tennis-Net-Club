@@ -1,14 +1,12 @@
-// "use client";
 "use server";
 import React from "react";
-
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 import Signup from "@/components/auth/signup-form";
 import Login from "@/components/auth/login-form";
+import AddExtraInfo from "@/components/auth/add-extra-info";
 import signup from "@/public/images/signup.jpg";
 import classes from "@/components/auth/signup-form.module.css";
-import AddExtraInfo from "@/components/auth/add-extra-info";
 
 export async function generateMetadata({ params }) {
   const authType = params.authType;

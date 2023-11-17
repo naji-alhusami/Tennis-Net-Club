@@ -1,6 +1,7 @@
 "use server";
-import TakenTime from "@/models/takenTimeModel";
 import { revalidatePath } from "next/cache";
+
+import TakenTime from "@/models/takenTimeModel";
 
 export async function deleteReservedTimesActions(timeSlot) {
   try {
