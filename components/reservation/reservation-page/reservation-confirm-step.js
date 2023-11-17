@@ -49,7 +49,7 @@ function ConfirmationStep({ searchParams, session }) {
     router.push("/thanks?thanks=Your Court Is Reserved");
   }
 
-  // Animation
+  // Motion
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();

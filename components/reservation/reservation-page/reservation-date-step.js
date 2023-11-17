@@ -31,7 +31,7 @@ const DateSelectionStep = () => {
     formattedDate = `${year}-${month}-${day}`; // Output: "2023-11-05"
   }
 
-  // Animation for select players number and court type:
+  // Motion for select players number and court type:
   const selectRef = useRef(null);
   const isInViewSelesction = useInView(selectRef, { once: true });
   const selectionControls = useAnimation();
@@ -39,7 +39,7 @@ const DateSelectionStep = () => {
     if (isInViewSelesction) selectionControls.start("visible");
   }, [isInViewSelesction, selectionControls]);
 
-  // Animation for image:
+  // Motion for image:
   const imageRef = useRef(null);
   const isInViewImage = useInView(imageRef, { once: true });
   const imageControls = useAnimation();
@@ -47,7 +47,7 @@ const DateSelectionStep = () => {
     if (isInViewImage) imageControls.start("visible");
   }, [isInViewImage, imageControls]);
 
-  // Animation for calendar:
+  // Motion for calendar:
   const calendarRef = useRef(null);
   const isInViewCalendar = useInView(calendarRef, {
     once: true,
