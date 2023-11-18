@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import TakenTime from "@/models/takenTimeModel";
 import connectToDatabase from "@/app/db";
 
-connectToDatabase({ maxTimeMS: 30000 });
+connectToDatabase();
 
 export async function GET(req) {
   if (req.method === "GET") {
