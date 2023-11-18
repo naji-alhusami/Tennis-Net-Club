@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 import Event from "@/models/eventModel";
 import connectToDatabase from "@/lib/db";
 
-connectToDatabase({ maxTimeMS: 30000 });
 
 export async function GET(req) {
+  await connectToDatabase();
   if (req.method === "GET") {
     try {
       // Fetch data using Mongoose
