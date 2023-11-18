@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
 import Event from "@/models/eventModel";
-import connectToDatabase from "@/lib/db";
+import connectToDatabase from "@/app/db";
 
+ connectToDatabase();
 
 export async function GET(req) {
-  await connectToDatabase();
   if (req.method === "GET") {
     try {
       // Fetch data using Mongoose

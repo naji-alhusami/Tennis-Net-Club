@@ -7,10 +7,7 @@ async function connectToDatabase() {
   }
 
   try {
-    const client = await mongoose.connect(process.env.MONGODB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopolgy: true,
-    });
+    const client = await mongoose.connect(process.env.MONGODB_URL);
     return client;
   } catch {
     return NextResponse.json(

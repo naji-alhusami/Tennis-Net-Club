@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import User from "@/models/userModel";
-import connectToDatabase from "@/lib/db";
+import connectToDatabase from "@/app/db";
 
 connectToDatabase({ maxTimeMS: 30000 });
 
