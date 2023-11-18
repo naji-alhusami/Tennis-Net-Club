@@ -3,7 +3,16 @@ import { NextResponse } from "next/server";
 import Event from "@/models/eventModel";
 import connectToDatabase from "@/app/db";
 
- connectToDatabase();
+async function start() {
+  try {
+    await connectToDatabase();
+    console.log("Connected to the database");
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+}
+
+start();
 
 export async function GET(req) {
   if (req.method === "GET") {
@@ -35,3 +44,8 @@ export async function GET(req) {
     );
   }
 }
+
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  process.exit(0);
+});
