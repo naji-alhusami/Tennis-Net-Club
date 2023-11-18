@@ -9,7 +9,7 @@ export async function GET(req) {
   if (req.method === "GET") {
     try {
       // Fetch data using Mongoose
-      const events = await Event.find({});
+      const events = await Event.find({}).maxTimeMS(30000);;
       
       return NextResponse.json(
         { data: events },
