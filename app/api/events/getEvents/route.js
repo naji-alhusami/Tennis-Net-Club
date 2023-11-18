@@ -9,8 +9,8 @@ export async function GET(req) {
   if (req.method === "GET") {
     try {
       // Fetch data using Mongoose
-      const events = await Event.find({}).maxTimeMS(30000);;
-      
+      const events = await Event.find({}).timeout(30000).exec();
+
       return NextResponse.json(
         { data: events },
         {

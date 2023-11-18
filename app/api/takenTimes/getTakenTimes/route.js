@@ -9,7 +9,7 @@ export async function GET(req) {
   if (req.method === "GET") {
     try {
       // Fetch data using Mongoose
-      const takenTimes = await TakenTime.find({}).maxTimeMS(30000);;
+      const takenTimes = await TakenTime.find({}).timeout(30000).exec();
       return NextResponse.json(
         { data: takenTimes },
         {
