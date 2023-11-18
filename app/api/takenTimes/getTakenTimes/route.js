@@ -3,13 +3,13 @@ import { NextResponse } from "next/server";
 import TakenTime from "@/models/takenTimeModel";
 import connectToDatabase from "@/lib/db";
 
-connectToDatabase();
+connectToDatabase({ maxTimeMS: 30000 });
 
 export async function GET(req) {
   if (req.method === "GET") {
     try {
       // Fetch data using Mongoose
-      const takenTimes = await TakenTime.find({}).timeout(30000).exec();
+      const takenTimes = await TakenTime.find({});
       return NextResponse.json(
         { data: takenTimes },
         {
