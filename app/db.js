@@ -9,10 +9,6 @@ async function connectToDatabase() {
   try {
     const client = await mongoose.connect(process.env.MONGODB_URL);
 
-    // require("../models/eventModal");
-    // require("../models/takenTimeModal");
-    // require("../models/userModal");
-
     return client;
   } catch {
     return NextResponse.json(
