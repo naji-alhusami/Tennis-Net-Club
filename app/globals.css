@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: url("http://www.nicdarkthemes.com/themes/tennis/wp/demo/tennis-club/wp-content/uploads/sites/2/2021/02/bg-3.jpg");
+  /* background-image: url("http://www.nicdarkthemes.com/themes/tennis/wp/demo/tennis-club/wp-content/uploads/sites/2/2021/02/bg-3.jpg"); */
   --color-grey-50: hsl(265, 55%, 96%);
   --color-grey-100: hsl(265, 19%, 88%);
   --color-grey-200: hsl(265, 7%, 70%);
