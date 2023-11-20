@@ -17,12 +17,7 @@ function TrainingPage() {
   return (
     <div>
       <div className={classes.imageContainer}>
-        <Image
-          src={courses}
-          alt="book-course"
-          priority="true"
-          property="true"
-        />
+        <Image src={courses} alt="book-course" />
       </div>
       <div className={classes.text}>
         <Headers
