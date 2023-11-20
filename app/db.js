@@ -7,12 +7,7 @@ async function connectToDatabase() {
   }
 
   try {
-    const client = await mongoose.connect(process.env.MONGODB_URL, {
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-      useNewUrlParser: true,
-    });
+    const client = await mongoose.connect(process.env.MONGODB_URL);
 
     return client;
   } catch {
