@@ -4,7 +4,12 @@ import sendEmail from "@/lib/sendEmail";
 import { hashPassword } from "@/lib/auth";
 import { generateToken } from "@/lib/token";
 
-const BASE_URL = process.env.NEXTAUTH_URL;
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.VERCEL_URL
+    : process.env.NEXTAUTH_URL;
+
+// const BASE_URL = process.env.NEXTAUTH_URL;
 
 // Signup With Credentials
 export async function signupWithCredentials(data) {
@@ -46,7 +51,7 @@ export async function signupWithCredentials(data) {
 
   await sendEmail({
     to: data.email,
-    url: `${BASE_URL}/verify?token=${token}`,
+    url: `${baseUrl}/verify?token=${token}`,
     text: "VERIFY EMAIL",
   });
 
