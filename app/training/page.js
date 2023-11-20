@@ -17,7 +17,12 @@ function TrainingPage() {
   return (
     <div>
       <div className={classes.imageContainer}>
-        <Image src={courses} alt="book-course" />
+        <Image
+          src={courses}
+          alt="book-course"
+          priority="true"
+          property="true"
+        />
       </div>
       <div className={classes.text}>
         <Headers
@@ -27,9 +32,9 @@ function TrainingPage() {
           PHeader="Enroll In Our Training Sessions, Starting from Beginner to Advanced, Group or Individual"
         />
       </div>
-      <Suspense fallback={<LoadingData />}>
+      {/* <Suspense fallback={<LoadingData />}>
         <FetchTrainingEvents />
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }
