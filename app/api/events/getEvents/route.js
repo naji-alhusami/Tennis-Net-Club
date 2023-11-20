@@ -18,7 +18,7 @@ export async function GET(req) {
         }
       );
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data inside API:", error);
       return NextResponse.json(
         { message: "Getting Items Failed!" },
         {
