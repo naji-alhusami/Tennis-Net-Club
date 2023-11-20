@@ -21,6 +21,7 @@ function TrainingOffers({ hasTrainingMembership }) {
   const [showEnrollForm, setShowEnrollForm] = useState(false);
   const [selectedTrainingType, setSelectedTrainingType] = useState(null);
 
+  console.log(hasTrainingMembership);
   // Motion
   const trainingOffersRef = useRef(null);
   const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });

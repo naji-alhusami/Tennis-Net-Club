@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 
-import TrainingOffers from "@/components/training/training-page/training-offers";
 import Headers from "@/components/ui/headers";
 import courses from "@/public/images/courses.jpg";
 import LoadingData from "@/components/ui/loading-data";
 import classes from "@/components/training/training-page/training.module.css";
+import FetchTrainingEvents from "@/components/training/training-page/fetch-training-events";
 
 export const metadata = {
   title: "Training Offers",
@@ -13,7 +13,7 @@ export const metadata = {
     "Check our training offers in the Tennis Net Club, and Enroll if you are a member",
 };
 
-async function TrainingPage() {
+function TrainingPage() {
   return (
     <div>
       <div className={classes.imageContainer}>
@@ -33,7 +33,7 @@ async function TrainingPage() {
         />
       </div>
       <Suspense fallback={<LoadingData />}>
-        <TrainingOffers />
+        <FetchTrainingEvents />
       </Suspense>
     </div>
   );
