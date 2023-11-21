@@ -20,9 +20,9 @@ async function HomePage() {
       <Services />
       <TrainingHome />
       <ReservationHome />
-      <Suspense fallback={<LoadingData />}>
+      {/* <Suspense fallback={<LoadingData />}>
         <CalendarData />
-      </Suspense>
+      </Suspense> */}
     </main>
   );
 }
