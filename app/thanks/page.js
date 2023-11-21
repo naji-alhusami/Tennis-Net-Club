@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 
-import Thanks from "@/components/thanks/thanks";
+// import Thanks from "@/components/thanks/thanks";
 
-function ThanksPage({ searchParams }) {
-  const thanksMessage = searchParams.thanks;
-  return <Thanks thanksMessage={thanksMessage} />;
-}
+// function ThanksPage({ searchParams }) {
+//   const thanksMessage = searchParams.thanks;
+//   return <Thanks thanksMessage={thanksMessage} />;
+// }
 
-export default ThanksPage;
+// export default ThanksPage;
