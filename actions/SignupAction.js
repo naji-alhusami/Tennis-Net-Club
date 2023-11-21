@@ -6,7 +6,7 @@ import { generateToken } from "@/lib/token";
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXTAUTH_URL;
 
 // const BASE_URL = process.env.NEXTAUTH_URL;
