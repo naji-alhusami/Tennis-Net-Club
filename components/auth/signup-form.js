@@ -41,13 +41,15 @@ function Signup() {
         level,
       });
 
+      console.log(response);
+
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
         router.push(`/thanks?thanks=${response?.message}`);
       }
     } catch (error) {
-      setErrorMessage("Error in signup Form:", error.message);
+      setErrorMessage(error.message);
     }
   }
 
