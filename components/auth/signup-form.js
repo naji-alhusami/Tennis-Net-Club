@@ -47,7 +47,7 @@ function Signup() {
         router.push(`/thanks?thanks=${response?.message}`);
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage("Error in signup Form:", error.message);
     }
   }
 
