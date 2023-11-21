@@ -17,9 +17,9 @@ async function HomePage() {
   return (
     <main>
       <Starting />
-      <Services />
+      {/* <Services />
       <TrainingHome />
-      <ReservationHome />
+      <ReservationHome /> */}
       {/* <Suspense fallback={<LoadingData />}>
         <CalendarData />
       </Suspense> */}
