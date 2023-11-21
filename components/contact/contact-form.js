@@ -29,6 +29,7 @@ function ContactForm() {
 
   async function sendMessageHandler(event) {
     event.preventDefault();
+
     try {
       await sendContactData({
         email: enteredEmail,
