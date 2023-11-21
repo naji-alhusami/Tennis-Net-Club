@@ -3,9 +3,9 @@ import Image from "next/image";
 
 import Headers from "@/components/ui/headers";
 import courses from "@/public/images/courses.jpg";
-import LoadingData from "@/components/ui/loading-data";
+// import LoadingData from "@/components/ui/loading-data";
 import classes from "@/components/training/training-page/training.module.css";
-import FetchTrainingEvents from "@/components/training/training-page/fetch-training-events";
+// import FetchTrainingEvents from "@/components/training/training-page/fetch-training-events";
 
 export const metadata = {
   title: "Training Offers",
