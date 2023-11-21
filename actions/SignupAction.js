@@ -4,11 +4,11 @@ import sendEmail from "@/lib/sendEmail";
 import { hashPassword } from "@/lib/auth";
 import { generateToken } from "@/lib/token";
 
-const baseUrl = `https://${process.env.VERCEL_URL}`;
-// const baseUrl =
-//   process.env.NODE_ENV === "production"
-//     ? `https://${process.env.VERCEL_URL}`
-//     : process.env.NEXTAUTH_URL;
+// const baseUrl = `https://${process.env.VERCEL_URL}`;
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.NEXTAUTH_URL;
 
 // const BASE_URL = process.env.NEXTAUTH_URL;
 
