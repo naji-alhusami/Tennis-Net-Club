@@ -9,7 +9,7 @@ const baseUrl =
   process.env.NODE_ENV === "production"
     ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXTAUTH_URL;
-
+console.log("baseURL in signupAction:", baseUrl);
 // const BASE_URL = process.env.NEXTAUTH_URL;
 
 // Signup With Credentials
