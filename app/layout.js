@@ -7,6 +7,8 @@ import { AuthProvider } from "./Providers";
 
 // const inter = Inter({ subsets: ["latin"] });
 
+export const runtime = "edge";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

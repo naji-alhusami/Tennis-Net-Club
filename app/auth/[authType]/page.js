@@ -8,10 +8,6 @@ import AddExtraInfo from "@/components/auth/add-extra-info";
 import signup from "@/public/images/signup.jpg";
 import classes from "@/components/auth/signup-form.module.css";
 
-export const config = {
-  runtime: "edge",
-};
-
 export async function generateMetadata({ params }) {
   const authType = params.authType;
 
