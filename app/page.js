@@ -1,8 +1,8 @@
 import React from "react";
 
 import Starting from "@/components/starting/starting";
-// import Services from "@/components/services/services";
-// import TrainingHome from "@/components/training/training-home/training-home";
+import Services from "@/components/services/services";
+import TrainingHome from "@/components/training/training-home/training-home";
 // import ReservationHome from "@/components/reservation/reservation-home/reservation-home";
 // import CalendarData from "@/components/calendar/calendar-data";
 // import LoadingData from "@/components/ui/loading-data";
@@ -17,9 +17,9 @@ async function HomePage() {
   return (
     <main>
       <Starting />
-      {/* <Services />
+      <Services />
       <TrainingHome />
-      <ReservationHome /> */}
+      {/* <ReservationHome /> */}
       {/* <Suspense fallback={<LoadingData />}>
         <CalendarData />
       </Suspense> */}
