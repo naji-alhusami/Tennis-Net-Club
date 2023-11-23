@@ -3,7 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
 import User from "@/models/userModel";
-import connectToDatabase from "@/app/db";
+// import connectToDatabase from "@/app/db";
 import { verifyPassword } from "@/lib/auth";
 import { verifyToken } from "@/lib/token";
 
