@@ -7,6 +7,7 @@ import connectToDatabase from "@/app/db";
 import { verifyPassword } from "@/lib/auth";
 import { verifyToken } from "@/lib/token";
 
+export const runtime = 'edge';
 connectToDatabase();
 
 export const authOptions = {
