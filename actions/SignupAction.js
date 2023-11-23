@@ -4,6 +4,7 @@ import sendEmail from "@/lib/sendEmail";
 import { hashPassword } from "@/lib/auth";
 import { generateToken } from "@/lib/token";
 
+export const runtime = 'edge';
 // const baseUrl = `https://${process.env.VERCEL_URL}`;
 // const baseUrl =
 //   process.env.NODE_ENV === "production"
