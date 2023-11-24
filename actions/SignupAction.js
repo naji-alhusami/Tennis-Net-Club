@@ -1,8 +1,8 @@
 "use server";
 import User from "@/models/userModel";
-import sendEmail from "@/lib/sendEmail";
-import { hashPassword } from "@/lib/auth";
-import { generateToken } from "@/lib/token";
+// import sendEmail from "@/lib/sendEmail";
+// import { hashPassword } from "@/lib/auth";
+// import { generateToken } from "@/lib/token";
 import { NextResponse } from "next/server";
 
 // const baseUrl = `https://${process.env.VERCEL_URL}`;
@@ -16,7 +16,8 @@ console.log("baseURL in signupAction:", BASE_URL);
 // Signup With Credentials
 export async function signupWithCredentials(data) {
   try {
-    // const user = await User.findOne({ email: data.email });
+    const user = await User.findOne({ email: data.email });
+    console.log(user);
     // if (user) {
     //   return {
     //     error: "Email already Exists!",
