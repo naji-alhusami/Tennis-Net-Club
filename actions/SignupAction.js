@@ -21,20 +21,20 @@ export async function signupWithCredentials(data) {
   // }
   // console.log("data in signupAction:", data);
 
-  // if (!data.name || data.name.trim().length > 10) {
-  //   throw new Error("Name Should Not Be More than 10 Characters");
-  // }
+  if (!data.name || data.name.trim().length > 10) {
+    throw new Error("Name Should Not Be More than 10 Characters");
+  }
 
-  // if (!data.email || !data.email.includes("@")) {
-  //   throw new Error("Invalid Email");
-  // }
+  if (!data.email || !data.email.includes("@")) {
+    throw new Error("Invalid Email");
+  }
 
-  // if (!data.password || data.password.trim().length < 6) {
-  //   throw new Error("Password Should Be More than 6 Characters");
-  // }
-  // if (data.password !== data.passwordConfirmation) {
-  //   throw new Error("Passwords Should Be Matched");
-  // }
+  if (!data.password || data.password.trim().length < 6) {
+    throw new Error("Password Should Be More than 6 Characters");
+  }
+  if (data.password !== data.passwordConfirmation) {
+    throw new Error("Passwords Should Be Matched");
+  }
 
   // if (data.password) {
   //   data.password = await hashPassword(data.password);
