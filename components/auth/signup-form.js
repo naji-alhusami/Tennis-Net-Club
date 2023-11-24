@@ -24,33 +24,34 @@ function Signup() {
   };
 
   async function signupCredentialsHandler(formData) {
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const number = formData.get("number");
-    const password = formData.get("password");
-    const passwordConfirmation = formData.get("password-confirmation");
-    const level = formData.get("level");
+    alert(formData.get("name"));
+    // const name = formData.get("name");
+    // const email = formData.get("email");
+    // const number = formData.get("number");
+    // const password = formData.get("password");
+    // const passwordConfirmation = formData.get("password-confirmation");
+    // const level = formData.get("level");
 
-    try {
-      const response = await signupWithCredentials({
-        name,
-        email,
-        number,
-        password,
-        passwordConfirmation,
-        level,
-      });
+    // try {
+    //   const response = await signupWithCredentials({
+    //     name,
+    //     email,
+    //     number,
+    //     password,
+    //     passwordConfirmation,
+    //     level,
+    //   });
 
-      console.log(response);
+    //   console.log(response);
 
-      if (response?.message) {
-        ref.current?.reset();
-        setErrorMessage("");
-        router.push(`/thanks?thanks=${response?.message}`);
-      }
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
+    //   if (response?.message) {
+    //     ref.current?.reset();
+    //     setErrorMessage("");
+    //     router.push(`/thanks?thanks=${response?.message}`);
+    //   }
+    // } catch (error) {
+    //   setErrorMessage(error.message);
+    // }
   }
 
   return (
@@ -65,7 +66,7 @@ function Signup() {
         <div>
           <input type="text" name="name" placeholder="Your Name" required />
         </div>
-        <div>
+        {/* <div>
           <input type="email" name="email" placeholder="Your Email" required />
         </div>
         <div>
@@ -102,7 +103,7 @@ function Signup() {
             <option value="Intermediate">Intermediate</option>
             <option value="Advance">Advance</option>
           </select>
-        </div>
+        </div> */}
         <div>
           {errorMessage ? (
             <p className={classes.error}>{errorMessage}</p>
