@@ -39,7 +39,6 @@ function Signup() {
       passwordConfirmation,
       level,
     });
-    console.log(response);
 
     if (response?.message) {
       ref.current?.reset();

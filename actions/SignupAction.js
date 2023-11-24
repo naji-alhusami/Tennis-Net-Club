@@ -17,11 +17,55 @@ console.log("baseURL in signupAction:", BASE_URL);
 export async function signupWithCredentials(data) {
   try {
     const { name, email, password, passwordConfirmation, number, level } = data;
+
+    const user = await User.findOne({ email: email });
+    if (user) {
+      return {
+        error: "Email already Exists!",
+      };
+    }
+
+    if (!name || name.trim().length > 10) {
+      return {
+        error: "Name Should Not Be More than 10 Characters",
+      };
+    }
+
+    if (!password || password.trim().length < 6) {
+      return {
+        error: "Password Should Be More than 6 Characters",
+      };
+    }
+
     if (password !== passwordConfirmation) {
       return {
         error: "Password Should Be More than 6 Characters",
       };
     }
+
+    if (password) {
+      password = await hashPassword(password);
+    }
+
+    // Create Token for Email Verification:
+    const token = generateToken({ user: data });
+
+    const newUser = new User({
+      name,
+      email,
+      WhatsAppNumber: number,
+      password,
+      level,
+      emailVerified: false,
+    });
+
+    await sendEmail({
+      to: email,
+      url: `${BASE_URL}/verify?token=${token}`,
+      text: "VERIFY EMAIL",
+    });
+
+    await newUser.save();
 
     return {
       message:
