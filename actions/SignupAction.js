@@ -5,12 +5,12 @@ import { hashPassword } from "@/lib/auth";
 // import { generateToken } from "@/lib/token";
 
 // const baseUrl = `https://${process.env.VERCEL_URL}`;
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.NEXTAUTH_URL;
-console.log("baseURL in signupAction:", baseUrl);
-// const BASE_URL = process.env.NEXTAUTH_URL;
+// const baseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? `https://${process.env.VERCEL_URL}`
+//     : process.env.NEXTAUTH_URL;
+const BASE_URL = process.env.NEXTAUTH_URL;
+console.log("baseURL in signupAction:", BASE_URL);
 
 // Signup With Credentials
 export async function signupWithCredentials(data) {
