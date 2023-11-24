@@ -41,8 +41,6 @@ function Signup() {
         level,
       });
 
-      alert(response?.message);
-
       if (response?.message) {
         ref.current?.reset();
         setErrorMessage("");
