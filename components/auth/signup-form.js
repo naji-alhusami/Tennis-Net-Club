@@ -11,7 +11,7 @@ import { FormatPhoneNumber } from "@/lib/FormatPhoneNumber";
 import SubmitButton from "../ui/submit-button";
 import classes from "./signup-form.module.css";
 
-function Signup() {
+function SignupForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const ref = useRef(null);
@@ -40,6 +40,7 @@ function Signup() {
         passwordConfirmation,
         level,
       });
+      console.log(response);
 
       if (response?.message) {
         ref.current?.reset();
@@ -133,4 +134,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignupForm;
