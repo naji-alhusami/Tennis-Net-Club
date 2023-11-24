@@ -31,24 +31,22 @@ function Signup() {
     const passwordConfirmation = formData.get("password-confirmation");
     const level = formData.get("level");
 
-    try {
-      const response = await signupWithCredentials({
-        name,
-        email,
-        number,
-        password,
-        passwordConfirmation,
-        level,
-      });
-      console.log(response);
+    const response = await signupWithCredentials({
+      name,
+      email,
+      number,
+      password,
+      passwordConfirmation,
+      level,
+    });
+    console.log(response);
 
-      if (response?.message) {
-        ref.current?.reset();
-        setErrorMessage("");
-        router.push(`/thanks?thanks=${response?.message}`);
-      }
-    } catch (error) {
-      setErrorMessage(error.message);
+    if (response?.message) {
+      ref.current?.reset();
+      setErrorMessage("");
+      router.push(`/thanks?thanks=${response?.message}`);
+    } else if (response?.error) {
+      setErrorMessage(response.error);
     }
   }
 
