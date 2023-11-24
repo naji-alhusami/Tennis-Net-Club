@@ -35,7 +35,7 @@ export async function signupWithCredentials(data) {
 
     if (data.password !== data.passwordConfirmation) {
       return {
-        error: "Password Should Be More than 6 Characters",
+        error: "Passwords Should Be Matched",
       };
     }
 
@@ -68,9 +68,9 @@ export async function signupWithCredentials(data) {
         "Signup Success, Before You Login, Please Check Your Email To Verify Your Email.",
     };
   } catch (error) {
-    return NextResponse.json(
-      { error: "Something wen wrong!" },
-      { status: 500 }
-    );
+    return {
+      error:
+        "Something went wrong.",
+    };
   }
 }
