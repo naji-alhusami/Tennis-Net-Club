@@ -1,10 +1,9 @@
 "use server";
 import connectToDatabase from "@/app/db";
 import User from "@/models/userModel";
-// import sendEmail from "@/lib/sendEmail";
-// import { hashPassword } from "@/lib/auth";
-// import { generateToken } from "@/lib/token";
-import { NextResponse } from "next/server";
+import sendEmail from "@/lib/sendEmail";
+import { hashPassword } from "@/lib/auth";
+import { generateToken } from "@/lib/token";
 
 const BASE_URL = process.env.NEXTAUTH_URL;
 console.log("baseURL in signupAction:", BASE_URL);
@@ -69,8 +68,7 @@ export async function signupWithCredentials(data) {
     };
   } catch (error) {
     return {
-      error:
-        "Something went wrong.",
+      error: "Something went wrong.",
     };
   }
 }
