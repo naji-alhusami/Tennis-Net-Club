@@ -18,7 +18,8 @@ export async function signupWithCredentials(data) {
   // if (user) {
   //   throw new Error("Email already Exists!");
   // }
-  alert(data);
+  console.log("data in signupAction:", data);
+
   if (!data.name || data.name.trim().length > 10) {
     throw new Error("Name Should Not Be More than 10 Characters");
   }
