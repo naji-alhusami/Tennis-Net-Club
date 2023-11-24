@@ -1,28 +1,25 @@
 "use server";
+import connectToDatabase from "@/app/db";
 import User from "@/models/userModel";
 // import sendEmail from "@/lib/sendEmail";
 // import { hashPassword } from "@/lib/auth";
 // import { generateToken } from "@/lib/token";
 import { NextResponse } from "next/server";
 
-// const baseUrl = `https://${process.env.VERCEL_URL}`;
-// const baseUrl =
-//   process.env.NODE_ENV === "production"
-//     ? `https://${process.env.VERCEL_URL}`
-//     : process.env.NEXTAUTH_URL;
 const BASE_URL = process.env.NEXTAUTH_URL;
 console.log("baseURL in signupAction:", BASE_URL);
 
+connectToDatabase();
 // Signup With Credentials
 export async function signupWithCredentials(data) {
   try {
     const user = await User.findOne({ email: data.email });
-    console.log(user);
-    // if (user) {
-    //   return {
-    //     error: "Email already Exists!",
-    //   };
-    // }
+    // console.log(user);
+    if (user) {
+      return {
+        error: "Email already Exists!",
+      };
+    }
 
     if (!data.name || data.name.trim().length > 10) {
       return {
@@ -42,34 +39,34 @@ export async function signupWithCredentials(data) {
       };
     }
 
-    // if (data.password) {
-    //   data.password = await hashPassword(data.password);
-    // }
+    if (data.password) {
+      data.password = await hashPassword(data.password);
+    }
 
     // Create Token for Email Verification:
-    // const token = generateToken({ user: data });
+    const token = generateToken({ user: data });
 
-    // const newUser = new User({
-    //   name: data.name,
-    //   email: data.email,
-    //   WhatsAppNumber: data.number,
-    //   password: data.password,
-    //   level: data.level,
-    //   emailVerified: false,
-    // });
+    const newUser = new User({
+      name: data.name,
+      email: data.email,
+      WhatsAppNumber: data.number,
+      password: data.password,
+      level: data.level,
+      emailVerified: false,
+    });
 
-    // await sendEmail({
-    //   to: data.email,
-    //   url: `${BASE_URL}/verify?token=${token}`,
-    //   text: "VERIFY EMAIL",
-    // });
+    await sendEmail({
+      to: data.email,
+      url: `${BASE_URL}/verify?token=${token}`,
+      text: "VERIFY EMAIL",
+    });
 
-    // await newUser.save();
+    await newUser.save();
 
-    // return {
-    //   message:
-    //     "Signup Success, Before You Login, Please Check Your Email To Verify Your Email.",
-    // };
+    return {
+      message:
+        "Signup Success, Before You Login, Please Check Your Email To Verify Your Email.",
+    };
   } catch (error) {
     return NextResponse.json(
       { error: "Something wen wrong!" },
