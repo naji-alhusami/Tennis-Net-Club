@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
@@ -21,12 +21,12 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
     activeDay,
     prevStepHandler,
     nextStepHandler,
-    setCurrentStep,
+    // setCurrentStep,
     selectedTime,
     setSelectedTime,
   } = useContext(AuthContext);
   const [newTimeSlots, setNewTimeSlots] = useState(timeSlots);
-  const router = useRouter();
+  // const router = useRouter();
 
   // Motion
   const ref = useRef(null);
@@ -49,7 +49,6 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
   // const newDate = new Date(dayFromLink);
-  console.log(dayFromLink === formattedDate);
   // console.log(activeDay);
   // console.log(newDate);
   const memberTakenTimes = takenTimes.filter(
@@ -59,16 +58,17 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
   const hasReservationForDay = memberTakenTimes.some(
     (reservation) => reservation.date === dayFromLink
   );
+  console.log(takenTimes);
 
   // Link for next page:
   const nextPath = `/reservation/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
 
-  useEffect(() => {
-    if (!(dayFromLink === formattedDate)) {
-      router.replace("/reservation");
-      setCurrentStep(1);
-    }
-  }, [dayFromLink, formattedDate]);
+  // useEffect(() => {
+  //   if (!(dayFromLink === formattedDate)) {
+  //     router.replace("/reservation");
+  //     setCurrentStep(1);
+  //   }
+  // }, [dayFromLink, formattedDate]);
 
   return (
     <Fragment>
