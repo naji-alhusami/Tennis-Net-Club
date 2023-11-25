@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// import Equipments from "../equipments/equipments";
+import Equipments from "../equipments/equipments";
 import thanks from "@/public/images/thanks.jpg";
 import Button from "../ui/button";
 import { RightArrow } from "../icons/right-arrow";
@@ -29,13 +29,13 @@ function Thanks({ thanksMessage }) {
           {/* <h2>Hi</h2> */}
           <h2>Welcome to our TENNIS NET Club</h2>
           <motion.h1>{thanksMessage}</motion.h1>
-          {/* <Equipments /> */}
           <Link href="/">
             <Button>
               Back To Home
               <RightArrow />
             </Button>
           </Link>
+          
         </motion.div>
       </div>
     </Fragment>
