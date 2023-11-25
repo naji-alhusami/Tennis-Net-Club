@@ -5,8 +5,14 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { BsWhatsapp } from "react-icons/bs";
 
 import classes from "./find-partner.module.css";
+import { useSession } from "next-auth/react";
 
-function Partners({ filteredPlayers }) {
+function Partners({ players }) {
+  const {data:session} = useSession();
+  const filteredPlayers = players.data.filter(
+    (player) => player.name !== session?.user.name
+  );
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
