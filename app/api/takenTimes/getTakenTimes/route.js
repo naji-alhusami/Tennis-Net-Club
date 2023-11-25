@@ -10,6 +10,12 @@ export async function GET(req) {
     try {
       // Fetch data using Mongoose
       const takenTimes = await TakenTime.find({});
+
+      //To dynamically get the path
+      const path = request.nextUrl.searchParams.get("path") || "/";
+
+      revalidatePath(path);
+
       return NextResponse.json(
         { data: takenTimes },
         {
