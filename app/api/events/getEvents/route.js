@@ -5,6 +5,8 @@ import connectToDatabase from "@/app/db";
 
 connectToDatabase();
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req) {
   if (req.method === "GET") {
     try {
