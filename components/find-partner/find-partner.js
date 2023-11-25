@@ -5,10 +5,14 @@ import { fetchPlayersFromMongo } from "@/lib/players/fetchPlayersFromMongo";
 
 async function FindPartner() {
   const players = await fetchPlayersFromMongo();
-
+  console.log(players);
   return (
     <Fragment>
-      <Partners players={players} />
+      {players.data.length === 1 ? (
+        <h4 style={{ color: "red" }}>No Players To Play With</h4>
+      ) : (
+        <Partners players={players} />
+      )}
     </Fragment>
   );
 }
