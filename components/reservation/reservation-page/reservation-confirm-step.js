@@ -13,7 +13,7 @@ import { sendTakenTimesToMongo } from "@/lib/takenTimes/sendTakenTimesToMongo";
 import classes from "./reservation-confirm-step.module.css";
 
 function ConfirmationStep({ searchParams, session }) {
-  const { setCurrentStep } = useContext(AuthContext);
+  const { setCurrentStep, selectedTime } = useContext(AuthContext);
   const router = useRouter();
   // console.log(searchParams.time === selectedTime);
 
@@ -59,12 +59,12 @@ function ConfirmationStep({ searchParams, session }) {
 
   const prevPath = `/reservation?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}`;
 
-  // useEffect(() => {
-  //   if (!(searchParams.time === selectedTime)) {
-  //     router.replace("/reservation");
-  //     setCurrentStep(1);
-  //   }
-  // }, [searchParams.time, selectedTime]);
+  useEffect(() => {
+    if (!(searchParams.time === selectedTime)) {
+      router.replace("/reservation");
+      setCurrentStep(1);
+    }
+  }, [searchParams.time, setCurrentStep, selectedTime, router]);
 
   return (
     <form

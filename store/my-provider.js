@@ -11,7 +11,7 @@ const MyProvider = (props) => {
   const initialStep = timePath && datePath ? 3 : datePath && !timePath ? 2 : 1;
 
   const [activeDay, setActiveDay] = useState();
-  const [numberOfPlayers, setNumberOfPlayers] = useState(1);
+  const [numberOfPlayers, setNumberOfPlayers] = useState("");
   const [currentStep, setCurrentStep] = useState(initialStep);
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");

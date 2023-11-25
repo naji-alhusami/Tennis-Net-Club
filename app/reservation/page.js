@@ -15,7 +15,7 @@ async function ReservationPage({ searchParams }) {
   return (
     <div className={classes.bookingContainer}>
       <ReservationImage />
-      <ReservationSteps />
+      <ReservationSteps searchParams={searchParams} />
       <Suspense fallback={<LoadingData />}>
         <ReservationInfo searchParams={searchParams} />
       </Suspense>

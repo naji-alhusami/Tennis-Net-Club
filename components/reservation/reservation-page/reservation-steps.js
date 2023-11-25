@@ -4,15 +4,17 @@ import React, { useContext } from "react";
 import AuthContext from "@/store/auth-context";
 import classes from "./reservation-steps.module.css";
 
-function ReservationSteps() {
+function ReservationSteps({ searchParams }) {
   const { currentStep } = useContext(AuthContext);
-
+  
   return (
     <div className={classes.stepsContainer}>
       <div className={classes.stepContainer}>
         <div
           className={`${classes.stepsCircle} ${
-            currentStep === 1 ? classes.selectStep : ""
+            currentStep === 1 && Object.keys(searchParams).length === 0
+              ? classes.selectStep
+              : ""
           }`}
         >
           1
@@ -22,7 +24,9 @@ function ReservationSteps() {
       <div className={classes.stepContainer}>
         <div
           className={`${classes.stepsCircle} ${
-            currentStep === 2 ? classes.detailsStep : ""
+            currentStep === 2 && searchParams.date && !searchParams.time
+              ? classes.detailsStep
+              : ""
           }`}
         >
           2
@@ -32,7 +36,11 @@ function ReservationSteps() {
       <div className={classes.stepContainer}>
         <div
           className={`${classes.stepsCircle} 
-        ${currentStep === 3 ? classes.confirmStep : ""}
+        ${
+          currentStep === 3 && searchParams.date && searchParams.time
+            ? classes.confirmStep
+            : ""
+        }
         `}
         >
           3

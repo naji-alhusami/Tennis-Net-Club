@@ -11,7 +11,8 @@ import Headers from "../../ui/headers";
 import classes from "./reservation-home.module.css";
 
 function ReservationHome() {
-  const { numberOfPlayers, setNumberOfPlayers } = useContext(AuthContext);
+  const { numberOfPlayers, setNumberOfPlayers, setCurrentStep } =
+    useContext(AuthContext);
   const { data: session } = useSession();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -22,6 +23,11 @@ function ReservationHome() {
       mainControls.start("visible");
     }
   }, [isInView, mainControls]);
+
+  function stepsAndplayersHandler() {
+    setCurrentStep(1);
+    setNumberOfPlayers("");
+  }
 
   const decreasePlayers = () => {
     if (numberOfPlayers > 1) {
@@ -80,7 +86,11 @@ function ReservationHome() {
           </div>
           {session ? (
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link className={classes.reserveButton} href="/reservation">
+              <Link
+                className={classes.reserveButton}
+                href="/reservation"
+                onClick={stepsAndplayersHandler}
+              >
                 Reserve Court
               </Link>
             </motion.div>

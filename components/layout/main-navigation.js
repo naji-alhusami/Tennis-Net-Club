@@ -1,19 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiFillCaretDown } from "react-icons/ai";
 
+import AuthContext from "@/store/auth-context";
 import Logo from "./logo";
 import classes from "./main-navigation.module.css";
 
 function MainNavigation(props) {
+  const { setCurrentStep, setNumberOfPlayers } = useContext(AuthContext);
   const [isToggled, setIsToggled] = useState(false);
   const [showSideNavbar, setShowSideNavbar] = useState(false);
   const [showUserLogout, setShowUserLogout] = useState(false);
   const { backgroundColor } = props;
   const { data: session, status } = useSession();
+
   function showUserLogoutHandler() {
     setShowUserLogout(!showUserLogout);
   }
@@ -26,6 +29,11 @@ function MainNavigation(props) {
   function toggleButtonHandler() {
     setIsToggled(!isToggled);
     setShowSideNavbar(!showSideNavbar);
+  }
+
+  function stepsAndplayersHandler() {
+    setCurrentStep(1);
+    setNumberOfPlayers("");
   }
 
   const headerStyle = {
@@ -56,7 +64,9 @@ function MainNavigation(props) {
             </li>
             {session && (
               <li className={classes.navbarList}>
-                <Link href="/reservation">Book Court</Link>
+                <Link href="/reservation" onClick={stepsAndplayersHandler}>
+                  Book Court
+                </Link>
               </li>
             )}
             {session && (
