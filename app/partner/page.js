@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 
-import FindPartner from "@/components/find-partner/find-partner";
+// import FindPartner from "@/components/find-partner/find-partner";
 import Headers from "@/components/ui/headers";
-import LoadingData from "@/components/ui/loading-data";
+// import LoadingData from "@/components/ui/loading-data";
 import partner from "@/public/images/partner.jpg";
 import classes from "@/components/find-partner/find-partner.module.css";
 
@@ -31,9 +31,9 @@ function PartnerPage() {
           PHeader="You Can Choose Player To Play With, By Contacting Using WhatsApp"
         />
       </div>
-      <Suspense fallback={<LoadingData />}>
+      {/* <Suspense fallback={<LoadingData />}>
         <FindPartner />
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }
