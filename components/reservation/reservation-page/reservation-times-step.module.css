@@ -1,0 +1,136 @@
+.timeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 9rem 3rem 9rem;
+}
+
+.timeSlotsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.timeSlot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #797979;
+  padding: 1rem 3rem;
+  margin: 1rem;
+}
+
+.time {
+  font-size: 1.5rem;
+}
+
+.book {
+  width: 8rem;
+  background-color: #268750;
+  border-color: #268750;
+  color: white;
+  padding: 0.8rem 1.3rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.hovered,
+.selected {
+  width: 8rem;
+  background-color: #db981b;
+  color: white;
+  padding: 0.8rem 1.3rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.3s ease-out;
+  text-align: center;
+}
+
+.booked {
+  background-color: #9a9798;
+  border-color: #9a9798;
+  color: white;
+  padding: 0.8rem 1.3rem;
+  font-size: 1.1rem;
+}
+
+.hr {
+  background-color: #268750;
+  width: 1rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.nextButton {
+  background-color: #1c7f47;
+  padding: 0.8rem 2rem;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+.nextButton:hover {
+  background-color: #146135;
+  transition: 0.3s ease-out;
+}
+
+.nextButtonDisabled {
+  text-align: center;
+  background-color: #888787;
+  padding: 0.8rem 2rem;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+.backButton {
+  background-color: #db981b;
+  padding: 0.8rem 2rem;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.backButton:hover {
+  background-color: #a97616;
+  transition: 0.3s ease-out;
+}
+
+@media screen and (max-width: 450px) {
+  .backButton {
+    padding: 0.8rem 1rem;
+    font-size: 1.5rem;
+    margin-right: 0.1rem;
+  }
+
+  .nextButton {
+    padding: 0.8rem 2rem;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .nextButtonDisabled {
+    padding: 0.8rem 2rem;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+}
