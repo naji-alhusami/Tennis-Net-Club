@@ -8,8 +8,9 @@ export function middleware(request) {
     const playersParam = searchParams.get("players");
 
     if (dateParam) {
-      const reservationDate = new Date(dateParam);
-      const currentDate = new Date();
+      const reservationDate = new Date(dateParam); // date taken from link
+      const currentDate = new Date(); // current day from 12:00AM 
+      currentDate.setHours(0, 0, 0, 0);
 
       if (reservationDate <= currentDate) {
         return NextResponse.redirect(new URL("/reservation", request.url));
