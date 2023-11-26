@@ -44,11 +44,11 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
     const year = activeDay.getFullYear();
     formattedDate = `${year}-${month}-${day}`; // Output: "2023-11-05"
   }
-  // test
+  // tests
 
   // Check if the member has an existing reservation for the selected day
   const dayFromLink = searchParams.date;
-  // const newDate = new Date(dayFromLink);
+
   const memberTakenTimes = takenTimes.filter(
     (reservation) => reservation.member === session?.user.name
   );
@@ -59,15 +59,6 @@ function TimeSelectionStep({ session, searchParams, timeSlots, takenTimes }) {
 
   // Link for next page:
   const nextPath = `/reservation/?date=${searchParams.date}&court=${searchParams.court}&players=${searchParams.players}&time=${selectedTime}`;
-
-  console.log(dayFromLink);
-  console.log(formattedDate);
-  useEffect(() => {
-    if (!(dayFromLink === formattedDate)) {
-      router.replace("/reservation");
-      setCurrentStep(1);
-    }
-  }, [dayFromLink, formattedDate, setCurrentStep, router]);
 
   return (
     <Fragment>

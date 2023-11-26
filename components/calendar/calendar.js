@@ -14,7 +14,6 @@ function Calendar({ session, events, takenTimes }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
-
   useEffect(() => {
     if (isInView) {
       mainControls.start("visible");
