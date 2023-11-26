@@ -29,7 +29,15 @@ const takenTimeSchema = new Schema({
     type: String,
     required: true,
   },
+  expireAt: {
+    type: Date,
+    default: function () {
+      return new Date(Date.now() + 24 * 60 * 60 * 1000);
+    },
+  },
 });
+
+takenTimeSchema.index({ date: 1 }, { expireAfterSeconds: 24 * 60 * 60 }); // 345600 seconds = 4 days
 
 const TakenTime = models.takenTime || model("takenTime", takenTimeSchema);
 
