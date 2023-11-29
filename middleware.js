@@ -12,7 +12,7 @@ export function middleware(request) {
       const currentDate = new Date(); // current day from 12:00AM 
       currentDate.setHours(0, 0, 0, 0);
 
-      if (reservationDate <= currentDate) {
+      if (reservationDate < currentDate) {
         return NextResponse.redirect(new URL("/reservation", request.url));
       }
     }

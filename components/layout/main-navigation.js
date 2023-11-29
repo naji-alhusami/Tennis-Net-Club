@@ -159,7 +159,9 @@ function MainNavigation(props) {
               </li>
               {session && (
                 <li onClick={toggleButtonHandler}>
-                  <Link href="/reservation">Book Court</Link>
+                  <Link href="/reservation" onClick={stepsAndplayersHandler}>
+                    Book Court
+                  </Link>
                 </li>
               )}
               {session && (
