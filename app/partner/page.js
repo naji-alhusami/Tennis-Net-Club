@@ -32,7 +32,7 @@ function PartnerPage() {
         />
       </div>
       <Suspense fallback={<LoadingData />}>
-        <FindPartner />
+        {/* <FindPartner /> */}
       </Suspense>
     </div>
   );

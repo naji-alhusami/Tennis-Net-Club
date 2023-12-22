@@ -5,7 +5,7 @@ import { fetchPlayersFromMongo } from "@/lib/players/fetchPlayersFromMongo";
 
 async function FindPartner() {
   const players = await fetchPlayersFromMongo();
-  console.log(players);
+  console.log("players:", players);
   return (
     <Fragment>
       {players.data.length === 1 ? (
