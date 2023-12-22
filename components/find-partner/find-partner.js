@@ -1,14 +1,21 @@
 import React, { Fragment } from "react";
+import { getServerSession } from "next-auth";
 
-import Partners from "./partners";
 import { fetchPlayersFromMongo } from "@/lib/players/fetchPlayersFromMongo";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Partners from "./partners";
 
 async function FindPartner() {
+  const session = await getServerSession(authOptions);
   const players = await fetchPlayersFromMongo();
-  console.log("players:", players);
+  const filteredPlayers = players.data.filter(
+    (player) => player.email !== session?.user.email
+  );
+
   return (
     <Fragment>
-      {players.data.length === 1 ? (
+      <h1>partner</h1>
+      {filteredPlayers.length === 0 ? (
         <h4 style={{ color: "red" }}>No Players To Play With</h4>
       ) : (
         <Partners players={players} />

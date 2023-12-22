@@ -33,7 +33,7 @@ function TrainingPage() {
         />
       </div>
       <Suspense fallback={<LoadingData />}>
-        {/* <FetchTrainingEvents /> */}
+        <FetchTrainingEvents />
       </Suspense>
     </div>
   );

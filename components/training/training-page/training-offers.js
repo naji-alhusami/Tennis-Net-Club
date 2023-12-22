@@ -14,14 +14,13 @@ import TrainingForm from "./training-form";
 import AuthContext from "@/store/auth-context";
 import classes from "./training.module.css";
 
-function TrainingOffers({ hasTrainingMembership }) {
+function TrainingOffers({ trainingMembership }) {
   const { setActiveDay, activeDay } = useContext(AuthContext);
   const trainingFormRef = useRef(null);
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
   const [selectedTrainingType, setSelectedTrainingType] = useState(null);
 
-  console.log(hasTrainingMembership);
   // Motion
   const trainingOffersRef = useRef(null);
   const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });
@@ -57,7 +56,7 @@ function TrainingOffers({ hasTrainingMembership }) {
   return (
     <Fragment>
       <div className={classes.trainingContainer}>
-        {hasTrainingMembership && (
+        {trainingMembership.length === 0 && (
           <h4 style={{ color: "red" }}>
             You Are Already Involved in Training Sessions
           </h4>
@@ -93,7 +92,7 @@ function TrainingOffers({ hasTrainingMembership }) {
                 <p>{data.pText4}</p>
               </div>
               <div>
-                {session && !hasTrainingMembership ? (
+                {session && trainingMembership.length > 0 ? (
                   <motion.div
                     onClick={() => handleEnrollClick(data.id)}
                     whileHover={{ scale: 1.05 }}

@@ -7,14 +7,13 @@ import TrainingOffers from "./training-offers";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function FetchTrainingEvents() {
-  const trainings = await fetchEventsFromMongo();
   const session = await getServerSession(authOptions);
-  const hasTrainingMembership = trainings.data.some((training) => {
-    return training.member === session?.user.name;
+  const trainings = await fetchEventsFromMongo();
+  const trainingMembership = trainings.data.filter((training) => {
+    training.member === session?.user.name;
   });
 
-  console.log(hasTrainingMembership);
-  return <TrainingOffers hasTrainingMembership={hasTrainingMembership} />;
+  return <TrainingOffers trainingMembership={trainingMembership} />;
 }
 
 export default FetchTrainingEvents;
