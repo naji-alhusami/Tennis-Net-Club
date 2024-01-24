@@ -20,7 +20,7 @@ function TrainingOffers({ trainingMembership }) {
   const { data: session } = useSession();
   const [showEnrollForm, setShowEnrollForm] = useState(false);
   const [selectedTrainingType, setSelectedTrainingType] = useState(null);
-
+  
   // Motion
   const trainingOffersRef = useRef(null);
   const trainingOffersIsInView = useInView(trainingOffersRef, { once: true });
@@ -56,7 +56,7 @@ function TrainingOffers({ trainingMembership }) {
   return (
     <Fragment>
       <div className={classes.trainingContainer}>
-        {trainingMembership.length === 0 && (
+        {session && trainingMembership.length > 0 && (
           <h4 style={{ color: "red" }}>
             You Are Already Involved in Training Sessions
           </h4>
@@ -92,7 +92,7 @@ function TrainingOffers({ trainingMembership }) {
                 <p>{data.pText4}</p>
               </div>
               <div>
-                {session && trainingMembership.length > 0 ? (
+                {session && trainingMembership.length === 0 ? (
                   <motion.div
                     onClick={() => handleEnrollClick(data.id)}
                     whileHover={{ scale: 1.05 }}

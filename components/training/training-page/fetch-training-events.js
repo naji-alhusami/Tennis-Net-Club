@@ -10,9 +10,9 @@ async function FetchTrainingEvents() {
   const session = await getServerSession(authOptions);
   const trainings = await fetchEventsFromMongo();
   const trainingMembership = trainings.data.filter((training) => {
-    training.member === session?.user.name;
+    return training.member === session?.user.name;
   });
-
+  
   return <TrainingOffers trainingMembership={trainingMembership} />;
 }
 
